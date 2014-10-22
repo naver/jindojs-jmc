@@ -1,0 +1,25 @@
+{
+  "name": "jindojs-jmc",
+  "version": "1.16.0",
+  "description": "JindoJS Mobile Component",
+  "main": "dist/jindo-mobile-component.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jindo",
+    "jindojs",
+    "library",
+    "mobile",
+    "component",
+    "ui"
+  ],
+  "authors": [
+    "NAVER Corp."
+  ],
+  "license": "LGPL v2",
+  "homepage": "http://jindo.dev.naver.com/jindo_home/Mobile.html",
+  "dependencies": {
+    "jindojs-jindo": "*"
+  }
+}
