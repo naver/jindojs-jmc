@@ -1,0 +1,76 @@
+#### HTML
+
+	<div id="tabComponent" class="[sClassPrefix]base">		
+		<ul class="[sClassPrefix]tab-cont">
+			<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">뉴스홈</a></li>
+			<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">스포츠</a></li>
+			<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">부동산</a></li>
+		</ul>		
+		<div class="[sClassPrefix]panel-cont">
+			<div class="tc_panel">뉴스홈
+			<br/><br/>오늘의 뉴스 입니다.
+			</div>
+			<div class="[sClassPrefix]panel">스포츠
+			<br/><br/>오늘의 스포츠 경기 결과 입니다.
+			</div>
+			<div class="[sClassPrefix]panel">부동산
+			<br/><br/>오늘의 부동산 시세 입니다.
+			</div>
+		</div>
+		
+	</div> 
+
+
+* 최상위 tab컴포넌트는 div로 구성되며, 클래스명은 [prefix] + "base"로 정의된다.
+* 최상위 tab컴포넌트는 'tab컨테이너', 'panel컨테이너'로 모두 2개의 자식 div를 가진다.
+* tab의 집합인 'tab컨테이너'는 ul로 구성되며, 클래스명은 [prefix] + "tab-cont"로 정의한다
+* tab은 li로 구성되고 클래스명은 [prefix] + "tab"으로 정의한다.
+* tab 내부는 span, a 태그와 같은 다양한 마크업으로 구성될수 있으며, 클래스명은 [prefix] + "taba"로 정의한다.
+* panel들을 포함하는 'panel컨테이너'는 div로 구성되며, 클래스명은 [prefix] + "panel-cont"로 정의한다.
+* panel은 'panel컨테이너'를 부모로 갖고, div 로 구성되며, 클래스명은 [prefix] + "panel"로 정의한다.
+* 기본으로 선택될 tab과 panel은 [prefix] + "selected" 클래스명을 추가한다.
+* tab과 그에 1:1 대응하는 panel로 구성된다.
+* tab이 선택되면 선택된 tab과 panel에만 [prefix] + "selected" 클래스명이 추가된다.
+
+<br>  
+Tab컴포넌트 초기 생성시, nCountOnList 옵션에 의해 더보기 탭은 동적으로 생성된다.
+생성된 마크업은 다음과 같다.
+
+	<!-- 더보기 기능 사용시 마크업은 동적으로 생성된다 -->
+	<li class="[sClassPrefix]more-tab">
+		<a style="display: block; height: 100%">더보기 <span class="[sClassPrefix]arrow-down"></span></a>
+		<div style="position:relative; width:100%; z-index:10">
+			<ul class="[sClassPrefix]more-cont" style="display:none; position:absolute">
+				<!-- 탭 마크업 (개발자가 생성한 탭을 동적으로 이동한다)-->
+				<li class="[sClassPrefix]more-li"><a href="javascript:void(0)" class="[sClassPrefix]more-lia">부동산</a></li>
+				<li class="[sClassPrefix]more-li"><a href="javascript:void(0)" class="[sClassPrefix]more-lia">증</a></li>
+				...
+				<!-- 탭 마크업 끝 -->
+			</ul>
+		</div>
+	</li>
+
+* 더보기 탭은 일반탭에서 '더보기' 버튼이 추가된 형태이다.
+* 더보기 버튼의 클래스명은 [prefix] + "more-tab"로 정의한다
+* 더보기 버튼은 '버튼명'의 a 태그와 '목록'의 div으로 구성되어 있으며, a 태드는 span형태의 화살표를 가지고 있다. <br />
+이 화살표의 클래스명은 [prefix] + "arrow-down", [prefix] + "arrow-up"로 정의한다
+* '목록'의 div는 ul을 포함하고 있으며, 이 ul의 클래스명은 [prefix] + "more-cont"로 정의한다.
+* ul 내부에는 개발자가 마크업으로 지정했던 tab이 동적으로 Tab컴포넌트 생성시 추가된다.<br />
+추가된 탭은 [prefix] + "more-li"과 하위 태그는 [prefix] + "more-lia"로 클래스가 바뀐다.
+
+
+#### Javascript
+
+	var oComponent = new jindo.m.Tab("tabComponent", {
+		bActivateOnload : true,
+		sClassPrefix : "tc-",
+		nDefaultIndex : 0,
+		nCountOnList : 0,
+		sMoreText : "더보기",
+		nPanelDuration : 0,
+		nHeight : 0,
+		nWidth : 0
+	});
+
+* 첫번째 parameter는 tab의 최상의 Element로서, 문자형태의 id또는 HTML Element객체를 받을수 있음
+* 두번째 parameter는 option으로 써, 아래 표 참조

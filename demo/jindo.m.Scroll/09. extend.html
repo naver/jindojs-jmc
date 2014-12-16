@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>스크롤 사용자 이벤트를 이용한 확장</title>
+<meta name="class-lists" content="jindo.m.Scroll">
+<meta name="description" content="beforeScroll 이벤트를 통해, 스크롤의 이동 방식을 변경할 수 있다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.content {height:100%; float:left;}
+/*code@*/
+</style>
+
+<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<!-- 가로 스크롤 -->
+	<div id="view">
+		<!-- Wrapper -->
+		<div style="width:2000px">
+			<!-- Scroller -->
+			<div class="content" style="width:200px;background-color:#ca4040">
+				Content 1
+			</div>
+			<div class="content" style="width:150px;background-color:#4390ee">
+				Content 2
+			</div>
+			<div class="content" style="width:350px;background-color:#ff8604">
+				Content 3
+			</div>
+			<div class="content" style="width:570px;background-color:#4390ee">
+				Content 4
+			</div>
+			<div class="content" style="width:300px;background-color:#ca4040">
+				Content 5
+			</div>
+			<div class="content" style="width:350px;background-color:#4390ee">
+				Content 6
+			</div>
+			<div class="content" style="width:80px;background-color:#ff8604">
+				Content 7
+			</div>
+		</div>
+		<!-- //Scroller -->
+	</div>
+	<!-- //가로 스크롤 -->
+</div>
+<!-- // Demo 영역 -->
+
+<!--@code title="HTML"
+<div id="view">
+	<div style="width:6000px">
+		<ul> // Scroller
+			<li>....</li>
+		</ul>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oScroll = null;
+window.onload = function(){
+	var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+	setTimeout(function(){
+
+var wel = jindo.$Element("view");
+
+/*@code title="JavaScript"*/
+oScroll = new jindo.m.Scroll(wel, {
+	bUseHScroll : true,
+	bUseVScroll : false,
+	bUseMomentum : true,
+	bAutoResize : true,
+	nHeight: 150
+}).attach("beforeScroll" , function(we) {
+
+	var bNext = we.nDistanceX < 0;
+	if(bNext) {
+		nPosIndex++;
+		nPosIndex = aPos.length <= nPosIndex ? aPos.length-1 : nPosIndex;
+	} else {
+		nPosIndex--;
+		nPosIndex = 0 > nPosIndex ? 0 : nPosIndex;
+	}
+	we.nNextLeft=aPos[nPosIndex];
+	we.nTime = 300;
+});
+
+// 각 컨텐츠의 위치를 저장
+var nPos = 0;
+var aPos = [nPos];
+var nPosIndex = 0;
+var nMax = oScroll.getRight();
+jindo.$A(wel.queryAll(".content")).forEach(function(v,i,a) {
+	nPos += jindo.$Element(v).width();
+	if(i != a.length-1) {
+		if(nMax < -nPos) {
+			aPos.push(-nPos);
+		} else {
+			jindo.$A.Break();
+		}
+	}
+});
+/*code@*/
+}, nDelay);
+}
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

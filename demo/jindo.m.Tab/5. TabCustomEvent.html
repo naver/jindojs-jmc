@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>사용자 이벤트 예제</title>
+<meta name="class-lists" content="jindo.m.Tab">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.tc-base{margin:10px;overflow:hidden;}
+
+.tc-tab-cont{display:table;width:100%;height:30px;padding-top:5px;background:#5dd668 url(../asset/img/u_bg.png) repeat-x 0 -72px;text-align:center}
+.tc-tab{display:table-cell;vertical-align:top}
+.tc-selected .tc-taba{z-index:10;background:#f4f5f5;background:url(../asset/img/bg_tab.gif) no-repeat 0 0,url(../asset/img/bg_tab.gif) no-repeat 100% -30px,#f4f5f5 url(../asset/img/bg_tab.gif) repeat-x 0 -60px;line-height:30px;color:#000}
+
+.tc-taba{display:block;position:relative;height:30px;padding:0 .4em;line-height:28px;color:#fff}
+.tc-taba:after{display:block;position:absolute;top:6px;left:-2px;width:1px;height:14px;border-left:1px solid #0b7518;background:#12cf2a;content:''}
+
+.tc-tab:first-child .tc-taba:after,.tc-selected .tc-taba:after{display:none}
+.tc-tab:first-child .tc-taba{margin-left:2px}
+.tc-tab:last-child .tc-taba{margin-right:2px}
+.tc-tab{*float:left}
+
+.tc-panel-cont{background:#4BA12E}
+.tc-panel{display:none;padding:10px;border:#226E04 solid 1px;border-top:none;background:#F4F5F5}
+.tc-selected{display:block}
+
+.tc-more-tab{display:table-cell}
+.tc-more-on{border-bottom:1px solid #FFF;border-bottom:1px solid #FFF;background-color:#fff;line-height:25px}
+.tc-arrow-down{display:inline-block;overflow:hidden;width:7px;height:4px;_margin:15px 0 14px;background:url(http://sstatic.naver.net/search/mobile/i11/ic_csu.png) 0 -434px;vertical-align:middle}
+.tc-arrow-up{display:inline-block;overflow:hidden;width:7px;height:4px;_margin:15px 0 14px;background:url(http://sstatic.naver.net/search/mobile/i11/ic_csu.png) -7px -434px;vertical-align:middle}
+.tc-more-cont{left:-1px;width:99.9%;padding-right:1px;border-top:1px solid #DADEE1;border-left:1px solid #DADEE1;background:#FFF}
+.tc-more-li{border-bottom:1px solid #f2f4f5;text-align:left}
+.tc-more-lia{display:block;height:100%;padding-left:9px;color:#6B707D}
+
+
+
+/*@code title="CSS"*/
+.tc-base {}
+.tc-tab-cont{}
+.tc-tab{}
+.tc-taba {}
+.tc-panel-cont {}
+.tc-panel {}
+.tc-selected {display:block}
+
+.tc-more-tab{display:table-cell;}
+.tc-more-on {}
+.tc-arrow-down {}
+.tc-arrow-up {}
+.tc-more-cont {}
+.tc-more-li {}
+.tc-more-lia {}
+/*code@*/
+</style>
+
+<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!--@code title="HTML"-->
+<div id="tabComponent" class="tc-base">
+	<ul class="tc-tab-cont">
+		<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">뉴스홈</a></li>
+		<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">스포츠</a></li>
+		<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">부동산</a></li>
+	</ul>
+	<div class="tc-panel-cont">
+		<div class="tc-panel">
+			뉴스홈<br><br>
+			오늘의 뉴스 입니다.<br><br>
+			탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.<br>
+			탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+		</div>
+		<div class="tc-panel">
+			스포츠<br><br>
+			오늘의 스포츠 경기 결과 입니다.<br><br>
+			탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.<br>
+			탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+		</div>
+		<div class="tc-panel">
+			부동산<br><br>
+			오늘의 부동산 시세 입니다.<br><br>
+			탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.<br>
+			탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+		</div>
+	</div>
+</div>
+<!--code@ -->
+
+<!-- // Demo 영역 -->
+
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea cols="30" rows="5" title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Tab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+window.onload = function(){
+	var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+	setTimeout(function(){
+/*@code title="JavaScript"*/
+	var oTab = new jindo.m.Tab("tabComponent", {
+		nCountOnList : 2,
+		nPanelDuration : 500,
+		nHeight : 170,
+		nWidth : 0
+	}).attach({
+		"beforeSelect" :  function(we) {
+			addConsole(we.sType + " → " + "select 선택하기 전에 호출 (index : " + we.nIndex + ")");
+		},
+		"select" : function(we) {
+			addConsole(we.sType + " → " + "select 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeShow" : function(we) {
+			addConsole(we.sType + " → " + "beforeShow 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"show" : function(we) {
+			addConsole(we.sType + " → " + "show 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeHide" : function(we) {
+			addConsole(we.sType + " → " + "beforeHide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"hide" : function(we) {
+			addConsole(we.sType + " → " + "hide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeSlide" : function(we) {
+			addConsole(we.sType + " → " + "beforeSlide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"slide" : function(we) {
+			addConsole(we.sType + " → " + "slide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		}
+	});
+/*code@*/
+}, nDelay);
+}
+</script>
+
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

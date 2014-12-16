@@ -1,0 +1,119 @@
+#### HTML
+
+	<!-- 기준 엘리먼트-->
+	<div id="form_base">
+		<!-- TextInput 마크업 시작 -->
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="url"/> 
+			<!-- 삭제버튼 (선택적으로 적용가능)
+			<div class="[prefix]clear-btn"><a href="#">삭제</a></div>-->		 
+		</div>
+		<!-- TextInput 마크업 끝-->
+	</div>
+
+컴포넌트는 TextInput Unit과 여러개의 Unit을 감싸는 Container 영역으로 구성된다.
+
+
+* Container영역을 기준엘리먼트로 설정한다.
+* TextInput Unit 영역의 엘리먼트의 경우 __[prefix]+'textinput-unit'__의 클래스명을 가진다.
+* TextInput Unit은 내부적으로 **positon:relative** 속성이 설정된다.
+* TextInput Unit은 text 타입의 Input, 삭제 버튼으로 구성되어 있다.
+* 삭제 버튼 엘리먼트의 경우 __[prefix]+'clear-btn'__의 클래스명을 가지며, 선택적으로 지정할 수 있다.
+* 삭제 버튼 엘리먼트가 존재할 경우 내부적으로 **positon:absolute, z-index:100, cursor:pointer, right:0px, top:0px** 속성이 설정되고, 초기화시 hide된다.
+
+##### 유효성 검사(Validation Rule)
+
+input에 **"data-validate"** Attribute를 설정하고, bUseValidate옵션이 true인 경우, TextInput에서 **blur**이벤트가 발생할 경우, 유효성을 검증할 수 있다. 지정 형식은 다음과 같다.
+<br /> 
+
+	<input data-validate="유효성종류1:[형식1];[ 유효성종류2:[형식2] ];[ 유효성종류3:[형식3] ] ...."/>
+
+복수개의 유효성 검사 및 사용자 유효성 검사가 가능하다. 상세 내역은 [jindo.m.Validation](../../doc/internal/classes/jindo.m.Validation.html) 을 참조하기 바란다<br />
+
+##### 유효성 검사(Validation Rule) 예
+
+	<div id="form_base">
+		<!-- URL UrlValidator -->
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="url"/> 
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>		
+		</div>
+		<br/>
+		<!-- 필수항목 RequireValidator, 이메일 EmailValidator -->
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="require;email"/>
+		</div>
+		<br/>
+		<!-- 전화번호 TelValidator -->
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="tel:-"/>
+		</div>
+		<br/>
+		<!-- 날짜 DateValidator -->
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="date:yyyy.mm.dd"/>
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>		 
+		</div>
+		<!-- 필수항목 RequireValidator, 숫자 NumberValidator -->
+		<div class="fit-textinput-unit">
+			<input type="text" class="mf_input" data-validate="number:,;require"/>
+		</div>
+		<br/>
+		<!-- 통화 CurrencyValidator -->
+		<div class="fit-textinput-unit">
+			<input type="text" class="mf_input" data-validate="currency:￦"/>
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>		 
+		</div>
+		<br/>
+	</div>
+
+
+#### CSS
+
+	/*class prefix가 'fit-' 인 경우*/	
+
+	/*TextInput Unit CSS [필수]*/
+	.fit-textinput-unit {
+		padding-right:[Npx];
+		...
+	}
+	/* Focus 시 적용 되는  CSS*/
+	.fit-focus {...}
+	/* 비활성화 시 적용 되는  CSS*/
+	.fit-disable {...}
+
+	/* 삭제 버튼 CSS [선택]*/
+	.fit-clear-btn {
+		width :[Npx];
+		...
+	}
+
+TextInput Unit은 내부적으로 input, 삭제 버튼을 포함하는 구조이다.
+
+![](textinput_detail.JPG "")
+<br /> 
+필수 CSS 요소는 다음과 같다.
+<br />  
+
+* __[prefix] + textinput-unit__ 클래스 : Focus시 TextInput Unit 영역에 적용 되는 클래스
+* __[prefix] + focus__ 클래스 : Focus시 TextInput Unit 영역에 적용 되는 클래스
+* __[prefix] + disable__ 클래스 : 비활성화시 TextInput Unit 영역에 적용 되는 클래스<br />
+<br />  
+선택 CSS 요소는 다음과 같다.
+* __[prefix] + clear-btn__ 클래스 : TextInput Unit 영역의 삭제버튼 클래스. 삭제버튼을 사용할 경우에 필요하다.
+
+<br> 
+주의할 것은 [prefix] + textinput-unit의 __padding-right__와 [prefix] + clear-btn의 __width__의 수치가 같아야 한다.<br />
+또한, clear-btn의 __height__의 수치는 [prefix] + textinput-unit의 __height__ 또는 __line-height__와 같아야한다.
+
+
+#### Javascript
+
+	var oTextInput = new jindo.m.TextInput("form_base",{
+		sClassPrefix	: "fit-",
+		bUseValidate : true,
+		bActivateOnload : true
+	}
+
+* 첫번째 파라미터는 기준엘리먼트의 Id 또는 HTMLElement로 설정 할 수 있다.
+* 두번째 파라미터는 컴포넌트 옵션이다.

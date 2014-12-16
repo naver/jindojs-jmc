@@ -1,0 +1,115 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>레이어 배치</title>
+<meta name="class-lists" content="jindo.m.LayerPosition"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="25개의 레이어를 간단하게 배치해보는 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_addhm{position:absolute;left:0;z-index:100;width:308px;height:94px;font-size:12px;line-height:13px;text-align:center}
+.u_addhm .uc_area{position:relative;width:308px;height:94px;margin:0 auto;background:url(../asset/img/bg_addhm.png) no-repeat 0 0;text-align:left}
+.u_addhm .uc_p{margin-left:5px;padding:23px 0 10px 20px;color:#222;letter-spacing:-1px;white-space:nowrap}
+.u_addhm .uc_st{color:#04779d}
+.u_addhm .uc_btn{display:block;position:absolute;top:5px;right:9px;width:50px;height:62px;border:0;background:none}
+.strike{color:red}
+</style>
+<style type="text/css">
+    .center_layer {position:absolute; top:100px; left:100px; width:300px; height:300px; padding:5px;  background-color:#666; color:white; border:1px solid black; text-align:center;}
+    .layer {position:absolute; width:50px; height:50px; padding:5px; background-color:white; border:1px solid black; z-index:2; }
+    .demo-body {position:relative !important}
+</style>
+</head>
+<body>
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+     data-title="Jindo Mobile Component"
+     data-subtitle="=document.title"
+     data-backbutton="true"
+     data-viewsource="true"
+     data-qrcode="true"></script>
+
+<div id="center" class="center_layer">center layer</div>
+
+<div id="layer1" class="layer">layer 1</div>
+
+<div id="layer2" class="layer">layer 2</div>
+<div id="layer3" class="layer">layer 3</div>
+<div id="layer4" class="layer">layer 4</div>
+<div id="layer5" class="layer">layer 5</div>
+<div id="layer6" class="layer">layer 6</div>
+<div id="layer7" class="layer">layer 7</div>
+
+<div id="layer8" class="layer">layer 8</div>
+<div id="layer9" class="layer">layer 9</div>
+<div id="layer10" class="layer">layer 10</div>
+<div id="layer11" class="layer">layer 11</div>
+<div id="layer12" class="layer">layer 12</div>
+<div id="layer13" class="layer">layer 13</div>
+
+<div id="layer14" class="layer">layer 14</div>
+<div id="layer15" class="layer">layer 15</div>
+<div id="layer16" class="layer">layer 16</div>
+<div id="layer17" class="layer">layer 17</div>
+<div id="layer18" class="layer">layer 18</div>
+<div id="layer19" class="layer">layer 19</div>
+
+<div id="layer20" class="layer">layer 20</div>
+<div id="layer21" class="layer">layer 21</div>
+<div id="layer22" class="layer">layer 22</div>
+<div id="layer23" class="layer">layer 23</div>
+<div id="layer24" class="layer">layer 24</div>
+<div id="layer25" class="layer">layer 25</div>
+<div style="height:500px"></div>
+
+
+<script type="text/javascript" src="../../src/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var elCenter = jindo.$("center");
+    var nCenterSize = elCenter.offsetWidth;
+    var nHalfCenter = nCenterSize/2;
+    var nLayerSize = jindo.$("layer1").offsetWidth;
+    var nHalfLayer = nLayerSize/2;
+
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer1"), { sPosition : "top", nTopMargin : -nLayerSize -10 , nLeftMargin : (-nHalfCenter - nHalfLayer) - 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer2"), { sPosition : "top", nTopMargin : -nLayerSize -10 , nLeftMargin : (-nHalfCenter + nHalfLayer) + 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer3"), { sPosition : "top", nTopMargin : -nLayerSize -10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer4"), { sPosition : "top", nTopMargin : -nLayerSize -10 , nLeftMargin : (nHalfCenter - nHalfLayer) - 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer5"), { sPosition : "top", nTopMargin : -nLayerSize -10 , nLeftMargin : (nHalfCenter + nHalfLayer) + 10, bAutoReposition : false});
+
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer6"), { sPosition : "top", nTopMargin : 10 , nLeftMargin : (-nHalfCenter - nHalfLayer) - 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer7"), { sPosition : "top", nTopMargin : 10 , nLeftMargin : (-nHalfCenter + nHalfLayer) + 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer8"), { sPosition : "top", nTopMargin : 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer9"), { sPosition : "top", nTopMargin : 10 , nLeftMargin : (nHalfCenter - nHalfLayer) - 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer10"), { sPosition : "top", nTopMargin : 10 , nLeftMargin : (nHalfCenter + nHalfLayer) + 10, bAutoReposition : false});
+
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer11"), { sPosition : "center",  nLeftMargin : (-nHalfCenter - nHalfLayer) - 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer12"), { sPosition : "center",  nLeftMargin : (-nHalfCenter + nHalfLayer) + 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer13"), { sPosition : "center", bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer14"), { sPosition : "center",  nLeftMargin : (nHalfCenter - nHalfLayer) - 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer15"), { sPosition : "center",  nLeftMargin : (nHalfCenter + nHalfLayer) + 10, bAutoReposition : false});
+
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer16"), { sPosition : "bottom",  nLeftMargin : (-nHalfCenter - nHalfLayer) - 10, nBottomMargin : 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer17"), { sPosition : "bottom",  nLeftMargin : (-nHalfCenter + nHalfLayer) + 10, nBottomMargin : 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer18"), { sPosition : "bottom", nBottomMargin : 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer19"), { sPosition : "bottom",  nLeftMargin : (nHalfCenter - nHalfLayer) - 10, nBottomMargin : 10, bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer20"), { sPosition : "bottom",  nLeftMargin : (nHalfCenter + nHalfLayer) + 10, nBottomMargin : 10, bAutoReposition : false});
+
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer21"), { sPosition : "bottom",  nLeftMargin : (-nHalfCenter - nHalfLayer) - 10, nBottomMargin : -(nLayerSize + 10), bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer22"), { sPosition : "bottom",  nLeftMargin : (-nHalfCenter + nHalfLayer) + 10, nBottomMargin : -(nLayerSize + 10), bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer23"), { sPosition : "bottom", nBottomMargin : -(nLayerSize + 10), bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer24"), { sPosition : "bottom",  nLeftMargin : (nHalfCenter - nHalfLayer) - 10, nBottomMargin : -(nLayerSize + 10), bAutoReposition : false});
+    new jindo.m.LayerPosition(jindo.$("center"), jindo.$("layer25"), { sPosition : "bottom",  nLeftMargin : (nHalfCenter + nHalfLayer) + 10, nBottomMargin : -(nLayerSize + 10), bAutoReposition : false});
+
+</script>
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

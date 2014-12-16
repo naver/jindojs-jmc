@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <title>멀티 플리킹</title>
+    <meta name="class-lists" content="jindo.m.SlideFlicking">
+    <meta name="description" content="하나의 플리킹 안에서 여러개의 플리킹을 사용한 예제">
+    <!-- SamplePage 기본 CSS -->
+    <link rel="stylesheet" type="text/css" href="../asset/demo.css">
+    <style type="text/css">
+        /*@code title="CSS"*/
+        /* 높이값 지정은 기준엘리먼트에서 하면 됩니다 */
+        #mflick{width:100%;height:200px}
+        /*code@*/
+    </style>
+    <script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+    <!-- 기본 스크립트 -->
+    <script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+    <!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+        data-title="Jindo Mobile Component"
+        data-subtitle="=document.title"
+        data-backbutton="true"
+        data-viewsource="true"
+        data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+    <p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="mflick" style="background-color:grey">
+    <div style="" class="flick-container">
+        <div class="flick-ct" style="width:100%;height:200px;background-color:pink">
+            <div id="mflick-sub1" style="background-color:grey;height:200px">
+                <div style="" class="flick-sub1-container">
+                    <div class="flick-sub1-ct" style="width:100%;height:200px;background-color:pink">
+                        <ul>
+                            <li><a href="http://m.naver.com">A-첫번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                    <div class="flick-sub1-ct" style="width:100%;height:200px;background-color:pink">
+                        <ul>
+                            <li><a href="http://m.naver.com">A-두번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                    <div class="flick-sub1-ct" style="width:100%;height:200px;background-color:pink">
+                        <ul>
+                            <li><a href="http://m.naver.com">A-세번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flick-ct" style="width:100%;height:200px;background-color:skyblue">
+            <div id="mflick-sub2" style="background-color:grey;height:200px">
+                <div style="" class="flick-sub2-container">
+                    <div class="flick-sub2-ct" style="width:100%;height:200px;background-color:skyblue">
+                        <ul>
+                            <li><a href="http://m.naver.com">B-첫번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                    <div class="flick-sub2-ct" style="width:100%;height:200px;background-color:skyblue">
+                        <ul>
+                            <li><a href="http://m.naver.com">B-두번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                    <div class="flick-sub2-ct" style="width:100%;height:200px;background-color:skyblue">
+                        <ul>
+                            <li><a href="http://m.naver.com">B-세번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flick-ct" style="width:100%;height:200px;background-color:#ffc000">
+            <div id="mflick-sub3" style="background-color:grey;height:200px">
+                <div style="" class="flick-sub3-container">
+                    <div class="flick-sub3-ct" style="width:100%;height:200px;background-color:#ffc000">
+                        <ul>
+                            <li><a href="http://m.naver.com">C-첫번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                    <div class="flick-sub3-ct" style="width:100%;height:200px;background-color:#ffc000">
+                        <ul>
+                            <li><a href="http://m.naver.com">C-두번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                    <div class="flick-sub3-ct" style="width:100%;height:200px;background-color:#ffc000">
+                        <ul>
+                            <li><a href="http://m.naver.com">C-세번째 레이어의 아이템 입니다</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--// Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+var oSlideFlicking = null;
+var aSubFlicking = [];
+window.onload = function(){setTimeout(function(){
+	function fnBeforeTouchMove(we) {
+		if(!we.bCorrupt) {
+			var bNext = we.nDistanceX < 0;
+			if( (bNext && this.getContentIndex() == this.getTotalContents()-1) || (!bNext && this.getContentIndex() == 0) ) {
+				we.stop();
+			}
+		}
+	}
+
+	oSlideFlicking = new jindo.m.SlideFlicking(jindo.$('mflick'),{
+		nTotalContents : 3, //전체 아이템 개수
+		bUseCircular : true,
+		bUseMomentum : false
+	}).attach({
+		"flicking" : function(we) {
+			if(we.bCorrupt) {
+				// 모두 갱신되는 경우에 처리
+			} else {
+				if(we.bNext) {
+					aSubFlicking[this.getNextIndex()].moveTo(0,0);
+				} else {
+					aSubFlicking[this.getPrevIndex()].moveTo(aSubFlicking[this.getPrevIndex()].getTotalContents()-1,0);
+				}
+			}
+		}
+	});
+
+	aSubFlicking.push(new jindo.m.SlideFlicking(jindo.$('mflick-sub1'),{
+		nTotalContents : 3, //전체 아이템 개수
+		bUseCircular : true,
+		bUseMomentum : false,
+		sClassPrefix : "flick-sub1-"
+	}).attach({
+		"beforeTouchMove" : fnBeforeTouchMove
+	}));
+
+	aSubFlicking.push(new jindo.m.SlideFlicking(jindo.$('mflick-sub2'),{
+		nTotalContents : 3, //전체 아이템 개수
+		bUseCircular : true,
+		bUseMomentum : false,
+		sClassPrefix : "flick-sub2-"
+	}).attach({
+		"beforeTouchMove" : fnBeforeTouchMove
+	}));
+
+	aSubFlicking.push(new jindo.m.SlideFlicking(jindo.$('mflick-sub3'),{
+		nTotalContents : 3, //전체 아이템 개수
+		bUseCircular : true,
+		bUseMomentum : false,
+		nDefaultIndex : 2,
+		sClassPrefix : "flick-sub3-"
+	}).attach({
+		"beforeTouchMove" : fnBeforeTouchMove
+	}));
+
+	// 0번째 판을 재갱신한다
+	oSlideFlicking.refresh(0);
+}, nDelay); }
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+
+<!--@code title="HTML"
+<div id="mflick">
+	<div class="flick-container">
+		<div  class="flick-ct" >
+			<div id="mflick-sub1">
+				<div class="flick-sub1-container">
+					<div  class="mflick-sub1-ct" >
+						Sub1 - Layer 1
+					</div>
+					<div  class="flick-sub1-ct" >
+						Sub1 - Layer 2
+					</div>
+					<div class="flick-sub1-ct" >
+						Sub1 - Layer 3
+					</div>
+				</div>
+			</div>
+		</div>
+		<div  class="flick-ct" >
+			<div id="mflick-sub2">
+				<div class="flick-sub2-container">
+					<div  class="mflick-sub2-ct" >
+						Sub2 - Layer 1
+					</div>
+					<div  class="flick-sub2-ct" >
+						Sub2 - Layer 2
+					</div>
+					<div class="flick-sub2-ct" >
+						Sub2 - Layer 3
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="flick-ct" >
+			<div id="mflick-sub3">
+				<div class="flick-sub3-container">
+					<div  class="mflick-sub3-ct" >
+						Sub3 - Layer 1
+					</div>
+					<div  class="flick-sub3-ct" >
+						Sub3 - Layer 2
+					</div>
+					<div class="flick-sub3-ct" >
+						Sub3 - Layer 3
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+code@-->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								레이어를 화면의 특정 영역에 위치시킬 수 있는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+	<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">
+						LayerPosition은 화면 영역내에 총 4개의 Position에 Layer를 위치 시킬수 있으며, 사용자의 필요에 따라 각각의 Position에서 Margin을 줄 수 있다.<br/><br/>
+						
+						<img width=280 height=380 src="../resource/img/LayerPosition.jpg"><br>
+						[Position, Margin 설정에 따른 Layer의 위치]<br><br>
+						
+						<p style="padding:0px;line-height:17px;">
+							<strong>Position</strong><br>
+							<ul class="t2">
+							<li>Top : 화면 상단 중앙에 Layer를 위치시킨다. (Layer의 크기변경 없음)</li>
+							<li>Center : 화면 정 중앙에 Layer를 위치시킨다. (Layer의 크기변경 없음)</li>
+							<li>Bottom : 화면 하단 중앙에 Layer를 위치시킨다. (Layer의 크기변경 없음)</li>
+							<li>All : 화면과 동일한 크기의 Layer를 구성한다. (Layer의 크기변경 있음)</li>
+							</ul><br><br>
+							
+							<strong>Margin</strong><br>
+							<ul class="t2">
+							<li>Top : 화면 상단 중앙을 기준으로 nLeft와 nTop의 마진을 줄수 있다.</li>
+							<li>Center : 화면 중앙을 기준으로 nLeft와 nTop의 마진을 줄수 있다.</li>
+							<li>Bottom : 화면 하단중앙을 기준으로 nLeft와 nBottom의 마진을 줄수 있다.</li>
+							<li>All : 화면과 동일한 크기의 Layer의 내부 마진을 nLeft, nTop, nBottom, nRight로 줄 수 있다.</li>
+							</ul>
+						</p>
+					</div>	
+					
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>전체</dt>
+							<dd><div class="point_box">
+								모바일 단말기가 가로에서 세로로 회전시, 레이어의 크기에 따라 전체 HTML이 깨지는 문제가 있다.<br/>
+								가로,세로일 경우 Layer 크기가 화면보다 커서 발생하는 현상으로, Layer 크기를 가로,세로의 사이즈보다 작은 고정 크기로 지정한다. 
+							</div></dd>
+						</dl>						
+						<dl>
+							<dt>Nexus S</dt>
+							<dd><div class="point_box">
+								키패드가 올라온 상태에서 화면전환을 할 경우, 키패드가 올라온 상태의 화면 크기를 기억하고 있어서,<br/>
+								resize나 rotate 이 발생하기 전까지는 항상 줄여진 화면크기를 기억하는 버그가 있다<br/>
+								물리적으로, 키패드를 나타나게 한 이후, 다시 키패드를 내리면, 정상적으로 돌아온다.
+							</div></dd>
+						</dl>						
+						<dl>
+							<dt>Galaxy Nexus</dt>
+							<dd><div class="point_box">
+								position:fixed를 사용할 경우, 모바일 기기가 회전될 경우, 랜더링이 안되는 버그가 있다.
+							</div></dd>
+						</dl>	
+					</div>
+					
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">
+									<body>
+										<div id="layer">Layer</div>
+									</body>
+								</textarea>
+								<div class="t2">
+								<ul>
+									<li>위치를 설정할 레이어 엘리먼트는 documeny.body의 바로 아래에 존재하여야 한다. 그렇지 않을 경우 강제로 body의 자식으로 위치시킨다.</li>
+									<li>위치를 설정할 레이어 엘리먼트는 기본적으로, <font style="color:#e11b10;">position:absolute</font>로 변경된다<br>
+										단, 최적의성능을 위해, <font style="color:#e11b10;">bAutoReposition</font>가 true이고, <font style="color:#e11b10;">bUseFixed</font> 옵션이 true일 경우, 만약, position:fixed 속성이 지원되는 기기일 경우, <font style="color:#e11b10;">position:fixed</font>로 변경된다.
+									</li>
+								</ul>
+								</div>
+							</dd>			
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oComponent = new jindo.LayerPosition("layer", {
+										 bActivateOnload : true,
+										 bAutoReposition : true,
+										 sPosition : "center",
+										 nLeftMargin : 0,
+										 nRightMargin : 0,
+										 nTopMargin : 0,
+										 nBottomMargin : 0,
+										 bUseFixed : true				
+									});
+								</textarea>
+								<div class="t2">
+								<ul>
+									<li>첫번째 parameter는 Layer로써, 문자형태의 id또는 HTML Element객체를 받을수 있음</li>
+									<li>두번째 parameter는 option으로 써, 아래 표 참조</li>
+								</ul>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">bAutoReposition</td>
+								<td>화면 이동시, 또는 스크롤 이동시 LayerPosition이 자동으로 적용될지 여부를 결정한다</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td class="name">sPosition</td>
+								<td>LayerPosition의 영역을 지정한다. top, center, bottom, all의 총4개 영역이 있다.</td>
+								<td>"center"</td>
+							</tr>
+							<tr>
+								<td class="name">nLeftMargin</td>
+								<td>LayerPosition의 nLeft마진을 지정한다</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nRightMargin</td>
+								<td>LayerPosition의 nRight마진을 지정한다</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nTopMargin</td>
+								<td>LayerPosition의 nTop마진을 지정한다</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nBottomMargin</td>
+								<td>LayerPosition의 nBottom마진을 지정한다</td>
+								<td>0</td>
+							</tr>
+
+							<tr>
+								<td class="name">bUseFixed</td>
+								<td>position:fixed 사용 여부를 설정한다. (단말기에서 position:fixed를 지원하지 않을 경우 옵션값은 무시된다)</td>
+								<td>true</td>
+							</tr>							
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>FloatingLayer 컴포넌트가 로딩 될때 활성화 시킬지 여부를 결정한다. 
+				false로 설정하는 경우에는 LayerPosition.activate()를 호출하여 따로 활성화 시켜야 한다.</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforePosition</td>
+								<td>포지션을 잡기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement) : LayerPostion 적용된 Layer</li>
+										<li>htMargin (Object) : {nLeft,nTop,nBottom,nright}의 마진 객체</li>
+										<li>htPosition (Object) : 포지션 변경 전의 {nLeft,nTop} 객체</li>
+										<li>stop (Function) : position을 중지한다. beforeAdjust이후 커스텀 이벤트(position)가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforePosition", function(oCustomEvent) {
+										// oCustomEvent.elLayer;
+										// oCustomEvent.htMargin;
+										// oCustomEvent.htPosition;
+										// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(position)가 발생하지 않고, 현재 Position작업도 중지됨
+									});
+									</textarea>
+								</td>
+							</tr>
+							
+							<tr class="title">
+								<td class="name">position</td>
+								<td>포지션을 잡은 후에 발생. setPosition을 사용할 경우, 옵션값에 fSuccessFnc 함수를 지정하면 position 이벤트 발생후에 fSuccessFnc함수가 호출됨</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement) : LayerPostion 적용된 Layer</li>
+										<li>htMargin (Object) : {nLeft,nTop,nBottom,nright}의 마진 객체</li>
+										<li>htPosition (Object) : 포지션 변경 후의 {nLeft,nTop} 객체</li>
+										<li>stop (Function) : stop (Function) : stop를 호출하여 영향 받는 것이 없음.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("position", function(oCustomEvent) {
+										// oCustomEvent.elLayer;
+										// oCustomEvent.htMargin;
+										// oCustomEvent.htPosition;
+									});
+									</textarea>
+								</td>
+							</tr>			
+						</table>
+					</div>
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>								 
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>Update</td>
+                               	<td>bUseFixed</td>
+                               	<td>Option 기본값 수정 (false → true)</td>
+							 </tr>
+
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>Update</td>
+                               	<td>bUseFixed</td>
+                               	<td>Option 추가</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0, iOS5일 경우 position: fixed 적용</td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+							 	<td>-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name" rowspan="4">v0.9.5</td>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               <td>iOS에서 모바일기기 회전시(가로에서 세로로) HTML 깨지는 문제 해결</td>
+							 </tr>
+							 <tr>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               <td>뒤로가기 버튼 눌렀을 때 오류 문제 해결</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>setPosition()</td>
+                               <td>비동기식 처리방식에서 동기식으로 변경</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getArea() → getPosition() </td>
+                               <td>Mehtod명 수정</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

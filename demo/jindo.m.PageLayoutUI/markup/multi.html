@@ -1,0 +1,73 @@
+<!-- 변환 전 -->
+<body>
+<!-- 멀티 -->
+<div class="jmc-page">
+	<div class="jmc-header">헤더</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-footer">풋터</div>
+</div>
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">헤더</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-footer">풋터</div>
+</div>
+<div class="jmc-page">
+	<div class="jmc-header">헤더</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-footer" position="fixed">풋터</div>
+</div>
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">헤더</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-footer" position="fixed">풋터</div>
+</div>
+</body>
+
+
+<!-- 변환 후 -->
+<body>
+    <!-- 1page 마크업 시작 -->
+    <div class="jmc-page">
+        <div class="scroll-wrapper">
+            <div class="scroller">
+		        <div class="jmc-header">헤더</div>
+                <div class="jmc-content">컨텐츠</div>
+                <div class="jmc-footer">풋터</div>
+            </div>
+        </div>
+    </div>
+    <!-- //1page  마크업 끝-->
+    <!-- 2page 마크업 시작 -->
+    <div class="jmc-page">
+    	<div class="jmc-header" position="fixed">헤더</div>
+        <div class="scroll-wrapper">
+            <div class="scroller">
+                <div class="jmc-content">컨텐츠</div>
+                <div class="jmc-footer">풋터</div>
+            </div>
+        </div>
+    </div>
+    <!-- //2page  마크업 끝-->
+    <!-- 3page 마크업 시작 -->
+    <div class="jmc-page">
+        <div class="scroll-wrapper">
+            <div class="scroller">
+    		<div class="jmc-header">헤더</div>
+                <div class="jmc-content">컨텐츠</div>
+            </div>
+        </div>
+        <div class="jmc-footer" position="fixed">풋터</div>
+    </div>
+    <!-- //3page  마크업 끝-->
+    <!-- 4page 마크업 시작 -->
+    <div class="jmc-page">
+    	<div class="jmc-header" position="fixed">헤더</div>
+        <div class="scroll-wrapper">
+            <div class="scroller">
+                <div class="jmc-content">컨텐츠</div>
+            </div>
+        </div>
+        <div class="jmc-footer" position="fixed">풋터</div>
+    </div>
+    <!-- //4page  마크업 끝-->
+</body>             

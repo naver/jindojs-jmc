@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>디폴트블럭 설정옵션 사용예제</title>
+<meta name="class-lists" content="jindo.m.Accordion">
+<meta name="description" content="기본으로 열려있는 항목을 지정하는 예제입니다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style>
+.section{position:relative;border:1px solid #e9e9e9;background:#fff;font-size:12px;line-height:normal;*zoom:1}
+.section .hx{margin:0;padding:10px 0 7px 9px;border:1px solid #fff;background:#F0F8FF;font-size:12px;color:#333}
+.section .tx{padding:10px;border-top:1px solid #e9e9e9;color:#666}
+.section .tx span{color:#006400}
+.section .section_more{position:absolute;top:12px;left:40px;font-size:12px;color:#656565;text-decoration:none !important}
+.section .section_more span{font-size:14px;color:#6e89aa}
+
+/*@code title="CSS"*/
+.accordion-block{overflow:hidden;cursor:pointer}
+.accordion-block dd{cursor:default}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script src="../asset/jindo.js" charset="utf-8"></script>
+
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div id="panel" class="accordion section">
+		<dl class="accordion-block">
+			<dt class="hx">1</dt>
+			<dd class="tx"><span>첫번째 블럭 [index : 0]</span><br>첫번째 블럭<br>첫번째 블럭<br>첫번째 블럭<br>첫번째 블럭<br>첫번째 블럭</dd>
+		</dl>
+		<dl class="accordion-block">
+			<dt class="hx">2</dt>
+			<dd class="tx"><span>두번째 블럭 [index : 1]</span><br>두번째 블럭<br>두번째 블럭<br>두번째 블럭<br>두번째 블럭<br>두번째 블럭</dd>
+		</dl>
+		<dl class="accordion-block">
+			<dt class="hx">3</dt>
+			<dd class="tx"><span>세번째 블럭 [index : 2]을 디폴트로 확장시킵니다.</span><br>세번째 블럭<br>세번째 블럭<br>세번째 블럭<br>세번째 블럭</dd>
+		</dl>
+		<dl class="accordion-block">
+			<dt class="hx">4</dt>
+			<dd class="tx"><span>네번째 블럭 [index : 3]</span><br>네번째 블럭<br>네번째 블럭<br>네번째 블럭<br>네번째 블럭<br>네번째 블럭<br>네번째 블럭<br>네번째 블럭</dd>
+		</dl>
+		<dl class="accordion-block">
+			<dt class="hx">5</dt>
+			<dd class="tx"><span>다섯번째 블럭 [index : 4]</span><br>다섯번째 블럭<br>다섯번째 블럭<br>다섯번째 블럭<br>다섯번째 블럭<br>다섯번째 블럭</dd>
+		</dl>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		{nDefalutIndex : 2} 옵션을 설정하여 인스턴스 생성 (세번째 블럭을 디폴트로 펼치기)
+		<button type="button" id="fadeln" class="btn" onclick="oAccordion.collapseAll();return false">전체목록 접기</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!--@code title="HTML"
+<div id="panel" class="accordion">
+	<dl class="accordion-block">
+		<dt>1</dt>
+		<dd>첫번째 블럭</dd>
+	</dl>
+	<dl class="accordion-block">
+		<dt>2</dt>
+		<dd>두번째 블럭</dd>
+	</dl>
+	... 생략 ...
+	<dl class="accordion-block">
+		<dt>5</dt>
+		<dd>다섯번째 블럭</dd>
+	</dl>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../src/jindo.m.Accordion.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+var oAccordion = null;
+window.onload = function(){setTimeout(function(){
+	/*@code title="JavaScript"*/
+	oAccordion = new jindo.m.Accordion(jindo.$("panel"), {
+	nDefalutIndex : 2
+});
+/*code@*/
+}, nDelay); }
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+#### Android3.1, 갤럭시탭2
+
+show할때 silde효과 이후 한번 깜빡이는 이슈가 있다.
+
+#### Android4.0.x, 갤럭시Note, 갤럭시S3
+
+document에 touchstart 이벤트를 attach 하면, 스크롤이 없는 초기화면에만 이벤트가 발생한다.
+
+document.body에 touchstart 이벤트를 attach하면 해결된다.
+
+#### Chrome for Android
+
+갤럭시 Note에서 단말기 회전을 2-3회시 브라우저 죽는 이슈가 있다.
+
+position:fixed로 플로팅 레이어가 구성될 경우, 초기 슬라이드된 레이어의 위치를 제외하고는 레이어 위의 엘리먼트를 선택할수 없는 이슈가 있다.
+
+##### z-index 설정
+Scroll 컴포넌트 의 z-index 수정(2000) 으로 Scroll 컴포넌트 보다 상위에 위치시켜야 하는 컴포넌트 들에 대해서는 이보다 높은 값으로 수정.
+( 1.8.0 이후 버전부터는 컴포넌트의 z-index 는 2050 이다. )

@@ -1,0 +1,40 @@
+<div class="description">
+
+<p>진도 모바일 컴포넌트는 특정동작시점에 원하는 동작을 수행시킬 수 있도록 다양한 커스텀 이벤트를 제공한다.
+각 컴포넌트의 attach, detach 메소드를 통해, 커스텀 이벤트를 등록하고, 해제할수 있다.</p>
+
+<p>관련 내용은 <auidoc:see content="jindo.m.Component">[jindo.m.Component]</auidoc:see>의 attach,detach 메소드 사용법을 참조하기 바란다.</p>
+
+<h4>종류 및 발생순서</h4>
+
+<ul>
+<li>진도 모바일 컴포넌트에서는 특정동작 시점의 전과 후에 각각의 커스텀 이벤트를 제공한다.</li>
+<li>발생하는 이벤트 순서는 "beforeEvent 커스텀 이벤트 => 동작시점 => event 커스텀 이벤트" 순으로 발생한다.</li>
+<li>꼭! 전, 후의 커스텀 이벤트를 모두 제공하지는 않는다. 동작 전 커스텀 이벤트만 제공할수도 있고, 동작 후 커스텀 이벤트만 제공할수도 있다</li>
+</ul>
+<br>
+
+<table class="tbl_board">
+<colgroup>
+	<col width="20%">
+	<col>
+	<col>
+</colgroup>
+<tr>
+<th scope="row">Name</th>
+<th scope="row">Desc</th>
+<th scope="row">Example</th>
+</tr>
+<tr>
+<td class="name">beforeEvent</td>
+<td>동작시점 발생 전에 발생하는 커스텀 이벤트</td>
+<td>beforePos : 포지션 잡기 전에 발생</td>
+</tr>
+<tr>
+<td class="name">event</td>
+<td>동작시점 발생 후에 발생하는 커스텀 이벤트</td>
+<td>pos : 포지션 잡은 후에 발생</td>
+</tr>
+</table>
+
+</div>

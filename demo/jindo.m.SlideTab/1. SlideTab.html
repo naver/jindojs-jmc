@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본 예제</title>
+<meta name="class-lists" content="jindo.m.SlideTab">
+<meta name="description" content="슬라이탭을 구성할 수 있다">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.tc-base {
+}
+.tc-tabview{
+	padding:0 25px;
+	_zoom:1;
+	display:block;
+}
+
+/*tab*/
+.tc-tab-cont{display:table;width:100%;height:35px;border-right:1px solid #b0b0b0;background:#f8f8f8;text-align:center}
+.tc-tab{display:table-cell;vertical-align:top;*float:left}
+.tc-taba{display:block;position:relative;height:34px;padding:0 .4em;border-bottom:1px solid #b0b0b0;border-left:1px solid #b0b0b0;line-height:34px;color:#666;}
+.tc-selected .tc-taba{height:35px;border-bottom:0;background:#fff}
+
+/* pannel */
+.tc-panel-cont{}
+.tc-panel {display:none;padding:10px;height:60px;border:1px solid #ccc;background:#fff}
+
+/*prev와 next*/
+.tabPg{display:block;overflow:hidden;position:absolute;top:0;width:25px;height:34px;border-bottom:1px solid #b0b0b0;background:#f1f1f1}
+.tc-prev{left:0}
+.tc-next{right:0}
+.tabIco{display:block;overflow:hidden;width:1px;height:1px;margin:12px auto 0;padding:8px 5px 0 0;background:url(../asset/img/ico_arrow_lr.png) no-repeat 0 0}
+.tc-next .tabIco{background-position:-8px 0}
+
+/*@code title="CSS"*/
+.tc-base {	}
+.tc-tabview{}
+
+/*tab*/
+.tc-tab-cont{}
+.tc-tab{}
+.tc-tab .tc-selected {}
+
+/* pannel */
+.tc-panel-cont {}
+.tc-panel {}
+
+/*prev와 next*/
+.tc-prev{}
+.tc-next{}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<div id="tabComponent" class="tc-base" style="width:100%">
+		<div class="tc-tabview">
+			<ul class="tc-tab-cont" style="position:relative">
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">프로야구</a></li>
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">일본야구</a></li>
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">중국야구</a></li>
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">미국야구</a></li>
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">영국야구</a></li>
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">몽골야구</a></li>
+				<li class="tc-tab"><a href="javascript:void(0);" class="tc-taba">야구</a></li>
+			</ul>
+		</div>
+		<div class="tc-panel-cont">
+			<div class="tc-panel">프로야구 탭입니다<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+			<div class="tc-panel">日本野球タップです<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+			<div class="tc-panel">중국야구 탭입니다<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+			<div class="tc-panel">USA Baseball Tabs<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+			<div class="tc-panel">English Baseball Tabs<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+			<div class="tc-panel">몽골야구 탭입니다<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+			<div class="tc-panel">야구 탭입니다<br/><br/>
+				<strong class="strike">구성요소가 3개</strong>로 구성된 탭입니다.<br/>
+				슬라이딩 되는 속도는 <strong class="strike">200 ms</strong>입니다.
+			</div>
+		</div>
+		<!-- 제어영역 -->
+		<div>
+			<a href="javascript:void(0);" class="tabPg tc-prev"><span class="tabIco">이전</span></a>
+			<a href="javascript:void(0);" class="tabPg tc-next"><span class="tabIco">다음</span></a>
+		</div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<p class="red">&lt;다양한 모양의 탭을 구성할 수 있도록 다음과 같은 CSS 클래스를 제공한다.&gt;</p>
+
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">[sClassPrefix]base : 탭컴포넌트를 감싸고 있는 최상위 class
+[sClassPrefix]tab-cont : 탭을 감싸고 있는 박스의 class
+[sClassPrefix]tab : 탭 class
+[sClassPrefix]taba : 탭 속의 태그 class
+[sClassPrefix]panel-cont : 패널을 감싸고 있는 박스의 class
+[sClassPrefix]panel : 패널 class
+[sClassPrefix]selected : 선택된 탭 또는 패널 class (disply:block 속성을 추가한다)
+</code></pre>
+	</div>
+
+</div>
+
+<!--@code title="HTML"
+	<div id="tabComponent" class="tc-base">
+		// 탭영역
+		<div class="tc-tabview">
+			<ul class="tc-tab-cont">
+				<li class="tc-tab"><a>프로야구</a></li>
+				<li class="tc-tab"><a>일본야구</a></li>
+				<li class="tc-tab"><a>중국야구</a></li>
+				<li class="tc-tab"><a>미국야구</a></li>
+				<li class="tc-tab"><a>영국야구</a></li>
+				<li class="tc-tab"><a>몽골야구</a></li>
+				<li class="tc-tab"><a>야구</a></li>
+			</ul>
+		</div>
+		// 패널영역
+		<div class="tc-panel-cont">
+			<div class="tc-panel">프로야구 탭입니다</div>
+			<div class="tc-panel">日本野球タップです</div>
+			<div class="tc-panel">중국야구 탭입니다</div>
+			<div class="tc-panel">USA Baseball Tabs</div>
+			<div class="tc-panel">English Baseball Tabs</div>
+			<div class="tc-panel">몽골야구 탭입니다</div>
+			<div class="tc-panel">야구 탭입니다</div>
+		</div>
+		// 제어영역
+		<div>
+			<a href="#" class="tc-prev"><span>이전</span></a>
+			<a href="#" class="tc-next"><span>다음</span></a>
+		</div>
+	</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideTab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oTab = null;
+window.onload = function(){
+	var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+	setTimeout(function(){
+/*@code title="JavaScript"*/
+oTab = new jindo.m.SlideTab("tabComponent");
+/*code@*/
+
+// 모바일 기기 회전시 사이즈 조정
+jindo.m.bindRotate(function() {
+	oTab.resize();
+});
+}, nDelay);
+}
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>큐브 세로 순환 momentum 예제 </title>
+<meta name="class-lists" content="jindo.m.CubeFlicking">
+<meta name="description" content="bUseCircular=false, bHorizontal=false, bUseMomentum=true 인 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+#mflick{height:200px}
+.flick-ct{height:100%;}
+.flick-ct p{font-size:2.0em;text-align:center;padding-top:50px;}
+
+/*@code title="CSS"*/
+#mflick{height:200px}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div id="mflick" style="background-color:grey">
+		<div id="content" class="flick-container">
+			<div id="layer1" class="flick-ct" style="background-color:#CC66CC">
+				<p>Layer 0</p>
+			</div>
+			<div id="layer2" class="flick-ct" style="background-color:#66cccc">
+				<p>Layer 1</p>
+			</div>
+			<div id="layer3" class="flick-ct" style="background-color:#ffc000">
+				<p>Layer 7</p>
+			</div>
+		</div>
+
+        <div style="position:absolute;width:100%;height:1px;background-color:red;top:40px;z-index:100"></div>
+        <div style="position:absolute;width:100%;height:1px;background-color:red;bottom:40px;z-index:100"></div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+<div class="lm">
+	nDefaultIndex 옵션은 2로 설정하여 2번째 컨텐츠가 화면에 보여진다.<br>
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<span class="red">붉은색 선</span>영역은 40px 기준선<br>
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op" style="text-valign:middle">
+		<button type="button" id="aprev" class="btn">이전컨텐츠이동</button>
+		<button type="button" id="anext" class="btn">이후컨텐츠이동</button>
+		<input type="text" id="nIndex" class="op_w20" value="2">번째 인덱스로
+		<button type="button" id="amove" class="btn">이동</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+<div id="mflick" class='[prefix]-view'>
+	<div id="content" class="[prefix]-container">
+		<div id="layer1" class="[prefix]-ct"></div>
+		<div id="layer2" class="[prefix]-ct"></div>
+		<div id="layer3" class="[prefix]-ct"></div>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<!-- <script type="text/javascript" src="../../src/refactoring/jindo.m.Core.js" charset="uft-8"></script> -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Cube.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CubeFlicking.js" charset="uft-8"></script>
+
+
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+    var oCubeFlicking = null;
+window.onload = function(){
+    var aAjaxData = [
+        '<p>Layer0</p>',
+        '<p>Layer1</p>',
+        '<p>Layer2</p>',
+        '<p>Layer3</p>',
+        '<p>Layer4</p>',
+        '<p>Layer5</p>',
+        '<p>Layer6</p>',
+        '<p>Layer7</p>'
+        // '<p>Layer8</p>',
+        // '<p>Layer9</p>',
+        // '<p>Layer10</p>'
+    ];
+
+	setTimeout(function(){
+		/*@code title="JavaScript"*/
+		oCubeFlicking = new jindo.m.CubeFlicking('mflick',{
+			nTotalContents : aAjaxData.length, //전체 아이템 개수
+			// nDefaultIndex:2,
+			sContentClass : 'ct',
+			nDuration : 300,
+			bUseCircular : true,
+			bHorizontal : false,
+			bUseMomentum : true
+		});
+		/*code@*/
+
+		oCubeFlicking.attach({
+			'beforeFlicking' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				addConsole('[' + oCustomEvt.sType +  '] → '+nIndex  +" 에서 → " + oCustomEvt.nContentsNextIndex + ' 이동예정');
+				// oCustomEvt.stop();
+			},
+			'flicking' : function(oCustomEvt){
+
+			    if(oCustomEvt.nMoveCount > 1) {
+                // 전체 panel의 정보가 바뀔경우. 즉, nMoveCount가 1보다 클경우, 3개 panel의 모든 정보를 바꾼다.
+                this.getElement().html(aAjaxData[this.getContentIndex()]);
+                this.getNextElement().html(aAjaxData[this.getNextIndex()]);
+                this.getPrevElement().html(aAjaxData[this.getPrevIndex()]);
+
+                //addConsole('[' + oCustomEvt.sType +  '] → ' +oCustomEvt.nContentsIndex+'번째 컨텐츠로 이동함');
+
+            } else {
+                //플리킹 효과를 통해 현재 화면을 움직였을 경우
+                if(oCustomEvt.bNext){
+                    //왼쪽으로 움직였을 경우 오른쪽 panel만 업데이트
+                    this.getNextElement().html(aAjaxData[this.getNextIndex()]);
+//                    sMessage += '왼쪽(next)으로 플리킹';
+                } else {
+                    //오른쪽으로 움직였을 경우 왼쪽 panel만 업데이트
+                    this.getPrevElement().html(aAjaxData[this.getPrevIndex()]);
+   //                 sMessage += '오른쪽(prev)으로 플리킹';
+                }
+      //          sMessage+= ', '+ oCustomEvt.nContentsIndex+'번째 Content';
+
+                //addConsole('[' + oCustomEvt.sType +  '] → ' +sMessage);
+            }
+
+
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				if(oCustomEvt.bNext){
+                    //왼쪽으로 움직였을 경우 오른쪽 panel만 업데이트
+                    this.getNextElement().html(aAjaxData[this.getNextIndex()]);
+                   // sMessage += '왼쪽(next)으로 플리킹';
+                } else {
+                    this.getPrevElement().html(aAjaxData[this.getPrevIndex()]);
+                    //sMessage += '오른쪽(prev)으로 플리킹';
+                }
+				addConsole('[' + oCustomEvt.sType +  '] → ' + nIndex + '번째 컨텐츠');
+			},
+			'beforeRestore' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				addConsole('[' + oCustomEvt.sType +  '] → '+ nIndex  +" 에서 복원 예정" );
+				// oCustomEvt.stop();
+			},
+			'restore' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				addConsole('[' + oCustomEvt.sType +  '] → ' + nIndex +'번째 컨텐츠에서 복원');
+			}
+		});
+
+		jindo.$Fn(function(evt){
+			evt.stop();
+			oCubeFlicking.movePrev();
+		},this).attach(jindo.$('aprev'),'click');
+
+		jindo.$Fn(function(evt){
+			evt.stop();
+			oCubeFlicking.moveNext();
+		},this).attach(jindo.$('anext'),'click');
+
+		jindo.$Fn(function(evt){
+			evt.stop();
+			var nIndex = jindo.$('nIndex').value;
+
+			oCubeFlicking.moveTo(nIndex*1, 100);
+
+		},this).attach(jindo.$('amove'),'click');
+
+	}, nDelay);
+}
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

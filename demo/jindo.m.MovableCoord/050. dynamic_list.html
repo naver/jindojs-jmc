@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>동적인 목록 예제</title>
+<meta name="class-lists" content="jindo.m.MovableCoord">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#wrap {
+		position:relative;
+		overflow:hidden;
+		border:1px solid #888;
+		box-shadow:0 0 5px #000;
+		width:280px; height:350px;
+	}
+
+	#content {
+		list-style:none;
+		margin:0; padding:20px;
+		background-color:#fff;
+		position:relative; z-index:1;
+	}
+
+	#content li {
+		border:1px solid #aaa;
+		padding:20px; margin:10px; font-size:2em;
+	}
+
+	#prepend, #append {
+		position:absolute; width:100%; text-align:center; left:0; top:2em;
+		color:#fff; font-weight:bold; font-size:1.2em;
+	}
+
+	#append {
+		top:auto; bottom:2em;
+	}
+
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="wrap">
+	<div id="prepend">Pull to prepend</div>
+	<ul id="content">
+		<li>#1</li>
+		<li>#2</li>
+		<li>#3</li>
+		<li>#4</li>
+		<li>#5</li>
+		<li>#6</li>
+		<li>#7</li>
+		<li>#8</li>
+		<li>#9</li>
+		<li>#10</li>
+		<li>#11</li>
+		<li>#12</li>
+		<li>#13</li>
+		<li>#14</li>
+		<li>#15</li>
+		<li>#16</li>
+		<li>#17</li>
+		<li>#18</li>
+		<li>#19</li>
+		<li>#20</li>
+		<li>#21</li>
+		<li>#22</li>
+		<li>#22</li>
+		<li>#23</li>
+		<li>#24</li>
+	</ul>
+	<div id="append">Pull to append</div>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	var welContent = jindo.$Element('content');
+	var prepend = jindo.$('prepend');
+
+	var inst = new jindo.m.MovableCoord([ 0, 0 ], {
+		aMin : [ 0, 0 ],
+		aMax : [ 0, welContent.$value().clientHeight - wrap.offsetHeight ],
+		aBounce : [ 50, 0, 50, 0 ],
+		aMargin : [ 50, 0, 50, 0 ],
+		nDeceleration : 0.0024
+	});
+
+	var type = 0;
+
+	var body = jindo.$('wrap');
+	var bgColor = jindo.m.Effect.linear('#aaa', '#c77');
+
+	var fromTo = function(from, to) {
+		return function(v) {
+			return Math.max(0, Math.min(1, (v - from) / (to - from)));
+		};
+	};
+
+	var state = -1;
+
+	inst.attach({
+
+		'change' : function(oCustomEvent) {
+
+			var pos = oCustomEvent.aPos[1];
+
+			welContent.css({
+				'webkitTransform' : 'translate3d(0,' + (-pos) + 'px,0)'
+			});
+
+			var top = -oCustomEvent.aPos[1];
+			var bottom = -top - this.option('aMax')[1];
+
+			var currentState = 0;
+
+			if (top > 0) { currentState = top / -100; }
+			else if (bottom > 0) { currentState = bottom / 100; }
+
+			if (state === currentState) { return; }
+			state = currentState;
+
+			var absState = Math.abs(state);
+
+			if (absState > 0.8) {
+				body.style.backgroundColor = '#f88';
+				prepend.innerText = 'Release to prepend';
+				append.innerText = 'Release to append';
+			} else {
+				body.style.backgroundColor = bgColor(fromTo(0.5, 0.8)(absState));
+				prepend.innerText = 'Pull to prepend';
+				append.innerText = 'Pull to append';
+			}
+
+			prepend.style.opacity =
+			append.style.opacity = fromTo(0.5, 0.8)(absState);
+
+		},
+
+		'release' : function(oCustomEvent) {
+
+			var beforeHeight, incrHeight;
+
+			if (state < -0.8) {
+
+				beforeHeight = welContent.$value().clientHeight;
+
+				welContent.prependHTML([
+					'<li>prepend #1</li>',
+					'<li>prepend #2</li>',
+					'<li>prepend #3</li>',
+					'<li>prepend #4</li>',
+					'<li>prepend #5</li>'
+				].join(''));
+
+				inst.option('aMax', [ 0, welContent.$value().clientHeight - wrap.offsetHeight ]);
+
+				incrHeight = welContent.$value().clientHeight - beforeHeight;
+				inst.setBy(0, incrHeight);
+
+			} else if (state > 0.8) {
+
+				beforeHeight = welContent.$value().clientHeight;
+
+				welContent.appendHTML([
+					'<li>append #1</li>',
+					'<li>append #2</li>',
+					'<li>append #3</li>',
+					'<li>append #4</li>',
+					'<li>append #5</li>'
+				].join(''));
+
+				inst.option('aMax', [ 0, welContent.$value().clientHeight - wrap.offsetHeight ]);
+
+				incrHeight = welContent.$value().clientHeight - beforeHeight;
+				oCustomEvent.aDestPos[1] += incrHeight;
+
+			}
+
+		}
+
+	}).bind(document, {
+		nDirection : 4,
+		aScale : [ 1, -1 ]
+	});
+
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

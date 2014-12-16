@@ -1,0 +1,88 @@
+한페이지 또는 여러장의 페이지로 레이아웃을 잡을 수 있는 UI 템플릿이다.
+
+몇장의 페이지/컨텐츠로 구성되었느냐에 따라 SinglePageLayout, MultiContentLayout와 MultiPageLayout으로 나뉜다.
+
+#### 1. SinglePageLayout
+한장의 페이지로 구성된 레이아웃이다.
+
+페이지는 각 한개의 Header, Content, Footer로 구성된다.
+
+필요에 따라서 Header나 Footer는 사용하거나, 사용하지 않을 수 있다.
+
+![](SinglePage.jpg "")
+
+[SinglePageLayout 구조]
+
+#### 2. MultiContentLayout
+한장의 페이지안에 여러장 컨텐츠로 구성된 레이아웃이다.
+
+페이지는 각 한개의 Header, Footer와 여러개의 Content로 구성된다.
+
+필요에 따라서 Header나 Footer는 사용하거나, 사용하지 않을 수 있다.
+
+![](MultiContent.jpg "")
+
+[MultiContnetLayout 구조]
+
+#### 3. MultiPageLayout
+여러장의 페이지로 구성된 레이아웃이다.
+
+각각의 페이지는 SinglePageLayout로 구성된다.
+
+![](MultiPage.jpg "")
+
+[MultiPageLayout 구조]
+
+
+##### 루트 영역
+
+* <body>영역으로 실제 jindo.m.PageLayout의 Root가 되는 엘리먼트이다.
+* MultiContnetLayout와 MultiPageLayout의 경우 <body>에 flicking="yes"속성을 설정할 경우, 플리킹으로 페이지가 이동된다.
+
+##### 페이지 영역
+
+* 실제 화면을 구성하는 한판의 페이지이다.
+* jmc-page 클래스명을 가지며, 헤더, 컨텐츠, 풋터로 구성된다.
+
+##### 헤더 영역
+
+* 페이지내의 헤더에 해당하는 영역이다.
+* jmc-header 클래스 명을 가지며, position="fixed"로 설정할 경우 페이지 상단에 항상 고정된다.
+* 헤더를 사용하지 않을 경우 마크업에서 헤더(&lt;div class="jmc-header"&gt;...&lt;/div&gt;)를 선언하지 않으면된다.
+
+##### 타이틀 영역
+
+* 페이지내의 타이틀에 해당하는 영역이다.
+* jmc-title 클래스 명을 가지며, 타이틀의 내용은 가로기준으로 중앙정렬된다..
+* 헤더영역, 컨텐츠 영역, 풋터영역 내에 어디든 추가될 수 있으며, 개수에 제한이 없다.
+* 타이틀을 사용하지 않을 경우 마크업에서 타이틀(&lt;div class="jmc-title"&gt;...&lt;/div&gt;)을 선언하지 않으면된다.
+
+##### 컨텐츠 영역
+
+* 페이지내의 컨텐츠에 해당하는 영역이다.
+* jmc-content 클래스 명을 가지며, 필수로 한개이상 선언되어야하는 영역이다.
+
+##### 풋터 영역
+
+* 페이지내의 풋터에 해당하는 영역이다.
+* jmc-footer 클래스 명을 가지며, position="fixed"로 설정할 경우 페이지 하단에 항상 고정된다.
+* 풋터를 사용하지 않을 경우 마크업에서 풋터(&lt;div class="jmc-footer"&gt;...&lt;/div&gt;)를 선언하지 않으면된다.
+
+
+##### 기능 설명
+
+* 각 페이지는 Header, Contents, Footer로 구성되어 있으며, 필요에 따라서 Header나 Footer를 사용하거나, 사용하지 않을 수 있다.
+* 각 페이지는 "fixed" 속성을 사용하여 Header나 Footer를 고정영역으로 사용할 수 있다.
+* 페이지내 고정영역이 있을 경우, 고정영역 외의 영역에는 자동으로 Scoll처리 된다.
+* <body>태그에 flicking="yes"의 선언 여부에 따라 페이지간 이동은 플리킹(사용자 swipe액션 이용) 또는 API(페이지 인덱스를 이용)로 처리할 수 있다.
+* 페이지간 이동은 자동으로 히스토리 처리되어 [앞으로가기]/[뒤로가기]기능을 사용할 수 있다.
+* 필요에 따라 페이지 초기 로딩시 로딩레이어를 사용하거나, 사용하지 않을 수 있다.
+
+	* 헤더영역이 position="fixed"일 경우 헤더영역을 제외한 컨텐츠와 풋터에 자동으로 스크롤이 적용된다.
+	* 풋터영역이 position="fixed"일 경우 풋터영역을 제외한 헤더와 컨텐츠에 자동으로 스크롤이 적용된다.
+	* 헤더와 풋터 모두 position="fixed"일 경우 컨텐츠에만 자동으로 스크롤이 적용된다.
+
+![](SinglePage2_1.jpg "")
+![](SinglePage2_2.jpg "")
+![](SinglePage2_3.jpg "")
+

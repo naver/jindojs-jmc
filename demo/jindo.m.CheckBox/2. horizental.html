@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>가로형 예제</title>
+<meta name="class-lists" content="jindo.m.CheckBox">
+<meta name="description" content="가로형 CheckBox">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.fcb-checkbox-on{background:#FF729A !important;font-weight:bold;color:#FFF !important;text-decoration:none;cursor:pointer;outline:0 none}
+.fcb-checkbox-disable{opacity:.3;cursor:default}
+.fcb-checkbox-cont:after{display:block;visibility:hidden;clear:both;height:0;content:'.'}
+.fcb-checkbox-unit{float:left;margin:0;padding:0;border:1px solid #CCC;border-right:none;background:#eee;font-weight:bold;color:#444;text-decoration:none;list-style:none;cursor:pointer}
+.fcb-checkbox-unit:last-child{border-right:1px solid #CCC}
+.fcb-checkbox{display:none;position:absolute}
+.fcb-checkbox-label{display:block;margin:0;padding:10px 30px;font-size:1em;font-family:Helvetica,Arial,sans-serif}
+
+/*@code title="CSS"*/
+.[prefix]checkbox-on{border:0;background:#FF729A;font-weight:bold;color:#FFF;outline:0 none}
+.[prefix]checkbox-disable{opacity:.3;cursor:default}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div id="checkbox">
+		<form action="#">
+			<ul class="fcb-checkbox-cont">
+			<li class="fcb-checkbox-unit">
+				<input type="checkbox" name="list" id="wifi" value="wifi" class="fcb-checkbox">
+				<label for="list" class="fcb-checkbox-label">wifi</label>
+			</li>
+			<li class="fcb-checkbox-unit" id="i3GUnit">
+				<input type="checkbox" name="grid" id="i3G" value="3G" class="fcb-checkbox">
+				<label for="grid" class="fcb-checkbox-label">3G</label>
+			</li>
+			<li class="fcb-checkbox-unit" id="i4GUnit">
+				<input type="checkbox" name="icon" id="i4G" value="4G" class="fcb-checkbox">
+				<label for="icon" class="fcb-checkbox-label">4G</label>
+			</li>
+			</ul>
+		</form>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op" style="line-height: 25px">
+		<button type="button" id="chkValue" class="btn">선택한 값 얻어오기</button>
+		선택 한 값 :<input type="text" id="viewValue" style="margin-left:4px" class="op_w150"><br>
+		<button type="button" id="chkAllEnable" class="btn">모두 활성화</button>
+		<button type="button" id="chkAllDisable" class="btn">모두 비활성화</button><br>
+		<button type="button" id="chkEnable" class="btn">wifi, 4G 활성화</button>
+		<button type="button" id="chkDisable" class="btn">wifi, 4G 비활성화</button><br>
+		<button type="button" id="chkAllChecked" class="btn">모두 선택</button>
+		<button type="button" id="chkAllUnChecked" class="btn">모두 선택 해제</button><br>
+		<button type="button" id="chkChecked" class="btn">3G,4G 선택</button>
+		<button type="button" id="chkUnChecked" class="btn">3G,4G 선택 해제</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!--@code title="HTML"
+<div id="checkbox">
+	<ul class="[prefix]checkbox-cont">
+	<li class="[prefix]checkbox-unit" id="check1Unit">
+		<input type="checkbox" name="list" id="wifi" value="wifi" class="[prefix]checkbox">
+		<label for="list" class="[prefix]checkbox-label">wifi</label>
+	</li>
+	<li>... 생략 ...</li>
+	<li>... 생략 ...</li>
+	</ul>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oCheckbox = new jindo.m.CheckBox("checkbox",{
+	sType : "h"
+});
+/*code@*/
+
+jindo.$Fn(function(){
+	jindo.$("viewValue").value = oCheckbox.getCheckedValue().join();
+},this).attach(jindo.$("chkValue"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.enable();
+},this).attach(jindo.$("chkAllEnable"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.disable();
+},this).attach(jindo.$("chkAllDisable"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.enable([jindo.$("wifi"),jindo.$("i4G")]);
+},this).attach(jindo.$("chkEnable"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.disable([jindo.$("wifi"),jindo.$("i4G")]);
+},this).attach(jindo.$("chkDisable"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.setCheckedBox(true);
+},this).attach(jindo.$("chkAllChecked"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.setCheckedBox(false);
+},this).attach(jindo.$("chkAllUnChecked"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.setCheckedBox(true,[jindo.$("i3GUnit"),jindo.$("i4GUnit")]);
+},this).attach(jindo.$("chkChecked"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.setCheckedBox(false,[jindo.$("i3GUnit"),jindo.$("i4GUnit")]);
+},this).attach(jindo.$("chkUnChecked"), "click");
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

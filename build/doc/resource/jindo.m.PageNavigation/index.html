@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.PageNavigation </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.PageNavigation</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								여러개의 항목들을 페이지 형태로 표현해 주는 컴포넌트
+							</p>
+							<a href="../../sample/latest/jindo.m.PageNavigation/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+										<!-- 상세 설명 -->
+				<h3>Description</h3>
+				<div class="t1">
+					PageNavigation 컴포넌트는 페이지를 이동할때 마다 각 페이지에 속하는 항목들을 보여주는 컴포넌트이다. <br><br>
+					
+					Ajax 호출이 필요한 경우에는 옵션값을 설정해 줌에 따라 컴포넌트 내부에서 Ajax 호출까지 담당한다.<br>
+					응답데이터는 커스텀이벤트에서 받아서 처리한다.<br><br>
+					
+					<div style="border:1px solid #d1d1d1;padding:5px;width:280px;height:460px;"><img width=280 height=460 src="../resource/img/PageNavigation.jpg"></div>
+					[사용예시]<br><br>
+					
+					<strong>기능 설명</strong><br>
+					<div class="point_box">
+						<ul class="t2">
+							<li>기준 엘리먼트 내에 이전,이후 버튼이 있다면 버튼 클릭처리 및 페이지 이동을 처리한다.</li>
+							<li>Ajax 호출에 대한 옵션 정보가 있다면 컴포넌트 내부에서 Ajax 통신을 하고 응답데이터를 'more'커스텀 이벤트 핸들러에서 받아서 처리할 수 있다.</li>
+							<li>페이지 이동에 따른 정보 영역을  업데이트 한다.</li>
+							<li>페이지 이동에 따른 이전, 이후 버튼에 대한 visible 처리를 한다.</li>
+						</ul>
+					</div><br>
+						
+					<div class="point_box" style="padding:10px;">
+						<font style="color:#e11b10;">√</font> 실제로 동적으로 마크업을 생성하는 작업은 커스텀 이벤트에서 직접 구현 한다.
+					</div>	
+				</div>	
+				
+				<!-- 주의사항 -->				
+				<h3 class="notice">Notice</h3>
+				<div class="t1">
+					<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+					<ul class="t2">
+						<li>안드로이드 2.1 이상</li>
+						<li>iOS 3.0 이상</li>
+					</ul>
+				</div>
+				
+				<!-- 초기화 방법 -->
+				<h3>Initialization</h3>
+				<div class="t1">
+					<dl>
+						<dt>HTML</dt>
+						<dd>
+							<!-- 마크업 구조 -->
+							<textarea class="brush: xml;">
+								<!-- 기준 엘리먼트  class prefix가 'page_'일 경우-->
+								<div class="u_pg2" id='paging'> <!-- 기준 엘리먼트 -->
+									<a href="#" class="u_pg2_btn page_prev"><span class="u_pg2_prev">이전</span></a>						
+									<span class="u_pg2_btn page_prev-off"><span class="u_pg2_prev">이전</span></span>						
+									
+									<em class="u_pg2_pg page_info">1-10 <span class="u_pg2_total">/ 200</span></em>						
+									<a href="#" class="u_pg2_btn page_next"><span class="u_pg2_next">다음</span></a>
+									<span class="u_pg2_btn page_next-off"><span class="u_pg2_next">다음</span></span>
+				 				</div>
+							</textarea>
+							<div class="t2">
+								<ul class="t2">
+									<li>기준 엘리먼트를  기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.</li>
+									<li>이전 페이지를 이동하는 엘리먼트의 경우 [prefix]+'prev' 클래스명을 가진다.</li>
+									<li>이후 페이지를 이동하는 엘리먼트의 경우 [prefix]+'next' 클래스명을 가진다.</li>
+									<li>이전 페이지가 없을 경우 보여줘야 하는 이전버튼의 경우 [prefix]+'prev-off' 클래스명을 가진다.<br>
+									서비스 UI에 따라  이전 버튼이 없을 경우에는 설정하지 않으면 된다.</li>
+									<li>이후 페이지가 없을 경우 보여줘야 하는 이전버튼의 경우 [prefix]+'next-off' 클래스명을 가진다.<br>
+									서비스 UI에 따라  이후 버튼이 없을 경우에는 설정하지 않으면 된다.</li>
+									<li>현재 페이지에 대한 정보를 보여주는 엘리먼트의 경우 [prefix]+'info' 클래스명을 가진다.</li>
+								</ul>
+							</div>
+						</dd>
+						<dt>CSS</dt>
+						<dd>
+								<!-- css 구조 -->
+							<textarea class="brush: css;">
+								.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap}
+								.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+								.u_pg2_btn.uc_vh{visibility:hidden}
+								.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+								.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+								.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+								.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+								.u_pg2_total{color:#999}
+							</textarea>
+							<div class="t2">
+							CSS는 서비스마다 상이 할 수 있다.
+							</div>
+						</dd>
+						<dt>Javascript</dt>
+						<dd>
+							<textarea class="brush: javascript;">
+								var oPaging = new jindo.m.PageNavigation(jindo.$('paging'),{
+									nItem : 100, //아이템 개수
+									nItemPerPage : 6, //한페이지당 아이템 개수
+									nPage : 1, //현재 페이지
+									sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>' //info영역에 innerHTML로 들어갈 마크업 템플릿
+								});
+							</textarea>
+							
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- 초기화 옵션 -->
+				<h3>Option</h3>
+				<div class="t1">
+					<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">sClassPrefix</td>
+							<td>초기 HTML/CSS 구조에서 필요한 className 앞에 붙는 prefix 정보</td>
+							<td>'page_'</td>
+						</tr>
+						<tr>
+							<td class="name">nItem</td>
+							<td>전체 아이템 개수</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">nItemPerPage</td>
+							<td>한페이지당 보여줄 아이템의 개수</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">nPage</td>
+							<td>현재페이지</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td class="name">sInfoTemplate</td>
+							<td>info 엘리먼트내에 innerHTML로 들어갈 마크업 템플릿.<br>
+							{=PAGE} 의 경우 현재 페이지로 치환된다. <br>
+							{=TOTALPAGE} 의 경우 전체 페이지수로 치환된다 .<br>
+							{=STARTINDEX} 의 경우 현재 페이지의 아이템 시작 인덱스로 치환된다.<br>
+							{=ENDINDEX} 의 경우 현재페이지의 아이템 끝 인덱스로 치환된다.</td>
+							<td>'{=PAGE} / {=TOTALPAGE}'</td>
+						</tr>
+						<tr>
+							<td class="name">bActivateOnload</td>
+							<td>컴포넌트 로드시 activate() 수행여부</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td class="name">htAjax</td>
+							<td>더보기 할 때 마다 Ajax 호출이 필요하면 이 Ajax 호출에 대한 옵션을 설정한다.
+							Ajax 호출을 하지 않으면 이 값을 설정하지 않거나 null 값을 설정 한다.
+							</td>
+							<td>
+								 {
+									sApi : null,
+									htAjaxOption : {
+										type: 'xhr'
+									},
+									htQuery : {},
+									sPage : 'page',
+									sDisplay : 'display'
+								};
+							</td>
+						</tr>
+						<tr>
+							<td> </td>
+							<td colspan = "2">
+								<table style="width:100%">
+									<tbody>
+										<tr>
+											<td class="name">sApi</td>
+											<td>Ajax 호출이 필요한 경우  API 를 저장한다.<br>
+											Ajax 호출이 필요 없을 경우에는 null 값을 저장한다.
+											</td>
+											<td>null</td>
+										</tr>
+										<tr>
+											<td class="name">htAjaxOption</td>
+											<td>Ajax 호출시에 onload를 제외한 필요한 옵션값을 저장한다.<br>
+											자세한  옵션 정보는 jindo.$Ajax의 옵션을 참고
+											</td>
+											<td>{type : "xhr"}</td>
+										</tr>
+										<tr>
+											<td class="name">htQuery</td>
+											<td>Ajax 호출시에 필요한 현재 페이지 정보(page) 필요한 아이템 개수 (display)를 제외한 <br>
+												파라미터가 있을 경우에는 HashTable 형식으로 저장한다.
+											</td>
+											<td>{}(비어있는 HashTable)</td>
+										</tr>
+										<tr>
+											<td class="name">sPage </td>
+											<td>Ajax 호출시에 필요한 현재 페이지 정보의 파라미터 이름을 설정한다.
+											</td>
+											<td>"page"</td>
+										</tr>
+										<tr>
+											<td class="name">sDisplay </td>
+											<td>Ajax 호출시에 필요한 아이템 개수(display)의 파라미터 이름을 설정한다.
+											</td>
+											<td>"display"</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- 커스텀 이벤트 -->
+				<h3>Custom Event</h3>
+				<div class="t1">
+					<table class="customevent" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Custom Event Object Properties</th>
+						</tr>
+						<tr class="title">
+							<td class="name">beforeMove</td>
+							<td>페이지 이동하기 직전에 발생한다.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>nPage (Number) : 이동하려는 페이지</li>
+									<li>nCurrentPage (Number) : 현재 페이지</li>
+									<li>stop (Function) : 페이지이동을 수행을 중지한다.<br>
+									'beforeMove' 이후의 커스텀 이벤트 'move'는 발생하지 않는다.
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								//물론 0보다 작은 페이지로 이동 할 일은 없다.
+								oComponent.attach("beforeMove", function(oCustomEvent) {
+									if(oCustomEvent.nPage < 0){
+										oCustomEvent.stop();
+									}
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">move</td>
+							<td>페이지 이동이후 발생한다.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>nPage (Number) : 현재 페이지</li>
+									<li>nStartIndex (Number) : 현재페이지의 시작 인덱스 (0부터 시작값)</li>
+									<li>nEndIndex (Number) : 현재페이지의 끝 인덱스 (0부터 시작값)</li>
+									<li>oResponse (jindo.$Ajax.Response) : Ajax 호출시 응답 객체 <br>Ajax 호출 설정이 되어 있을때에만 값이 존재한다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("move", function(oCustomEvent) {
+									//페이징이동에 따른 컨텐츠 영역을 새로 생성한다.
+									var sTpl = "<li>{=TEXT}</li>";
+									var aHtml = [];
+									for(var i=oCustomEvent.nStartIndex;i<= oCustomEvent.nEndIndex;i++){
+										aHtml.push(sTpl.replace(/{=TEXT}/, aData[i]));
+									}
+									
+									welDiv.html(aHtml.join("");
+								});
+								</textarea>
+							</td>
+						</tr>
+					</table>
+				</div>
+					
+					<!-- 퍼블릭 메서드 -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.PageNavigation</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.PageNavigation</strong>(htUserOption, htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+								<li>
+									<strong>htUserOption</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									<a href="../jindo.m.CorePagination/index.html#constructor">jindo.m.CorePagination</a>
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+						
+						
+							<h5>Methods Borrowed From</h5>
+								<div class='t1'>
+									<p><strong><a href="../jindo.m.CorePagination/index.html#constructor">jindo.m.CorePagination</a></strong> : <a href="../jindo.m.CorePagination/index.html#getCurrentPage">getCurrentPage</a>, <a href="../jindo.m.CorePagination/index.html#getPageItemIndex">getPageItemIndex</a>, <a href="../jindo.m.CorePagination/index.html#getPageOfItem">getPageOfItem</a>, <a href="../jindo.m.CorePagination/index.html#getTotalPages">getTotalPages</a>, <a href="../jindo.m.CorePagination/index.html#hasNextPage">hasNextPage</a>, <a href="../jindo.m.CorePagination/index.html#hasPreviousPage">hasPreviousPage</a>, <a href="../jindo.m.CorePagination/index.html#nextPageTo">nextPageTo</a>, <a href="../jindo.m.CorePagination/index.html#previousPageTo">previousPageTo</a>, <a href="../jindo.m.CorePagination/index.html#setItemCount">setItemCount</a>, <a href="../jindo.m.CorePagination/index.html#setItemPerPage">setItemPerPage</a></p>
+								</div>
+							</h5>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						jindo.m.PageNavigation 에서 사용하는 모든 객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">destroy</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="movePageTo"></a>movePageTo
+					</td>
+					<td>
+						n 페이지로 이동합니다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">movePageTo</strong>(n, bFireEvent)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									
+								</li>
+							
+								<li>
+									<span>{Boolean}</span> <strong>bFireEvent</strong>
+									
+									: 커스텀 이벤트 발생 여부
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="reset"></a>reset
+					</td>
+					<td>
+						1페이지로 더보기를 다시 그린다. 커스텀이벤트는 발생하지 않는다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">reset</strong>(nItem)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nItem</strong>
+									
+									: 아이템의 개수가 바뀌었을 경우 설정해준다.
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="updateInfo"></a>updateInfo
+					</td>
+					<td>
+						현재페이지에 맞게 정보 영역을 업데이트 합니다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">updateInfo</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="updateNavigation"></a>updateNavigation
+					</td>
+					<td>
+						현재페이지에 맞게 이전, 이후 링크 정보를 업데이트 합니다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">updateNavigation</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							  <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>	
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>				
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

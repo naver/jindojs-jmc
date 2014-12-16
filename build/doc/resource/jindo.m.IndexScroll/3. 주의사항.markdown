@@ -1,0 +1,10 @@
+[jindo.m.IndexScroll](jindo.m.IndexScroll.html)은 [jindo.m.Scroll](jindo.m.Scroll.html)을 상속 받아 동일한 __메소드와 옵션, 기능__을 제공한다.
+<br><br>
+단, 아래 사항에 대해서는 제약이 있다.
+
+* 가로스크롤을 사용할 수 없다. 오직 세로스크롤만 가능하다.<br>
+(__bUseHScroll__ 옵션이 동작하지 않는다)
+* Css3d 모드를 사용할 수 없다. 모두, bUseCss3d : false인 모드만으로 동작한다.<br>
+(__bUseCss3d__ 옵션이 동작하지 않는다)
+* Pull Down/up 기능을 사용할 수 없다.<br>
+(__bUsePullDown, bUsePullUp, fnPullDownIdle, fnPullDownBeforeUpdate, fnPullDownUpdating, fnPullUpIdle, fnPullUpBeforeUpdate, fnPullUpUpdating__ 옵션이 동작하지 않는다)

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" charset="utf-8" src="./asset/qunit/qunit.js"></script>
+        <link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+		<style type="text/css">
+			* { margin:0; padding:0; cursor:default; }
+			body,input,textarea,button{font-size:12px;line-height:1.5em;font-family:"돋움",Dotum,Helvetica,AppleGothic,Sans-serif;color:#383d41;}
+			
+			.graph { float:left; position:relative; width:200px; height:200px; margin:50px; 15px; border-top:1px solid black;border-bottom:1px solid black;}
+			.graph .name { position:relative; top:10px; left:10px; vertical-align:baseline;}
+			.dot { position:absolute; width:1px; height:1px; background-color:blue;}
+		</style>
+    </head>
+	<body style="margin:0; padding:0;">
+		<h1 id="qunit-header">QUnit Test Suite</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+
+		<div id="ui">
+			<div id="linear" class="graph">
+				<span class="name">linear</span>
+			</div>
+			<div id="sinusoidal" class="graph">
+				<span class="name">sinusoidal</span>
+			</div>
+			<div id="overphase" class="graph">
+				<span class="name">overphase</span>
+			</div>
+			<div id="mirror" class="graph">
+				<span class="name">mirror</span>
+			</div>
+			<div id="pulse" class="graph">
+				<span class="name">pulse (x3)</span>
+			</div>
+			<div id="wave" class="graph">
+				<span class="name">wave</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeInSine" class="graph">
+				<span class="name">easeInSine</span>
+			</div>
+			<div id="easeOutSine" class="graph">
+				<span class="name">easeOutSine</span>
+			</div>
+			<div id="easeInOutSine" class="graph">
+				<span class="name">easeInOutSine</span>
+			</div>
+			<div id="easeOutInSine" class="graph">
+				<span class="name">easeOutInSine</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeInQuad" class="graph">
+				<span class="name">easeInQuad</span>
+			</div>
+			<div id="easeOutQuad" class="graph">
+				<span class="name">easeOutQuad</span>
+			</div>
+			<div id="easeInOutQuad" class="graph">
+				<span class="name">easeInOutQuad</span>
+			</div>
+			<div id="easeOutInQuad" class="graph">
+				<span class="name">easeOutInQuad</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeIn" class="graph">
+				<span class="name">easeIn</span>
+			</div>
+			<div id="easeOut" class="graph">
+				<span class="name">easeOut</span>
+			</div>
+			<div id="easeInOut" class="graph">
+				<span class="name">easeInOut</span>
+			</div>
+			<div id="easeOutIn" class="graph">
+				<span class="name">easeOutIn</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeInQuart" class="graph">
+				<span class="name">easeInQuart</span>
+			</div>
+			<div id="easeOutQuart" class="graph">
+				<span class="name">easeOutQuart</span>
+			</div>
+			<div id="easeInOutQuart" class="graph">
+				<span class="name">easeInOutQuart</span>
+			</div>
+			<div id="easeOutInQuart" class="graph">
+				<span class="name">easeOutInQuart</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeInQuint" class="graph">
+				<span class="name">easeInQuint</span>
+			</div>
+			<div id="easeOutQuint" class="graph">
+				<span class="name">easeOutQuint</span>
+			</div>
+			<div id="easeInOutQuint" class="graph">
+				<span class="name">easeInOutQuint</span>
+			</div>
+			<div id="easeOutInQuint" class="graph">
+				<span class="name">easeOutInQuint</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeInExpo" class="graph">
+				<span class="name">easeInExpo</span>
+			</div>
+			<div id="easeOutExpo" class="graph">
+				<span class="name">easeOutExpo</span>
+			</div>
+			<div id="easeInOutExpo" class="graph">
+				<span class="name">easeInOutExpo</span>
+			</div>
+			<div id="easeOutInExpo" class="graph">
+				<span class="name">easeOutInExpo</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+
+			<div id="easeInCircle" class="graph">
+				<span class="name">easeInCircle</span>
+			</div>
+			<div id="easeOutCircle" class="graph">
+				<span class="name">easeOutCircle</span>
+			</div>
+			<div id="easeInOutCircle" class="graph">
+				<span class="name">easeInOutCircle</span>
+			</div>
+			<div id="easeOutInCircle" class="graph">
+				<span class="name">easeOutInCircle</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+
+			<div id="easeInBack" class="graph">
+				<span class="name">easeInBack</span>
+			</div>
+			<div id="easeOutBack" class="graph">
+				<span class="name">easeOutBack</span>
+			</div>
+			<div id="easeInOutBack" class="graph">
+				<span class="name">easeInOutBack</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeOutElastic" class="graph">
+				<span class="name">easeOutElastic</span>
+			</div>
+			<div id="easeInElastic" class="graph">
+				<span class="name">easeInElastic</span>
+			</div>
+			<div id="easeInOutElastic" class="graph">
+				<span class="name">easeInOutElastic</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="easeOutBounce" class="graph">
+				<span class="name">easeOutBounce</span>
+			</div>
+			<div id="easeInBounce" class="graph">
+				<span class="name">easeInBounce</span>
+			</div>
+			<div id="easeInOutBounce" class="graph">
+				<span class="name">easeInOutBounce</span>
+			</div>
+			<div style="clear:both;"></div>
+
+
+			<div id="cubicEase" class="graph">
+				<span class="name">cubicEase</span>
+			</div>
+			<div id="cubicEaseIn" class="graph">
+				<span class="name">cubicEaseIn</span>
+			</div>
+			<div id="cubicEaseOut" class="graph">
+				<span class="name">cubicEaseOut</span>
+			</div>
+			<div id="cubicEaseInOut" class="graph">
+				<span class="name">cubicEaseInOut</span>
+			</div>
+			<div id="cubicEaseOutIn" class="graph">
+				<span class="name">cubicEaseOutIn</span>
+			</div>
+			<div id="stepStart" class="graph">
+				<span class="name">stepStart</span>
+			</div>
+			<div id="stepEnd" class="graph">
+				<span class="name">stepEnd</span>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+		<script type="text/javascript" src="./asset/jindo.js"></script>
+		<script type="text/javascript" src="../src/jindo.m.js"></script>
+		<script type="text/javascript" src="../src/jindo.m.Effect.js"></script>
+		
+		<script type="text/javascript" src="js/jindo.m.Effect.test.js"></script>
+	</body>
+</html>

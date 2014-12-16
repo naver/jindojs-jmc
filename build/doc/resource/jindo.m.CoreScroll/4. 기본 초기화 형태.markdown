@@ -1,0 +1,45 @@
+#### HTML
+
+	<div id="view"> <!-- Wrapper -->
+		<div> <!-- Scrooller -->
+			스크롤될 대상 ul or div....
+		</div>
+	</div>
+
+CoreScroll 컴포넌트는 최상위 Wrapper과 그 자식 Scroller div로 구성되며, 실제 스크롤링 하고자 하는 대상은 Scroller div하위에 존재한다.
+
+* Scroller는 Wrapper의 첫번째 엘리먼트가 Scroller가 된다.
+
+최상위 Wrapper는 내부적으로 overflow:hidden 속성이 설정된다.
+
+만약, Wrapper의 position이 static일 경우는 positon:relative으로 설정된다.
+
+Scroller는 position:absolute 속성이 설정된다.
+
+Scroller 하위는 position:static, position:relative 속성만 사용할 수 있다.
+
+
+
+#### Javascript
+
+	var oCoreScroll = new jindo.m.CoreScroll("view", {
+		bActivateOnload : true,
+		bUseHScroll : false,
+		bUseVScroll : true,
+		bUseMomentum : true,
+		nDeceleration : 0.0006,
+		nOffsetTop : 0,
+		nOffsetBottom : 0,
+		nHeight : 0,
+		nWidth : 0,
+		bUseBounce : true,
+		bUseHighlight : true,
+		sClassPrefix : "scroll_",
+		bUseCss3d : jindo.m._isUseCss3d(),
+		bUseTimingFunction : jindo.m._isUseTimingFunction(),
+		bUseTranslate : true,
+		sListElement : "",
+		nRatio : 1.5
+	});
+
+최상위 Wrapper를 생성자의 첫번째 파라미터로 받는다.

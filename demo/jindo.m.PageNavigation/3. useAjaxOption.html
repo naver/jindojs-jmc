@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>Ajax호출 예제</title>
+<meta name="class-lists" content="jindo.m.PageNavigation">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.u_pg2{padding:15px 0;font-size:12px;text-align:center;white-space:nowrap}
+.u_pg2 em{font-style:normal}
+.u_pg2_btn{display:inline-block;padding:5px;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+.u_pg2_btn.uc_vh{visibility:hidden}
+.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../asset/img/ico_pg2.gif) no-repeat;font-size:1.07em}
+.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+.u_pg2_total{color:#999}
+.tCnt{float:left;width:50%}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!--@code title="HTML"-->
+	<!-- 동적으로 컨텐츠가 추가되는 영역 -->
+	<div style="clear:both;overflow:hidden">
+		<ul class="tCnt">
+		</ul>
+		<ul class="tCnt">
+		</ul>
+	</div>
+
+	<div class="u_pg2" id="paging">
+		<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+		<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>
+
+		<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>
+
+		<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+		<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+
+	</div>
+	<!--code@-->
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PageNavigation.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+//동적으로 추가되는 컨텐츠 영역
+var aWel =[];
+jindo.$A(jindo.$$(".tCnt")).forEach(function(value, index, array){
+	aWel.push(jindo.$Element(value));
+});
+
+//동적으로 추가되는 컨텐츠 마크업 템플릿
+var sTpl = '<li><a href="#">{=TEXT}</a></li>';
+
+var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+	sClassPrefix : 'page-',
+	nItem : 30, //아이템 개수
+	nItemPerPage : 4,
+	nPage : 1,
+	sInfoTemplate : '{=PAGE}<span class="u_pg2_total">/ {=ITEMCOUT}</span>',
+	htAjax : {
+		sApi : './mockUpData.html'
+	}
+}).attach({
+	'beforeMove' : function(oEvt){
+		var sText = oEvt.sType + " → " + " 현재페이지 : " + oEvt.nCurrentPage+" ,이동페이지 : "+ oEvt.nPage;
+		addConsole(sText);
+	},
+	'move' : function(oEvt){
+		var sText = oEvt.sType + " → " + oEvt.nPage + "페이지 이동완료!";
+		addConsole(sText);
+
+		var json = oEvt.oResponse.json();
+		var aData = json.aData;
+
+		var aTemp = [];
+		for(var i=oEvt.nStartIndex; i<= oEvt.nEndIndex; i++){
+			var sHtml = sTpl.replace(/{=TEXT}/,aData[i]);
+			aTemp.push(sHtml);
+		}
+
+		if(aTemp.length > 2){
+			aWel[0].html(aTemp.slice(0,2).join(""));
+			aWel[1].html(aTemp.slice(2).join(""));
+
+		}else{
+			aWel[0].html(aTemp.join(""));
+			aWel[1].html("");
+		}
+	}
+});
+oPage.movePageTo(1);
+
+
+/*@code title="JavaScript"
+	//동적으로 추가되는 컨텐츠 영역
+	var aWel =[];
+	jindo.$A(jindo.$$(".tCnt")).forEach(function(value, index, array){
+		aWel.push(jindo.$Element(value));
+	});
+	var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+		sClassPrefix : 'page-',
+		nItem : 30, //아이템 개수
+		nItemPerPage : 4,
+		nPage : 1,
+		sInfoTemplate : '{=PAGE}<span class="u_pg2_total">/ {=ITEMCOUT}</span>',
+		htAjax : {
+			sApi : './mockUpData.html'
+		}
+	}).attach({
+		'move' : function(oCustomEvt){
+			//실제로 컨텐츠를 추가하는 로직
+			var sTpl = '<li><a href="#">{=TEXT}</a></li>';
+			var json = oEvt.oResponse.json();
+			var aData = json.aData;
+
+			var aTemp = [];
+			for(var i=oEvt.nStartIndex; i<= oEvt.nEndIndex; i++){
+				var sHtml = sTpl.replace(/{=TEXT}/,aData[i]);
+				aTemp.push(sHtml);
+			}
+
+			if(aTemp.length > 2){
+				aWel[0].html(aTemp.slice(0,2).join(""));
+				aWel[1].html(aTemp.slice(2).join(""));
+
+			}else{
+				aWel[0].html(aTemp.join(""));
+				aWel[1].html("");
+			}
+		}
+	});
+	oPage.movePageTo(1);
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

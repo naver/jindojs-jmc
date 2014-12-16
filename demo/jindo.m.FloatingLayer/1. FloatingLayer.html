@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본 예제</title>
+<meta name="class-lists" content="jindo.m.FloatingLayer">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_addhm{position:absolute;left:0;z-index:100;width:308px;height:94px;font-size:12px;line-height:13px;text-align:center}
+.u_addhm .uc_area{position:relative;width:308px;height:94px;margin:0 auto;background:url(../asset/img/bg_addhm.png) no-repeat 0 0;text-align:left}
+.u_addhm .uc_p{margin-left:5px;padding:23px 0 10px 20px;color:#222;letter-spacing:-1px;white-space:nowrap}
+.u_addhm .uc_st{color:#04779d}
+.u_addhm .uc_btn{display:block;position:absolute;top:5px;right:9px;width:50px;height:62px;border:0;background:none}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!-- 플로팅 레이어  -->
+<div id="layer" class="u_addhm" style="position:absolute;z-index:10000">
+	<div class="uc_area">
+		<p class="uc_p">스크롤을 움직이면 레이어가 따라가요<br/><strong class="uc_st">X</strong>를 누르면 사라집니다.</p>
+		<button type="button" class="uc_btn" onclick="oFp.hide()"><img src="../asset/img/btn_addhm.gif" width="16" height="15" /></button>
+	</div>
+</div>
+<!-- // Demo 영역 -->
+
+<div class="lm" style="padding:10px;">
+	<h4>현재 화면에 적용된 FloatingLayer은?</h4>
+
+	<ul class="lst_type">
+		<li>show될때 <strong class="strike">위에서 아래방향(down)</strong>으로 slide된다.</li>
+		<li>show될때 <strong class="strike">위(top)</strong>에 위치한다.</li>
+		<li>show될때 발생하는 slide의 속도는 애니메이션의 속도는 <strong class="strike">500 ms</strong> 이다.</li>
+		<li>move할때 FloatingLayer가 사라졌다가 보여진다.</li>
+		<li>hide될때 Fade-out되는 속도는 <strong class="strike">200 ms</strong> 이다.</li>
+		<li>적용된 FloatingLayer는 <strong class="strike">자동으로 사라지지 않는다.</strong></li>
+	</ul><br>
+
+	<p class="red">&lt;설정된 옵션은 다음과 같다.&gt;</p>
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">bActivateOnload : true,
+sPosition : "top",
+sDirection : "down",
+nSlideDuration : 500
+sSlideTimingFunction : "ease-in-out",
+nFadeOutDuration : 200,
+sFadeOutTimingFunction : "ease-in-out",
+bUseHideUI : true,
+bUseFixed : false,
+nTimeout : -1</code></pre>
+	</div>
+
+	<h4>FloatingLayer란 무엇인가?</h4>
+
+	<p>FloatingLayer는 스크롤이 발생하더라도 화면의 특정영역에 레이어가 띄워져 사용자에게 메시지를 알리는 기능을 하는 컴포넌트이다.</p>
+
+	<ul class="lst_type">
+		<li>레이어의 <strong class="strike">위치(sPosition : top, center, bottom)</strong>를 옵션을 통해 지정할 수 있다.</li>
+		<li>show 호출시 slide 애니메이션 효과가 발생된다.<br/>이때 발생하는애니메이션의  <strong class="strike">방향(sDirection)</strong> 및 <strong class="strike">속도(nSlideDuration)</strong>는 옵션을 통해 지정가능하다.</li>
+		<li>사용자가 스크롤링을 할때, bUseHideUI 옵션을 통해 FloatingLayer가 사라졌다가, 스크롤이 끝나면 다시 Fade-in되는 방식을 제공한다.<br/>
+			이때 fade-in되는 애니메이션 <strong class="strike">속도(nFadeInDuration)</strong>는 옵션을 통해 지정가능하다.</li>
+		<li>FloatingLayer가 hide될때는 fade-out된다.<br/>이때 fade-out되는 애니메이션 <strong class="strike">속도(nFadeOutDuration)</strong>는 옵션을 통해 지정가능하다.</li>
+		<li><strong class="strike">nTimeout</strong> 옵션을 지정하여 레이어가 show된 이후 자동 사라지게 할수 있다.<br/>
+			경과시간은 show가 실행되어, slide가 완료된 시간 이후부터, 또는 스크롤이 된 이후 부터 재측정된다.</li>
+		<li><strong class="strike">bUseFixed</strong> 옵션을 지정하여 position:fixed가 가능한 경우 position:fixed로 레이어를 구성한다</li>
+	</ul><br />
+
+	<p>
+		위에서 설명한 옵션의 기본값은 다음과 같다.<br/>
+		따로 설정하지 않을경우 아래와 같은 기본값으로 세팅된다.
+	</p>
+
+	<p class="red">&lt;Default option&gt;</p>
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">bActivateOnload : true,
+sPosition : "bottom",
+sDirection : "up",
+nSlideDuration : 500
+sSlideTimingFunction : "ease-in-out",
+nFadeInDuration : 0,
+sFadeInTimingFunction : "ease-in-out",
+nFadeOutDuration : 200,
+sFadeOutTimingFunction : "ease-in-out",
+bUseHideUI : true,
+bUseFixed : false,
+nTimeout : -1</code></pre>
+	</div>
+</div>
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.ScrollEnd.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FloatingLayer.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+var oFp  = null;
+window.onload = function(){setTimeout(function(){
+
+/*@code title="JavaScript"*/
+oFp  = new jindo.m.FloatingLayer("layer", {
+	sPosition : "top",
+	sDirection : "down"
+});
+oFp.show();
+/*code@*/
+}, nDelay); }
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

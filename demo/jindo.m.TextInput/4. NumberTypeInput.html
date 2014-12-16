@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>Number형식 예제</title>
+<meta name="class-lists" content="jindo.m.TextInput">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/* 레이블/인풋박스 디자인 디자인 CSS */
+.sample_form{line-height:25px}
+.sample_form label{width:100px;vertical-align:top;display:inline-block;padding:0 8px;font-size:13px;line-height:30px;font-weight:normal;border:1px solid #b3b3b3;color:#333;text-shadow:0 1px 0 #fff;-webkit-border-radius:0.5em;border-radius:0.5em;}
+.sample_form input{width:120px;height:20px;display:inline-block;padding:.4em 0;font-size:13px;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-focus-ring-color: rgba(0, 0, 0, 0);-webkit-appearance:none;background:transparent none;border:none;outline:none;}
+
+/* TextInput UNIT(필수)*/
+.fit-textinput-unit{padding:0px 5px;width:150px;display:inline-block;border:1px solid #b3b3b3;color:#333;text-shadow:0 1px 0 #fff;-webkit-border-radius:0.5em;border-radius:0.5em;background:#f0f0f0;background-image:-webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));background-image:-webkit-linear-gradient(top, #eee, #fff);background-image:-o-linear-gradient(top, #eee, #fff);background-image:linear-gradient(top, #eee, #fff);}
+
+/* TextInput 포커싱/활성 디자인 CSS */
+.fit-focus {background:#f0f0f0 !important;-moz-box-shadow:0 0 8px #387bbe !important;-webkit-box-shadow:0 0 8px #387bbe !important;box-shadow:0 0 8px #387bbe !important;}
+.fit-disable {background:#eee !important;}
+
+/* 삭제 버튼 (선택) */
+.fit-clear-btn {display:none;position:absolute;right:0;top:0;z-index:10;width:30px;height:38px;border:none;background:url(http://static.naver.net/www/m/im2/ico_v3.png) no-repeat 6px -314px;text-indent:-9999px;cursor:pointer;outline:0!important}
+
+/*@code title="CSS"*/
+	/* TextInput UNIT CSS */
+	.[prefix]textinput-unit{...}
+
+	/* TextInput 포커싱될 때 CSS */
+	.[prefix]focus {...}
+
+	/* TextInput 비활성화될 때 CSS */
+	.[prefix]disable {...}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+	<!-- Demo 영역 -->
+<div id="demo">
+	<div class="sample_form" id="form_base">
+
+		숫자 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput1</label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="number" />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+		<br/><br/>
+
+		숫자(,) 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput2</label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="number:," />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+		<br/><br/>
+
+		통화($) 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput3</label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="currency:$" />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+		<br/><br/>
+
+		통화(￦) 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput4</label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="currency:￦" />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+		<br/><br/>
+
+		전화번호(-) 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput5</label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="tel:-" />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+		<br/><br/>
+
+		전화번호(.) 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput6</label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="tel:." />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+
+		<button type="button" onclick="oTextInput.disable()" class="btn">모두 비활성화</button>
+		<button type="button" onclick="oTextInput.enable()" class="btn">모두 활성화</button><br />
+		<button type="button" onclick="oTextInput.disable(getElement(1))" class="btn">TextInput2 비활성화</button>
+		<button type="button" onclick="oTextInput.enable(getElement(1))" class="btn">TextInput2 활성화</button><br />
+		<button type="button" onclick="oTextInput.disable([getElement(0), getElement(1)])" class="btn">TextInput1, TextInput2 비활성화</button>
+		<button type="button" onclick="oTextInput.enable([getElement(0), getElement(1)])" class="btn">TextInput1, TextInput2  활성화</button>
+
+	</div>
+</div>
+<!--// Option 영역 -->
+
+
+<!--@code title="HTML"
+	<div id="form_base">
+		// 숫자 형식일 경우
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="number" />
+		</div>
+		// 숫자(,) 형식일 경우
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="number:," />
+		</div>
+		// 통화($) 형식일 경우
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="currency:$" />
+		</div>
+		// 통화(￦) 형식일 경우
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="currency:￦" />
+		</div>
+		// 전화번호(-) 형식일 경우
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="tel:-" />
+		</div>
+		// 전화번호(.) 형식일 경우
+		<div class="[prefix]textinput-unit">
+			<input type="text" data-validate="tel:." />
+		</div>
+	</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.TextInput.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Validation.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Validator.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.TelValidator.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.NumberValidator.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.CurrencyValidator.js"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var aResultDiv = jindo.$$(".result", jindo.$("form_base"));
+var oTextInput = new jindo.m.TextInput("form_base", {
+	bUseValidate : true
+});
+oTextInput.attach({
+	"valid" : function(we) {
+		var welDiv = jindo.$Element(aResultDiv[we.nIndex]);
+		welDiv.html("유효합니다.").removeClass("invalid").addClass("valid");
+	},
+	"invalid" : function(we) {
+		var welDiv = jindo.$Element(aResultDiv[we.nIndex]);
+		welDiv.html("유효하지 않습니다.").removeClass("valid").addClass("invalid");
+	}
+});
+
+function getElement(nIndex) {
+	return oTextInput.getElement(nIndex);
+}
+
+/*@code title="JavaScript"
+	var oTextInput = new jindo.m.TextInput("form_base", {bUseValidate : true});
+	oTextInput.attach({
+		"valid" : function(we) {...},
+		"invalid" : function(we) {...}
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

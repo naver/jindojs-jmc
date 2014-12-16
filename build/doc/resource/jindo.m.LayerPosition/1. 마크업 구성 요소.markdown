@@ -1,0 +1,17 @@
+LayerPosition은 화면 영역내에 총 4개의 Position에 Layer를 위치 시킬수 있으며, 사용자의 필요에 따라 각각의 Position에서 Margin을 줄 수 있다.
+
+![](LayerPosition.jpg "")
+
+[Position, Margin 설정에 따른 Layer의 위치]
+
+#### Position
+* Top : 화면 상단 중앙에 Layer를 위치시킨다. (Layer의 크기변경 없음)
+* Center : 화면 정 중앙에 Layer를 위치시킨다. (Layer의 크기변경 없음)
+* Bottom : 화면 하단 중앙에 Layer를 위치시킨다. (Layer의 크기변경 없음)
+* All : 화면과 동일한 크기의 Layer를 구성한다. (Layer의 크기변경 있음)
+
+#### Margin
+* Top : 화면 상단 중앙을 기준으로 nLeft와 nTop의 마진을 줄수 있다.
+* Center : 화면 중앙을 기준으로 nLeft와 nTop의 마진을 줄수 있다.
+* Bottom : 화면 하단중앙을 기준으로 nLeft와 nBottom의 마진을 줄수 있다.
+* All : 화면과 동일한 크기의 Layer의 내부 마진을 nLeft, nTop, nBottom, nRight로 줄 수 있다.

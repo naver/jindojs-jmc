@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <title>Jindo Mobile Component : {+data.alias+} </title>
+    <link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+    <link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+    <script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+    <script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+    <script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../resource/js/doc.js"></script>
+    <script>
+        SyntaxHighlighter.config.tagName = 'textarea';
+        SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+        SyntaxHighlighter.all();
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+        </div>
+        <div id="container">
+            <div class="snb">
+                <!-- 왼쪽 메뉴 시작 -->
+                {+include("menu.html")+}
+                <!-- 왼쪽 메뉴 끝 -->
+            </div>
+            <div id="content">
+                <div class="section">
+                    <div class="cont_lft">
+                        <h3 class="h_cont">{+data.alias+}</h3>
+                        <p class="p_txt2">
+                            <span>Version : {+publish.conf.version+}</span>
+                            <br />
+                            페이지의 고정영역 내부를 터치하여 스크롤링 할 수 있고, pull down/up upload 기능 및 스크롤바가 있는 컴포넌트 
+                        </p>
+                        <a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+                    </div>
+                    <!--QR코드 -->
+                    <div id='QRView' class="qr_code"></div>
+                </div>
+                <div class="section2">
+                    <!-- 상세 설명 -->
+                    <h3>Description</h3>
+                    <div class="t1">
+                        jindo.m.Scroll 컴포넌트는 jindo.m.CoreScroll을 사용하여 ,<br/>
+                        pull down/up upload기능과 스크롤바 표기 기능을 사용할수 있는 컴포넌트 이다.<br/><br/>
+                        
+                        <img src="../resource/img/Scroll.jpg"/><br/>
+                        [컨텐츠 구조]<br><br><br>
+                        
+                        <strong>기능 설명</strong><br>
+                        <div class="point_box">
+                            <ul class="t2">
+                                <li>터치로 가로, 세로 영역의 스크롤이 가능하다.</li>
+                                <li>스크롤시 가속여부(bMomentum)에 따라 가속이 가능하다.</li>
+                                <li>Pull down/up upload 기능이 있다.</li>
+                                <li>스크롤바를 표시할 수 있다.</li>
+                                <li>다양한 방식의 스크롤이 가능하다.(transition, transform 방식)</li>
+                            </ul>
+                        </div>
+                    </div>  
+                    
+                    <!-- 주의사항 -->               
+                    <h3 class="notice">Notice</h3>
+                    <div class="t1">
+                        <h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+                        <ul class="t2">
+                            <li>안드로이드 2.2 이상</li>
+                            <li>iOS 3.0 이상</li>
+                        </ul>
+                        <h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+                        <dl>
+                            <dt>전체</dt>
+                            <dd><div class="point_box">
+                                <div class="post">Scroll 컴포넌트의 <font style="color:#e11b10;">refresh, activate 은 Scroll이 DOM에 존재하고 visible이 true일 경우 정상 동작</font>합니다.</div>
+                            </div></dd>
+
+                            <dt>iOS</dt>
+                            <dd><div class="point_box">
+                                CSS3의 transform의 속성이 초기에 지정될때, OpenGL Texture를 생성하여 브라우저에 전달된다. 이때 화면이 깜빡이는 현상이 발생한다. <br/>
+                                
+                                아래의 순서대로 깜빡이는 문제를 해결할 수 있다.<br/>
+                                <div class="post">1. 마크업에서 Wrapper의 display 속성을 none으로 지정한다.<br/>
+                                2. 스크롤 할 컨텐츠의 내용을 변경하고자 한다면 변경한다.<br/>
+                                3. 스크롤 객체를 activate하여 생성한다.<br/>
+                                4. 변경된 컨텐츠 용량이 클 경우(이미지가 많거나, 컨텐츠의 길이가 길 경우) setTimeout의 delay를 주어 데이터가 전달되는 시간을 보장한 후,<br/> 
+                                Wrapper를 display:block 하고, refresh()를 호출한다.<br/>
+                                </div><br/>
+                                스크롤이 초기화 된 이후, 깜빡이는 현상이 발생할 수 있는데, 이는 스크롤 컴포넌트의 scroller 또는 스크롤 컴포넌트의 상위 DOM의 Layout이 변경된 경우, <br/>
+                                다시 OpenGL Texture를 생성하기 때문에 깜빡인다.
+                            </div></dd>
+                            <dd><div class="point_box">
+                                스크롤의 Scroller에 background를 지정하면 깜빡이는 현상이 발생한다. <br/>
+                                <div class="post">Scroller가 아닌 Wrapper에 background를 지정하면 깜빡임이 발생하지 않는다.</div>
+                            </div></dd>                         
+                            <dd><div class="point_box">
+                                클릭영역 누른 상태에서, 이동후 버튼을 놓았을시, 초기에 선택한 위치에 clickable 엘리먼트가 존재할 경우, click 되는 문제가 있다<br/>
+                                스크롤 컴포넌트에서는 클릭되는 문제는 처리하였으나, 주소창이 깜빡이는 문제가 있다.
+                            </div></dd>
+
+                            <dt>안드로이드</dt>
+                            <dd><div class="point_box">
+                                짧고 연속적으로 스크롤할 경우, 시스템 스크롤이 동작하는 현상이 있다.
+                                <div class="post">시스템 스크롤을 발생시키는 이벤트를 스크립트로 제어할 수 없다. 원천적으로 시스템 스크롤을 막을 경우 "longTap", "하이라이팅"기능을 사용할 수 없다.</div>
+                            </div></dd>                             
+
+                            <dt>iOS 3.0</dt>
+                            <dd><div class="point_box">
+                                빠르게 가속 스크롤 중 터치하여 스크롤 멈출경우, "베껴두기"가 실행되는 현상이 있다.
+                            </div></dd>
+                            
+                            <dt>안드로이드 2.1</dt>
+                            <dd><div class="point_box">
+                                기본 touchmove 이벤트가 제대로 발생하지 않는다.
+                                <div class="post">touch이벤트는 touchstart -> touchmove -> touchmove -> ... -> touchend 순으로 발생한다.<br/>하지만, 안드로이드 2.1에서는 touchend가 발생한 후에 기존에 발생한 touchmove가  한꺼번에 발생하는 문제가 있다.</div>
+                            </div></dd>
+                        </dl>
+                        
+                        <h4><font style="color:#e11b10;">√</font> 마크업 주의사항</h4>
+                        <dl>
+                            <dt>z-index 설정</dt>
+                            <dd><div class="point_box">
+                                페이지 이동시, 컴포넌트를 사용하는 페이지가 하얗게 된다.<br/> 
+                                단, 페이지 이동시 컴포넌트를 제외한 영역이라도 하얗게 되는 문제를 제거하기 위해서는<br/>
+                                컴포넌트 외부 영역의 z-index를 1보다 작거나 같게 수정하여야한다.<br/>
+                            </div></dd>
+                            <dt>em 단위 사용시 주의 사항</dt>
+                            <dd><div class="point_box">
+                                em 단위 사용시 큰 단위의 값 (-999em, 200em)으로 줄 경우 ios 화에서 깜박거리거나, 하얗게 변하는 형상이 발생한다.<br>
+                                -999em 단위 대신 px 단위로 설정해야 한다.
+                            </div></dd>
+                            <dt>text-indent와 같은 속성 사용시 주의 사항</dt>
+                            <dd><div class="point_box">
+                                text-indent의 값을 -999px와 같은 값으로 줄 경우, 스크롤 컨텐츠가 늘어날 경우, ios 화면에서 깜빡이거나, 하얗게 변하는 현상이 발생한다.<br>
+                                즉, 화면에 보여지지 않는 영역(안드로메다 영역이라고 부릅니다)에 대상 컨텐츠를 위치시킬 경우,
+컨텐츠의 길이가 늘어나면 화면이 하얗게 되거나 깜빡이는 현상이 발생한다.<br>
+<font style="color:#e11b10;">컨텐츠의 길이가 클 경우, 화면뷰에만 엘리먼트가 위치하도록 한다</font><br>
+                            </div></dd>
+                        </dl>   
+                    </div>
+            
+                <!-- 초기화 방법 -->
+                <h3>Initialization</h3>
+                <div class="t1">
+                    <dl>
+                        <dt>HTML</dt>
+                        <dd>
+                            <!-- 마크업 구조 -->
+                            <textarea class="brush: xml;">
+                                <div id="view"> <!-- Wrapper -->
+                                    <div> <!-- Scrooller -->
+                                        <div class="[prefix]pullDown">  <!-- pulldown -->
+                                        </div>
+                                        
+                                        스크롤될 대상 ul or div....
+                                        
+                                        <div class="[prefix]pullUp">        <!-- pullup -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </textarea>
+                            <div class="t2">
+                            Scroll 컴포넌트는 최상위 Wrapper과 그 자식 Scroller div로 구성되며, 
+                            실제 스크롤링 하고자 하는 대상은 Scroller div하위에 존재한다.<br/><br/>
+                                <ul>
+                                    <li>Scroller는 Wrapper의 첫번째 엘리먼트가 Scroller가 된다.</li>
+                                    <li>pull down/up update 기능을 사용 시(선택)에는 Scroller 내부에 2개의 엘리먼트가 추가로 위치할수 있다.</li>
+                                    <li>이때, 이 엘리먼트의 class는 <strong>[prefix] + pullDown</strong> 과  <strong>[prefix] + pullUp</strong> 이다. </li>
+                                </ul><br/>
+                            최상위  Wrapper는 내부적으로 <font style="color:#e11b10;">overflow:hidden</font> 속성이 설정된다.<br/>
+                            만약, Wrapper의 position이 static일 경우는 <font style="color:#e11b10;">positon:relative</font>으로 설정된다.<br/>
+                            Scroller는 <font style="color:#e11b10;">position:absolute</font> 속성이 설정된다.<br/>
+                             Scroller 하위는 <font style="color:#e11b10;">position:static, position:relative</font> 속성만 사용할 수 있다.<br/>
+                             <br/>
+                            </div>
+                        </dd>
+                        <dt>Javascript</dt>
+                        <dd>
+                            <textarea class="brush: javascript;">
+                                var oScroll = new jindo.m.Scroll("view", {
+                                    bActivateOnload : true,
+                                    /* jindo.m.CoreScroll 옵션 */
+                                    bUseMomentum : true,
+                                    nDeceleration : 0.0006,
+                                    nOffsetTop : 0,
+                                    nOffsetBottom : 0,
+                                    nHeight : 0, 
+                                    nWidth : 0,
+                                    bUseBounce : true,     
+                                    bUseHighlight : true,
+                                    sClassPrefix : "scroll_",
+                                    bUseCss3d : jindo.m._isUseCss3d(),
+                                    bUseTimingFunction : jindo.m._isUseTimingFunction(),
+                                    bUseTranslate : true,
+                                    sListElement : "",
+                                    nRatio : 1.5,
+                                    
+                                    /* jindo.m.Scroll 옵션 */
+                                    bUseScrollbar : true,
+                                    bUseFixedScrollbar : false,
+                                    sScrollbarBorder : "1px solid rgba(255,255,255,0.9)",
+                                    sScrollbarColor : "rgba(0,0,0,0.5)",
+                                    bUsePullDown : false,
+                                    bUsePullUp : false,
+                                    fnPullDownIdle : null,
+                                    fnPullDownBeforeUpdate : null,
+                                    fnPullDownUpdating : null,
+                                    fnPullUpIdle : null,
+                                    fnPullUpBeforeUpdate : null,
+                                    fnPullUpUpdating : null,
+                                    bAutoResize : false
+                                });
+                            </textarea>
+                            <div class="t2">
+                            최상위 Wrapper를 생성자의 첫번째 파라미터로 받는다.
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            
+                <!-- 초기화 옵션 -->
+                <h3>Option</h3>
+                <div class="t1">
+                    jindo.m.Scroll은 내부적으로 jindo.m.CoreScroll을 사용하고 있다.<br/>
+                    jindo.m.CoreScroll에서 사용하는 옵션은 <a href="../jindo.m.CoreScroll/index.html" target="_blank">jindo.m.CoreScroll</a>의 옵션을 참조하기 바란다.
+                    <br/><br/>
+                    <table class="option" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th>Name</th>
+                            <th>Desc</th>
+                            <th>Default</th>
+                        </tr>
+                        <tr>
+                            <td class="name">bAutoResize</td>
+                            <td>기기 회전시, 크기 자동 재갱신</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td class="name">bUseScrollbar</td>
+                            <td>스크롤바 사용 여부</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td class="name">bUseFixedScrollbar</td>
+                            <td>고정 스크롤바 적용 여부</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td class="name">bUsePullDown</td>
+                            <td>pull down update 기능 사용 여부</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td class="name">bUsePullUp</td>
+                            <td>pull up update 기능 사용 여부</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td class="name">fnPullDownIdle</td>
+                            <td>bUsePullDown 가 true일 시, pullDown 미발생 시 엘리먼트를 구성하는 함수. 첫번째 파라미터로 pullDown의 jindo.$Element가 넘어져 온다.</td>
+                            <td>
+                                <textarea class="brush:js">
+                                function(wele) {
+                                    wele.html("업데이트하시려면 아래로 내려주세요");
+                                }
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">fnPullDownBeforeUpdate</td>
+                            <td>bUsePullDown 가 true일 시, pullDown 발생 전 엘리먼트를 구성하는 함수. 첫번째 파라미터로 pullDown의 jindo.$Element가 넘어져 온다.</td>
+                            <td>
+                                <textarea class="brush:js">
+                                function(wele) {
+                                    wele.html("업데이트 합니다.");
+                                }
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">fnPullDownUpdating</td>
+                            <td>bUsePullDown 가 true일 시, pullDown 발생 시 엘리먼트를 구성하는 함수. 첫번째 파라미터로 pullDown의 jindo.$Element가 넘어져 온다.</td>
+                            <td>
+                                <textarea class="brush:js">
+                                function(wele) {
+                                    wele.html("업데이트 중입니다...");
+                                }
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">fnPullUpIdle</td>
+                            <td>bUsePullUp이 true일 시, pullUp 미발생 시 엘리먼트를 구성하는 함수. 첫번째 파라미터로 pullUp의 jindo.$Element가 넘어져 온다.</td>
+                            <td>
+                                <textarea class="brush:js">
+                                function(wele) {
+                                    wele.html("더 보시려면 위로 올려주세요");
+                                }
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">fnPullUpBeforeUpdate</td>
+                            <td>bUsePullUp이 true일 시, pullUp 발생 전 엘리먼트를 구성하는 함수. 첫번째 파라미터로 pullUp의 jindo.$Element가 넘어져 온다.</td>
+                            <td>
+                                <textarea class="brush:js">
+                                function(wele) {
+                                    wele.html("로드 합니다.");
+                                }
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">fnPullUpUpdating</td>
+                            <td>bUsePullUp이 true일 시, pullUp 발생 시 엘리먼트를 구성하는 함수. 첫번째 파라미터로 pullUp의 jindo.$Element가 넘어져 온다.</td>
+                            <td>
+                                <textarea class="brush:js">
+                                function(wele) {
+                                    wele.html("로드 중...");
+                                }
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="name">nOffsetBottom</td>
+                            <td>스크롤 끝 포지션에 offset을 지정한다.<br/>
+                                Bottom을 기준으로 양수일 경우, 스크롤의 끝 포지션이 위로 올라가고, 음수일 경우, Bottom을 기준으로 스크롤의 끝 포지션이 아래로 내려간다. </td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="name">nOffsetTop</td>
+                            <td>스크롤 시작 포지션에 offset을 지정한다.<br/>
+                                Top을 기준으로 양수일 경우, 스크롤의 시작 포지션이 아래로 내려가고, 음수일 경우, Top을 기준으로 스크롤의 끝 포지션이 위로 올라간다.</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="name">bActivateOnload</td>
+                            <td>컴포넌트 로드시 activate 여부</td>
+                            <td>true</td>
+                        </tr>
+                    </table>
+                </div>
+            
+                <!-- 커스텀 이벤트 -->
+                <h3>Custom Event</h3>
+                <div class="t1">
+                    <table class="customevent" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th>Name</th>
+                            <th>Desc</th>
+                            <th>Custom Event Object Properties</th>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">beforeTouchStart</td>
+                            <td>touchStart 내부 스크롤로직이 실행되기 전</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>oEvent (jindo.$Event) : touchStart 이벤트 객체</li>
+                                    <li>stop (Function) : 수행시 touchStart 이벤트가 발생하지 않음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("beforeTouchStart", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.oEvent;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">touchStart</td>
+                            <td>touchStart 내부 스크롤로직이 실행된 후</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>oEvent (jindo.$Event) : touchStart 이벤트 객체</li>
+                                    <li>stop (Function) : 수행시 영향을 받는것이 없음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("touchStart", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.oEvent;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        
+                        <tr class="title">
+                            <td class="name">beforeTouchMove</td>
+                            <td>touchMove 내부 스크롤로직이 실행되기 전</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>oEvent (jindo.$Event) : touchMove 이벤트 객체</li>
+                                    <li>stop (Function) : 수행시 move 이벤트가 발생하지 않음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("beforeTouchMove", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.oEvent;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">touchMove</td>
+                            <td>touchMove 내부 스크롤로직이 실행된 후</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>oEvent (jindo.$Event) : touchMove 이벤트 객체</li>
+                                    <li>stop (Function) : 수행시 영향을 받는것이 없음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("touchMove", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.oEvent;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        
+                        <tr class="title">
+                            <td class="name">beforeTouchEnd</td>
+                            <td>touchEnd 내부 스크롤로직이 실행되기 전</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>oEvent (jindo.$Event) : touchEnd 이벤트 객체</li>
+                                    <li>stop (Function) : 수행시 touchEnd 이벤트가 발생하지 않음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("beforeTouchEnd", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.oEvent;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">touchEnd</td>
+                            <td>touchEnd 내부 스크롤로직이 실행된 후</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>oEvent (jindo.$Event) : touchEnd 이벤트 객체</li>
+                                    <li>stop (Function) : 수행시 영향을 받는것이 없음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("touchEnd", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.oEvent;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        
+                        <tr class="title">
+                            <td class="name">beforePosition</td>
+                            <td>스크롤러 위치 변경되기 전</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>stop (Function) : 수행시 position 이벤트가 발생하지 않음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("beforePosition", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">position</td>
+                            <td>스크롤러 위치 변경된 후</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>stop (Function) : 수행시 영향을 받는것이 없음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("position", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        
+                        <tr class="title">
+                            <td class="name">afterScroll</td>
+                            <td>스크롤러 위치 변경이 최종적으로 끝났을 경우</td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nMaxScrollLeft (Number) : Scroller의 최대 left 값</li>
+                                    <li>nMaxScrollTop (Number) : Scroller의 최대 top 값</li>
+                                    <li>stop (Function) : 수행시 영향을 받는것이 없음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("afterScroll", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nMaxScrollLeft;
+                                    // oCustomEvent.nMaxScrollTop;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        
+                        <!--tr class="title">
+                            <td class="name">beforeScroll</td>
+                            <td>touchEnd시 스크롤인 경우, 스크롤러의 위치가 변경되기 전<br/><br/>
+                            여기에서 넘어가는 파라미터를 변경시, 변경된 값이 스크롤러의 위치 변경에 영향을 미침
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리.(touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+                                    <li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리.(touchStart좌표에서 위쪽방향이면 양수, 아래쪽 방향이면 음수)</li>
+                                    <li>nMomentumX (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수평방향 운동에너지값,가속 구간이 아닐경우 0</li>
+                                    <li>nMomentumY (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수직방향 운동에너지값,가속 구간이 아닐경우 0</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nNextLeft (Number) : 가속 발생시, 변경될 scroller의 left값 (가속 미발생시, nLeft와 동일)</li>
+                                    <li>nNextTop (Number) : 가속 발생시, 변경될 scroller의 top값 (가속 미발생시, nTop와 동일)</li>
+                                    <li>nTime (Number) : 가속 발생시, 가속이 적용될 ms시간 (가속 미발생시, 0)</li>
+                                    <li>stop (Function) : 수행시 scroll 이벤트가 발생하지 않음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("beforeScroll", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nDistanceX;
+                                    // oCustomEvent.nDistanceY;
+                                    // oCustomEvent.nMomentumX;
+                                    // oCustomEvent.nMomentumY;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nNextLeft;
+                                    // oCustomEvent.nNextTop;
+                                    // oCustomEvent.nTime;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">scroll</td>
+                            <td>touchEnd시 스크롤인 경우, 스크롤러의 위치가 변경된 후<br/><br/>
+                            여기에서 넘어가는 파라미터를 변경시, 변경된 값이 스크롤러의 위치 변경에 영향을 미침
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리.(touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+                                    <li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리.(touchStart좌표에서 위쪽방향이면 양수, 아래쪽 방향이면 음수)</li>
+                                    <li>nMomentumX (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수평방향 운동에너지값,가속 구간이 아닐경우 0</li>
+                                    <li>nMomentumY (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수직방향 운동에너지값,가속 구간이 아닐경우 0</li>
+                                    <li>nLeft (Number) : Scroller의 left 값</li>
+                                    <li>nTop (Number) : Scroller의 top 값</li>
+                                    <li>nNextLeft (Number) : 가속 발생시, 변경될 scroller의 left값 (가속 미발생시, nLeft와 동일)</li>
+                                    <li>nNextTop (Number) : 가속 발생시, 변경될 scroller의 top값 (가속 미발생시, nTop와 동일)</li>
+                                    <li>nTime (Number) : 가속 발생시, 가속이 적용될 ms시간 (가속 미발생시, 0)</li>
+                                    <li>stop (Function) : 수행시 영향을 받는것이 없음</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("scroll", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.nDistanceX;
+                                    // oCustomEvent.nDistanceY;
+                                    // oCustomEvent.nMomentumX;
+                                    // oCustomEvent.nMomentumY;
+                                    // oCustomEvent.nLeft;
+                                    // oCustomEvent.nTop;
+                                    // oCustomEvent.nNextLeft;
+                                    // oCustomEvent.nNextTop;
+                                    // oCustomEvent.nTime;
+                                    // oCustomEvent.stop();
+                                });
+                                </textarea>
+                            </td>
+                        </tr-->   
+                        <tr class="title">
+                            <td class="name">pullDown</td>
+                            <td>pull down이 발생했을때 호출<br/><br/>
+                            pull down 시 Scroller의 크기(DOM의 수 증감, DOM의 크기 증감)가 변경되었을 경우.<br/>
+                            <font style="color:#e11b10;">변경 후, 꼭! oScroll.refresh()를 호출하여야 한다.</font>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>welElement (jindo.$Element) : pullDown 엘리먼트</li>                                    
+                                    <li>oScroll (jindo.m.Scroll) : jindo.m.Scroll 엘리먼트</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("pullDown", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.welElement;
+                                    // oCustomEvent.oScroll.refesh();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr class="title">
+                            <td class="name">pullUp</td>
+                            <td>pull up이 발생했을때 호출<br/><br/>
+                            pull up 시 Scroller의 크기(DOM의 수 증감, DOM의 크기 증감)가 변경되었을 경우.<br/>
+                            <font style="color:#e11b10;">변경 후, 꼭! oScroll.refresh()를 호출하여야 한다.</font>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>sType (String) : 커스텀이벤트명</li>
+                                    <li>welElement (jindo.$Element) : pullUp 엘리먼트</li>                                  
+                                    <li>oScroll (jindo.m.Scroll) : jindo.m.Scroll 엘리먼트</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="desc">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                커스텀이벤트 핸들링 예제
+                                <textarea class="brush: javascript;">
+                                oComponent.attach("pullUp", function(oCustomEvent) {
+                                    // oCustomEvent.sType;
+                                    // oCustomEvent.welElement;
+                                    // oCustomEvent.oScroll.refesh();
+                                });
+                                </textarea>
+                            </td>
+                        </tr>                                               
+                                            
+                    </table>
+                </div>
+                
+                	<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+                            <!-- v1.4.0 -->
+                             <tr>
+                                <td class="name" rowspan="3">v1.4.0 </td>
+                                <td class="support">Support</td>    
+                                <td>-</td>
+                                <td>iOS 6 지원</td>
+                             </tr>
+                             <tr>
+                                <td>Update</td> 
+                                <td>bUseBounce</td>
+                                <td>bUseBounce : false일 경우, 스크롤을 더이상 할수 없을 때 시스템 스크롤이 발생하는 기능 추가</td>
+                             </tr>      
+                             <tr>
+                                <td>Bug</td>    
+                                <td>-</td>
+                                <td>가로 스크롤일경우, 터치 위치의 y가 30보다 작을경우 스크롤이 안되는 버그 수정</td>
+                             </tr>              
+                             <!-- v1.3.5 -->
+                             <tr>
+                                <td class="name" rowspan="5">v1.3.5</td>
+                                <td>Bug</td>
+                                <td>-</td>
+                                <td>스크롤바 이동시, bUseTranslate, bUseTimingFunction 옵션 적용되도록 수정</td>
+                             </tr>     
+                             <tr>
+                                <td>Update</td>    
+                                <td>-</td>
+                                <td>스크롤바 fade in-out 효과 제거</td>
+                             </tr>   
+                             <tr>
+                                <td>Update</td>    
+                                <td>-</td>
+                                <td>스크롤바 border-radius, opacity 효과 제거</td>
+                             </tr>   
+                             <tr>
+                                <td>Update</td>    
+                                <td>sScrollbarBorder</td>
+                                <td>Option 기본값 수정 ("1px solid rgba(255,255,255,0.9)" → "1px solid white")</td>
+                             </tr>   
+                             <tr>
+                                <td>Update</td>    
+                                <td>sScrollbarColor</td>
+                                <td>Option 기본값 수정 ("rgba(0,0,0,0.5)" → "#8e8e8e")</td>
+                             </tr>                                                     
+                             <!-- v1.3.0 -->
+                             <tr>
+                                <td class="name" rowspan="5">v1.3.0 </td>
+                                <td>Update</td> 
+                                <td>-</td>
+                                <td>Wrapper와 scroller가 동일하고 bUseBounce가 true인 경우, 스크롤바가 안보이고, 스크롤이 가능하도록 변경</td>
+                             </tr>  
+                             <tr>
+                                <td>Bug</td>    
+                                <td>-</td>
+                                <td>Scroll과 Flicking 함께 사용할때 A link가 클릭안되는 문제 수정</td>
+                             </tr>     
+                             <tr>
+                                <td>Update</td>    
+                                <td>sScrollbarBorder</td>
+                                <td>Option 추가</td>
+                             </tr>                                                                                                                  
+                             <tr>
+                                <td>Update</td>    
+                                <td>sScrollbarColor</td>
+                                <td>Option 추가</td>
+                             </tr> 
+                             <tr>
+                                <td>Bug</td>    
+                                <td>beforeTouchStart<br/>
+                                    beforeTouchMove<br/>
+                                    beforeTouchEnd<br/>
+                                    beforePosition
+                                </td>
+                                <td>stop시 이벤트가 중지되지 않는 문제</td>
+                             </tr>   
+
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="7">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>-</td>
+							 	<td>pullDown/pullUp 상태가 아닌 경우, pullDown/pullUp 엘리먼트를 hide시키는 UI 변경</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>nOffsetTop</td>
+							 	<td>Option 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>nOffsetBottom</td>
+							 	<td>Option 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>hasHScroll()</td>
+							 	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>hasVScroll()</td>
+							 	<td>Method 추가</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="7">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+                               	<td>-</td>
+                               	<td>destroy() 호출시 Scroll객체 destroy 호출 안되는 문제 해결</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+							 	<td>-</td>
+							 	<td>중복 scroll 사용시, scroll이 정상 동작하지 않는 문제 해결</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+							 	<td>-</td>
+							 	<td>뒤로가기시 스크롤의 속성값이 초기화 되지않는 문제 해결</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>getCurrentPos()</td>
+							 	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>scrollTo()</td>
+							 	<td>nLeft, nTop 값이 양수일 경우 아래쪽, 오른쪽 방향으로 가도록 변경(음수일 경우 "절대값"으로 계산됨)</td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+							 	<td>-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name" rowspan="5">v0.9.5</td>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               <td>iOS에서 클릭영역 누른 상태에서, 이동후 버튼을 놓았을시, 초기에 선택한 위치에 clickable 엘리먼트가 존재할 경우, click 되는 문제 해결</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>bUseFixedScrollbar </td>
+                               <td>Option 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>bUseFocus</td>
+                               <td>Option명 삭제</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>sPullDownId</td>
+                               <td>Option명 삭제</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>sPullUpId</td>
+                               <td>Option명 삭제</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               	<td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+            </div>
+        </div>
+        <div id="footer">
+            <address class="cr">
+                {+publish.conf.copyrighc+} 
+            </address>
+        </div>
+    </div>
+</body>
+</html>

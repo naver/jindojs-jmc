@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>옵션 변경 예제</title>
+<meta name="class-lists" content="jindo.m.CheckBox">
+<meta name="description" content="세로/ 가로형 Checkbox">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.fcb-v-checkbox-on{border:0;background:#44AF50;font-weight:bold;color:#FFF;text-decoration:none;cursor:pointer;outline:0 none}
+.fcb-v-checkbox-disable{opacity:.3;cursor:default}
+.fcb-v-checkbox-unit{position:relative;margin:0;padding:.7em 0 .7em 30px;border-bottom:1px solid #ccc;list-style:none}
+.fcb-v-checkbox-unit:last-child{border-bottom:0}
+.fcb-v-checkbox-cont{overflow:hidden;border:1px solid #ccc}
+.fcb-v-checkbox{position:absolute;top:7px;left:10px;margin:0}
+.fcb-v-checkbox-label{display:block;position:relative;margin:0;font-size:1em;font-family:Helvetica,Arial,sans-serif;font-weight:bold;color:#444;text-decoration:none;cursor:pointer}
+.fcb-h-checkbox-on{background:#FF729A !important;font-weight:bold;color:#FFF !important;text-decoration:none;cursor:pointer;outline:0 none}
+.fcb-h-checkbox-disable{opacity:.3;cursor:default}
+.fcb-h-checkbox-cont:after{display:block;visibility:hidden;clear:both;height:0;content:'.'}
+.fcb-h-checkbox-unit{float:left;margin:0;padding:0;border:1px solid #CCC;border-right:none;background:#eee;font-weight:bold;color:#444;text-decoration:none;list-style:none;cursor:pointer}
+.fcb-h-checkbox-unit:last-child{border-right:1px solid #CCC}
+.fcb-h-checkbox{display:none;position:absolute}
+.fcb-h-checkbox-label{display:block;margin:0;padding:10px 30px;font-size:1em;font-family:Helvetica,Arial,sans-serif}
+
+/*@code title="CSS"*/
+.fcb-v-checkbox-on{border:0;background:#44AF50;font-weight:bold;color:#FFF;outline:0 none}
+.fcb-v-checkbox-disable{opacity:.3;cursor:default}
+.fcb-h-checkbox-on{background:#FF729A !important;font-weight:bold;color:#FFF !important;outline:0 none}
+.fcb-h-checkbox-disable{opacity:.3;cursor:default}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<h4>1. 세로형 Checkbox</h4>
+
+<div id="checkbox_v">
+	<ul class="fcb-v-checkbox-cont">
+		<li class="fcb-v-checkbox-unit">
+			<input type="checkbox" name="check1" id="news" value="뉴스" class="fcb-v-checkbox" checked="checked">
+			<label for="check1" class="fcb-v-checkbox_label">뉴스</label>
+		</li>
+		<li class="fcb-v-checkbox-unit" id="weatherUnit">
+			<input type="checkbox" name="check2" id="weather" value="날씨" class="fcb-v-checkbox">
+			<label for="check2" class="fcb-v-checkbox_label">날씨</label>
+		</li>
+		<li class="fcb-v-checkbox-unit">
+			<input type="checkbox" name="check3" id="sports" value="스포츠" class="fcb-v-checkbox">
+			<label for="check3" class="fcb-v-checkbox_label">스포츠</label>
+		</li>
+		<li class="fcb-v-checkbox-unit" id="stockUnit">
+			<input type="checkbox" name="check4" id="stock" value="증권" class="fcb-v-checkbox">
+			<label for="check4" class="fcb-v-checkbox_label">증권</label>
+		</li>
+		<li class="fcb-v-checkbox-unit">
+			<input type="checkbox" name="check5" id="entertain" value="연예" class="fcb-v-checkbox">
+			<label for="check5" class="fcb-v-checkbox_label">연예</label>
+		</li>
+	</ul>
+</div>
+
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<p class="red">&lt;적용옵션&gt;</p>
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">sType:"v",
+sClassPrefix: "fcb-v-"</code></pre>
+	</div>
+</div>
+
+<!-- Demo 영역 -->
+<h4>2. 가로형 Checkbox</h4>
+
+<div id="checkbox">
+	<form action="#">
+		<ul class="fcb-h-checkbox-cont">
+		<li class="fcb-h-checkbox-unit">
+			<input type="checkbox" name="list" id="wifi" value="wifi" class="fcb-h-checkbox" checked>
+			<label for="list" class="fcb-h-checkbox-label">wifi</label>
+		</li>
+		<li class="fcb-h-checkbox-unit" id="i3GUnit">
+			<input type="checkbox" name="grid" id="i3G" value="3G" class="fcb-h-checkbox">
+			<label for="grid" class="fcb-h-checkbox-label">3G</label>
+		</li>
+		<li class="fcb-h-checkbox-unit" id="i4GUnit">
+			<input type="checkbox" name="icon" id="i4G" value="4G" class="fcb-h-checkbox">
+			<label for="icon" class="fcb-h-checkbox-label">4G</label>
+		</li>
+		</ul>
+	</form>
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<p class="red">&lt;적용옵션&gt;</p>
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">sType:"h",
+sClassPrefix: "fcb-h-"</code></pre>
+	</div>
+</div>
+
+<!--@code title="HTML"
+	//세로형 Checkbox
+	<div id="checkbox_v">
+		<ul class="fcb-v-checkbox-cont">
+		<li class="fcb-v-checkbox-unit">
+			<input type="checkbox" name="check1" id="news" value="뉴스" class="fcb-v-checkbox" checked="checked">
+			<label for="check1" class="fcb-v-checkbox_label">뉴스</label>
+		</li>
+		<li>... 생략 ...</li>
+		<li>... 생략 ...</li>
+		</ul>
+	</div>
+
+	//가로형 Checkbox
+	<div id="checkbox_h">
+		<ul class="fcb-h-checkbox-cont">
+		<li class="fcb-h-checkbox-unit">
+			<input type="checkbox" name="list" id="list" value="List" class="fcb-h-checkbox">
+			<label for="list" class="fcb-h-checkbox_lable">List</label>
+		</li>
+		<li>... 생략 ...</li>
+		<li>... 생략 ...</li>
+		</ul>
+	</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+	// 세로형 Checkbox 초기화
+	var oCheckboxV = new jindo.m.CheckBox("checkbox_v" , {
+		sType:"v",
+		sClassPrefix: "fcb-v-"
+	});
+
+	// 가로형 Checkbox 초기화
+	var oCheckboxH = new jindo.m.CheckBox("checkbox_h" , {
+		sType:"h",
+		sClassPrefix: "fcb-h-"
+	});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

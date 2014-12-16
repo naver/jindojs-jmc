@@ -1,0 +1,7 @@
+#### Javascript
+
+	var oComponent = new jindo.m.CorePagination({
+		nItem : 10,
+		nItemPerPage : 10,
+		nPage : 1
+	});

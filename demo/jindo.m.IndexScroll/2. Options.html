@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>인덱스 스크롤 옵션 예제</title>
+<meta name="class-lists" content="jindo.m.IndexScroll">
+<meta name="description" content="인덱스 스크롤의 옵션을 변경">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.scroll_index{height:28px;padding-left:10px;background:url(http://static.naver.net/m/movie/im/date_line_bg.gif) repeat-x;font-family:Helvetica,'나눔고딕',NanumGothic,'굴림',Gulim,AppleGothic,Sans-serif;line-height:28px;color:#fff}
+.scroll_indexview{padding:.2em;background:#ccc;-webkit-border-radius:1.5em;opacity:0.7}
+.scroll_indexview_item{margin:10px}
+
+.hc{visibility:hidden;overflow:hidden;position:absolute;width:0;height:0;font-size:0;line-height:0}
+.nc,hr{display:none !important}
+
+/* li1 */
+.li1 .h2{font-size:.93em}
+.li1 .h3{font-size:13px;color:#666}
+.li1 .h4{font-size:13px;color:#909090}
+.li1 .cg{color:#32a800}
+.li1 .cn{color:#ed1b23;white-space:nowrap}
+.li1 .ur{font-size:.86em;color:#1172b6}
+.li1 .if1{font-size:.86em;line-height:1.21em;color:#909090}
+.li1 .if2{font-size:.86em;color:#666}
+.li1 .if3{font-size:.86em}
+.li1 .if4{font-size:.86em;line-height:1.14em;color:#909090}
+.li1 .if5{display:block;margin-top:2px;margin-bottom:-3px;font-size:.86em;line-height:1.36em;color:#777}
+.li1 .if6{font-family:helvetica;font-size:.79em;color:#b3b3b3}
+.li1 .tx1{color:#909090}
+.li1 .tx2{font-size:.86em;line-height:1.25em;color:#666}
+.li1 .tx3{font-size:13px;line-height:1.25em;color:#666}
+.li1 .tx11{color:#000}
+.li1 .btc{display:block;margin-top:.22em}
+.li1 .btc em{margin-left:5px;font-size:12px;color:#ed1b23}
+.li1 .cif{display:block;margin-top:7px;font-size:12px;color:#000}
+
+/* 기본 */
+.li1 li{position:relative;width:100%;border-bottom:1px solid #dfdfdf}
+.li1 .ct{display:block;clear:both;position:relative;padding:.93em 10px}
+.li1 .ct:after,.li1 .ct1:after,.li1 .ct2:after,.li1 .ct3:after,.li1 .ct4:after,.li1 .cth:after{display:block;clear:both;content:''}
+.li1 a.ct{padding:8px 31px 8px 10px;background:url(http://static.naver.com/www/m/cm/im/bu_lk.gif) no-repeat 100% 50%}
+.li1 .wn{display:block;overflow:hidden;width:100%;text-overflow:ellipsis}
+.li1 .wn1{display:block;overflow:hidden;width:100%;line-height:1em;white-space:nowrap;text-overflow:ellipsis}
+.li1 .wn4{display:inline-block;overflow:hidden;width:100%;white-space:nowrap;text-overflow:ellipsis}
+.li1 .wh1{height:36px;padding-top:3px;font-size:13px;color:#666}
+.li1 .wh2{padding-bottom:2px;line-height:1.25em !important}
+.li1 .no{display:block;padding:.9em 0 .3em;font-size:.86em}
+.li1 .it1,.li1 .it2{border-bottom:1px solid #b0b0b0 !important}
+.li1 .it1 .ct{color:#1172b6}
+.li1 .sh{display:inline-block;padding-top:2px;line-height:1em}
+.li1 .sh .bt_del{display:inline-block;margin-top:-1px;vertical-align:top}
+.li1 .if21{display:inline-block;vertical-align:top}
+.li1.sif li.bm{border-bottom:1px solid #B0B0B0}
+
+/* 사진형 */
+.li1 .fl{display:table;float:left;position:relative;margin-right:13px;text-align:center;vertical-align:middle}
+.li1 .fl a,.li1 .ct .fl em{display:table-cell;width:64px;height:92px;border:1px solid #dedede;background:#fff;vertical-align:middle}
+.li1 .fl span{display:block;position:absolute;top:1px;left:1px;width:31px;height:31px;background:url(http://static.naver.net/m/movie/im/ico_rank.png) no-repeat}
+.li1 .flw{width:24px;margin-right:5px;text-align:center}
+.li1 .fl2{display:block;overflow:hidden}
+.li1 .fl2 strong a{line-height:1.29em}
+.li1 .fl2h{padding-top:0}
+.li1 .fc{clear:both}
+.li1 .flt{width:3.29em;margin:0 5px 0 0;background:url(http://imgmovie.naver.net/mobile/ib.png) no-repeat 100% -650px;font-family:Helvetica;font-size:1em;line-height:30px}
+
+/* icon */
+.ic{display:inline-block;width:16px;height:16px;margin:0 4px 0 0;background:url(http://imgmovie.naver.net/mobile/ic_lv.gif) no-repeat 0 0;vertical-align:top}
+.ic1001002{background-color:#03B31D;background-position:0 -66px}
+.ic1001003{background-color:#07B2C3;background-position:0 -132px}
+.ic1001004{background-color:#D20A0F;background-position:0 -198px}
+.ic1001006{background-color:#D20A0F;background-position:0 -198px}
+dd .ct{border-bottom:1px solid #dfdfdf}
+dd .ct:last-child{border-bottom:none}
+.desc{color:green}
+
+/*@code title="CSS"*/
+.[sClassPrefix]index {}
+.[sClassPrefix]indexview {}
+.[sClassPrefix]indexview_item {}
+/*code@*/
+</style>
+
+<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!-- 세로 스크롤 -->
+<div id="view" style="font-size:1.2em">
+	<!-- Wrapper -->
+	<div>
+		<!-- Scroller -->
+		<ul class="li1">
+		<li>
+			<dl>
+			<dt data-text="02.24" class="scroll_index">2012.02.24</dt>
+			<dd>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image.jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001004">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">닌자 - 킬 사무라이</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.24 개봉</span></span><br>
+						<span class="if1 wn4">86분 |  액션 | 미국<br> 스콧 앳킨스,이하라 츠요시
+						</span><br>
+					</span>
+				</span>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt data-text="02.29" class="scroll_index">2012.02.29</dt>
+			<dd>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(1).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001003">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">러브픽션</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">121분 | 멜로/애정/로맨스 | 한국<br> 하정우,공효진
+						</span><br>
+					</span>
+				</span> <span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(2).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+
+							<span class="ic ic1001003">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">세이프 하우스</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">115분 |  액션 | 미국<br> 라이언 레이놀즈,덴젤 워싱톤
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(3).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001001">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">돌아온 파워레인저 미라클포스</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">45분 |  액션 | 일본<br> 치바 유다이,사토 리카,오노 켄토,하마오 쿄스케,니와 미키호
+						</span><br>
+
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(4).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001003">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">디스 민즈 워</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">97분 |  액션 | 미국<br> 리즈 위더스푼,톰 하디,크리스 파인
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(5).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<a href="http://www.naver.com">마릴린 먼로와 함께한 일주일</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">99분 |  드라마 | 영국<br> 미쉘 윌리엄스,에디 레드메인
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(6).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001004">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">만화방3D</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">83분 |  코미디 | 한국<br> 이은미,임아영,장상진,정이결,임도영,이상현,조은정
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(7).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001001">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">밀림의 왕자 레오 : 세상을 바꾸는 용기</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">106분 |  애니메이션 | 일본<br>
+
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(8).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001003">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">액트 오브 밸러: 최정예 특수부대</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">110분 |  액션 | 미국<br> 로셀린 산체즈,네스터 세라노,제이슨 코틀
+						</span><br>
+
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(9).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+
+							<span class="ic ic1001001">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">휴고</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.02.29 개봉</span></span><br>
+						<span class="if1 wn4">126분 | 가족 | 미국<br> 클로이 모레츠,아사 버터필드
+						</span><br>
+					</span>
+				</span>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt data-text="03.01" class="scroll_index">2012.03.01</dt>
+			<dd>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(10).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001003">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">열여덟,열아홉</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.03.01 개봉</span></span><br>
+						<span class="if1 wn4">94분 |  멜로/애정/로맨스 | 한국<br> 유연석,백진희,정헌,엄현경,이영진
+						</span><br>
+					</span>
+				</span>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt data-text="03.08" class="scroll_index">2012.03.08</dt>
+			<dd>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(11).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<span class="ic ic1001003">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">로맨스 조</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.03.08 개봉</span></span><br>
+						<span class="if1 wn4">115분 |  드라마 | 한국<br> 김영필,신동미,이채은,이다윗
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(12).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<a href="http://www.naver.com">말하는 건축가</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.03.08 개봉</span></span><br>
+						<span class="if1 wn4">95분 |  다큐멘터리 | 한국<br> 정기용,승효상,유걸
+						</span><br>
+
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(13).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+							<a href="http://www.naver.com">스탠리의 도시락</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.03.08 개봉</span></span><br>
+						<span class="if1 wn4">90분 |  드라마 | 인도<br> 파토르 A 굽테
+						</span><br>
+					</span>
+				</span>
+				<span class="ct h">
+					<span class="fl"><a href="http://www.naver.com"><img src="../asset/img/movie_image(14).jpg" width="64" height="92" alt="포스터 이미지" class="b"></a></span>
+					<span class="fl2 w60">
+						<strong class="wn1">
+
+							<span class="ic ic1001002">
+								<span class="nc">(모두 관람가)</span>
+							</span><a href="http://www.naver.com">존 카터: 바숨 전쟁의 서막</a>
+						</strong>
+						<span class="sh"><span class="tx2">2012.03.08 개봉</span></span><br>
+						<span class="if1 wn4">132분 |  SF | 미국<br> 테일러 키취,린 콜린스,윌렘 데포,사만다 모튼
+						</span><br>
+					</span>
+				</span>
+
+			</dd>
+			</dl>
+		</li>
+		</ul>
+	</div>
+	<!-- // Scroller -->
+</div>
+<!-- // Wrapper -->
+<!-- // Demo 영역 -->
+
+<div class="lm">
+	<p>
+		<strong class="strike">[sClassPrefix]index</strong>로 지정된 엘리먼트들이 Scroller 안쪽에 존재할 경우, 인덱스 표기 기능을 사용할 수 있다
+	</p>
+
+	<ul class="lst_type">
+		<li>인덱스뷰(indexView)의 사용여부는 <strong class="strike">bUseIndexView</strong> 옵션을 통해 조절가능하다.<br>
+		인덱스뷰에 표기될 내용은 기본적으로 <strong>[sClassPrefix]index</strong>로 지정된 엘리먼트의 text 정보로 구성되어 진다.<br>
+		인덱스의 text정보와 다르게 인덱스뷰를 구성하기 위해서는 <strong>[sClassPrefix]index</strong>로 지정된 엘리먼트에 <strong>data-text</strong> 속성을 지정하여 표시할 인덱스이름 정보를 변경할 수 있다.
+		</li>
+		<li>인덱스뷰의 디자인은 <strong class="strike">[sClassPrefix]indexview, [sClassPrefix]indexview-item</strong> 클래스를 통해 조절가능하다.</li>
+		<li>가속도 여부는 <strong class="strike">bUseMomentum</strong> 옵션을 통해 조절가능하다.</li>
+		<li>가속시 감소계수는 <strong class="strike">nDeceleration</strong> 옵션을 통해 조절가능하다.</li>
+		<li>스크롤바의 표기 여부는 <strong class="strike">bUseScrollbar</strong> 옵션을 통해 조절가능하다.</li>
+		<li>스크롤바의 표기 상태는 <strong class="strike">bUseFixedScrollbar</strong> 옵션을 통해 항상, 또는 스크롤시로 조절가능하다.</li>
+		<li>스크롤바 바운스 여부는 <strong class="strike">bUseBounce</strong> 옵션을 통해 조절가능하다.</li>
+		<li>모바일기기회전시 스크롤영역 자동 갱신은 <strong class="strike">bAutoResize</strong> 옵션을 통해 조절가능하다.</li>
+		<li>스크롤 되는 고정영역의 Width값은 <strong class="strike">nWidth</strong> 옵션을 통해 조절가능하다.</li>
+		<li>스크롤 되는 고정영역의 Height값은 <strong class="strike">nHeight</strong> 옵션을 통해 조절가능하다.</li>
+	</ul><br />
+
+	<div class="example-content">
+<pre class="code">
+<code class="prettyprint">bUseIndexView : true,
+bUseMomentum : true,
+nDeceleration : 0.0005,
+bUseScrollbar : true,
+bUseFixedScrollbar : true,
+bUseBounce : false,
+nHeight : 450</code>
+</pre>
+	</div>
+
+	<p>
+		<strong class="desc">위 옵션 사용시, 항상 스크롤바가 있고, 위,아래로 가속(감속계수 0.0005) 가능하며 바운스가 없고, 인덱스뷰가 존재하는 인덱스 스크롤러를 사용할 수 있다.</strong>
+	</p>
+
+	<p class="red">&lt;주의&gt;</p>
+	<p>
+		<strong class="keyword">bUseMomentum 옵션이 true</strong> 일 경우, <br>
+		<strong>기기사양과, content의 크기에 따라</strong> 스크롤 도중 잔상이 남는 오류가 발생할수 있으므로 적용시에 유의하기 바란다.
+	</p>
+</div>
+
+<!-- @code title="HTML"
+<div id="view">
+	// Wrapper
+	<div>
+		// Scroller
+		<ul>
+		<li>
+			<dt data-text="..." class="[sClassPrefix]index">... </dt> ....
+		</li>
+		<li>
+			<dt data-text="..." class="[sClassPrefix]index">... </dt> ....
+		</li>
+		<li>
+			<dt data-text="..." class="[sClassPrefix]index">... </dt> ....
+		</li>
+		<li>
+			<dt data-text="..." class="[sClassPrefix]index">... </dt> ....
+		</li>
+		</ul>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.IndexScroll.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oScroll = new jindo.m.IndexScroll("view", {
+	bUseIndexView : true,
+	bUseMomentum : true,
+	nDeceleration : 0.0005,
+	bUseScrollbar : true,
+	bUseFixedScrollbar : true,
+	bUseBounce : false,
+	nHeight : 450
+});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

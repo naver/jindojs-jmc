@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>SinglePageLayout - 상/하단 고정형</title>
+<meta name="class-lists" content="jindo.m.Scroll">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+body{margin:0}
+/*@code title="CSS"*/
+/* Page 영역 CSS */
+.jmc-page{
+    background:#fff;        /* 전체 페이지의 배경색 */
+    border:0;width:100%;
+}
+.flick-ct{height:100%;}
+/*.flick-ct p{font-size:2.0em;text-align:center;padding-top:50px;}*/
+
+/* Header 영역 CSS */
+.jmc-header {
+    background-color:black; /* 헤더 영역의 배경색 */
+    color:white;            /* 헤터 영역의 폰트색 */
+    height : auto;          /* 헤터 영역의 높이 */
+    width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Footer 영역 CSS */
+.jmc-footer {
+    background-color:black; /* 풋터 영역의 배경색 */
+    color:white;            /* 풋터 영역의 폰트색 */
+    height : auto;          /* 풋터 영역의 높이 */
+    width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Content 영역 CSS */
+/*.jmc-content{clear:both;width:100%;}*/
+
+/* Title 영역 CSS */
+.jmc-title {
+    margin:0 5%;            /* 타이틀 마진 */
+    width:90%;              /* 타이틀 너비 */
+    padding:5px 0;          /* 타이틀 패딩 */
+    height:40%;             /* 타이틀 높이 */
+    text-align:center;text-overflow:ellipsis;   white-space:nowrap;
+}
+/*code@*/
+
+.demo-body{margin:0 !important;padding:0 !important;border:0 !important}
+</style>
+<script type="text/javascript">
+    var sAgent =  navigator.userAgent;
+    if (sAgent.indexOf("WebKit") < 0) {
+        window.onerror = function(){
+            return true;
+        }
+    }
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body flicking="yes">
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+     data-title="Jindo Mobile Component"
+     data-disable="true"
+     data-subtitle="=document.title"
+     data-backbutton="true"
+     data-viewsource="true"
+     data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+    <p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div class="jmc-page">
+    <!-- 헤더 영역 시작 -->
+    <div class="jmc-header" position="fixed">
+        헤더 영역입니다.<br>
+        <!-- 타이틀 영역 시작 - 사용하지 않을 경우 삭제가능 -->
+        <div class="jmc-title">
+            타이틀입니다.
+        </div>
+        <!-- // 타이틀 영역 끝 -->
+    </div>
+    <!-- // 헤더 영역 끝 -->
+
+    <!-- 컨텐츠 영역 시작 -->
+
+            <div id="contents" class="jmc-content">
+                <div style="width:100%;">
+                    <div class="">
+                        <!-- 첫번째 컨텐츠 영역 -->
+                        헤더와 풋터를 공통으로 사용하는 상/하단 고정페이지 입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)<br/>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                    </div>
+                </div>
+            </div>
+    <!-- //컨텐츠 영역 시작 -->
+        </div>
+    </div>
+
+    <!-- 풋터 영역 시작 -->
+    <div class="jmc-footer" position="fixed">
+        풋터 영역입니다.<br>
+        <!-- 타이틀 영역 시작 - 사용하지 않을 경우 삭제가능 -->
+        <div class="jmc-title">
+            타이틀입니다.
+        </div>
+        <!-- // 타이틀 영역 끝 -->
+    </div>
+    <!-- //풋터 영역 끝 -->
+</div>
+
+
+<!-- jindo 프레임웍 import -->
+<!--
+    - JMC(jindo mobile component) import import.
+    아래 파일들은 선택다운로드(http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html)에서
+    압축다운로드된 한개의 파일(jindo_mobile_component.js)로 대체 가능하다.
+-->
+<!-- <script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.AjaxHistory.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Loading.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.PageLayoutUI.js" charset="utf-8"></script> -->
+
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+
+
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+var oSlideFlicking = {};
+var oScroll = {};
+window.onload = function(){
+    var htSize = jindo.$Document().clientSize();
+    var htOtherFlick = {
+        header : jindo.$Element(jindo.$$.getSingle(".jmc-header")).height(),
+        footer : jindo.$Element(jindo.$$.getSingle(".jmc-footer")).height()
+    };
+    setTimeout(function(){
+
+                    // aScroll[nIndex] = jindo.m.Scroll();
+                                                // oScrollHeight = parseInt(jindo.$Element(jindo.$$.getSingle(".nav_title")).height());
+                    oScroll = new jindo.m.Scroll("contents", {
+                        bUseHScroll : false,
+                        bUseVScroll : true,
+                        bUseScrollbar : false,
+                        nHeight : htSize.height - htOtherFlick.header - htOtherFlick.footer
+                    });
+
+                    jindo.m.bindRotate(function(){
+                        oScroll.height(jindo.$Element("contents").height(window.innerHeight- 80));
+                    });
+//
+        // jindo.$Fn(function(evt){
+            // evt.stop();
+            // oSlideFlicking.movePrev();
+        // },this).attach(jindo.$('aprev'),'click');
+//
+        // jindo.$Fn(function(evt){
+            // evt.stop();
+            // oSlideFlicking.moveNext();
+        // },this).attach(jindo.$('anext'),'click');
+//
+        // jindo.$Fn(function(evt){
+            // evt.stop();
+            // var nIndex = jindo.$('nIndex').value;
+//
+            // oSlideFlicking.moveTo(nIndex*1,0);
+//
+        // },this).attach(jindo.$('amove'),'click');
+
+    }, nDelay);
+}
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

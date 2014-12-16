@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.Slider </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.Slider</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								클릭 또는 드래그로 슬라이더 바를 이동시켜 값을 설정할 수 있는 컴포넌트
+							</p>
+							<a href="../../sample/latest/jindo.m.Slider/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">	
+						Slider 컴포넌트는 어떤 특정한 영역 내의 값을 슬라이더 바(thumb)를 이동하여  값을 입력받을 때 사용하기 적합한 컴포넌트이다.<br/>
+						Slider는 아래 그림과 같이 track과  thumb,range 객체로 구성된다.<br/><br/>
+						<img src="../resource/img/slider.jpg" alt="슬라이더이미지" />
+					</div>
+					
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>안드로이드2.1</dt>
+							<dd><div class="point_box">
+								드래그로 Slide되는 기능을 지원하지 않는다.
+								<div class="post">기본 touchmove 이벤트가 제대로 발생하지 않는다.<br>안드로이드2.1의 경우 손을 화면에서 떼는 순간 touchmove가 발생하는 브라우저 버그가 있다.<br>
+								touchmove이벤트를 제대로 발생시키기 위해서는 touchstart에서 기본동작을 중지시켜야 한다.</div>
+							</div></dd>
+						</dl>
+					</div>
+				
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>						
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">		
+									<!--class prefix가 'slider-'일 경우-->  
+									<div class="slider-wrapper">
+										<div class="slider-range"></div>
+										<a href="#" class="slider-thumb" role="slider"></a>
+									</div>
+								</textarea>							
+								<div class="t2">
+									<ul>
+										<li>thumb영역의 엘리먼트는  [prefix]+'thumb'의 클래스명을 가진다.</li>
+										<li>range영역의 엘리먼트는   [prefix]+'range'의 클래스명을 가진다.</li>
+									</ul>
+								</div>							
+							</dd>
+							<dt>CSS</dt>
+							<dd>
+									<!-- css 구조 -->
+								<textarea class="brush: css;">
+									/* class prefix가 'slider-' 인 경우*/  
+									
+									.slider-wrapper {...}
+									.slider-range{...}
+									.slider-thumb{...}
+								</textarea>
+								<div class="t2">
+									필수 CSS 요소는 다음과 같다.
+									<ul>
+										<li>[prefix] + wrapper 클래스 : track 영역에 적용되는 클래스</li>
+										<li>[prefix] + range 클래스 : range 영역에 적용되는 클래스</li>
+										<li>[prefix] + thumb 클래스 : thumb 영역에 적용되는 클래스</li>
+									</ul>									
+								</div>						
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">								
+									var oSlider = new jindo.m.Slider('slider',{
+										sClassPrefix : "slider-",
+									 	bVertical : false //가로형(true), 세로형(false) 지정
+									});
+								</textarea>							
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 사용자 디자인 적용 하기 -->
+					<h3>사용자 디자인 적용 하기</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								Initialization의 HTML구조와 동일
+							</dd>
+							<dt>CSS</dt>
+							<dd>
+								<textarea class="brush: css;">
+									/* class prefix가 'slider-' 인 경우*/  
+									
+									.slider-wrapper{float:left;position:relative;text-align:left;top:.8em;border-radius:0.5em 0.5em;width:293px;height:0.8em;margin-right:15px;border:1px solid #AAA;background:#EBEBEC;}
+									.slider-range{display:block;position:absolute;z-index:1;top:0;left:0;border-radius:0.5em 0.5em;height:100%;border:0 none;background:#999;font-size:.7em}
+									.slider-thumb{position:absolute;z-index:2;top:-.5em;border-radius:0.5em 0.5em;width:1.6em;height:1.6em;margin-left:-.8em;border:1px solid #BABABA;background:#F1F1F1;cursor:pointer}							
+								</textarea>
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								Initialization의 Javascript구조와 동일
+							</dd>
+						</dl>
+						
+						<br/><br/>
+						<div class="point_box" style="padding:10px;">
+							<font style="color:#e11b10;">√</font> Slider 의 디자인을 사용자의 요구 사항에 맞게 변경하기 위해서는 각 CSS에 알맞는 속성을 적용 해야 한다.
+						</div>
+						
+						<br/>
+						
+						
+						<ul>
+						<li>[prefix] + <font style="color:#e11b10;">wrapper</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;">track 영역의 크기, 둥글림정도, 배경색 등의 스타일을 지정한다.</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">가로형일 경우 width, 세로형일 경우 height을 조정한다. </li>
+						<li>[prefix] + <font style="color:#e11b10;">range</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;">range 영역의 배경색, 둥글림정도 등의 스타일을 지정한다.</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">가로형일 경우 width, 세로형일 경우 height을 조정한다. </li>
+						<li>[prefix] + <font style="color:#e11b10;">thumb</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">thumb 영역의 배경색, 둥글림정도 등의 스타일을 지정한다.</li>
+						</ul>
+					</div>
+					
+					<!-- Template으로 디자인 적용 하기 -->
+					<h3>Template으로 디자인 적용하기</h3>
+					<div class="t1">
+						<div>
+							자주 사용되는 디자인의 템플릿이다.<br/>
+							이미지를 클릭하여 Template 페이지를 열고, Template 페이지 하단의 소스를 Copy&Paste하여 적용한다.<br/>
+							폰트, 너비, 색상 등 스타일 변경이 필요하다면 소스내 주석을 참고하여, 원하는 부분의 스타일을 수정하여 적용한다.<br/><br/><br/>
+							<ul class="tumb_list">
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_basic.html" target="_blank"><img src="../resource/img/Slider_thumb1.jpg" width="150" height="100" alt=""></a>
+									<p>가로 기본형 Slider<br/>(1단위로 이동)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_basic_in10s.html" target="_blank"><img src="../resource/img/Slider_thumb2.jpg" width="150" height="100" alt=""></a>
+									<p>가로 기본형 Slider<br/>(10단위로 이동)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_basic_decimal.html" target="_blank"><img src="../resource/img/Slider_thumb3.jpg" width="150" height="100" alt=""></a>
+									<p>가로 기본형 Slider<br/>(0.1단위로 이동)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_basic_gray.html" target="_blank"><img src="../resource/img/Slider_thumb4.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된 가로형 Slider<br/>(Gray Type)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_basic_blue.html" target="_blank"><img src="../resource/img/Slider_thumb5.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된 가로형 Slider<br/>(Blue Type)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_basic_green.html" target="_blank"><img src="../resource/img/Slider_thumb6.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된 가로형 Slider<br/>(Green Type)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_vertical.html" target="_blank"><img src="../resource/img/Slider_thumb7.jpg" width="150" height="100" alt=""></a>
+									<p>세로 기본형 Slider<br/>(1단위로 이동)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Slider/template_vertical_blue.html" target="_blank"><img src="../resource/img/Slider_thumb8.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된 세로형 Slider<br/>(Blue Type)</p>
+								</li>
+							</ul>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>Class의 prefix명</td>
+								<td>slider-</td>
+							</tr>
+							<tr>
+								<td class="name">bVertical</td>
+								<td>슬라이더 세로 여부</td>
+								<td>false</td>
+							</tr>
+							<tr>
+								<td class="name">nMinValue</td>
+								<td>슬라이더의 최소값</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nMaxValue</td>
+								<td>슬라이더의 최대값</td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td class="name">nDefaultValue</td>
+								<td>슬라이더의 초기 로드 값</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>컴포넌트 로드시 activate 여부</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeChange</td>
+								<td>Thumb이 움직이기 직전에 발생한다.</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>nValue (Number) : 이동하려는 Thumb의 위치의 계산된 슬라이더 값. 위치 값에 따라 소수점 발생함</li>
+										<li>nPosition (Number) : 이동하려는 Thumb의 위치의 전체 track대비의 퍼센트 값</li>
+										<li>nAdjustValue (Number) : nAdjustPosition값으로 계산된 슬라이드 값 </li>
+										<li>nAdjustPosition (Number) : nPosition 반올림하여 정수로 계산된 값 </li>
+										<li>stop (Function) : 수행시 슬라이더가 이동하지 않으며 change 이벤트가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									Thumb의 움직임의 값을 조정하고 싶을 때 함수 구현 예제<br>
+									필요에 따라 정수가 아닌 소수 2째자리 까지 슬라이더 값을 허용하고 싶을때 beforeChange 이벤트를 에서 nAdjustValue 값을 바꿔주면 된다.								
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeChange", function(oCustomEvent){
+										oCustomEvent.nAdjustValue = oCustomEvent.nValue.toFixed(2); 
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">change</td>
+								<td>Thumb이 움직인 이후에 발생한다.</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>nValue (Number) : 이동하려는 Thumb의 위치의 계산된 슬라이더 값.위치 값에 따라 소수점 발생한다.</li>
+										<li>nPosition (Number) : 이동하려는 Thumb의 위치의 전체 track대비의 퍼센트 값</li>
+										<li>nAdjustValue (Number) : beforeChange에서 다시 설정한 슬라이더 값(변경된 값이 없으면 nValue의 반올림한 정수의 값)</li>
+										<li>nAdjustPosition (Number) : nAdjustValue값에 대한 퍼센트값 </li>
+										<li>stop (Function) : 수행시 영향을 받는것은 없다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									Thumb의 움직임인 이후에 실행될 함수 구현<br>
+									<textarea class="brush: javascript;">
+									oComponent.attach("change", function(oCustomEvent){
+										jindo.$('txt1').value = oCustomEvent.nAdjustValue;
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">touchStart</td>
+								<td>Thumb에 손을 터치 했을 때 발생</td>
+								<td>
+									<ul>
+										<li>nValue (Number) : 현재 Thumb의 위치의 계산된 슬라이더 값</li>
+										<li>nPosition (Number) : 현재 Thumb의 위치의 전체 track대비의 퍼센트 값</li>
+										
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									touch되었을 경우의 슬라이더 값을 알 수 있다.<br>
+									<textarea class="brush: javascript;">
+									oComponent.attach("touchStart", function(oCustomEvent){
+										jindo.$('txt1').value = oCustomEvent.nValue;
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">touchEnd</td>
+								<td>Thumb에 손을 떼었을 때 발생  .</td>
+								<td>
+									<ul>
+										<li>nValue (Number) : 현재 Thumb의 위치의 계산된 슬라이더 값</li>
+										<li>nPosition (Number) : 현재 Thumb의 위치의 전체 track대비의 퍼센트 값</li>
+										
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									사용자가 슬라이더에 손을 떼었을 경우 값을 알 수 있다.<br>
+									<textarea class="brush: javascript;">
+									oComponent.attach("touchEnd", function(oCustomEvent){
+										jindo.$('txt1').value = oCustomEvent.nValue;
+									});
+									</textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- 퍼블릭 메서드 -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.Slider</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.Slider</strong>(기준, htOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{String | HTMLElement}</span> <strong>기준</strong>
+									
+									: 엘리먼트
+								</li>
+							
+								<li>
+									<span>{HashTable}</span> <strong>htOption</strong>
+									
+									: 초기화 옵션 설정을 위한 객체
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.UIComponent
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+							<h5>Requires : 
+									<a href="../jindo.m.Touch/index.html#constructor">jindo.m.Touch</a>
+							</h5>
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						jindo.m.Slider 에서 사용하는 모든 객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">destroy</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getPosition"></a>getPosition
+					</td>
+					<td>
+						현재 Thumb의 위치값을(퍼센트) 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getPosition</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getValue"></a>getValue
+					</td>
+					<td>
+						옵션을 설정한 nMinValue, nMaxValue에 대한 상대값으로 nPos에 대한 해당 Thumb의 위치값을 얻어온다&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getValue</strong>(nPos)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nPos</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setPosition"></a>setPosition
+					</td>
+					<td>
+						Thumb의 위치값을 퍼센트로 설정한다&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setPosition</strong>(bFireEvent, bFireEvent)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Boolean}</span> <strong>bFireEvent</strong>
+									
+									: 커스텀 이벤트 발생여부
+								</li>
+							
+								<li>
+									<strong>bFireEvent</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setValue"></a>setValue
+					</td>
+					<td>
+						옵션을 설정한 nMinValue, nMaxValue에 대한 상대값으로 해당 Thumb의 위치값을 설정한다&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setValue</strong>(nValue, bFireEvent)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nValue</strong>
+									
+									: Thumb의 value 값
+								</li>
+							
+								<li>
+									<span>{Boolean}</span> <strong>bFireEvent</strong>
+									
+									: 커스텀 이벤트 발생여부
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+ 							 <tr>
+							 	<td class="name" >v1.4.0 </td>
+                               	<td>Update</td>
+                               	<td>touchEnd</td>
+                               	<td>사용자 이벤트 추가</td>
+							 </tr>
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>
+
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name" >v1.3.0 </td>
+							 	<td>-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

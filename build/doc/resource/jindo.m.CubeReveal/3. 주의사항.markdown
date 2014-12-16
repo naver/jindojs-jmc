@@ -1,0 +1,15 @@
+#### 주의사항
+* 안드로이드 기기에서 rotate 시 JMC 버전 1.8.0 미만에서는 정상 동작되지 않을 수 있음.<br />
+rotate 시 contents 의 reflow 가 발생하면서 브라우저의 사이즈 계산 오류 발생 -> JMC 1.8.0 으로 update 필요. 
+
+#### 참고 
+* header 영역을 position:fixed 로 처리하고자 하는 요구사항은 있으나 2.X 대에서는 fixed 속성이 자연스럽지 못해 이는 예외 처리로 대응해야 한다.
+
+* header 영역이 position:fixed 라고 가정했을때 contents 영역이 header 영역 밑에 들어가는 현상이 생김<br />
+header 영역만큼 빈 공간의 dummy area 가 필요함.
+
+* margin 옵션값은 direction=left/right 인 경우에 대해서만 적용됨.<br />
+전체적인 대응은 추후 릴리즈때 대응.
+
+* direction=left/right 의 경우 header, navigation, contents 영역을 감싸는 wrap 영역이 필요하다.<br />
+좌, 우 navigation 이 펼쳐질때 가로 스크롤이 생겨 부자연스러운 동작을 막기 위함.

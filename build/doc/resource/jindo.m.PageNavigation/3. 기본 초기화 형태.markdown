@@ -1,0 +1,44 @@
+#### HTML
+
+	<!-- 기준 엘리먼트  class prefix가 'page_'일 경우-->
+	<div class="u_pg2" id='paging'> <!-- 기준 엘리먼트 -->
+		<a href="#" class="u_pg2_btn page_prev"><span class="u_pg2_prev">이전</span></a>
+		<span class="u_pg2_btn page_prev-off"><span class="u_pg2_prev">이전</span></span>
+		
+		<em class="u_pg2_pg page_info">1-10 <span class="u_pg2_total">/ 200</span></em>
+		<a href="#" class="u_pg2_btn page_next"><span class="u_pg2_next">다음</span></a>
+		<span class="u_pg2_btn page_next-off"><span class="u_pg2_next">다음</span></span>
+	</div>
+
+* 기준 엘리먼트를 기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.
+* 이전 페이지를 이동하는 엘리먼트의 경우 [prefix]+'prev' 클래스명을 가진다.
+* 이후 페이지를 이동하는 엘리먼트의 경우 [prefix]+'next' 클래스명을 가진다.
+* 이전 페이지가 없을 경우 보여줘야 하는 이전버튼의 경우 [prefix]+'prev-off' 클래스명을 가진다.
+* 서비스 UI에 따라 이전 버튼이 없을 경우에는 설정하지 않으면 된다.
+* 이후 페이지가 없을 경우 보여줘야 하는 이전버튼의 경우 [prefix]+'next-off' 클래스명을 가진다.
+* 서비스 UI에 따라 이후 버튼이 없을 경우에는 설정하지 않으면 된다.
+* 현재 페이지에 대한 정보를 보여주는 엘리먼트의 경우 [prefix]+'info' 클래스명을 가진다.
+
+
+#### CSS
+
+	.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap}
+	.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+	.u_pg2_btn.uc_vh{visibility:hidden}
+	.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+	.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+	.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+	.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+	.u_pg2_total{color:#999}
+
+CSS는 서비스마다 상이 할 수 있다.
+
+
+#### Javascript
+
+	var oPaging = new jindo.m.PageNavigation(jindo.$('paging'),{
+		nItem : 100, //아이템 개수
+		nItemPerPage : 6, //한페이지당 아이템 개수
+		nPage : 1, //현재 페이지
+		sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>' //info영역에 innerHTML로 들어갈 마크업 템플릿
+	});

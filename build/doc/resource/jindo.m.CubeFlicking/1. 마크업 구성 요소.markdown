@@ -1,0 +1,35 @@
+CubeFlicking 컴포넌트는 Flicking 컴포넌트와 동일하며, 여러개의 콘텐트를 사용자의 터치 움직임으로 네비게이션하여 보여주기 적합한 컴포넌트이다.
+<br />  
+CubeFlicking 컴포넌트는 아래 그림과 container, view, panel 영역으로 나뉜다.
+<br />  
+
+![](hFlicking_s.jpg "")
+
+[컨텐츠 구조]
+<br />  
+![](CubeFlicking1.png "")
+
+[bHorizontal true 모습]
+<br />  
+![](CubeFlicking2.png "")
+
+[bHorizontal false 모습]
+<br />  
+큐브 형태로 돌아가는 Flicking 으로 bUseCircular 값에 따라 순환/비순환 구조를 설정할 수 있다.
+<br>  
+
+
+1. __bUseCircular가 false 인 경우__
+
+	![](Flicking1.jpg "")
+	
+	패널의 개수만큼 슬라이드 플리킹되는 구조
+	
+2. __bUseCircular가 true 인 경우__
+
+	![](Flicking2.jpg "")
+
+	3개의 패널이 순환적으로 플리킹되는 구조 
+
+	패널의 개수는 항상 3개이여야 함
+	오른쪽을 축으로 플립되는 플리킹

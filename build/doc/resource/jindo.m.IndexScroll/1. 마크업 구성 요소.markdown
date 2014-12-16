@@ -1,0 +1,13 @@
+[jindo.m.IndexScroll](../../doc/internal/classes/jindo.m.IndexScroll.html) 컴포넌트는 [jindo.m.Scroll](../../doc/internal/classes/jindo.m.Scroll.html)을 상속받아 구현한 컴포넌트로서, 인덱스 표기 기능을 사용할 수 있다.
+<br><br> 
+
+![](IndexedScroll.jpg "")
+
+[컨텐츠 구조]
+
+#### 기능 설명
+
+* 터치로 세로 영역의 스크롤이 가능하다.
+* 스크롤시 가속여부(bMomentum)에 따라 가속이 가능하다.
+* 인덱스를 표기할 수 있다.
+* 스크롤바를 표시할 수 있다.

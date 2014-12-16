@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								진행 대기 상태를 알려주는 로딩 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+						<!-- 설명 -->
+						<h3>Description</h3>
+						<div class="t1">
+							장기 작업 처리 시 사용자에게 처리중임을 알리는 UI 컴포넌트이다.<br/>
+							<img src="../resource/img/Loading.png"/><br/>
+						[Loading 구조]<br><br>
+						
+							
+							<!--- 이미지 추가 --->
+							
+							Loading 컴포넌트는 로딩이미지, 로딩텍스트, Foggy로 구분되어진다.
+							<h4>기능</h4>
+							<ul class="t2">
+								<li>전체 또는 특정 영역에 로딩 표시를 할 수 있다</li>
+								<li>전체 또는 특정 영역에 Foggy기능을 지원한다</li>
+								<li>이미지와 텍스트를 지정할 수 있다</li>
+							</ul>
+						</div>	
+<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>안드로이드</dt>
+							<dd><div class="point_box">
+								z-Index 상 맨 앞에 있는 레이어에서 발생한 이벤트가 투과되어 뒤에 존재하는 레이어에 이벤트가 발생하는 문제가 있다. 
+							</div></dd>							
+							<dt>iOS3.0, Android2.1</dt>
+							<dd><div class="point_box">
+								iOS3.0, Android2.1 에서는 로딩바가 돌아가지 않고, 깜빡이기만 한다.
+								<div class="post">내부적으로 keyframe Animation을 사용하는데, iOS3.0과 Android2.1은 keyframe Animation을 완벽하게 지원하지 않는다.</div>
+							</div></dd>
+						</dl>
+					</div>
+
+						<!--- Initialization -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>CSS</dt>
+							<dd>
+								<div class="t2">
+									화면에 보여지는 로딩의 <font style="color:#e11b10;">z-index 속성은 내부적으로 1,000</font> 으로 설정된다.
+								</div>
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oComponent = new jindo.m.Loading(el, {
+										 bActivateOnload : true,
+										 nWidth : 31,
+										 nHeight : 31,
+										 sDefaultForeground : "black", 
+										 sDefaultBackground : "transparent", 
+										 sLoadingText : "로딩중입니다",
+										 bUseFoggy : el ? false : true,
+										 sFoggyColor : "gray",
+										 nFoggyOpacity : 0.3
+									});
+								</textarea>
+								<div class="t2">
+								생성자의 첫 파라미터가 null일 경우, 전체 화면을 기준으로 Loading이 생성된다.<br/>
+								생성자의 첫 파라미터가 HTMLElement인 경우, 지정한 엘리먼트 기준으로 Loading이 생성된다.
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">nWidth</td>
+								<td>로딩이미지의 가로크기</td>
+								<td>31</td>
+							</tr>
+							<tr>
+								<td class="name">nHeight</td>
+								<td>로딩이미지의 세로크기</td>
+								<td>31</td>
+							</tr>
+							<tr>
+								<td class="name">sDefaultForeground</td>
+								<td>로딩이미지의 색상</td>
+								<td>black</td>
+							</tr>
+							<tr>
+								<td class="name">sDefaultBackground</td>
+								<td>로딩이미지의 배경색</td>
+								<td>transparent</td>
+							</tr>
+							<tr>
+								<td class="name">sLoadingText</td>
+								<td>로딩텍스트 내용 (HTML)<br/>
+									null인 경우, 텍스트가 표기되지 않는다.
+								</td>
+								<td>로딩중입니다</td>
+							</tr>
+							<tr>
+								<td class="name">bUseFoggy</td>
+								<td>Foggy 사용여부</td>
+								<td>전체화면 기준일 경우 true <br/>
+									부분화면 기준일 경우 false
+								</td>
+							</tr>
+							<tr>
+								<td class="name">sFoggyColor</td>
+								<td>Foggy 색상</td>
+								<td>grey</td>
+							</tr>
+							<tr>
+								<td class="name">sFoggyOpacity</td>
+								<td>Foggy 투명도</td>
+								<td>0.3</td>
+							</tr>
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>컴포넌트 로드시 activate 여부</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeShow</td>
+								<td>Loading이 보이기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>stop (Function) : 수행시 show 사용자 이벤트가 발생하지 않습니다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeShow", function(oCustomEvent){
+										// oCustomEvent.stop() 
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">show</td>
+								<td>Loading이 보인 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oComponent.attach("show", function(oCustomEvent){
+										
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeHide</td>
+								<td>Loading이 사라지기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>stop (Function) : 수행시 hide 사용자 이벤트가 발생하지 않습니다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeHide", function(oCustomEvent){
+										// oCustomEvent.stop() 
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">hide</td>
+								<td>Loading이 사라진 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oComponent.attach("hide", function(oCustomEvent){
+										
+									});
+									</textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+								 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>	
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>			
+							 				 
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               	<td>전체화면 로딩이후, 선택되지 않는 문제 수정</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 <tr>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

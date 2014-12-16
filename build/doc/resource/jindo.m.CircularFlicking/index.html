@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.CircularFlicking </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.CircularFlicking</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								3개의 Panel영역을 무한대로 순환하여 플리킹할 수 있는 컴포넌트
+							</p>
+							<a href="../../sample/latest/jindo.m.CircularFlicking/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+				<!-- 상세 설명 -->
+				<h3>Description</h3>
+				<div class="t1">
+					CircularFlicing은 Flicking 컴포넌트와  달리  Panel 영역이 무한대로 순환하여 플리킹 할 수 있는 컴포넌트이다.<br><br>
+					
+					CircularFlicing은 아래 그림과 같이 container, view, panel 영역으로 나뉜다. <br>
+					<img src="../resource/img/CircularFlicking.jpg" alt="가로플리킹" /><br>
+					[컨텐츠 구조]<br><br>
+					
+					<p style="padding:0px;line-height:17px;">
+						<strong>view 영역</strong><br>
+						실제 화면에서 보이는 영역이다.<br>
+						overflow 속성을 hidden으로 처리한다.<br><br>
+						
+						<strong>container 영역</strong><br>
+						실제로 scroll되는  대상영역이다. Scroll 컴포넌트를 통해 움직인다.<br>
+						container영역의 크기는 contents의 넓이(높이)* 3 로  설정된다.<br><br>
+						
+						<strong>panel 영역</strong><br>
+						Flicking 되면서 화면에 보여지는 영역의 단위이다.<br>
+						각  panel 사이즈를 view 사이즈에 맞춰서 조절한다.<br><br>
+						
+						<strong>contents 영역</strong><br>
+						Flicking 되면서 화면에 보여질 컨텐츠 영역이다.<br>
+						panel의 경우 그릇이라면 content는 실제 플리킹되어 보여질 정보의 단위이다.<br>
+						content는 패널의 개수 보다 많을 수 있다. 그럴 경우 'afterFlicking' 커스텀이벤트에서 추가 작업을 진행 하여야 한다.<br>
+					</p>
+					
+					<div class="point_box" style="padding:10px;">
+						<font style="color:#e11b10;">√</font> CircularFlicing에서는 panel 영역이 항상 3개가 있어야 한다.<br>	
+						<font style="color:#e11b10;">√</font> Flicking컴포넌트와 달리 CircularFlicing은  3개의 panel 가지고 플리킹하기 때문에, 플리킹하는 아이템이 많을 경우 'afterFlicking' 커스텀이벤트에서 동적으로 좌/우 콘텐츠 영역의 마크업얼 변경하는 작업을 추가하여 사용할 수 있다.
+					</div>
+				</div>	
+				
+						<!-- 주의사항 -->				
+						<h3 class="notice">Notice</h3>
+						<div class="t1">
+							<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+							<ul class="t2">
+								<li>안드로이드 2.1 이상</li>
+								<li>iOS 3.0 이상</li>
+							</ul>
+							<h4><font style="color:#e11b10;">√</font> iOS 6 주의사항 <font style="color:#e11b10;">(필독)</font></h4>
+							<dl>
+								<dt> <font style="color:#E11b10">한 페이지에 2개 이상의 플리킹을 적용할 경우 기준 엘리먼트의 z-index 속성을 추가해야 한다.</font> </dt>
+								<dt>z-index 속성을 추가 하지 않으면 플리킹이 버벅 거리는 현상이 발생한다.</dt>
+							
+							</dl>
+							<h4><font style="color:#e11b10;">√ 1.3.5 사용시 주의사항</font></h4>
+							<dl>
+								<dt>iOS 주의사항</dt>
+								<dt>
+									<div class="point_box">
+										iOS에서 패널의 마크업을 변경할 경우 잔상이 남는 이슈 때문에 플리킹 이후에 새로운 패널을 생성하는 로직이 추가 되었다.<br>
+										초기에 패널 엘리먼트를 저장하여 인덱스로 접근하던 코드들은 컴포넌트의 getRightPanelElement, getLeftPanelElement 메소드를 사용할 것을 권장한다.<br>
+										예를 들면 아래와 같이 사용하고 있다면 <br>
+										<div class="post">
+										var aPanel = jindo.$$('.flick-panel'); <br>
+										oFlicking.attach({<br>
+										&nbsp;	'afterFlicking' : function(oCustomEvt){<br>
+										&nbsp;&nbsp;		aPanel[oCustomEvt.nPanelLeftIndex].innerHTML = "";<br>
+										&nbsp;	}<br>
+										});<br>
+										</div>	
+										
+										아래와 같은 코드로 수정해야 한다.<br>
+										<div class="post">
+										var aPanel = jindo.$$('.flick-panel'); <br>
+										oFlicking.attach({<br>
+										&nbsp;	'afterFlicking' : function(oCustomEvt){<br>
+										&nbsp;&nbsp;		this.getLeftPanelElement().html("");<br>
+										&nbsp;	}<br>
+										});<br>
+										</div>	
+									</div>
+								</dt>
+							</dl>
+							<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+							<dl>
+								<dt>안드로이드2.1</dt>
+								<dd><div class="point_box">
+									드래그기능을 지원하지 않는다.
+									<div class="post">기본 touchmove 이벤트가 제대로 발생하지 않는다.<br>안드로이드2.1의 경우 손을 화면에서 떼는 순간 touchmove가 발생하는 브라우저 버그가 있다.<br>
+									touchmove이벤트를 제대로 발생시키기 위해서는 touchstart에서 기본동작을 중지시켜야 한다.</div>
+								</div></dd>
+								<dt>iOS 3.X</dt>
+								<dd><div class="point_box">
+									롱탭에 의해 클립보드 기능이 활성화 되면 플리킹이 정상 동작 하지 않는다.
+									<div class="post">클립보드 기능이 활성화 되는 순간 touchCancel이 발생되면서 터치 정보를 얻어 올 수 없다.</div>
+								</div></dd>
+							</dl>
+							
+							<h4><font style="color:#e11b10;">√</font> 마크업 주의사항</h4>
+							<dl>
+								<dt>form 엘리먼트와 z-index 설정</dt>
+								<dd><div class="point_box">
+									CircularFlicing을 사용하는 페이지 내에 form 엘리먼트(text input, radio 등)의 z-index 값 설정이 플리킹의 view영역보다 클 경우 화면이 깜박거리는 이슈가 있다.<br>
+									view 의 z-index값이 form 엘리먼트의 z-index 값보다 크게 설정해야 한다.
+								</div></dd>
+								<dt>em 단위 사용시 주의 사항</dt>
+							<dd><div class="point_box">
+								em 단위 사용시 큰 단위의 값 (-999em, 200em)으로 줄 경우 ios 화에서 깜박거리거나, 하얗게 변하는 형상이 발생한다.<br>
+								-999em 단위 대신 px 단위로 설정해야 한다.
+							</div></dd>
+							<dt>text-indent와 같은 속성 사용시 주의 사항</dt>
+							<dd><div class="point_box">
+								text-indent의 값을 -999px와 같은 값으로 줄 경우, 스크롤 컨텐츠가 늘어날 경우, ios 화면에서 깜빡이거나, 하얗게 변하는 현상이 발생한다.<br>
+								즉, 화면에 보여지지 않는 영역(안드로메다 영역이라고 부릅니다)에 대상 컨텐츠를 위치시킬 경우,
+컨텐츠의 길이가 늘어나면 화면이 하얗게 되거나 깜빡이는 현상이 발생한다.<br>
+<font style="color:#e11b10;">컨텐츠의 길이가 클 경우, 화면뷰에만 엘리먼트가 위치하도록 한다</font><br>
+							</div></dd>
+							<dt>단말기 전환시에 양옆의 Panel이 보였다가 사라진다면?</dt>
+								<dd><div class="point_box">
+									.flick-panel영역의 백그라운드가 투명일 때 생기는 이슈이다. <br>
+									백그라운드가 투명이 아니게 설정하면 해결된다.
+								</div></dd>
+							</dl>
+							
+							<h4><font style="color:#e11b10;">√</font> panel의 z-index 설정</h4>
+							<dl>
+								<dd><div class="point_box">
+									화면 중앙에 보이는 Panel의 <span style="color:#ff0080;font-weight:bold;">z-index는 10으로</span> 설정한다.<br>
+									화면 중앙이 아닌 양 옆의 Panel의<span style="color:#ff0080;font-weight:bold;"> z-index는 1로</span> 설정한다.									
+								</div></dd>								
+							</dl>
+							
+						</div>
+								
+				<!-- 초기화 방법 -->
+				<h3>Initialization</h3>
+				<div class="t1">
+					<dl>
+						<dt>HTML</dt>
+						<dd>
+							<!-- 마크업 구조 -->
+							<textarea class="brush: xml;">
+								<!-- 기준 엘리먼트 -->
+								<div id="mflick" >
+									<!-- container 엘리먼트는  '[prefix]+container' class를 가진다 -->
+									<div class="flick-container">
+										<!-- 각 contents 영역은 '[prefix]+panel' class를 가진다 -->
+										<div id="layer1" class="flick-panel">
+											<p>Layer 1</p>													
+										</div>
+										<div id="layer2"  class="flick-panel">
+											<p>Layer 2</p>											
+										</div>
+										<div id="layer3"  class="flick-panel">
+											<p>Layer 3</p>				
+										</div>										
+									</div>		
+								</div>	
+							</textarea>
+							<div class="t2">
+								panel 영역은  항상 3개로 유지한다.
+								<ul>
+									<li>기준 엘리먼트를 기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.</li>
+									<li>container 영역의 엘리먼트의 경우  [prefix]+'container'의 클래스명을 가진다.</li>
+									<li>panel 영역의 엘리먼트의 경우   [prefix]+'panel'의 클래스명을 가진다.</li>
+								</ul>
+							</div>
+						</dd>
+						<dt>CSS</dt>
+						<dd>
+								<!-- css 구조 -->
+							<textarea class="brush: css;">
+								/* 가로 플리킹 */
+								/* 플리킹 영역의 높이값을 지정해야 한다. */
+								#mflick {oveflow:hidden;position:relative;width:100%;height:200px;}
+								.flick-container{clear:both}
+								.flick-panel {float:left;width:100%;height:100%;position:absolute;}
+								/* 세로 플리킹 */
+								/* 플리킹 영역의 높이값을 지정가능하다 */
+								#mflick{position:relative;overflow:hidden;width:100%;height:200px;}
+								.flick-panel{width:100%;height:100%;position:absolute;}
+							</textarea>
+							
+						</dd>
+						<dt>Javascript</dt>
+						<dd>
+							<textarea class="brush: javascript;">
+								var oCircularFlicking = new jindo.m.CircularFlicking('mflick',{
+									bHorizontal : true,  //가로형 여부
+									sClassPrefix : 'flick-', //Class의 prefix,
+									nFlickThreshold : 40,
+									nTotalContents : 3 //3개의 panel에 총 플리킹하는 컨텐츠 수
+								}).attach({
+									'afterFlicking' : function(oCustomEvt){
+										/* 현재 화면에 플리킹 애니메이션을 통해 panel 바뀔 경우 발생 */
+										/* 콘텐츠의 개수가 패널의 개수(3개)보다 많을 경우 좌,우 panel의 마크업을 바꾼다 */
+									},
+									'move' : function(oCustomEvt){
+										/* setContentIndex 메소드 처럼 플리킹 애니메이션 없으 panel이 바뀔 경우 발생 */
+										/* 패널이 모두 바뀌 므로 3개의 패널 모두 마크업을 변경해 준다 */
+									}
+								});
+							</textarea>
+							
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- Template으로 디자인 적용 하기 -->
+				<h3>Template으로 플리킹 적용</h3>
+				<div class="t1">
+					<div>
+						자주 사용되는 플리킹 템플릿이다.<br/>
+						이미지를 클릭하여 Template 페이지를 열고, Template 페이지 하단의 소스를 Copy&Paste하여 적용한다.<br/>
+						폰트, 너비, 색상 등 스타일 변경이 필요하다면 소스내 주석을 참고하여, 원하는 부분의 스타일을 수정하여 적용한다.<br/><br/><br/>
+						<ul class="tumb_list">
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.CircularFlicking/template_basic.html" target="_blank">
+									<img src="../resource/img/tpl_circular1.jpg" width="150" height="100"/>
+								</a>
+								<p>가로 기본형 CircularFlicking</p>								
+							</li>
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.CircularFlicking/template_basic_vertical.html" target="_blank">
+									<img src="../resource/img/tpl_circular2.jpg" width="150" height="100"/>
+								</a>
+								<p>세로 기본형 CircularFlicking</p>								
+							</li>
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.CircularFlicking/template_more_contents.html" target="_blank">
+									<img src="../resource/img/tpl_circular3.jpg" width="150" height="100"/>
+								</a>
+								<p>7개 컨텐츠  CircularFlicking</p>								
+							</li>
+							
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.CircularFlicking/template_ajax.html" target="_blank">
+									<img src="../resource/img/tpl_circular4.jpg" width="150" height="100"/>
+								</a>
+								<p>ajax를 사용하는 CircularFlicking</p>								
+								
+							</li>
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.CircularFlicking/template_hMulti.html" target="_blank">
+									<img src="../resource/img/tpl_circular5.jpg" width="150" height="100"/>
+								</a>
+								<p>중첩 플리킹 사용</p>								
+								
+							</li>
+						</ul>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+				
+				<!-- 초기화 옵션 -->
+				<h3>Option</h3>
+				<div class="t1">
+					<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">bHorizontal</td>
+							<td>가로여부 (세로 플리킹일 경우 false로 설정한다)</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td class="name">sClassPrefix</td>
+							<td>Class의 prefix명</td>
+							<td>flick-</td>
+						</tr>						
+						<tr>
+							<td class="name">nFlickThreshold</td>
+							<td>콘텐츠가 바뀌기 위한 최소한의 터치 드래그한 거리 (pixel)</td>
+							<td>40</td>
+						</tr>
+						<tr>
+							<td class="name">nDuration</td>
+							<td>슬라이드 애니메이션 시간</td>
+							<td>100</td>
+						</tr>		
+						<tr>
+							<td class="name">nTotalContents</td>
+							<td>전체 플리킹할 콘텐츠의 개수(패널의 개수보다 많을 수 있다)</td>
+							<td>3</td>
+						</tr>
+						<tr>
+							<td class="name">nBounceDuration</td>
+							<td>nFlickThreshold 이하로 움직여서 다시 제자리로 돌아갈때 애니메이션 시간</td>
+							<td>100</td>
+						</tr>
+						<tr>
+							<td class="name">bUseCss3d</td>
+							<td>css3d(translate3d) 사용여부</td>
+							<td>모바일 단말기별로 다르게 설정된다.<br/>
+							상세내역은 <a href="../jindo.m/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m]</a>을 참조하기 바란다.</td>
+						</tr>
+						<tr>
+							<td class="name">bUseTranslate</td>
+							<td>css의 translate 속성을 사용할지 여부 <br> false일 경우 "left", "top" 속성을 이용함.</td>
+							<td>true </td>
+						</tr>
+						<tr>
+							<td class="name">bUseTimingFunction</td>
+							<td>애니메이션 동작방식을 css의 TimingFunction을 사용할지 여부 <br> false일 경우 setTimeout을 이용하여 애니메이션 실행.</td>
+							<td>모바일 단말기별로 다르게 설정된다.<br/>
+							상세내역은 <a href="../jindo.m/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m]</a>을 참조하기 바란다.</td>
+						</tr>
+						<tr>
+							<td class="name">bActivateOnload</td>
+							<td>컴포넌트 로드시 activate 여부</td>
+							<td>true</td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- 커스텀 이벤트 -->
+				<h3>Custom Event</h3>
+				<div class="t1">
+					<table class="customevent" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Custom Event Object Properties</th>
+						</tr>
+						<tr class="title">
+							<td class="name">beforeFlicking</td>
+							<td>플리킹 액션을 통해  panel이 바뀌기 전에  발생한다.<br>
+								플리킹 액션은 터치를 통해 플리킹 되거나  movePrev()/moveNext()메소드를 통해 플리킹되는 경우이다.
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>nPanelIndex  (Number) : 현재 화면에 보이는 패널의 인덱스</li>
+									<li>nNextPanelIndex (Number) : 플리킹되어 중앙 화면에 보일 패널의 인덱스</li>
+									<li>nContentIndex (Number) : 현재 화면에 보이는 컨텐츠의 인덱스</li>
+									<li>nNextContentIndex:  (Number) : 플리킹되어 중앙 화면에 보일 컨텐츠의 인덱스</li>											
+									<li>bLeft (Boolean) : 플리킹 방향이 왼쪽인지 대한 여부</li>
+									<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">							
+								<textarea class="brush: javascript;">
+								oCircularFlicking.attach("beforeFlicking", function(oCustomEvent){
+										//oCustomEvent.stop() 을 통해 막을 수 있다.
+								});
+								</textarea>
+							</td>
+						</tr>					
+						<tr class="title">
+							<td class="name">afterFlicking</td>
+							<td>플리킹 액션을 통해  panel이 바뀐 이후에 발생한다.<br>
+								플리킹 액션은 터치를 통해 플리킹 되거나  movePrev()/moveNext()메소드를 통해 플리킹되는 경우이다.
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>nPanelIndex  (Number) : 현재 화면에 보이는 중앙 영역의 패널의 인덱스</li>
+									<li>nPanelLeftIndex  (Number) : 왼쪽 (혹은 위쪽)영역에 있는 패널의 인덱스</li>
+									<li>nPanelRightIndex  (Number) : 오른쪽 (혹은 아래쪽)영역에 있는 패널의 인덱스</li>
+									<li>nContentIndex (Number) : 현재 화면에 보이는 컨텐츠의 인덱스</li>
+									<li>nContentLeftIndex (Number) : 왼쪽 (혹은 위쪽)영역에 컨텐츠의 인덱스</li>
+									<li>nContentRightIndex (Number) : 오른쪽 (혹은 아래쪽)영역에 컨텐츠 인덱스</li>																		
+									<li>bLeft (Boolean) : 가로플리킹일 경우 플리킹 방향이 왼쪽인지 여부(세로 플리킹일 경우 이 값은 없다)</li>
+									<li>bTop (Boolean) : 세로플리킹일 경우 플리킹 방향이 위쪽인지 여부 (가로 플리킹일 경우 이 값은 없다)</li>
+									<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								플리킹 하는 콘텐츠의 수가 3개 이상일 경우 <br>
+								
+								<textarea class="brush: javascript;">
+								var aContents = jindo.$$('flick-panel');
+								oCircularFlicking.attach("afterFlicking", function(oCustomEvent){
+									if(oCustomEvent.bLeft){
+										//왼쪽 슬라이드의 경우 오른쪽의 contents의 영역을 바꾼다
+										aContents[oCustomeEvt.nPanelRightIndex].innerHTML =  '';
+									}else{
+										//오른쪽 슬라이드의 경우 왼쪽의 contents의 영역을 바꾼다
+										aContents[oCustomeEvt.nPanelLeftIndex].innerHTML =  '';
+									}
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">beforeMove</td>
+							<td>플리킹 액션없이 패널 혹은 컨텐츠가 바뀌기 전에 발생<br>
+								setContentIndex()메소드를 통해 각 패널이 바뀔 경우
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>nPanelIndex  (Number) : 현재 화면에 보이는 패널의 인덱스</li>
+									<li>nNextPanelIndex (Number) : 플리킹되어 중앙 화면에 보일 패널의 인덱스</li>
+									<li>nContentIndex (Number) : 현재 화면에 보이는 컨텐츠의 인덱스</li>
+									<li>nNextContentIndex:  (Number) : 플리킹되어 중앙 화면에 보일 컨텐츠의 인덱스</li>							
+									<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">							
+								<textarea class="brush: javascript;">
+								oCircularFlicking.attach("beforeMove", function(oCustomEvent){
+										//oCustomEvent.stop() 을 통해 막을 수 있다.
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">move</td>
+							<td>플리킹 액션없이 패널 혹은 컨텐츠가 바뀌었을 경우<br>
+								setContentIndex()메소드를 통해 각 패널이 바뀔 경우
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>nPanelIndex  (Number) : 현재 화면에 보이는 중앙 영역의 패널의 인덱스</li>
+									<li>nPanelLeftIndex  (Number) : 왼쪽 (혹은 위쪽)영역에 있는 패널의 인덱스</li>
+									<li>nPanelRightIndex  (Number) : 오른쪽 (혹은 아래쪽)영역에 있는 패널의 인덱스</li>
+									<li>nContentIndex (Number) : 현재 화면에 보이는 컨텐츠의 인덱스</li>
+									<li>nContentLeftIndex (Number) : 왼쪽 (혹은 위쪽)영역에 컨텐츠의 인덱스</li>
+									<li>nContentRightIndex (Number) : 오른쪽 (혹은 아래쪽)영역에 컨텐츠 인덱스</li>								
+									<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								플리킹 하는 콘텐츠의 수가 3개 이상일 경우 <br>
+								
+								<textarea class="brush: javascript;">
+								var aContents = jindo.$$('flick-panel');
+								oCircularFlicking.attach("move", function(oCustomEvent){
+									//move일 경우 3개 패널 모두 업데이트 한다.
+									aContents[oCustomeEvt.nPanelRightIndex].innerHTML =  '';
+									aContents[oCustomeEvt.nPanelLeftIndex].innerHTML =  '';
+									aContents[oCustomeEvt.nPanelIndex].innerHTML =  '';
+								});
+								</textarea>
+							</td>
+						</tr>								
+						<tr class="title">
+							<td class="name">touchStart</td>
+							<td>플리킹 영역에 터치가 시작되었을 때 발생한다. <br>
+							Touch이벤트의 'touchStart'와 동일하다.
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>element  (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : 플리킹 액션이 수행되지 않는다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">							
+								<textarea class="brush: javascript;">
+								oCircularFlicking.attach("touchStart", function(oCustomEvent){
+									//android 2.1에서 touchmove 이벤트가 정상적으로 발생하려면 아래처럼 touchstart에서 기본 기능을 중지해야 한다.
+									oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">touchMove</td>
+							<td>플리킹 영역에서 터치 움직임이 있을 때 발생한다. <br>
+							Touch이벤트의 'touchMove'와 동일하다.
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>sMoveType (String) : 현재 분석된 움직임</li>
+									<li>element  (HTMLElement) : 현재 터치된 영역의 Element</li>									
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove(혹은 touchStart)의 X좌표와의 상대적인 거리.(직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove(혹은 touchStart)의 Y좌표와의 상대적인 거리.(직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리.(touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리.(touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nStartX (Number) : touchStart의 X좌표</li>
+									<li>nStartY (Number) : touchStart의 Y좌표</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop(Function) : 수행시 영향 받는것 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">							
+								<textarea class="brush: javascript;">
+								oCircularFlicking.attach("touchMove", function(oCustomEvent){
+									//플리킹영역에서 터치 하는 동안 기본 스크롤을 막는 코드이다.
+									oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
+								});
+								</textarea>
+							</td>
+						</tr>
+							<tr class="title">
+							<td class="name">touchEnd</td>
+							<td>플리킹 영역에서 터치가 끝났을 때 발생한다. <br>
+							Touch이벤트의 'touchEnd'와 동일하다.
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>sMoveType (String) : 현재 분석된 움직임</li>
+									<li>element  (HTMLElement) : 현재 터치된 영역의 Element</li>									
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove(혹은 touchStart)의 X좌표와의 상대적인 거리.(직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove(혹은 touchStart)의 Y좌표와의 상대적인 거리.(직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리.(touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리.(touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nStartX (Number) : touchStart의 X좌표</li>
+									<li>nStartY (Number) : touchStart의 Y좌표</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop(Function) : 수행시 영향 받는것 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">							
+								<textarea class="brush: javascript;">
+								oCircularFlicking.attach("touchEnd", function(oCustomEvent){
+									//...
+								});
+								</textarea>
+							</td>
+						</tr>		
+					</table>
+				</div>
+
+					
+					<!-- 퍼블릭 메서드 -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.CircularFlicking</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.CircularFlicking</strong>(el, htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HTMLElement | String}</span> <strong>el</strong>
+									
+									: 플리킹 기준 엘리먼트 (혹은 id)
+								</li>
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.UIComponent
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+							<h5>Requires : 
+									<a href="../jindo.m.Touch/index.html#constructor">jindo.m.Touch</a>
+							</h5>
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						jindo.m.Flicking 에서 사용하는 모든 객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">destroy</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getContentIndex"></a>getContentIndex
+					</td>
+					<td>
+						컴포넌트의 옵션값 nTotalContent을 기준으로 현재 화면에 보이는 콘텐츠 영역의 Content의 인덱스를 반환한다.Panel의 인덱스가 아닌 Content의 인덱스를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getContentIndex</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getLeftContentIndex"></a>getLeftContentIndex
+					</td>
+					<td>
+						왼쪽(위쪽) Panel의 content의 인덱스를 리턴한다&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getLeftContentIndex</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getLeftPanelElement"></a>getLeftPanelElement
+					</td>
+					<td>
+						현재 화면 왼쪽(위쪽) 영역에 Panel 엘리먼트를 래핑된 형태로 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">jindo.$Element </span>
+								
+						
+						<strong class="method">getLeftPanelElement</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">jindo.$Element </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getLeftPanelIndex"></a>getLeftPanelIndex
+					</td>
+					<td>
+						현재 화면 왼쪽(위쪽) 영역에 Panel의 인덱스를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getLeftPanelIndex</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getPanelElement"></a>getPanelElement
+					</td>
+					<td>
+						현재 화면 중앙에 보이는 영역에 Panel의 엘리먼트를 래핑된 형태로 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">jindo.$Element </span>
+								
+						
+						<strong class="method">getPanelElement</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">jindo.$Element </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getPanelIndex"></a>getPanelIndex
+					</td>
+					<td>
+						현재 화면 중앙에 보이는 영역에 Panel의 인덱스를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getPanelIndex</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getRightContentIndex"></a>getRightContentIndex
+					</td>
+					<td>
+						오른쪽(아래쪽) Panel의 content의 인덱스를 리턴한다&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getRightContentIndex</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getRightPanelElement"></a>getRightPanelElement
+					</td>
+					<td>
+						현재 화면에서 오른쪽(아래쪽) 영역에 Panel 엘리먼트를 래핑된 형태로 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">jindo.$Element </span>
+								
+						
+						<strong class="method">getRightPanelElement</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">jindo.$Element </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getRightPanelIndex"></a>getRightPanelIndex
+					</td>
+					<td>
+						현재 화면에서 오른쪽(아래쪽) 영역에 Panel의 인덱스를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getRightPanelIndex</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="moveNext"></a>moveNext
+					</td>
+					<td>
+						nDuration 시간만큼 다음(오른쪽 콘텐츠, 아래)로 이동한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">moveNext</strong>(nDuration)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nDuration</strong>
+									
+									: 애니메이션 시간
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="movePrev"></a>movePrev
+					</td>
+					<td>
+						nDuration 시간만큼 이전(왼쪽 콘텐츠, 위쪽)로 이동한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">movePrev</strong>(nDuration)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nDuration</strong>
+									
+									: 애니메이션 시간
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="refresh"></a>refresh
+					</td>
+					<td>
+						n배열이 중앙에 오도록 panel을 다시 좌우 배열해서 배치한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">refresh</strong>(n, bResize, bFireEvent)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									: 현재 화면에 보여져야할 content의 인덱스
+								</li>
+							
+								<li>
+									<span>{Boolean}</span> <strong>bResize</strong>
+									
+									: 화면 크기가 변화되어 다시 사이즈를 업데이트 해야 할경우
+								</li>
+							
+								<li>
+									<span>{Boolean}</span> <strong>bFireEvent</strong>
+									
+									: 커스텀이벤트 발생여부
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setContentIndex"></a>setContentIndex
+					</td>
+					<td>
+						현재 중앙에 보이는 컨텐츠의 인덱스를 n으로 설정한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setContentIndex</strong>(n, bRefresh)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									: 패널 인덱스
+								</li>
+							
+								<li>
+									<span>{Boolean}</span> <strong>bRefresh</strong>
+									
+									: panel의 위치를 다시 잡을지에 대한 여부
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Version</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 
+ <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>iOS 6 지원</td>
+							 </tr>
+							 
+							  <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.3.5</td>
+                                <td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 4.1(젤리빈) 대응 </td>
+							 </tr>
+							  <tr>
+							 	<td>Update</td>
+                               	<td>beforeFlicking</td>
+                               	<td>stop() 호출하면 다시 제자리로 돌아가는 bounce 기능 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+                               	<td>-</td>
+                               	<td>ios에서 afterFlicking에서 패널의 마크업을 바꿀 경우 잔상이 보이는 버그 해결</td>
+							 </tr>
+							 
+							 
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.3.0</td>
+                                <td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 s3 ICS 대응 </td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>-</td>
+                               	<td>애니메이션 구조 개선</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="5">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+                               	<td>-</td>
+                               	<td>android 4.x에서 발생하는 세로플리킹 오류 해결</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>nBounceDuration</td>
+							 	<td>Option 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>bUseCss3d</td>
+							 	<td>Option 추가</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="7">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>-</td>
+							 	<td>Android의 경우 translate호출시에 [css3+자바스크립트] 형식을 혼합해서 사용하는 형식으로 수정</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>bUsePreserve3dForAndorid </td>
+							 	<td>Option 삭제</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>getPanelElement()</td>
+							 	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>getRightPanelElement()</td>
+							 	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+							 	<td>getLeftPanelElement()</td>
+							 	<td>Method 추가</td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+							 	<td>-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name" rowspan="14">v0.9.5</td>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               <td>iOS에서 가로모드에서 플리킹 후 깜박이는 문제 해결</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>-</td>
+                               <td>Class prefix 변경('ct' → 'panel')</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>bUsePreserve3dForAndorid </td>
+                               <td>Option 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>beforeFlicking </td>
+                               <td>Custom Event 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>beforeMove </td>
+                               <td>Custom Event 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>move </td>
+                               <td>Custom Event 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getPanelIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getRightPanelIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getLeftPanelIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>setContentIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getContentIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getRightContentIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getLeftContentIndex()</td>
+                               <td>Method 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>getItemIndex()</td>
+                               <td>Method 삭제</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+							 	<td>Release</td>
+                               	<td>-</td>
+                               	<td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

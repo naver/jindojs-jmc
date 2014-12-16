@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.Circular Template</title>
+<meta name="class-lists" content="jindo.m.CircularFlicking">
+<meta name="description" content="가로 기본형 CircularFlicking">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 플리킹 영역의 높이값을 지정가능합니다 */
+#mflick{overflow:hidden;position:relative;width:100%;height:200px}
+#mflick{border :1px solid #F7F7F7;}
+.flick-container{clear:both}
+.flick-panel{float:left;position:absolute;width:100%;height:100%}
+
+/* 각 패널내의 css를 설정합니다 */
+.flick-panel p{font-size:2.0em;text-align:center;padding-top:50px;}
+
+/* 각 패널들의 css를 따로 설정하고 싶을 경우 아래에서 수정해서 사용 합니다 */
+.flick-panel:first-child {background-color:pink;}
+.flick-panel:last-child {background-color:#ffc000;}
+.flick-panel:nth-child(2){background-color:skyblue;}
+
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div id="mflick">
+	<div class="flick-container">
+		<div class="flick-panel">
+			<p>Layer 1</p>
+		</div>
+		<div class="flick-panel">
+			<p>Layer 2</p>
+		</div>
+		<div class="flick-panel">
+			<p>Layer 3</p>
+		</div>
+	</div>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CircularFlicking.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oCircularFlicking = new jindo.m.CircularFlicking("mflick");
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

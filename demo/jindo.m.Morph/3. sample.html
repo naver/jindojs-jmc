@@ -1,0 +1,555 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>배너 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Morph"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="배너 제작 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#demo-body { background-color:#bbb; font-size:15px; }
+
+	#demo-body, #demo-body select, #demo-body input, #demo-body a {
+		font-family: '나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;
+		text-decoration: none; color:#000;
+	}
+
+	.ad {
+		border:1px solid #000; margin:10px;
+		position:relative; overflow:hidden; text-align:left;
+	}
+
+	.ad p { margin:0; padding:0; }
+
+	.ad .abs { position:absolute; }
+	.ad .rel { position:relative; }
+
+</style>
+<script type="text/javascript">
+
+	// http://dev.sencha.com/deploy/css3-ads/
+
+	function saveCSS() {
+
+		var backup = {}, key;
+		for (var i = 0, len = arguments.length; i < len; i++) {
+			key = arguments[i];
+			backup[key] = jindo.$(key).style.cssText;
+		}
+
+		return function() {
+			for (var key in backup) if (backup.hasOwnProperty(key)) {
+				jindo.$(key).style.cssText = backup[key];
+			}
+		};
+
+	}
+
+</script>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" charset="utf-8" src="../asset/jindo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.UIComponent.js"></script>
+	<!--// 기본 스크립트 끝 -->
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+	<script type="text/javascript" charset="utf-8" src="switcher.js"></script>
+
+	<!-- HSBC 배너 -->
+	<a href="http://naver.com/" class="ad" style="display:block; width:320px; height:50px; background-color:#fff;" id="adw_da">
+		<img class="abs" id="hsbc" width="59" height="50" src="image/hsbc/image.jpg"/>
+		<div class="abs" id="red" style="background-color:red; left:10px; top:0; width:10px; height:0;"></div>
+		<div class="abs" id="msg1th" style="color:#000; left:70px; top:7px; font-weight:bold; white-space:nowrap;">Can your business be a local business<br/>all around the world?</div>
+		<div class="rel" id="msg2nd" style="color:#fff; text-align:center; top:7px; white-space:nowrap; font-size:.9em;">With offices in over 60 countries we can help<br/>navigate local laws, customs and risks.</div>
+		<div class="abs" id="msg3rd" style="left:70px; top:15px;">Learn more <span style="color:#f00;">&gt;&gt;</span></div>
+		<div class="abs" id="logo" style="top:10px; text-align:right;">
+			<div style="font-family:Georgia; font-size:1.2em;">HSBC <img src="image/hsbc/logo.jpg" width="31" height="17" style="vertical-align:-2px;" /></div>
+			<div style="font-size:.5em; color:#f00; margin-top:-1px;">The world's local bank</div>
+		</div>
+		<div class="abs" id="diamond" style="background-color:#fff; width:50px; height:50px; right:0; top:0;"></div>
+		<div class="abs" id="white" style="background-color:#fff; height:50px; left:0; top:0;"></div>
+	</a>
+	<script type="text/javascript">
+		
+		(function () {
+
+			var morph = new jindo.m.Morph({
+				bUseTransition : USE_TRANSITION,
+				fEffect : jindo.m.Effect.cubicEaseOut
+			}).clear();
+
+			var loadCSS = saveCSS('hsbc', 'red', 'msg1th', 'msg2nd', 'msg3rd', 'logo', 'diamond', 'white');
+
+			morph
+			.pushRepeatStart(Infinity)
+			.pushCall(function() {
+				loadCSS();
+			})
+			.pushAnimate(-1, [
+				'hsbc', { '@display' : 'none' },
+				'msg2nd', { '@opacity' : 0 },
+				'msg3rd', { '@opacity' : 0 },
+				'logo', { '@opacity' : 0, '@right' : '30px' },
+				'diamond', { '@display' : 'none', '@transform' : 'rotate(45deg)' },
+				'white', { '@display' : 'none' }
+			])
+			.pushAnimate(500, [
+				'red', { '@height' : '30px' /*, 'scrollTop' : 300, 'foo' : 10, '@top' : '90px'*/ },
+				'msg1th', { '@opacity' : '1', '@left' : '30px' }
+			])
+			.pushWait(1000)
+			.pushAnimate(500, [
+				'msg1th', { '@opacity' : 0 }
+			])
+			.pushAnimate(300, [
+				'red', { '@height' : '50px' }
+			])
+			.pushAnimate(500, [
+				'red', { '@left' : 0, '@width' : '320px' },
+				'msg2nd', { '@opacity' : 1 }
+			])
+			.pushWait(2000)
+			.pushAnimate(300, [
+				'msg2nd', { '@opacity' : 0 }
+			])
+			.pushAnimate(-1, [
+				'hsbc', { '@display' : 'block' }
+			])
+			.pushCall(function() {
+				this.option('fEffect', jindo.m.Effect.cubicEaseOut);
+			})
+			.pushAnimate(300, [
+				'red', { '@left' : '190px', '@width' : '10px' }
+			])
+			.pushAnimate(-1, [
+				'diamond', { '@left' : '310px', '@display' : 'block' },
+				'white', { '@left' : '200px', '@width' : '320px', '@display' : 'block' }
+			])
+			.pushAnimate(500, [
+				'red', { '@left' : '300px' },
+				'white', { '@left' : '310px' },
+				'logo', { '@opacity' : 1 }
+			])
+			.pushAnimate(500, [
+				'msg3rd', { '@opacity' : 1 }
+			])
+			.pushWait(3000)
+			.pushRepeatEnd()
+			.play();
+
+		})();
+
+	</script>
+
+	<!-- Hertz 배너 -->
+	<a href="http://naver.com" class="ad" id="HEadContainer" style="display:block; width:300px; height:250px; background-color:#FFD200; font-family: Arial, 'MS Trebuchet', sans-serif;">
+        <div id="HEcarSlider" class="abs" style="left:150px; bottom:55px; margin-left:-80px;">
+            <div id="HEcar">
+                <img src="image/hertz/carbody.png">
+            </div>
+        </div>
+        <div id="HEtext" class="abs" style="font-size:19px; left:20px; top:20px;">
+            <div id="HEtext1">
+                <p>Pay for standard.</p>
+            </div>
+            <div id="HEtext2">
+                <p>Drive off in premium.</p>
+            </div>
+            <div id="HEtext3" style="font-size:18px;">
+                <div id="HEtext3a">
+                    <p>Get a free double upgrade <br> on Hertz weekend rentals.</p>
+                </div>
+                <div id="HEtext3b" style="margin:5px 0 10px 0;">
+                    <p>Plus your regular <br> AAA discount.</p>
+                </div>
+                <div id="HEbuttonSlide">
+                    <div id="HEbutton" class="rel" style="background-color:#338dad; width:95px; height:22px; color:#fff; border-radius:2px; font-size:14px;">
+                        <p style="padding:3px 0 0 10px;">Book Now</p>
+                        <img class="abs" style="right:5px; top:5px;" src="image/hertz/next.png">
+                        <img class="abs" style="right:5px; top:5px;" id="HEnextY" src="image/hertz/nextY.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="HEwhiteBox" class="abs" style="background-color:#fff; font-size:11px; width:100%; height:55px; bottom:0;">
+            <div id="HEwbText" class="abs" style="left:10px; top:7px;">
+                <p> AAA Members: <br> Free double upgrade <br> on Hertz rentals </p>
+            </div>
+            <div id="HEwbLogo" class="abs" style="right:10px; top:7px;">
+                <img src="image/hertz/logo.png">
+            </div>
+        </div>
+    </a>
+    <script type="text/javascript">
+
+		(function () {
+
+			var morph = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+			var morph2 = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+			var morph3 = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+
+			var loadCSS = saveCSS('HEcarSlider', 'HEtext1', 'HEtext2', 'HEtext3');
+
+			jindo.$Fn(function() {
+				morph3.clear()
+				.pushRepeatStart(Infinity)
+				.pushAnimate(200, [ 'HEcar', { '@paddingBottom' : '0px' } ])
+				.pushAnimate(200, [ 'HEcar', { '@paddingBottom' : '10px' } ])
+				.pushRepeatEnd()
+				.play();
+			}).attach(jindo.$Element('HEadContainer'), 'mouseenter');
+
+			jindo.$Fn(function() {
+				morph3.clear()
+				.pushAnimate(200, [ 'HEcar', { '@paddingBottom' : '0px' } ])
+				.play();
+			}).attach(jindo.$Element('HEadContainer'), 'mouseleave');
+
+			morph.clear()
+			.pushRepeatStart(Infinity)
+			.pushCall(function() {
+				loadCSS();
+			})
+			.pushAnimate(-1, [
+				'HEcarSlider', { '@transform' : 'scale(0.2)', '@transformOrigin' : 'center bottom' },
+				'HEtext1', { '@opacity' : 0 },
+				'HEtext2', { '@opacity' : 0 },
+				'HEtext3', { '@opacity' : 0 }
+			])
+			.pushCall(function() {
+				this.option('fEffect', jindo.m.Effect.cubicBezier(.2,1.02,.7,1.61));
+			})
+			.pushAnimate(600, [
+				'HEcarSlider', { '@transform' : 'scale(0.5)' }
+			])
+			.pushAnimate(300, [
+				'HEtext1', { '@opacity' : 1 }
+			])
+			.pushWait(1000)
+			.pushCall(function() {
+				morph2.clear().pushAnimate(300, [
+					'HEtext1', { '@opacity' : 0 }
+				]).pushAnimate(-1, [
+					'HEtext1', { '@display' : 'none' }
+				]).play();
+			})
+			.pushAnimate(600, [
+				'HEcarSlider', { '@transform' : 'scale(1)' }
+			])
+			.pushWait(morph2)
+			.pushAnimate(300, [
+				'HEtext2', { '@opacity' : 1 }
+			])
+			.pushWait(1000)
+			.pushCall(function() {
+				this.option('fEffect', jindo.m.Effect.linear);
+			})
+			.pushAnimate(300, [
+				'HEtext2', { '@opacity' : 0 }
+			])
+			.pushAnimate(-1, [
+				'HEtext2', { '@display' : 'none' }
+			])
+			.pushCall(function() {
+				morph2.clear().pushWait(400).pushAnimate(300, [
+					'HEtext3', { '@opacity' : 1 }
+				]).play();
+			})
+			.pushCall(function() {
+				this.option('fEffect', jindo.m.Effect.easeOut);
+			})
+			.pushAnimate(700, [
+				'HEcarSlider', { '@left' : '280px' }
+			])
+			.pushWait(morph2)
+			.pushWait(3000)
+			.pushRepeatEnd()
+			.play();
+
+		})();
+
+	</script>
+
+	<!-- Lost at sea? 배너 -->
+	<style type="text/css">
+
+		#ad-1 * {
+			list-style:none;
+			margin:0;
+		}
+
+		#ad-1 {
+			width: 720px;
+			height: 300px;
+			background-image: url(image/lostatsea/background.png);
+			background-position: center;
+			background-repeat: no-repeat;
+			overflow: hidden;
+			position: relative;
+		}
+
+		#ad-1 #content {
+			width: 325px;
+			float: right;
+			margin: 40px;
+			text-align: center;
+			z-index: 4;
+			position: relative;
+			overflow: visible;
+		}
+			#ad-1 #content h2 {
+				color: #137dd5;
+				font-size: 50px;
+				line-height: 50px;
+				text-shadow: 0px 0px 4px #fff;
+			}
+			#ad-1 #content h3 {
+				color: #202224;
+				font-size: 25px;
+				letter-spacing:-2px;
+				line-height: 31px;
+				text-shadow: 0px 0px 4px #fff;
+			}
+			#ad-1 #content form {
+				margin: 30px 0 0 6px;
+				position: relative;
+			}
+			#ad-1 #content #email {
+				width: 158px;
+				height: 48px;
+				float: left;
+				padding: 0 20px;
+				font-size: 16px;
+				color: #fff;
+				text-shadow: 1px 1px 0px #a2917d;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				border:1px solid #a2917d;
+				outline: none;
+				box-shadow: -1px -1px 1px #fff;
+				background-color: #c7b29b;
+			}
+			#ad-1 #content #submit {
+				height: 50px;
+				float: left;
+				padding: 0 15px;
+				font-size: 16px;
+				font-weight:bold;
+				color: #137dd5;
+				text-shadow: 1px 1px 0px #fff;
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border:1px solid #bcc0c4;
+				border-left: none;
+				background-color: #fff;
+				cursor: pointer;
+			}
+		#ad-1 ul#water{
+		}
+			#ad-1 li#water-back {
+				width: 1200px;
+				height: 84px;
+				background-image: url(image/lostatsea/water-back.png);
+				background-repeat: repeat-x;
+				z-index: 1;
+				position: absolute;
+				bottom: 10px;
+				left: -20px;
+			}
+			#ad-1 li#water-front {
+				width: 1200px;
+				height: 158px;
+				background-image: url(image/lostatsea/water-front.png);
+				background-repeat: repeat-x;
+				z-index: 3;
+				position: absolute;
+				bottom: -70px;
+				left:-30px;
+			}
+		#ad-1 ul#boat {
+			width: 249px;
+			height: 215px;
+			z-index: 2;
+			position: absolute;
+			bottom: 25px;
+			left: 20px;
+			overflow: visible;
+		}
+			#ad-1 ul#boat li {
+				width: 249px;
+				height: 215px;
+				background-image: url(image/lostatsea/boat.png);
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				overflow: visible;
+			}
+				#ad-1 #question-mark {
+					width: 24px;
+					height: 50px;
+					background-image: url(image/lostatsea/question-mark.png);
+					position: absolute;
+					right: 34px;
+					top: -30px;
+				}
+		#ad-1 #clouds {
+			position: absolute;
+			top: 0px;
+			z-index: 0;
+		}
+		#ad-1 #cloud-group-1 {
+			width:720px;
+			position: absolute;
+			left:0px;
+		}
+		#ad-1 #cloud-group-2 {
+			width: 720px;
+			position: absolute;
+			left: 720px;
+		}
+			#ad-1 .cloud-1 {
+				width: 172px;
+				height: 121px;
+				background-image: url(image/lostatsea/cloud-1.png);
+				position: absolute;
+				top: 10px;
+				left: 40px;
+			}
+			#ad-1 .cloud-2 {
+				width: 121px;
+				height: 75px;
+				background-image: url(image/lostatsea/cloud-2.png);
+				position: absolute;
+				top: -25px;
+				left: 300px;
+			}
+			#ad-1 .cloud-3 {
+				width: 132px;
+				height: 105px;
+				background-image: url(image/lostatsea/cloud-3.png);
+				position: absolute;
+				top: -5px;
+				left: 530px;
+			}
+
+	</style>
+	<div id="ad-1" class="ad">
+		<div id="content">
+			<h2 id="title1">Lost at sea?</h2>
+			<h3 id="title2">Relax - we've got your rudder.</h3>
+			<form id="form">
+				<input type="text" id="email" placeholder="Email address...">
+				<button id="submit">Guide me</button>
+			</form>
+		</div>
+		<div id="clouds">
+			<ul id="cloud-group-1">
+				<li class="cloud-1"></li>
+				<li class="cloud-2"></li>
+				<li class="cloud-3"></li>
+			</ul>
+			<ul id="cloud-group-2">
+				<li class="cloud-1"></li>
+				<li class="cloud-2"></li>
+				<li class="cloud-3"></li>
+			</ul>
+		</div>
+		<ul id="boat">
+			<li>
+				<div id="question-mark"></div>
+			</li>
+		</ul>
+		<ul id="water">
+			<li id="water-back"></li>
+			<li id="water-front"></li>
+		</ul>
+	</div>
+    <script type="text/javascript">
+
+		(function () {
+
+			var morph = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+			var boat = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+			var sea = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+			var cloud = new jindo.m.Morph({ bUseTransition : USE_TRANSITION });
+
+			morph
+			.pushAnimate(-1, [
+				'boat', { '@left' : '-220px' },
+				'question-mark', { '@opacity' : 0 },
+				'title1', { '@opacity' : 0 },
+				'title2', { '@opacity' : 0 },
+				'form', { '@left' : '370px' }
+			])
+			.pushCall(function() {
+				this.option('bUseTransition', false);
+			})
+			.pushAnimate(2000, [ 'boat', { '@left' : '20px' } ])
+			.pushCall(function() {
+				this.option('bUseTransition', true);
+			})
+			.pushCall(function() {
+				boat
+				.pushRepeatStart(Infinity)
+				.pushAnimate(500, [ 'boat', { '@bottom' : '15px' } ])
+				.pushAnimate(500, [ 'boat', { '@bottom' : '25px' } ])
+				.pushRepeatEnd()
+				.play();
+			})
+			.pushWait(500)
+			.pushAnimate(1000, [ 'question-mark', { '@opacity' : 1 } ])
+			.pushAnimate(1000, [ 'title1', { '@opacity' : 1 } ])
+			.pushAnimate(1000, [ 'title2', { '@opacity' : 1 } ])
+			.pushCall(function() {
+				this.option('bUseTransition', jindo.m.Effect.cubicEaseOut);
+			})
+			.pushAnimate(500, [ 'form', { '@left' : 0 } ])
+			.play();
+
+			sea
+			.pushRepeatStart(Infinity)
+			.pushAnimate(500, [
+				'water-front', { '@bottom' : '-65px', '@left' : '-30px' },
+				'water-back', { '@bottom' : '15px', '@left' : '-20px' }
+			])
+			.pushAnimate(500, [
+				'water-front', { '@bottom' : '-60px', '@left' : '-25px' },
+				'water-back', { '@bottom' : '10px', '@left' : '-25px' }
+			])
+			.pushRepeatEnd()
+			.play();
+
+			cloud
+			.pushRepeatStart(Infinity)
+			.pushAnimate(10000, [
+				'cloud-group-1', { '@left' : '-720px' },
+				'cloud-group-2', { '@left' : '0px' }
+			])
+			.pushAnimate(-1, [
+				'cloud-group-1', { '@left' : '0' },
+				'cloud-group-2', { '@left' : '720px' }
+			])
+			.pushRepeatEnd()
+			.play();
+
+		})();
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+
+</body>
+</html>

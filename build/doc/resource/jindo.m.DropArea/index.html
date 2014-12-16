@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.DropArea </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.DropArea</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								DropArea 컴포넌트는 DragArea 컴포넌트로 드래그된 엘리먼트가 드랍되었을 때 지정한 동작을 수행할 수 있도록 도와주는 컴포넌트
+							</p>
+							<a href="../../sample/latest/jindo.m.DropArea/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+						<!-- 설명 -->
+						<h3>Description</h3>
+						<div class="t1">
+							DropArea컴포넌트는 DragArea 컴포넌트로 드래그된 엘리먼트가 드랍되었을 때 지정한 동작을 수행할 수 있도록 도와주는 컴포넌트다. <br>
+							DropArea 컴포넌트는 단독으로 사용할 수 없고, DragArea 컴포넌트와 함께 Drag&Drop을 기능을 완성한다.<br><br>
+							DragArea 인스턴스에서 발생하는 모든 커스텀 이벤트를  DropArea 컴포넌트에서도 발생시켜 따로 DragArea 인스턴스를 핸들링 하지 않고 DropArea 컴포넌트에서 커버가능하다.<br> 
+							<img src="../resource/img/droparea.jpg"/><br>
+							[기준레이어안의 엘리먼트 구조] 	<br><br>
+							위의 그림과 같이 기준 엘리먼트에는 드롭 영역이 여러개 존재 할 수있다.<br><br>
+							<p style="padding:0px;line-height:17px;">
+								<strong>드롭</strong><br>
+								드래그 영역이 드롭 가능한 영역이다.<br>
+								[prefix]+'area' 클래스명을 갖는다.<br>
+								드롭영역이면서 드래그영역도 가능하다.<br>							
+							</p>												
+							<h4>커스텀 이벤트 발생 순서</h4>
+							<p>아래 그림처럼 커스텀 이벤트 발생한다.</p>
+							<img src="../resource/img/dropevent.jpg"/><br>
+							[커스텀이벤트 발생순서] 	<br><br>
+							<p style="padding:0px;line-height:17px;">
+								handleDown, dragStart, beforeDrag, drag, dragEnd, handleUp의 경우 DragArea에서 발생한 커스텀 이벤트를 DropArea에서 발생시킨다.<br>
+								드래그앤드롭 기능을 활용할때 따로 DragArea의 커스텀 이벤트를 이용하지 않고 DropArea의 커스텀 이벤트에서 핸들링 가능하다.<br>
+									
+							</p>	
+							
+						</div>	
+						<h3 class="notice">Notice</h3>
+						<div class = "t1">
+							<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+							<ul class="t2">
+								<li>안드로이드 2.1 이상</li>
+								<li>iOS 3.0 이상</li>
+							</ul>
+							<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+							<div class="point_box">
+								<p style="color:#ff0080;font-weight:bold;">bUseTouchPoint 옵션값</p>
+								<div class="post">
+									drag엘리먼트가 drop 엘리먼트의 위에 있는지를 (over되어 있는지) 판단하는 기준이다<br>
+									true 일 경우 사용자 터치의 좌표를 기준으로 over를 판단한다.<br>
+									false일 경우 drag엘리먼트가 drop 엘리먼트와 겹쳐져 있는지를 가지고 판단한다<br> 
+									<img src="../resource/img/dropPoint.jpg"/> <br>
+									위의 그림과 같은 상황이라면,  <br>
+									<span style="color:#ff0080;font-weight:bold;">bUseTouchPoint값이 true</span> 일 경우 drop 엘리먼트에서  <span style="color:#ff0080;font-weight:bold;">"over" 커스텀 이벤트는 발생하지 않는다.</span> <br>
+									<span style="color:#ff0080;font-weight:bold;">bUseTouchPoint값이 false</span> 일 경우 drop 엘리먼트에서 <span style="color:#ff0080;font-weight:bold;"> "over" 커스텀 이벤트는 발생한다.</span><br>
+									
+								</div>
+							</div>
+							
+						</div>
+
+						<!--- Initialization -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">
+									<div id="drag" class="drag-dragging">										
+										Drag me
+									</div>
+									<!-- drop 기준 엘리먼트 -->
+									<div id="drop">
+										<div class="drop-area">
+											Drop1
+										</div>
+										<div class="drop-area">
+											Drop2
+										</div>
+									</div>
+								</textarea>
+								<div class="t2">
+									<ul>
+										<li>기준 엘리먼트를 기준으로 컴포넌트 내부에서 드롭 엘리먼트를 찾는다</li>
+										<li>드롭 대상 엘리먼트의 경우 [prefix]+'area' 클래스명을 갖는다.</li>
+									</ul>
+								</div>
+							</dd>
+							
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oDrag = new jindo.m.DragArea('drag');
+									var oDrop = new jindo.m.DropArea('drop' , {
+										sClassPrefix : 'drop-', //class prefix
+										oDragInstance : oDrag, //jindo.m.DragArea 인스턴스
+										bUseTouchPoint : true //drop엘리먼트의 over를 계산할때 현재 사용자 터치 좌표를 이용할것인지에 대한 여부
+									}).attach({
+										'over' : function(oCustomEvent){
+											/* drop 엘리먼트 위에 올라갈 경우 발생*/
+										},
+										'move' : function(oCustomEvent){
+											/* drop 엘리먼트 내에서 이동할 경우 발생 */
+										},
+										'out'  : function(oCustomEvent){
+											/* drop 엘리먼트에서 빠져 나갈 경우 발생*/
+										},
+										'drop'  : function(oCustomEvent){
+											/* drop 엘리먼트위에서 drag엘리먼트가 드롭된 경우 발생*/
+										}
+									});
+								</textarea>
+								<div class="t2">
+								oDragInstance 옵션에 jindo.m.DragArea 인스턴스를 설정해야 한다.
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>Class의 prefix명</td>
+								<td>drop-</td>
+							</tr>
+							<tr>
+								<td class="name">oDragInstance</td>
+								<td>Drop이 될 대상인 DragArea 컴포넌트의 인스턴스 (필수지정)</td>
+								<td>null</td>
+							</tr>
+							<tr>
+								<td class="name">bUseTouchPoint</td>
+								<td>드롭엘리먼트 영역에 OVER를 감지 할때 터치 포인트를 사용할지에 대한 여부</td>
+								<td>false</td>
+							</tr>							
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">handleDown</td>
+								<td>드래그될 handle(handle 영역이 없을 경우 drag영역)에 터치 하였을 때(oDragInstance의  handleDown 연이어 발생)</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>
+										<li>oEvent (Object) : jindo.$Event object</li>															
+										<li>stop (Function) : 드래그를 중지시킨다. 이후 모든 이벤트는 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oDrop.attach("handleDown", function(oCustomEvent){
+										//...
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">dratStart</td>
+								<td>드래그가 시작될 때 발생(최초 한번의 드래그가 실행전)(oDragInstance의  dratStart 연이어 발생)</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>	
+										<li>nX (Number) : 드래그 엘리먼트가 이동될 x 좌표 (left)</li>
+										<li>nY (Number) : 드래그 엘리먼트가 이동될 y 좌표 (top)</li>
+										<li>nGapX (Number) : handledown된 x 좌표와 dragstart x 좌표의 차이</li>
+										<li>nGapY (Number) : handledown된 y 좌표와 dragstart y 좌표의 차이</li>
+										<li>nTouchX (Number) : 현재 터치 X 좌표값</li>
+										<li>nTouchY (Number) : 현재 터치 Y 좌표값</li>	
+										<li>nDragCount (Number) : 실제로 drag되어 엘리먼트의 좌표를 움직인 카운트 (dragStart에서는 무조건 0)</li>								
+										<li>stop (Function) : 드래그를 중지시킨다. 이후 모든 이벤트는 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oDrop.attach("dratStart", function(oCustomEvent){
+										//...
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeDrag</td>
+								<td>드래그가 시작되고 엘리먼트가 이동되기 직전에 발생(oDragInstance의  beforeDrag 연이어 발생)</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>	
+										<li>nX (Number) : 드래그 엘리먼트가 이동될 x 좌표 (left)</li>
+										<li>nY (Number) : 드래그 엘리먼트가 이동될 y 좌표 (top)</li>
+										<li>nGapX (Number) : handledown된 x 좌표와 dragstart x 좌표의 차이</li>
+										<li>nGapY (Number) : handledown된 y 좌표와 dragstart y 좌표의 차이</li>
+										<li>nTouchX (Number) : 현재 터치 X 좌표값</li>
+										<li>nTouchY (Number) : 현재 터치 Y 좌표값</li>	
+										<li>nDragCount (Number) : 실제로 drag되어 엘리먼트의 좌표를 움직인 카운트 </li>								
+										<li>stop (Function) : 드래그를 중지시킨다. 이후 모든 이벤트는 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oDrop.attach("beforeDrag", function(oCustomEvent){
+										//...
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">drag</td>
+								<td>드래그 엘리먼트가 이동후 발생(oDragInstance의  drag 연이어 발생)</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>	
+										<li>nX (Number) : 드래그 엘리먼트가 이동될 x 좌표 (left)</li>
+										<li>nY (Number) : 드래그 엘리먼트가 이동될 y 좌표 (top)</li>
+										<li>nGapX (Number) : handledown된 x 좌표와 dragstart x 좌표의 차이</li>
+										<li>nGapY (Number) : handledown된 y 좌표와 dragstart y 좌표의 차이</li>
+										<li>nTouchX (Number) : 현재 터치 X 좌표값</li>
+										<li>nTouchY (Number) : 현재 터치 Y 좌표값</li>	
+										<li>nDragCount (Number) : 실제로 drag되어 엘리먼트의 좌표를 움직인 카운트</li>								
+										<li>stop (Function) : 드래그를 중지시킨다. 이후 모든 이벤트는 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oDrop.attach("drag", function(oCustomEvent){
+										//...
+									});
+									</textarea>
+								</td>
+							</tr>
+							
+							<tr class="title">
+								<td class="name">over</td>
+								<td>Drag된 채 Drop 가능한 엘리먼트에 올라갈 경우 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrop (HTMLElement) : Drop된 대상 엘리먼트</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>
+										<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									드롭영역에 over 될때 'over' 클래스 추가하기 <br>
+									<textarea class="brush: javascript;">
+									oDrop.attach("over", function(oCustomEvent){
+										jindo.$Element(oCustomEvent.elDrop).addClass('over');
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">out</td>
+								<td>Drag된 채 Drop 가능한  엘리먼트에서 벗어날 경우 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrop (HTMLElement) : Drop된 대상 엘리먼트</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>
+										<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									드롭영역에서 out 될때 'over' 클래스 삭제하기<br>
+									<textarea class="brush: javascript;">
+									oDrop.attach("out", function(oCustomEvent){
+										jindo.$Element(oCustomEvent.elDrop).removeClass('over');
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">move</td>
+								<td>Drag된 채 Drop 가능한 엘리먼트위에서 움직일 경우 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrop (HTMLElement) : Drop된 대상 엘리먼트</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>
+										<li>nRatioX (Number): 드랍될 엘리먼트 내부의 좌우비율 </li>
+										<li>nRatioY (Number): 드랍될 엘리먼트 내부의 상하비율 </li>
+										<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oDrop.attach("move", function(oCustomEvent){
+										//...
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">drop</td>
+								<td>Drop 가능한 엘리먼트에 성공적으로 드랍 될 경우 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrop (HTMLElement) : Drop된 대상 엘리먼트</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>										
+										<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									드롭영역에서 drop 될때 'over' 클래스 삭제하기<br>
+									<textarea class="brush: javascript;">
+									oDrop.attach("drop", function(oCustomEvent){
+										jindo.$Element(oCustomEvent.elDrop).removeClass('over');
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">dragEnd</td>
+								<td>드래그(엘리먼트 이동)가 완료된 후에 발생.(oDragInstance의  dragEnd 연이어 발생)</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>	
+										<li>nX (Number) : 드래그 엘리먼트가 이동될 x 좌표 (left)</li>		
+										<li>nY (Number) : 드래그 엘리먼트가 이동될 y 좌표 (top)</li>
+										<li>bInterupted (Boolean) : 드래그중 stopDragging() 호출로 강제적으로 드래그가 종료되었는지의 여부</li>								
+										<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									드래그가 완료 될때 'over' 클래스 삭제하기<br>
+									<textarea class="brush: javascript;">
+									oDrop.attach("dragEnd", function(oCustomEvent){
+										jindo.$Element(oCustomEvent.elDrop).removeClass('over');
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">handleUp</td>
+								<td>드래그 완료 이후 터치가 끝났을 때 발생(oDragInstance의  hanldeUp 연이어 발생)</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>elDrag (HTMLElement) : 드래그된 엘리먼트</li>
+										<li>elHandle (HTMLElement) : 드래그된 엘리먼트 내 핸들 영역 (없는 경우 null) </li>															
+										<li>stop (Function) : 수행시 영향을 받는것은 없다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									<textarea class="brush: javascript;">
+									oDrop.attach("handleUp", function(oCustomEvent){
+										//...
+									});
+									</textarea>
+								</td>
+							</tr>
+							
+							
+						</table>
+					</div>
+					
+					<!-- 퍼블릭 메서드 -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.DropArea</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.DropArea</strong>(el, htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HTMLElement | String}</span> <strong>el</strong>
+									
+									: 기준 엘리먼트 (혹은 id)
+								</li>
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.UIComponent
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+							<h5>Requires : 
+									<a href="../jindo.m.DragArea/index.html#constructor">jindo.m.DragArea</a>
+							</h5>
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						jindo.m.DropArea 에서 사용하는 모든 객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">destroy</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getOveredLists"></a>getOveredLists
+					</td>
+					<td>
+						Drag되고 있는 채, 마우스가 올라간 엘리먼트의 리스트를 구함&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Array </span>
+								
+						
+						<strong class="method">getOveredLists</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Array </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+
+							<!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>							 
+							<!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>							   
+							  <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td >Update</td>	
+                               	<td>-</td>
+                               	<td>플리킹이나 스크롤 컴포넌트내에서도 정상동작하도록 수정</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 <tr>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

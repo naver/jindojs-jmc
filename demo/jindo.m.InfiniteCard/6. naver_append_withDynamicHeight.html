@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>반응형 무한 카드 추가형 예제 (카드 선택시, 동적으로 카드의 크기가 변하는 예제)</title>
+<meta name="class-lists" content="jindo.m.InfiniteCard">
+<meta name="description" content="스크롤시 데이터를 추가적으로 추가한다<br>카드 선택시, 동적으로 카드의 크기가 변하고, 이에 맞게 애니메이션되는 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<link rel="stylesheet" type="text/css" href="../asset/w_main.css">
+<style>
+.demo-body {
+    background-color : #dcdcdd !important;
+    padding : 0px !important;
+}
+/* 로딩 바에 대한 CSS - 시작 */
+.loadingOn {
+    background : url(http://static.naver.net/www/m/2013/ld.gif) 0 0 no-repeat;
+    -webkit-background-size : 29px 29px;
+    background-size : 29px 29px
+}
+.loadingOff {
+    background : url(http://static.naver.net/www/m/2013/ld.jpg) 0 0 no-repeat;
+    -webkit-background-size : 29px 29px;
+    background-size : 29px 29px
+}
+/* 로딩 바에 대한 CSS - 끝 */
+
+/* 상세 내역에 대한 CSS - 시작 */
+.detail {
+    position:absolute;
+    top:0px;
+    left:0px;
+    background-color:#fff;
+    border-top : 1px solid #ccc;
+    border-bottom : 1px solid #ccc;
+    z-index : 2001;
+}
+.detail .content {
+    padding:0 15px;
+}
+@media all and (min-width:640px) {
+    .detail {
+        display:inline-block;
+        vertical-align:top;
+        width:50%
+    }
+}
+.article_h {
+    margin:29px 0 30px;
+    text-align:center;
+    clear:both;
+}
+.article_h h1 {
+    font-size:1.625em;
+    line-height:1.2em;
+    color:#000
+}
+.article_h .desc {
+    padding:3px 0 9px;
+    font-size:0.875em;
+    line-height:1.2em;
+    color:#3474dc
+}
+.article_h .desc+h1 {
+    margin:-7px 0 0
+}
+.article_h h1+.desc {
+    padding-bottom:2px
+}
+.article_h h1:nth-last-child(1) {
+    margin-bottom:25px
+}
+.article_h .title {
+    font-size:1.625em;
+    line-height:1.2em;
+    color:#000
+}
+.article_h .txt1 {
+    font-size:.813em;
+    line-height:1.4em;
+    color:#3776dd
+}
+.article_h .txt2 {
+    font-size:1.063em;
+    color:#333
+}
+.article_h .txt3 {
+    font-size:1.063em;
+    line-height:1.5em;
+    color:#333
+}
+.article_h .txt3 a {
+    color:#1172b6
+}
+.article_h .hide {
+    display:none !important
+}
+.article_f {
+    position:relative;
+    width:100%;
+    margin:20px 0 0;
+    padding:32px 0 0;
+    border-top:1px solid #E5E5E5
+}
+.article_f:before {
+    display:block;
+    overflow:hidden;
+    position:absolute;
+    top:1px;
+    width:100%;
+    height:1px;
+    background:#E5E5E5;
+    content:''
+}
+.article_f .img_item {
+    position:absolute;
+    top:0;
+    left:0;
+    width:75px;
+    height:75px;
+    margin:0
+}
+.article_f dl {
+    margin-bottom:9px
+}
+.article_f dl:last-child {
+    margin-bottom:0
+}
+.article_f dt {
+    display:inline;
+    font-weight:bold;
+    color:#444
+}
+.article_f dd {
+    display:inline;
+    font-size:0.875em;
+    color:#444
+}
+.article_f dd:before {
+    display:inline;
+    content:' '
+}
+.article_f dd a {
+    color:#444
+}
+.article_h+.img_item {
+    margin:26px 0 0
+}
+.article_f .author_info, .article_f .article_info {
+    position:relative;
+    padding-top:10px
+}
+.article_f dt:first-child:before {
+    position:absolute;
+    top:0;
+    left:0;
+    width:15px;
+    height:2px;
+    background:#3474dc;
+    content:''
+}
+.article_f .author_w+.article_info dt:before, .article_f .author_info+.article_info dt:before, .article_f .article_info+.article_info dt:before, .article_f .author_info+.author_info dt:before {
+    display:none
+}
+.article_f .author_w+.article_info, .article_f .author_info+.article_info, .article_f .article_info+.article_info, .article_f .author_info+.author_info {
+    padding-top:0
+}
+.article_f .author_desc {
+    width:100%;
+    margin-bottom:14px;
+    font-size:0.813em;
+    line-height:1.308em;
+    color:#888;
+    text-align:left
+}
+.article_f .role {
+    display:inline;
+    font-weight:bold;
+    line-height:1.2
+}
+.article_f .belong {
+    display:block;
+    margin-top:3px
+}
+.article_f .logo {
+    display:inline;
+    position:relative;
+    top:-2px;
+    margin-left:6px
+}
+.article_f .logo img {
+    vertical-align:middle
+}
+.article_f .author_w {
+    position:relative
+}
+.article_f .img_item+.author_info {
+    min-height:79px;
+    margin-bottom:0;
+    margin-left:90px;
+    text-align:left
+}
+.h_lv1 {
+    overflow:hidden;
+    clear:both;
+    width:100%;
+    min-height:55px;
+    margin-top:20px;
+    margin-bottom:23px;
+    padding:12px 0 12px 0;
+    border-top:2px solid #4d4c4c;
+    border-bottom:1px solid #c8c8c8
+}
+.h_lv1 h2 {
+    font-size:1.25em;
+    color:#000;
+    line-height:1.25em
+}
+.h_lv1 .num {
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    font-family:helvetica;
+    color:#719de6
+}
+.h_lv1 .num+span {
+    display:block;
+    overflow:hidden
+}
+.h_lv2 h3 {
+    font-size:1em;
+    color:#444;
+    line-height:1.25em
+}
+.article_h+.h_lv1 {
+    margin-top:37px
+}
+.end_p+.h_lv1 {
+    margin:36px 0 23px
+}
+.img_item+.h_lv1 {
+    margin-top:40px
+}
+.img_bx {
+    width:100%
+}
+.img_bx:after {
+    display:block;
+    clear:both;
+    content:''
+}
+.img_bx img {
+    max-width:100%;
+    vertical-align:top
+}
+.img_item {
+    margin-bottom:25px;
+    text-align:center
+}
+.h_lv1+.img_item {
+    margin-top:2px
+}
+.img_item+.img_item {
+    margin-top:25px
+}
+.type_half+.type_half {
+    margin-top:0
+}
+.img_bx .img_item {
+    margin-bottom:0
+}
+.img_item strong, .img_item .desc {
+    display:block;
+    margin:0 auto;
+    padding-left:5px;
+    border-left:2px solid #abbcd7;
+    font-size:.813em;
+    line-height:1.308em;
+    color:#444;
+    text-align:left
+}
+.img_item .img_wrap {
+    display:block;
+    font-size:0;
+    line-height:0;
+    text-align:center;
+    vertical-align:top
+}
+.img_item .img_wrap .img_size {
+    display:inline-block;
+    overflow:hidden;
+    position:relative
+}
+.img_item .img_wrap .btn_zoom {
+    display:inline-block;
+    overflow:hidden;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    width:30px;
+    height:30px;
+    background:url(http://static.naver.net/ncc/image/m_2013/btn_zoom.png) no-repeat;
+    -webkit-background-size:30px 30px;
+    line-height:999px
+}
+.img_item .desc {
+    color:#777
+}
+.img_item .desc:empty {
+    display:none
+}
+.img_item .txt_info {
+    margin-top:10px
+}
+.img_bx .type_half {
+    float:left;
+    width:50%
+}
+.img_bx .type_half:nth-child(2n) img {
+    margin:0 0 0 2px
+}
+.img_bx .type_half .txt_info {
+    padding:0 10px 0 0
+}
+.img_skin01, .img_skin02, .img_skin03, .img_skin04, .img_skin05 {
+    overflow:hidden;
+    position:relative;
+    margin:0 0 20px 0
+}
+.img_skin01 .img_wrap, .img_skin02 .img_wrap, .img_skin03 .img_wrap, .img_skin04 .img_wrap, .img_skin05 .img_wrap {
+    display:block;
+    position:absolute;
+    width:100%;
+    height:100%
+}
+.img_skin01 img, .img_skin02 img, .img_skin03 img, .img_skin04 img, .img_skin05 img {
+    position:absolute;
+    width:100%;
+    height:100%;
+    margin:0
+}
+.img_skin01 .txt_info, .img_skin02 .txt_info, .img_skin03 .txt_info, .img_skin04 .txt_info, , .img_skin05 .txt_info {
+    margin:0
+}
+.img_skin01 .txt_info strong, .img_skin01 .txt_info .desc, .img_skin02 .txt_info strong, .img_skin02 .txt_info .desc, .img_skin03 .txt_info strong, .img_skin03 .txt_info .desc, .img_skin04 .txt_info strong, .img_skin04 .txt_info .desc, .img_skin05 .txt_info strong, .img_skin05 .txt_info .desc {
+    border:none;
+    padding:0;
+    letter-spacing:-1px
+}
+.img_skin01 .txt_info {
+    position:absolute;
+    top:20px;
+    left:0;
+    min-width:107px;
+    min-height:75px;
+    margin:0;
+    padding:18px 19px 17px 14px;
+    background:#fff
+}
+.img_skin01 .txt_info strong {
+    margin-bottom:4px;
+    font-size:1.25em;
+    line-height:1.2em;
+    color:#3474dc;
+    word-wrap:break-word;
+    word-break:break-all
+}
+.img_skin01 .txt_info .desc {
+    letter-spacing:0;
+    word-wrap:break-word;
+    word-break:break-all
+}
+.img_skin02 .txt_info {
+    position:relative;
+    top:50%;
+    width:127px;
+    height:163px;
+    margin:-90px auto 0;
+    padding:17px 14px 0 14px;
+    background:#c5c5c5;
+    background:rgba(0, 0, 0, 0.15);
+    text-align:left
+}
+.img_skin02 .txt_info strong {
+    height:57px;
+    text-align:left;
+    font-size:1.563em;
+    color:#fff;
+    line-height:1.12em
+}
+.img_skin02 .txt_info .desc {
+    margin-top:13px;
+    padding-top:12px;
+    border-top:1px solid #fff;
+    font-size:0.875em;
+    color:#fff;
+    letter-spacing:-1px;
+    line-height:1.357em
+}
+.img_skin03 .txt_info, .img_skin04 .txt_info {
+    display:-webkit-box;
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
+    position:absolute;
+    top:40px;
+    width:100%;
+    height:100px;
+    text-align:center
+}
+.img_skin03 .txt_info:before, .img_skin03 .txt_info:after, .img_skin04 .txt_info:before, .img_skin04 .txt_info:after {
+    position:absolute;
+    left:50%;
+    width:210px;
+    height:2px;
+    margin-left:-105px;
+    background:#fff;
+    content:''
+}
+.img_skin03 .txt_info:before, .img_skin04 .txt_info:before {
+    top:-2px
+}
+.img_skin03 .txt_info:after, .img_skin04 .txt_info:after {
+    bottom:-2px
+}
+.img_skin04 .txt_info:before, .img_skin04 .txt_info:after {
+    background:#000
+}
+.img_skin03 .txt_info strong, .img_skin04 .txt_info strong {
+    display:block;
+    margin:0 20px;
+    font-size:1.875em;
+    line-height:1.167em;
+    color:#fff
+}
+.img_skin04 .txt_info strong {
+    color:#000
+}
+.img_skin03 .txt_info .desc, .img_skin04 .txt_info .desc {
+    display:none
+}
+.img_skin05 .txt_info {
+    position:absolute;
+    top:20px;
+    left:0;
+    width:112px;
+    margin:0;
+    padding:15px 14px;
+    background:rgba(0, 0, 0, .6)
+}
+.img_skin05 .txt_info strong {
+    margin-bottom:4px;
+    font-size:1.25em;
+    color:#A6C8FF;
+    line-height:1.2em
+}
+.img_skin05 .txt_info .desc {
+    letter-spacing:0;
+    color:#EEE
+}
+.c_phrase {
+    position:relative;
+    width:100%;
+    height:100p%;
+    background:#fff
+}
+.c_phrase strong {
+    display:block;
+    font-size:1.875em;
+    line-height:1.2em;
+    color:#000;
+    letter-spacing:-1px
+}
+.c_phrase .desc {
+    font-size:0.875em;
+    color:#777;
+    line-height:1.357em
+}
+.txt_skin01 {
+    background:#F3F4EE
+}
+.txt_skin01 strong, .txt_skin01 .desc {
+    margin:0 20px 0 30px
+}
+.txt_skin01 strong {
+    overflow:hidden;
+    clear:both;
+    position:relative;
+    margin-left:0;
+    margin-bottom:11px;
+    padding:44px 0 0 30px
+}
+.txt_skin01 strong:before {
+    position:absolute;
+    top:50px;
+    left:0;
+    width:16px;
+    height:100%;
+    background:#ff4c4c;
+    content:''
+}
+.txt_skin02 {
+    text-align:center
+}
+.txt_skin02 strong {
+    padding-top:95px
+}
+.txt_skin01.bg_c {
+    background:#03CA58
+}
+.txt_skin01.bg_c strong {
+    color:#FFF
+}
+.txt_skin01.bg_c strong:before {
+    background:#FFF
+}
+.txt_skin01.bg_c .desc {
+    color:#444
+}
+.txt_skin01.bg_c2 {
+    background:#FF6E2E
+}
+.txt_skin01.bg_c2 strong {
+    color:#FFF
+}
+.txt_skin01.bg_c2 strong:before {
+    background:#FFF
+}
+.txt_skin01.bg_c2 .desc {
+    color:#444
+}
+.txt_skin01.bg_c3 {
+    background:#6200AE
+}
+.txt_skin01.bg_c3 strong {
+    color:#FFF
+}
+.txt_skin01.bg_c3 strong:before {
+    background:#FFF
+}
+.txt_skin01.bg_c3 .desc {
+    color:#FFF
+}
+table {
+    font-size:1em
+}
+.end_p {
+    margin:20px 0;
+    font-size:1em;
+    line-height:1.5em;
+    color:#444;
+    word-break:break-all;
+    word-wrap:break-word
+}
+.close_detail {
+    float:right;
+    margin: 10px 0px;
+}
+/* 상세 내역에 대한 CSS - 끝 */
+</style>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+ data-title="Jindo Mobile Component"
+ data-subtitle="=document.title"
+ data-backbutton="true"
+ data-viewsource="true"
+ data-qrcode="true"></script>
+
+    <div class="header">
+        <div id="sch" class="sch">
+            <section>
+                <div class="sch_w">
+                    <h1 class="lg_h">
+        <a href="http://m.naver.com/" class="lg_a"><img src="http://static.naver.net/www/mobile/edit/2013/1230/mobile_192219199183.png" width="90" height="51" alt="일반" class="lg_m"></a>
+        </h1>
+                    <form role="search" name="search" id="search" action="http://m.search.naver.com/search.naver" onsubmit="nclk(this,'sch.search','','');if (oKeywordHistory) oKeywordHistory.add($('query').value);">
+                        <span class="sch_inpw">
+        <span class="sch_inpw_in">
+
+        <input type="search" id="query" name="query" title="검색어 입력" value="" class="sch_inp" autocorrect="off" autocomplete="off" autocapitalize="off" maxlength="255" data-initval="" onfocus="this.setAttribute('data-focus','focus');">
+
+        <input type="hidden" name="where" value="m">
+        <input type="hidden" id="sm" name="sm" value="mtp_hty">
+        <button id="clear_input" type="button" class="sch_del"><span class="sprh sprh_del">입력 내용 삭제</span>
+                        </button>
+                        <button id="sch_ext_btn" type="button" class="sch_btn sch_region"><span class="sprh sprh_region">지역검색 펼치기</span>
+                        </button>
+                        </span>
+                        </span>
+                        <button type="submit" class="sch_submit"><span class="sprh sprh_submit">검색</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="now" class="wrap id_now">
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.photo.naver.com/post/post.nhn?category=theme&amp;themeId=ALL&amp;postId=2014022811024710018" target="_naver_now">억울해 보여? 나 완전 기분 좋은걸!</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.photo.naver.com/today/today.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">오늘의 포토</a>
+                        <span class="cds_origin2">정말 기분 좋아요</span>
+                        <span class="cds_origin2">다복이</span>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0328/mobile_170446714294.jpg" width="100%" alt="억울해 보여? 나 완전 기분 좋은걸!">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000052023', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.photo.naver.com/post/post.nhn?category=theme&amp;themeId=ALL&amp;postId=2014022811024710018" class="cds_a" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2">오늘의 영단어 퀴즈</h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.wordbook.naver.com/endic/today/words.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin1', 'src1.wordbook', '1');" target="_naver_now">오늘의 영어</a>
+                        <a href="http://m.wordbook.naver.com/endic/challenge/main.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin2', 'src2.tequiz', '2');" target="_naver_now">도전! 퀴즈왕</a>
+                    </div>
+                </div>
+                <div class="cds_d5_responsive">
+                    <div class="cds_d5_responsive2">
+                        <div class="cds_d5">
+                            <strong>purge <a href="#" class="imh im_listen _MM_PRON" data-pron="http://naverdic.dn.naver.com/naver/dic/naverdic/endic/pron/clear/us/007/007090.mp3?vcode=2219727014139656350265" onclick="return nclk(this, 'now.listen', '7803E801_000000053EC9', '')" target="_naver_now">발음듣기</a><span class="imh im_qsm"></span></strong>
+                            <span class="btn_d">오늘의 영단어 퀴즈풀기</span>
+                        </div>
+                    </div>
+                    <img src="http://static.naver.net/www/mobile/edit/ui/bl.png" width="100%" alt="" class="responsive_img">
+                </div>
+                <div class="cds_bundle2">
+                    <a href="#" class="cds_send2  _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_send2">보내기</span></a>
+                </div>
+                <a href="http://m.wordbook.naver.com/endic/today/quiz.nhn?index=4&amp;targetDate=2014.04.01" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053EC9', '1');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;sm=mtp_crd&amp;query=1%EB%B0%952%EC%9D%BC+%EC%B4%AC%EC%98%81+%EC%9E%A5%EC%86%8C" target="_naver_now">'1박2일' 봄꽃 기차 여행, 이곳은 어디?</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_0000000549D6', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;sm=mtp_crd&amp;query=1%EB%B0%952%EC%9D%BC+%EC%B4%AC%EC%98%81+%EC%9E%A5%EC%86%8C" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">1박2일 촬영 장소</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0401/mobile_171424837335.jpg" width="100%" alt="'1박2일' 봄꽃 기차 여행, 이곳은 어디?">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_0000000549D6', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;sm=mtp_crd&amp;query=1%EB%B0%952%EC%9D%BC+%EC%B4%AC%EC%98%81+%EC%9E%A5%EC%86%8C" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_0000000549D6', '2');return true;"
+                target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?where=m&amp;query=%EC%9B%90%ED%8C%90%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;sm=mtb_she&amp;qdt=0" target="_naver_now">커피는 누가 쏠까? 원판돌리기</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000054917', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?where=m&amp;query=%EC%9B%90%ED%8C%90%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;sm=mtb_she&amp;qdt=0" class="cds_origin" onclick="return nclk(this, 'now.origin1', 'src1.gandan', '1');" target="_naver_now">간단게임</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0325/mobile_16503722333.jpg" width="100%" alt="커피는 누가 쏠까? 원판돌리기">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000054917', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?where=m&amp;query=%EC%9B%90%ED%8C%90%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;sm=mtb_she&amp;qdt=0" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000054917', '3');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;query=4%EC%9B%94%EC%97%AC%ED%96%89%EC%A7%80&amp;mra=bkgy" target="_naver_now">이번 주말 어디로 가볼까? 추천! 4월 여행지</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_00000005459C', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;query=4%EC%9B%94%EC%97%AC%ED%96%89%EC%A7%80&amp;mra=bkgy" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">4월 여행정보</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0401/mobile_10215435153.jpg" width="100%" alt="이번 주말 어디로 가볼까? 추천! 4월 여행지">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_00000005459C', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;query=4%EC%9B%94%EC%97%AC%ED%96%89%EC%A7%80&amp;mra=bkgy" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_00000005459C', '4');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.grafolio.net/illustration/12601" target="_naver_now">생각에 잠기는 시간</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053A3C', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.grafolio.net/" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">그라폴리오</a>
+                        <a href="http://m.grafolio.net/elang1012/illustration.grfl" class="cds_origin" onclick="return nclk(this, 'now.origin2', '', '2');" target="_naver_now">은영</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_174139477728.jpg" width="100%" alt="생각에 잠기는 시간">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053A3C', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.grafolio.net/illustration/12601" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053A3C', '6');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.comic.naver.com/webtoon/detail.nhn?titleId=578108&amp;no=34&amp;weekday=tue" target="_naver_now">데이트 가는 길</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053CBE', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.comic.naver.com/" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">오늘의 웹툰</a>
+                        <a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=578108&amp;weekday=tue" class="cds_origin" onclick="return nclk(this, 'now.origin2', '', '2');" target="_naver_now">강변살다</a>
+                        <span class="cds_origin2">박윤영</span>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img data-src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_212427327380.jpg" width="100%" alt="데이트 가는 길" src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_212427327380.jpg">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053CBE', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.comic.naver.com/webtoon/detail.nhn?titleId=578108&amp;no=34&amp;weekday=tue" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053CBE', '7');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.movie.naver.com/m/magazine/detail.nhn?themeNid=180190" target="_naver_now">연에 세포 자극하는 멜로</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053B29', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.movie.naver.com" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">오늘의 영화</a>
+                        <span class="cds_origin2">'러브 인 비즈니스 클래스' 무비토크</span>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img data-src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_200702439382.jpg" width="100%" alt="연에 세포 자극하는 멜로" src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_200702439382.jpg">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053B29', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.movie.naver.com/m/magazine/detail.nhn?themeNid=180190" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053B29', '11');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?query=%ED%83%80%EC%9A%94%EB%B2%84%EC%8A%A4&amp;mra=bkgy" target="_naver_now">진짜 '타요 버스' 타요!</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_0000000539BD', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?query=%ED%83%80%EC%9A%94%EB%B2%84%EC%8A%A4&amp;where=m&amp;sm=mtp_hty" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">타요 버스 운행 정보</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img data-src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_15582234363.jpg" width="100%" alt="진짜 '타요 버스' 타요!" src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_15582234363.jpg">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_0000000539BD', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?query=%ED%83%80%EC%9A%94%EB%B2%84%EC%8A%A4&amp;mra=bkgy" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_0000000539BD', '12');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2">오늘의 영단어 퀴즈</h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.wordbook.naver.com/endic/today/words.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin1', 'src1.wordbook', '1');" target="_naver_now">오늘의 영어</a>
+                        <a href="http://m.wordbook.naver.com/endic/challenge/main.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin2', 'src2.tequiz', '2');" target="_naver_now">도전! 퀴즈왕</a>
+                    </div>
+                </div>
+                <div class="cds_d5_responsive">
+                    <div class="cds_d5_responsive2">
+                        <div class="cds_d5">
+                            <strong>purge <a href="#" class="imh im_listen _MM_PRON" data-pron="http://naverdic.dn.naver.com/naver/dic/naverdic/endic/pron/clear/us/007/007090.mp3?vcode=2219727014139656355604" onclick="return nclk(this, 'now.listen', '7803E801_000000053EC9', '')" target="_naver_now">발음듣기</a><span class="imh im_qsm"></span></strong>
+                            <span class="btn_d">오늘의 영단어 퀴즈풀기</span>
+                        </div>
+                    </div>
+                    <img src="http://static.naver.net/www/mobile/edit/ui/bl.png" width="100%" alt="" class="responsive_img">
+                </div>
+                <div class="cds_bundle2">
+                    <a href="#" class="cds_send2  _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_send2">보내기</span></a>
+                </div>
+                <a href="http://m.wordbook.naver.com/endic/today/quiz.nhn?index=4&amp;targetDate=2014.04.01" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053EC9', '0');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    <!-- content end -->
+    </div>
+    <div class="hr_ld" id="loading"><span id="loadingText" class="ic_ld loadingOff">로딩중</span></div>
+    <div id="footer" class="_Footer" style="display:none">
+        <div>
+            <div class="ftip">
+                <p class="ftip_a">
+                    <a href="/notice.html" class="ftip_tit" onclick="return nclk(this,'fot.tip','','');">공지</a>
+                    <a href="http://m.openlectures.naver.com" class="ftip_s" onclick="return nclk(this,'fot.tiptitle','','');">[열린연단 : 문화의 안과 밖] 강연이 시작되었습니다.</a>
+                </p>
+            </div>
+        </div>
+        <div class="fot" style="display: block;">
+            <footer role="contentinfo">
+                <p class="fot_p">
+                    <a href="javascript:Footer.logout()" class="fot_pa">로그아웃</a>
+
+                    <a href="https://nid.naver.com/mobile/user/help/myInfo.nhn" class="fot_pa" onclick="return nclk(this,'fot.myinfo','','')">내 정보관리</a>
+                    <a href="http://www.naver.com/?mobile" class="fot_pa" onclick="return nclk(this,'fot.gopc','','')">PC버전</a>
+                    <a href="/services.html" class="fot_pa" onclick="return nclk(this,'fot.sitemap','','')">전체서비스</a>
+                </p>
+                <p class="fot_p2">
+                    <a href="http://nid.naver.com/mobile/user/help/termAgree.nhn?m=viewTermAgree1" class="fot_p2a" onclick="return nclk(this,'fot.agreement','','')">이용약관</a>
+                    <a href="http://nid.naver.com/mobile/user/help/termAgree.nhn?m=viewTermAgree3" class="fot_p2a" onclick="return nclk(this,'fot.privacy','','')">개인정보취급방침</a>
+                    <a href="http://m.searchad.naver.com/" class="fot_p2a" onclick="return nclk(this,'fot.sa','','')">검색광고</a>
+                </p>
+                <p class="fot_p3">
+                    <a href="http://www.nhncorp.com/" class="fot_p3a" onclick="return nclk(this,'fot.nhncorp','','')">ⓒ NAVER Corp.</a>
+                    <a href="http://m.help.naver.com/serviceMain.nhn?falias=mo_main_web&amp;type=faq" class="fot_p3a" onclick="return nclk(this,'fot.help','','')">도움말</a>
+                    <a href="http://m.help.naver.com/serviceMain.nhn?falias=mo_main_web&amp;type=faq#mail" class="fot_p3a" onclick="return nclk(this,'fot.claim','','')">문의 및 신고</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+    <!-- detail start -->
+    <div id="detail" class="detail" style="visibility:hidden;">
+        <div class='content'>
+            <div class="close_detail" onclick="fnCloseDetail(true)"><i class="fa fa-times fa-2x"></i></div>
+            <header class="article_h">
+                <div class="txt1">2014년 03월</div>
+                <h3 class="title" id="na_ncc_article_title">아티스트들의 골목길, 누상동&amp;누하동 예쁜 공방</h3>
+                <div class="txt2">
+                    TRAVELING TO STREET
+                </div>
+            </header>
+            <div id="na_title_bottom"></div>
+            <p class="end_p">한적했던 동네 골목길, 언제부턴가 사람들의 발길이 이어지더니 이제는 주목받는 동네가 되었다. 아티스트들의 골목길인 누상동&amp;누하동, 따뜻한 봄 햇살을 받으며 한나절 여행을 떠나보자.</p>
+            <div class="img_item" style="text-align:center; ">
+                <span class="img_wrap">
+                <span class="img_size">
+                    <img src="../asset/img/detail.jpg" width="450px" class="smart_img" alt="아티스트들의 골목길, 누상동&amp;누하동 예쁜 공방 이미지 1" style="width: 100%;">
+                    <a href="http://ncc.phinf.naver.net/20140327_114/1395910272585BwJ5R_JPEG/001.jpg" class="btn_zoom" style="display: inline;">확대보기</a>
+                </span>
+                </span>
+            </div>
+            <div class="h_lv1">
+                <h2>
+                <span class="num"></span>
+            떠나기 전 알아두자!
+            </h2>
+                <div class="desc"></div>
+            </div>
+            <table class="imageTable" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="img_item">
+                                <span class="img_wrap">
+                <span class="img_size">
+                    <img src="http://ncc.phinf.naver.net/20140328_46/13959863892028jPVb_JPEG/200.jpg?type=m450_450" data-src="http://ncc.phinf.naver.net/20140328_46/13959863892028jPVb_JPEG/200.jpg?type=m450_450" width="452" class="lazy_load_img" alt="" style="width: 100%;">
+                    <a href="http://ncc.phinf.naver.net/20140328_46/13959863892028jPVb_JPEG/200.jpg" class="btn_zoom" style="display: inline;">확대보기</a>
+                </span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="img_item">
+                                <span class="img_wrap">
+                <span class="img_size">
+                    <img src="http://ncc.phinf.naver.net/20140328_47/1395986389442A9FrA_JPEG/201.jpg?type=m450_450" data-src="http://ncc.phinf.naver.net/20140328_47/1395986389442A9FrA_JPEG/201.jpg?type=m450_450" width="193" class="lazy_load_img" alt="" style="width: 100%;">
+                    <a href="http://ncc.phinf.naver.net/20140328_47/1395986389442A9FrA_JPEG/201.jpg" class="btn_zoom" style="display: inline;">확대보기</a>
+                </span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <p class="end_p">예전 서촌 지역은 궁궐에서 사용하는 각종 물품들을 조달하던 다양한 장인들과 공예가들이 모여 살던 곳이었다. 마치 그때를 재현이라도 하듯 현재도 많은 작가들과 아티스트들이 누하동, 누상동 좁은 골목길 따라 공방과 작업실을 열고 있다. 개성이 강한 것은 물론, 자유로운 영혼의 아티스트들이 많다 보니 숍 문을 열고 닫는 일이 일정하지 않다. 작업실이나 공방 등 숍을 둘러볼 때는 작업에 방해가 되지 않도록 노크는 기본!
+                또한 골목이 좁기 때문에 너무 크게 떠들지 않도록 한다. 마지막으로, 이 골목이 지금처럼 오랫동안 아티스트들의 공간이 될 수 있도록 응원하는 마음은 필수 지참!</p>
+            <div class="content_end"></div>
+        </div>
+    </div>
+    <!-- detail end -->
+</div>
+<!--@code title="HTML"
+<div id="now">
+    <div class="[sClassName]"></div>
+    <div class="[sClassName]"></div>
+    <div class="[sClassName]"></div>
+    ...
+</div>
+code@-->
+<script type="text/javascript" src="./testData.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.InfiniteCard.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.ScrollEnd.js"></script>
+<script>
+// 에러 제거용
+Card = {
+    nclk : function() {}
+};
+function nclk() {}
+
+var isComplete = false,
+    welFooter = jindo.$Element("footer"),
+    welLoading = jindo.$Element("loading"),
+    welLoadingText = jindo.$Element("loadingText"),
+    oNow;
+
+window.onload=function() {
+    /*@code title="JavaScript" */
+    oNow = new jindo.m.InfiniteCard("now", {
+        nExpandSize: window.innerHeight / 3,
+        sClassName: "wrp_cds",
+        nCardCount: jindo.m.getBrowserInfo().mobile ? (jindo.m.getOsInfo().ipad ? 15 : 10) : 25
+    }).attach({
+        "repaint" : function(we) {
+            if(isComplete) {
+                welLoading.hide();
+                welFooter.show();
+                oNow.detachAll();
+            }
+        }
+    });
+    oNow.repaint();
+
+    // 클릭시 처리
+    jindo.$Element("now").delegate("click", ".wrp_cds", function(we) {
+        var nIndex = oNow.getIndex(we.element);
+
+        // 이전꺼 없애기
+        (nSelectedIndex != -1) && oNow.setHeight(nSelectedIndex, htBeforeHeightInfo);
+        nIndex == nSelectedIndex ? fnCloseDetail(true) : fnOpenDetail(nIndex);
+        we.stop();
+    });
+    /*code@*/
+
+    // 회전시 처리
+    jindo.m.bindRotate(function() {
+        oNow.option("nExpandSize", window.innerHeight / 3);
+        fnCloseDetail();    // 회전시 상세 내역을 닫는다. (내부에서 repaint를 호출함);
+        oNow.repaint();
+    });
+};
+
+var welDetail = jindo.$Element("detail"),
+    welDetailTitle = jindo.$Element("na_ncc_article_title"),
+    BETWEEN_DEATIL_MARGIN = 8,
+    nSelectedIndex = -1,
+    htBeforeHeightInfo = {},
+    oMorph = new jindo.m.Morph();
+
+// 상세 내역을 연다
+function fnOpenDetail(nIndex) {
+    var wel = oNow.getElement(nIndex);
+    // Card의 타이틀 값을 얻음
+    wel.query(".cds_h2") && welDetailTitle && welDetailTitle.html(jindo.$Element(wel.query(".cds_h2")).text());
+
+    // 카드 크기 변경 (기존 카드 크기 + 상세 내역 높이)
+    htBeforeHeightInfo = oNow.setHeight(nIndex, welDetail.height() + oNow.get(nIndex).height);
+    (nSelectedIndex == -1) ? oNow.repaint(nIndex) : oNow.repaint(Math.min.call(null, nSelectedIndex, nIndex));
+    nSelectedIndex = nIndex;
+
+    var data = oNow.get(nIndex),
+        nDetailY = data.offsetY + (htBeforeHeightInfo.bVertical ? htBeforeHeightInfo.nVHeight : htBeforeHeightInfo.nHHeight) + BETWEEN_DEATIL_MARGIN;
+
+    // 애니메이션
+    oMorph.pushAnimate(-1, [
+        welDetail, {
+            "@visibility": "visible",
+            "@transform" : "translateX(" + data.x + "px) translateY(" + nDetailY + "px)"
+        }
+    ]).pushAnimate(200, [
+        document.body, {
+            'scrollTop': nDetailY
+        }
+    ]).pushCall(function() {
+        oMorph.clear();
+    }).play();
+}
+
+// 상세 내역을 닫는다.
+function fnCloseDetail(bAnimation) {
+    if(nSelectedIndex == -1) {
+        return;
+    }
+    oNow.setHeight(nSelectedIndex, htBeforeHeightInfo);
+    if( (oNow.length() > nSelectedIndex+1) && bAnimation) {
+        oNow.deactivate();
+        oMorph.pushAnimate(200,[
+            document.body, {
+                'scrollTop': oNow.get(nSelectedIndex).offsetY
+            }
+        ])
+        .pushCall(function() {
+            welDetail.css({
+                "visibility" : "hidden"
+            });
+            oNow.repaint(nSelectedIndex);
+            nSelectedIndex = -1;
+            oMorph.clear();
+            oNow.activate();
+        }).play();
+    } else {
+        welDetail.css("visibility", "hidden");
+        oNow.repaint(nSelectedIndex);
+        nSelectedIndex = -1;
+    }
+}
+
+// 마지막 시점에 데이터를 추가한다.
+var nBeforeLastData = -1;
+new jindo.m.ScrollEnd().attach("scrollEnd", function(we) {
+    if (oNow && !oNow.isRepainting() && !isComplete && welLoading.$value().getBoundingClientRect().top < oNow.getSizeInfo().nHeight) {
+        welLoadingText.removeClass("loadingOff").addClass("loadingOn");
+        nBeforeLastData = oNow.length()-1;
+        for (var i = nBeforeLastData+1, nLen = aNow.length, nCount = 0; i < nLen && nCount < 10; nCount++, i++) {
+            oNow.append(aNow[i]);
+        }
+        if (nLen == i) {
+            isComplete = true;
+        }
+        oNow.repaint();
+    }
+});
+</script>
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+
+</html>

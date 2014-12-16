@@ -1,0 +1,72 @@
+#### HTML
+
+<a href="">jindo.m.Calendar</a> 부분의 마크업 정의를 참고 한다.<br />
+템플릿 마크업을 선언하지 않을 경우 컴포넌트에서 아래 기본 템플릿을 생성 하게 된다.
+
+	<!-- class prefix가 'calendar-'일 경우-->
+
+	<!-- Calendar 템플릿 기준 엘리먼트.-->
+	<div id="jmc_calt" class="calendar-base">
+		<div>
+			<!-- 이전 년도 버튼 -->
+			<a href="#" class="calendar-btn calendar-btn-prev-year">&lt;&lt;</a>
+			<!-- 이전 달 버튼 -->
+			<a href="#" class="calendar-btn calendar-btn-prev-mon">&lt;</a>
+			<!-- 년도 월 표시 영역 -->
+			<strong class="calendar-title"></strong>
+			<!-- 다음달 버튼 -->
+			<a href="#" class="calendar-btn calendar-btn-next-mon">&gt;</a>
+			<!-- 다음 년도 버튼 -->
+			<a href="#" class="calendar-btn calendar-btn-next-year">&gt;&gt;</a>
+		</div>
+		<!-- Calendar 날짜영역 -->
+		<table cellspacing="0" cellpadding="0">
+			<!-- 요일 표시 헤더 영역 -->
+			<thead>
+				<tr>
+					<th class="calendar-sun">일</th>
+					<th>월</th>
+					<th>화</th>
+					<th>수</th>
+					<th>목</th>
+					<th>금</th>
+					<th class="calendar-sat">토</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- 요일 표시 헤더 영역 -->
+				<tr>
+					<th class="calendar-sun">일</th>
+					<th>월</th>
+					<th>화</th>
+					<th>수</th>
+					<th>목</th>
+					<th>금</th>
+					<th class="calendar-sat">토</th>
+				</tr>
+				<!-- 날짜 출력 템플릿 영역. -->
+				<tr class="calendar-week">
+					<td><a href="#" class="calendar-date"></a></td>
+					<td><a href="#" class="calendar-date"></a></td>
+					<td><a href="#" class="calendar-date"></a></td>
+					<td><a href="#" class="calendar-date"></a></td>
+					<td><a href="#" class="calendar-date"></a></td>
+					<td><a href="#" class="calendar-date"></a></td>
+					<td><a href="#" class="calendar-date"></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- Calendar 닫기영역 -->
+		<div class="calendar-bottom">
+			<!-- 닫기 버튼  -->
+			<a href="#" class="calendar-btn calendar-btn-close">닫기</a>
+		</div>
+	</div>
+
+
+#### CSS
+[jindo.m.Calendar](../../doc/internal/classes/jindo.m.Calendar.html) 부분의 CSS 정의를 참고 한다.
+
+
+#### Javascript
+[기본 초기화 형태](../../doc/internal/classes/jindo.m.Datepicker.html#manual_cbd30bb38edc7ffc879aabd5f479a2c7) 의 Javascript구조와 동일

@@ -1,0 +1,30 @@
+#### HTML
+
+	<!--class prefix가 'slider-'일 경우-->  
+	<div class="slider-wrapper">
+		<div class="slider-range"></div>
+		<a href="#" class="slider-thumb" role="slider"></a>
+	</div>
+
+* thumb영역의 엘리먼트는 [prefix]+'thumb'의 클래스명을 가진다.
+* range영역의 엘리먼트는 [prefix]+'range'의 클래스명을 가진다.
+
+#### CSS
+
+	/* class prefix가 'slider-' 인 경우*/  
+	.slider-wrapper {...}
+	.slider-range{...}
+	.slider-thumb{...}
+
+필수 CSS 요소는 다음과 같다.<br />
+
+* [prefix] + wrapper 클래스 : track 영역에 적용되는 클래스
+* [prefix] + range 클래스 : range 영역에 적용되는 클래스
+* [prefix] + thumb 클래스 : thumb 영역에 적용되는 클래스
+
+#### Javascript
+
+	var oSlider = new jindo.m.Slider('slider',{
+		sClassPrefix : "slider-",
+		bVertical : false //가로형(true), 세로형(false) 지정
+	});

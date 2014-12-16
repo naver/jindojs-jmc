@@ -1,0 +1,38 @@
+// https://github.com/jshint/jshint/blob/master/src/messages.js
+{
+	// "curly": true,
+	"eqeqeq": false,
+	"white": false,
+	// "immed": true,
+	// "latedef": true,
+	// "newcap": true,
+	// "noarg": true,
+	"sub": true,
+	"undef": true,
+	"evil" : true,
+	// "boss": true,
+	// "eqnull": true,
+
+	"browser": true,
+	"-W020": true,  // Mixed spaces and tabs.
+	"-W099": true,  // Mixed spaces and tabs.
+	"-W014": true,  // Bad line breaking before '||'.
+	"-W041": true,  // Use '===' to compare with ''
+	"-W083": true,  // Don't make functions within a loop.
+	"-W027": true,  // Unreachable 'break' after 'return'.
+	"-W084": true,  // Expected a conditional expression and instead saw an assignment.
+	"-W093": true,  // Did you mean to return a conditional instead of an assignment?
+	"-W086": true,  // Expected a 'break' statement before 'case'.
+	"-W030": true,  // Expected an assignment or function call and instead saw an expression.
+
+	"globals": {
+		"jindo": true,
+		"console": true,
+		"requestAnimationFrame": true,
+		"cancelAnimationFrame": true,
+		"WebKitCSSMatrix" : true,
+		"___Old__removeEventListener___" : true,
+        "___Old__addEventListener___" : true,
+        "_notSupport" : true  // MSPointer 지원을 위한 패치시 사용
+	}
+}

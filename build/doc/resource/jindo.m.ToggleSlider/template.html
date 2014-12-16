@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								클릭 또는 드래그로 슬라이더 자를 토글시켜 On/Off를 설정할 수 있는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">	
+						ToggleSlider 컴포넌트는 on,off의 값을 클릭 또는 드래그를 통해 값을 설정할 수 있는 컴포넌트이다.<br/>						
+						ToggleSlider도 아래 그림과 같이 thumb와 track 객체로 구성된다.<br/><br/>
+						<img src="../resource/img/tSlider.jpg" alt="슬라이더이미지" />
+					</div>
+					
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>안드로이드2.1</dt>
+							<dd><div class="point_box">
+								드래그로 Slide되는 기능을 지원하지 않는다.
+								<div class="post">기본 touchmove 이벤트가 제대로 발생하지 않는다.<br>안드로이드2.1의 경우 손을 화면에서 떼는 순간 touchmove가 발생하는 브라우저 버그가 있다.<br>
+								touchmove이벤트를 제대로 발생시키기 위해서는 touchstart에서 기본동작을 중지시켜야 한다.</div>
+							</div></dd>
+							<dt>iOS 3.0</dt>
+							<dd><div class="point_box">
+								 라운드 처리를 지원하지 않는다.
+								<div class="post">iOS 3.0의 경우 border-radius을 지원하지 않는다.</div>
+							</div></dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>						
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">		
+									<!--class prefix가 'tslider-'일 경우-->  
+									<div class="tslider-wrapper" id="toggleSlider">  
+								        <input type="radio" name="tslider-radio" id="on" value="on" class="i_rad" disabled><label for="on">On</label>
+								        <input type="radio" name="tslider-radio" id="off" value="off" class="i_rad" disabled><label for="off">Off</label>
+								        <div class="tslider-track">
+								            <div class="tslider-thumb" ></div>
+								            <span class="tslider_aron">ON</span>
+								            <span class="tslider_aroff">OFF</span>
+								        </div>
+								    </div>
+								</textarea>							
+								<div class="t2">
+									<ul>
+										<li>라디오버튼 엘리번트는 선택적으로 삭제할 수 있다.</li>
+										<li>라디오버튼 엘리번트를 통해 현재 토글 슬라이더의 설정값을 얻어올 수 있다.</li>
+										<li>라디오버튼 엘리번트는  [prefix]+'radio'의 name을 가진다.</li>
+										<li>track영역의 엘리먼트는  [prefix]+'track'의 클래스명을 가진다.</li>
+										<li>thumb영역의 엘리먼트는   [prefix]+'thumb'의 클래스명을 가진다.</li>
+									</ul>
+								</div>							
+							</dd>
+							<dt>CSS</dt>
+							<dd>
+									<!-- css 구조 -->
+								<textarea class="brush: css;">
+									/* class prefix가 'tslider-' 인 경우*/  
+									
+									.tslider-wrapper {...}
+									.tslider-track{...}
+									.tslider-thumb{...}
+									.tslider-aron{...}
+									.tslider-aroff{...}
+								</textarea>
+								<div class="t2">
+									필수 CSS 요소는 다음과 같다.
+									<ul>
+										<li>[prefix] + track 클래스 : track 영역에 적용되는 클래스</li>
+										<li>[prefix] + thumb 클래스 : thumb 영역에 적용되는 클래스</li>
+										<li>[prefix] + aron 클래스 : [ON] 텍스트에 적용되는 클래스</li>
+										<li>[prefix] + aroff 클래스 : [OFF] 텍스트에 적용되는 클래스</li>
+									</ul>									
+								</div>						
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">								
+										var oToggleSlider = new jindo.m.ToggleSlider(jindo.$('toggleSlider'),{
+											bUseDrag : true, 	//드래그 가능 여부
+											bStatus:true 		//초기값 - ON(true), OFF(false) 지정
+										});
+								</textarea>							
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 사용자 디자인 적용 하기 -->
+					<h3>사용자 디자인 적용 하기</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								Initialization의 HTML구조와 동일
+							</dd>
+							<dt>CSS</dt>
+							<dd>
+								<textarea class="brush: css;">
+								/* class prefix가 'tslider-' 인 경우*/
+								  
+								.tslider-wrapper{position:relative;margin:0;padding-top:10px;}
+								.tslider-track{overflow:hidden;position:absolute;top:0;width:120px;height:30px;border-radius:1em;background:#ccc;}
+								.tslider-thumb{position:absolute;z-index:1;width:50%;height:30px;border-radius:1em;background:#85bae4;cursor:pointer;}
+								.tslider_aron{display:block;position:absolute;top:0;left:0;width:50%;height:100%;line-height:30px;font-family:Helvetica,Arial,sans-serif;font-size:1.2em;color:#fff;text-align:center;cursor:pointer;}
+								.tslider_aroff{display:block;position:absolute;top:0;left:50%;width:50%;height:100%;line-height:30px;font-family:Helvetica,Arial,sans-serif;font-size:1.2em;color:#fff;text-align:center;cursor:pointer;}																
+								</textarea>
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								Initialization의 Javascript구조와 동일
+							</dd>
+						</dl>
+						
+						<br/><br/>
+						<div class="point_box" style="padding:10px;">
+							<font style="color:#e11b10;">√</font> ToggleSlider 의 디자인을 사용자의 요구 사항에 맞게 변경하기 위해서는 각 CSS에 알맞는 속성을 적용 해야 한다.
+						</div>
+						
+						<br/>
+						
+						
+						<ul>
+						<li>[prefix] + <font style="color:#e11b10;">track</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;">track 영역의 크기, 둥글림정도, 배경색 등의 스타일을 지정한다.</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">width,height을 조정하여 크기를 지정할 수 있다. </li>
+						<li>[prefix] + <font style="color:#e11b10;">thumb</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;">thumb 영역의 배경색, 둥글림정도 등의 스타일을 지정한다.</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">thumb의 크기는 사용자 임으로 수정할 수 있지만, width값은 track의 1/2, height값은 track과 같은 값으로 설정할 것을 권장한다.</li>
+						<li>[prefix] + <font style="color:#e11b10;">aron</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">[ON] 텍스트의 폰트 스타일을 지정한다.</li>
+						<li>[prefix] + <font style="color:#e11b10;">aroff</font> 클래스	</li>
+						<li style="list-style:none;padding-left:10px;margin-bottom:10px;">[OFF] 텍스트의 폰트 스타일을 지정한다.</li>
+						</ul>
+					</div>
+					
+					<!-- Template으로 디자인 적용 하기 -->
+					<h3>Template으로 디자인 적용하기</h3>
+					<div class="t1">
+						<div>
+							자주 사용되는 디자인의 템플릿이다.<br/>
+							이미지를 클릭하여 Template 페이지를 열고, Template 페이지 하단의 소스를 Copy&Paste하여 적용한다.<br/>
+							폰트, 너비, 색상 등 스타일 변경이 필요하다면 소스내 주석을 참고하여, 원하는 부분의 스타일을 수정하여 적용한다.<br/><br/><br/>
+							<ul class="tumb_list">
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.ToggleSlider/template_basic.html" target="_blank"><img src="../resource/img/ToggleSlider_thumb1.jpg" width="150" height="100" alt=""></a>
+									<p>기본형 ToggleSlider<br/>([On]이 왼쪽에 위치)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.ToggleSlider/template_reverse.html" target="_blank"><img src="../resource/img/ToggleSlider_thumb2.jpg" width="150" height="100" alt=""></a>
+									<p>기본형 ToggleSlider<br/>([On]이 오른쪽에 위치)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.ToggleSlider/template_basic_blue.html" target="_blank"><img src="../resource/img/ToggleSlider_thumb3.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된  ToggleSlider<br/>(Blue Type)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.ToggleSlider/template_basic_black.html" target="_blank"><img src="../resource/img/ToggleSlider_thumb4.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된  ToggleSlider<br/>(Black Type)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.ToggleSlider/template_basic_gray.html" target="_blank"><img src="../resource/img/ToggleSlider_thumb5.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된  ToggleSlider<br/>(Gray Type)</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.ToggleSlider/template_basic_green.html" target="_blank"><img src="../resource/img/ToggleSlider_thumb6.jpg" width="150" height="100" alt=""></a>
+									<p>그라데이션 처리가 된  ToggleSlider<br/>(Green Type)</p>
+								</li>
+							</ul>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>Class의 prefix명</td>
+								<td>tslider-</td>
+							</tr>
+							<tr>
+								<td class="name">bUseDrag</td>
+								<td>드래그 가능여부</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td class="name">bStatus</td>
+								<td>초기 상태값 (on일 경우 true, off일경우 false)</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td class="name">nOnPosition</td>
+								<td>on 상태가 되는 thumb의 style left 퍼센트 속성</td>
+								<td>50</td>
+							</tr>
+							<tr>
+								<td class="name">nOffPosition</td>
+								<td>off 상태가 되는 thumb의 style left 퍼센트 속성</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>컴포넌트 로드시 activate 여부</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeChange</td>
+								<td>현재 상태 값이 바뀌기 전에 발생한다.</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>bOn (Boolean) : 현재 상태값이 On인지에 대한 여부</li>
+										<li>stop (Function) : 수행시 토글 슬라이더의 상태값이 바뀌지 않으며 change 이벤트가 발생하지 않는다.</li>									
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									상태값이 바뀌기 전에 발생<br>								
+									<textarea class="brush: javascript;">
+									oToggleSlider.attach("beforeChange", function(oCustomEvent){
+										//oCustomEvent.bOn 상태값 바뀌기 전에 현재의 상태값이 on인 경우 true, off일 경우 false
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">change</td>
+								<td>현재 status 값이 바뀔경우 발생한다.</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>bOn (Boolean) : 현재 상태값이 On인지에 대한 여부</li>
+										<li>stop (Function) : 수행시 영향받는것 없다.</li>	
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									상태값이 바뀐경우 이벤트 발생<br>
+									<textarea class="brush: javascript;">
+									oToggleSlider.attach("change", function(oCustomEvent){
+										//oCustomEvent.bOn 현재 상태값이 on일 경우 true, off일 경우 false
+									});
+									</textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>	
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>								 							 
+							  <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name" >v1.3.0 </td>
+							 	<td >-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+							 	<td>-</td>
+							 	<td>bStatus 옵션값을 false로 설정해도 기본값이 변하지 않던 문제 해결</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

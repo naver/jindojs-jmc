@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica,AppleGothic}
+body{position:relative;background-color:#f8f8f8;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+/* 컴포넌트 관련 CSS */
+
+
+.date_input {
+	height:23px;
+	width:80px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	border: 1px solid #b3b3b3;
+    color: #333;
+}
+
+/* Calendar CSS*/
+
+/* Calendar Base Warpper 스타일 CSS*/
+.calendar-base {
+	width:180px; 		/* Calendar width 크기*/
+	border :#AEB8C5 solid 1px;	/* 외곽 border 설정*/
+	/* 라운드 처리*/
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+
+    padding:10px;		/* 여백 설정*/
+    background:#EFF1F4;	/* Calendar 배경색*/
+    display:none;
+
+}
+/* Calendar 링크 스타일 CSS*/
+.calendar-base a,
+.calendar-base a:visited,
+.calendar-base a:active{text-decoration:none;}
+.calendar-base a:hover{text-decoration:none;}
+
+/* Calendar Control 영역 스타일 CSS*/
+.calendar-base div{
+	text-align: center;		/* 글자 정렬 */
+	height:28px;			/* 높이값*/
+	position: relative;
+	padding-top:3px;		/* 여백 설정*/
+}
+
+/* Calendar Control 영역 - 년도 월 부분 스타일 CSS*/
+.calendar-base div .calendar-title{
+	float:none !important;
+	/* 년도 숫자 부분 폰트 스타일 지정.*/
+	font-family: Helvetica;
+	font-size: 20px;
+	line-height: 20px;
+	color: #0B1623;
+	font-weight: bold;
+}
+
+/* Calendar Control 영역 - 이전년도 버튼 스타일 CSS*/
+.calendar-base div .calendar-btn-prev-year{
+	position:absolute;
+	top:0px;left:0px;
+}
+/* Calendar Control 영역 - 이전달 버튼 스타일 CSS*/
+.calendar-base div .calendar-btn-prev-mon{
+	position:absolute;
+	top:0px;left:28px;
+}
+
+/* Calendar Control 영역 - 다음달 버튼 스타일 CSS*/
+.calendar-base div .calendar-btn-next-mon{
+	position:absolute;
+	top:0px;right:28px;
+}
+/* Calendar Control 영역 - 다음년도 버튼 스타일 CSS*/
+.calendar-base div .calendar-btn-next-year{
+	position:absolute;
+	top:0px;right:0px;
+}
+
+/* Calendar 날짜 테이블 영역 스타일 CSS*/
+.calendar-base table{
+	border : 1px solid #EEE;
+	background : #ffffff;
+	margin:0 auto;
+	text-align:center;
+}
+.calendar-base table *{
+	font-family:tahoma !important;
+	font-size: 0.92em;
+}
+
+/* Calendar 날짜 테이블- 요일 공통 스타일 CSS*/
+.calendar-base table th{
+	font-family:Dotum !important;
+	font-size:11px;
+	width:25px;
+	height:25px;
+	color: #909090;
+	background: #FBFBFB;
+	font-size: 0.92em;
+	border-bottom : 1px solid #EEE;
+}
+
+/* Calendar 날짜 테이블- 날짜 공통 스타일 CSS*/
+.calendar-base table td{
+	height:25px;
+	text-align:center;
+	color:#000000;
+}
+.calendar-base table td a{
+	width:25px;
+	height:22px;
+	display : inline-block;
+	padding-top:3px;
+	color:#000000;
+}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS*/
+.calendar-base table .calendar-selected{background:#FFC080 !important;;}
+.calendar-base table .calendar-selected a{color:#800000;text-decoration:none;}
+
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS*/
+.calendar-base table .calendar-sun{color:#ED2121 !important;}
+.calendar-base table .calendar-sun a{color:#ED2121 !important;}
+
+/* Calendar 날짜 테이블- 토요일 스타일 CSS*/
+.calendar-base table .calendar-sat{color:#0075C8 !important;}
+.calendar-base table .calendar-sat a{color:#0075C8 !important;}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS*/
+.calendar-base table .calendar-today{background:#6595db;color:#ffffff;}
+.calendar-base table .calendar-today a{font-weight:bold;text-decoration:none;color:#fff}
+.calendar-base table .calendar-today a:hover,
+.calendar-base table .calendar-today a:visited,
+.calendar-base table .calendar-today a:active{background:#6595db;color:#fff}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS*/
+.calendar-base table .calendar-prev-mon .calendar-date,
+.calendar-base table .calendar-next-mon .calendar-date {display:none}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS*/
+.calendar-base table .calendar-noselect {background:none !important;color:#d1d1d1 !important;}
+
+
+/* Calendar 하단 Sub Control 영역 스타일 CSS*/
+.calendar-base div.calendar-bottom {
+	background:#EFF1F4;
+	margin:0px;padding:5px 0px 0px 0px;
+	text-align:right;
+}
+/* Calendar 하단 Sub Control 영역 - 닫기 버튼 스타일 CSS*/
+.calendar-base div .calendar-btn-close {
+	font-size: 10px !important;
+}
+
+/* Calendar 공통 버튼 스타일 CSS*/
+.calendar-btn {
+	display: inline-block;
+	padding: .36em .4em;
+	border: 1px solid #BCBCBC;
+	background: #F1F1F1;
+	background: -webkit-gradient(linear,0 0,0 100%,from(white),color-stop(.05,#FBFBFB),to(#F1F1F1));
+	font-size: .93em;
+	color: #666;
+	white-space: nowrap;
+}
+</style>
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-control">Datepicker Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture"></div>
+
+<!-- UI content Start -->
+
+<input type="text" id="datepicker" class="date_input"/>
+<div id="calendar" class="calendar-base">
+	<div>
+		<!-- 이전 년도 버튼 -->
+		<a href="#" id="preYearBtn" class="rollover calendar-btn calendar-btn-prev-year">&lt;&lt;</a>
+		<!-- 이전 달 버튼 -->
+		<a href="#" id="preBtn" class="rollover calendar-btn calendar-btn-prev-mon">&lt;</a>
+		<!-- 년도 월 표시 영역 -->
+		<strong id="title" class="calendar-title"></strong>
+		<!-- 다음달 버튼 -->
+		<a href="#" id="nextBtn" class="rollover calendar-btn calendar-btn-next-mon">&gt;</a>
+		<!-- 다음 년도 버튼 -->
+		<a href="#" id="nextYearBtn" class="rollover calendar-btn calendar-btn-next-year">&gt;&gt;</a>
+	</div>
+	<!-- Calendar 날짜영역 -->
+	<table cellspacing="0" cellpadding="0">
+		<thead>
+			<!-- 요일 표시 헤더 영역 -->
+			<tr>
+				<th class="calendar-sun">일</th>
+				<th>월</th>
+				<th>화</th>
+				<th>수</th>
+				<th>목</th>
+				<th>금</th>
+				<th class="calendar-sat">토</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<!-- 날짜 출력 템플릿 영역. -->
+			<tr class="calendar-week">
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Calendar 닫기영역 -->
+	<div class="calendar-bottom">
+		<!-- 닫기 버튼  -->
+		<a href="#" id="closeBtn" class="calendar-btn calendar-btn-close">닫기</a>
+	</div>
+</div>
+
+<div id="focus_div"></div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Calendar.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Datepicker.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.Datepicker.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+<script>
+</script>
+</body>
+</html>

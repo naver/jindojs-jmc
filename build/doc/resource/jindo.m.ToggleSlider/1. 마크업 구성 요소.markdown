@@ -1,0 +1,6 @@
+ToggleSlider 컴포넌트는 on,off의 값을 클릭 또는 드래그를 통해 값을 설정할 수 있는 컴포넌트이다.
+
+ToggleSlider도 아래 그림과 같이 thumb와 track 객체로 구성된다.
+
+<br> 
+![](tSlider.jpg "")

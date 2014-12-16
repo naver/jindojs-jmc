@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>옵션 변경 예제</title>
+<meta name="class-lists" content="jindo.m.TextArea">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.ta-textarea {
+	width:90%;
+	padding: 3px 5px;
+	font-size: 13px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	border: 1px solid #b3b3b3;
+	color: #333;
+	text-shadow:0 1px 0 #fff;
+	background: #f0f0f0;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
+	background-image: -webkit-linear-gradient(top, #eee, #fff);
+	background-image: -moz-linear-gradient(top, #eee, #fff);
+	background-image: -ms-linear-gradient(top, #eee, #fff);
+	background-image: -o-linear-gradient(top, #eee, #fff);
+	background-image: linear-gradient(top, #eee, #fff);
+}
+
+.ta-textarea:focus {
+	outline:none;
+}
+
+.ta-textarea-focus {background: #f0f0f0 !important;-moz-box-shadow: 0 0 8px #387bbe !important;-webkit-box-shadow:0 0 8px #387bbe !important;box-shadow: 0 0 8px #387bbe !important;}
+.ta-textarea-disable {background: #eee !important;}
+
+/*@code title="CSS"*/
+	.[prefix]textarea-focus {...}
+	.[prefix]textarea-disable {...}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!--@code title="HTML"-->
+	<textarea id="textarea" class="ta-textarea"></textarea>
+	<!--code@-->
+
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<p class="red">&lt;옵션 설정&gt;</p>
+
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">sClassPrefix 	: "ta-",
+bUseRadius      : true,
+sRadiusSize     : "10px",
+bUseAutoHeight  : true,
+nExpandHeight   : 50,
+nMaxHeight      : 200</code></pre>
+	</div>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.TextArea.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oTextArea = new jindo.m.TextArea("textarea",{
+	sClassPrefix	: "ta-",
+	bUseRadius	 	: true,
+	sRadiusSize		: "10px",
+	bUseAutoHeight  : true,
+	nExpandHeight	: 50,
+	nMaxHeight		: 200});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

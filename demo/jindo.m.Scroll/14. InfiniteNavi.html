@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+	<title>클래스로 만든 무한 스크롤 메뉴</title>
+	<meta name="class-lists" content="jindo.m.Scroll">
+	<meta name="description" content="메뉴로 구성된 스크롤 영역이 계속 반복되어 스크롤 된다.">
+	<!-- SamplePage 기본 CSS -->
+	<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+	<link rel="stylesheet" type="text/css" href="../asset/w_main.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.nav_l {
+	width:70px !important;
+}
+/*code@*/
+</style>
+
+	<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+	<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+		data-title="Jindo Mobile Component"
+		data-subtitle="=document.title"
+		data-backbutton="true"
+		data-viewsource="true"
+		data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+<div class="header">
+	<div id="nav" class="nav">
+		<div class="nav_wrap">
+			<ul class="nav_u">	<!-- 메뉴 -->
+				<li class="nav_l nav_lon" ><a href="javascript:;" class="nav_a">&nbsp;홈&nbsp;</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">뉴스</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">연예</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">스포츠</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">리빙</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">문화</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">자동차</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">뿜/웹툰</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">동영상</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">앱/게임</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">쇼핑</a></li>
+				<li class="nav_l"><a href="javascript:;" class="nav_a">NOW</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</div>
+<!-- // Demo 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	jindo.m.Scroll 컴포넌트를 이용하여 만든 <span class="red">InfiniteMenu 클래스</span>를 이용하면, 무한 스크롤 메뉴를 만들수 있다.<br><br>
+	선택시, 선택된 메뉴 항목이 가운데 배치된다.<br>
+	각 메뉴 항목의 width는 css를 통해 설정한다.
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op" style="text-valign:middle">
+		<button type="button" id="aprev" class="btn">이전메뉴항목 이동</button>
+		<button type="button" id="anext" class="btn">이후메뉴항목 이동</button>
+		<input type="text" id="nIndex" class="op_w20" value="0">번째 메뉴항목
+		<button type="button" id="amove" class="btn">선택</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+<!--@code title="HTML"
+<div>
+	<div>
+		<ul>
+			<li class="[sClassName]" >메뉴1</li>
+			<li class="[sClassName]" >메뉴2</li>
+			<li class="[sClassName]" >메뉴3</li>
+			 ...
+			<li class="[sClassName]" >메뉴n</li>
+		</ul>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+jindo.$Fn(function(evt){
+	evt.stop();
+	oMenu.selectPrev(300);
+},this).attach(jindo.$('aprev'),'click');
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	oMenu.selectNext(300);
+},this).attach(jindo.$('anext'),'click');
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	var nIndex = jindo.$('nIndex').value;
+	oMenu.select(nIndex*1,0);
+},this).attach(jindo.$('amove'),'click');
+
+/*@code title="JavaScript"*/
+var InfiniteMenu = jindo.$Class({
+	$init: function(el, htOption) {
+		this.option({
+			nHeight : 40,
+			bUseHScroll : true,
+			bUseVScroll : false,
+			bUseScrollbar : false,
+			bUseMomentum : false,
+			bUseBounce : true,
+			bActivateOnload : true,
+			nFlickThreshold : 30,
+			nItemPerPage : 5,
+			nDuration : 300,
+			bUseHighlight : false,
+			sClassName : "item"
+		});
+		this.option(htOption || {});
+		this._initVar();
+		this._setWrapperElement(el);
+		this._createMenu();
+
+		if(this.option("bActivateOnload")) {
+			this.activate();
+		}
+	},
+
+	_initVar : function() {
+		this._nCursor = 0;
+		this._aPanel = null;
+		this._aItem = [];
+		this._nViewWidth = 0;
+		this._htEvent = {
+			"afterScroll" : jindo.$Fn(this._onAfterScroll, this).bind(),
+			"tap" : jindo.$Fn(this._onTap, this).bind()
+		};
+		this._oTouch = null;//new jindo.m.Touch(welNav);
+		this._oScroll = null;//new jindo.m.Scroll(this._wel, this.option());
+	},
+
+	_setWrapperElement : function(el) {
+		this._htWElement = {};
+		this._htWElement["view"] = jindo.$Element(el);
+		this._htWElement["scroller"] = this._htWElement["view"].first();
+		jindo.$A(this._htWElement["scroller"].first().queryAll("." + this.option("sClassName"))).forEach(function(v,i,a) {
+			v = jindo.$Element(v);
+			v.attr("index", i).css("float","left");
+			a[i] = v;
+		},this);
+	},
+
+	_createMenu : function() {
+		// this._htWElement["itemWraps"]
+		var welOrg = this._htWElement["scroller"].first(),
+			wel;
+		this._htWElement["itemLists"] = [welOrg];
+		for(var i=0; i<2; i++) {
+			wel = welOrg.$value().cloneNode(true);
+			wel = jindo.$Element(wel);
+			this._htWElement["itemLists"].push(wel);
+			this._htWElement["scroller"].append(wel);
+		}
+	},
+
+	_onActivate : function() {
+		this._oTouch = this._oTouch || new jindo.m.Touch(this._htWElement["view"]);
+		this._oScroll = this._oScroll || new jindo.m.Scroll(this._htWElement["view"],this.option());
+		this._oTouch.attach({
+			"tap" : this._htEvent["tap"]
+		});
+		this._oScroll.attach({
+			"afterScroll" : this._htEvent["afterScroll"]
+		});
+		this.resize();
+	},
+
+	_onDeactivate : function() {
+		this._oTouch.detachAll();
+		this._oTouch.deactivate();
+		this._oScroll.detachAll();
+		this._oScroll.deactivate();
+	},
+
+	_getPanelIndex : function() {
+		var nPos = -this._oScroll.getCurrentPos().nLeft;
+		var nIndex = 0;
+		if(this._aItem[1][0].pos <= nPos && this._aItem[2][0].pos > nPos) {
+			nIndex = 1;
+		} else if(this._aItem[2][0].pos <= nPos) {
+			nIndex = 2;
+		}
+		// console.debug(nPos, "(", nIndex, ")")
+		return nIndex;
+	},
+
+	_onAfterScroll : function(we) {
+		var nPos = -this._oScroll.getCurrentPos().nLeft;
+		var nPanelIndex = this._getPanelIndex();
+		if(nPanelIndex != 1) {
+			// console.info("---변경하라...1번으로...");
+			for(var i=0, nLen = this._aItem[nPanelIndex].length, v; i<nLen; i++) {
+				v = this._aItem[nPanelIndex][i];
+					// console.log("paneIndex: " , nPanelIndex, ", i: ", i, "v[pos] : ", this._aItem[nPanelIndex][i].pos, "nPos : ", nPos);
+				if(nPos < v.pos) {
+					this._oScroll.scrollTo(this._aItem[1][i].pos - (this._aItem[nPanelIndex][i].pos - nPos),0 , 0);
+					break;
+				}
+			}
+		}
+	},
+
+	_onTap : function(we) {
+		var wel = jindo.$Element(we.element),
+			sClassName = this.option("sClassName");
+		if(!wel.hasClass(sClassName)) {
+			var parent = wel.parent(function(v){
+	            return v.hasClass(sClassName);
+	        });
+	        wel = parent.length >= 1 ? parent[0] : wel;
+		}
+		this.select(wel.attr("index")*1);
+	},
+
+	_select : function(ht, nDuration) {
+		if(ht && ht.pos != -this._oScroll.getCurrentPos().nLeft) {
+			if(this.fireEvent("beforeSelect", {
+				nIndex : this._nCursor
+			})) {
+				this._oScroll.scrollTo(ht.pos,0,nDuration);
+				this._nCursor = ht.index;
+				this.fireEvent("select", {
+					nIndex : this._nCursor
+				});
+			}
+			// console.debug("move", ht.index, nDuration);
+		}
+	},
+
+	_getItemCount : function() {
+		return this._aItem[0].length;
+	},
+
+	_calcMenuSize : function() {
+		// 각 메뉴의 넓이 및 패널의 넓이를 구함.
+		var nMenuWidth = 0,
+			aWidth = [];
+		jindo.$A(this._htWElement["itemLists"][0].child()).forEach(function(v,i,a) {
+			aWidth.push(v.width());
+			nMenuWidth += aWidth[aWidth.length-1];
+		},this);
+		return {
+			nMenuWidth :nMenuWidth,
+			aWidth : aWidth
+		};
+	},
+
+	// index에 해당하는 엘리먼트들을 반환한다.
+	getElements : function(nIndex) {
+		return jindo.$ElementList("[index='" + nIndex + "']").$value();
+	},
+
+	// 메뉴 항목을 선택한다.
+	select : function(nIndex, nDuration) {
+		this._select(this._aItem[1][nIndex],nDuration);
+	},
+
+	// 다음 메뉴 항목을 선택한다.
+	selectNext : function(nDuration) {
+		if(this.isMoving()) {
+			return;
+		}
+		var nNext = this._nCursor + 1, ht;
+		var nPanelIndex = this._getPanelIndex();
+		if(nNext >= this._getItemCount() ) {
+			nNext = 0;
+			ht = this._aItem[nPanelIndex+1][nNext];
+		} else {
+			ht = this._aItem[nPanelIndex][nNext];
+		}
+		this._select(ht, nDuration);
+	},
+
+	// 이전 메뉴 항목을 선택한다.
+	selectPrev : function(nDuration) {
+		if(this.isMoving()) {
+			return;
+		}
+		var nPrev = this._nCursor - 1, ht;
+		var nPanelIndex = this._getPanelIndex();
+		if(nPrev < 0 ) {
+			nPrev = this._getItemCount()-1;
+			ht = this._aItem[nPanelIndex-1][nPrev];
+		} else {
+			ht = this._aItem[nPanelIndex][nPrev];
+		}
+		this._select(ht, nDuration);
+	},
+
+	// 현재 선택된 항목의 Index를 반환한다.
+	getSelected : function() {
+		return this._nCursor;
+	},
+
+	// 메뉴 사이즈 재조정
+	resize : function() {
+		if(!this.isActivating()) {
+			return;
+		}
+		var ht = this._calcMenuSize(),
+			nPos = 0,
+			aItem;
+		this._nViewWidth = this._htWElement["view"].width();
+		this._aItem = [];
+		jindo.$A(this._htWElement["itemLists"]).forEach(function(v,i,a) {
+			aItem = [];
+			jindo.$A(ht.aWidth).forEach(function(v1,i1,a1) {
+				aItem.push({
+					pos : nPos - (this._nViewWidth/2 - v1/2),
+					width : v1,
+					index : i1
+				});
+				nPos += v1;
+			},this);
+			v.css({
+				"width" : ht.nMenuWidth + "px",
+				"height" : "100%",
+				"position" : "absolute",
+				"left" : (i* ht.nMenuWidth) + "px",
+				"top" : 0
+			});
+			this._aItem.push(aItem);
+		},this);
+		this._htWElement["scroller"].width(ht.nMenuWidth*3);
+		this._oScroll.refresh(true);
+		this.select(this._nCursor);
+	},
+
+	// 이동 중인지를 확인한다.
+	isMoving : function() {
+		if(!this.isActivating()) {
+			return false;
+		}
+		return this._oScroll.isMoving();
+	}
+}).extend(jindo.m.UIComponent);
+
+// 실행 코드
+var nBeforeSelected = 0;
+var oMenu = new InfiniteMenu("nav", {
+	sClassName : "nav_l",
+	nHeight: 40
+}).attach({
+	"select" : function(we) {
+		jindo.$ElementList(this.getElements(nBeforeSelected)).removeClass("nav_lon");
+		jindo.$ElementList(this.getElements(we.nIndex)).addClass("nav_lon");
+		nBeforeSelected = we.nIndex;
+	}
+});
+
+jindo.m.bindRotate(function(we) {
+	oMenu.resize();
+});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

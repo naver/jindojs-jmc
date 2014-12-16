@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								더보기 버튼을 클릭하여 지정된 개수만큼의 목록을 동적으로 추가하는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+				<!-- 상세 설명 -->
+				<h3>Description</h3>
+				<div class="t1">
+					MoreContentButton 컴포넌트는 아래 그림과 같이 사용자가 [더보기]를 클릭할 경우, 지정된 갯수만큼의 아이템을 추가하는 컴포넌트이다.<br><br>
+					
+					<div style="border:1px solid #d1d1d1;padding:5px;width:280px;height:460px;"><img width=280 height=460 src="../resource/img/MoreContentButton.jpg"></div>
+					[사용예시 - 더보기로 아이템을 추가]<br><br>
+					
+					<div style="border:1px solid #d1d1d1;padding:5px;width:280px;height:460px;"><img width=280 height=460 src="../resource/img/MoreContentButton2.jpg"></div>
+					[사용예시 - 모든 아이템을 로드되었을 경우]<br><br>
+										
+					<strong>기능 설명</strong><br>
+					<div class="point_box">
+						<ul class="t2">
+							<li>Ajax 통신을 통해 아이템을 로드 할 경우 옵션설정에  Ajax 관련 설정 한다 .</li>
+							<li>Ajax 통신을 할 경우 컴포넌트 내에서 호출을 담당하며 로드되어야할 아이템의 시작위치와 아이템 개수를 계산하여 호출한다. </li>
+							<li>Ajax 통신을 할 경우 Ajax onload 시점에 커스텀 이벤트 'more'를 발생시키고 응답데이터를 파라미터로 넘겨준다 .</li>
+							<li>실제 로드된 아이템을 append 하는 로직은  커스텀이벤트 'more'에서 서비스별로 구현한다.</li>
+						</ul>
+					</div>
+				</div>	
+				
+				<!-- 주의사항 -->				
+				<h3 class="notice">Notice</h3>
+				<div class="t1">
+					<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+					<ul class="t2">
+						<li>안드로이드 2.1 이상</li>
+						<li>iOS 3.0 이상</li>
+					</ul>
+				</div>
+				
+				<!-- 초기화 방법 -->
+				<h3>Initialization</h3>
+				<div class="t1">
+					<dl>
+						<dt>HTML</dt>
+						<dd>
+							<!-- 마크업 구조 -->
+							<textarea class="brush: xml;">
+								<!-- 기준 엘리먼트  class prefix가 'more_'일 경우--> 
+								<div class="u_pg" id="contentMore">
+									<a href="#" class="u_pg_btn more_button"> 
+											<span class="u_pg_wrap">
+											<span class="u_pg_area">	
+													<span class="u_pg_lod more_loading" style="display:none;">
+														<span class="u_pg_lodic">로딩중..</span>
+													</span>									
+												<span class="u_pg_txt">
+													<span><span class="more_moreCnt">10</span>개 더보기</span><br/>
+													<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span>
+														<!-- 남은 건수 표기 (생략가능) 
+														<span class='more_remainder'></span-->
+													</span>
+												</span>
+											</span>
+										</span>
+									</a>
+									<!-- 모든 아이템이 로드된 이후에 보여질 엘리먼트  A 링크가 span으로 바뀌면서 클릭이 안된다. 초기 로드에는 display:none으로 설정한다 -->
+									<span class="u_pg_btn more_last " style="display:none;"> 
+										<span class="u_pg_wrap">
+											<span class="u_pg_area">
+												<span class="u_pg_txt">
+													<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span>
+														<!-- 남은 건수 표기 (생략가능) 
+														<span class='more_remainder'></span-->
+													</span>
+												</span>
+											</span>
+										</span>
+									</span>
+									<a href="#" class="u_pg_top more_top">맨위로</a> <!-- 서비스에 따라 생략 가능 -->
+								</div>
+							</textarea>
+							<div class="t2">
+								<ul>
+									<li>기준 엘리먼트를 기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.</li>
+									<li>로딩 이미지를 처리하는 엘리먼트의 경우 [prefix]+'loading'클래스명을 가진다.</li>
+									<li>더보기할 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'moreCnt'클래스명을 가진다.</li>
+									<li>현재까지 로딩된 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'current'클래스명을 가진다.</li>
+									<li>현재까지 남은 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'remainder'클래스명을 가진다.</li>
+									<li>전체 더보기할 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'total'클래스명을 가진다.</li>
+									<li>모든 아이템이 로드된 이후에 보여줘야 할  엘리먼트의 경우 [prefix]+'last'클래스명을 가진다.초기 로드시에는 display:none 형태로 로드한다.</li> 
+									<li>서비스에 따라 맨위로 버튼이 더보기 컴포넌트와 함께 있을 수도 있다. 그 경우  [prefix]+'top' 클래스명을 가진다.</li>
+								</ul>				
+							</div>
+						</dd>
+						<dt>CSS</dt>
+						<dd>
+								<!-- css 구조 -->
+							<textarea class="brush: css;">
+								.u_pg,.u_pg_lod{background:#e6e7e7;background:-webkit-gradient(linear,0 0,0 100%,from(#f9f9f9),color-stop(.3,#f6f6f6),color-stop(.8,#e7eae9),to(#dde3e4));-webkit-box-shadow:inset 0 1px 0 #fefefe,inset 0 -1px 0 #d8dada}
+								.u_pg{display:table;position:relative;width:100%;height:45px;margin-top:-1px;border-top:1px solid #dfdfdf;border-bottom:1px solid #cecece;text-align:center}
+								.u_pg_btn{display:table-cell;border-right:1px solid #d3d3d3;line-height:1em}
+								.u_pg_area{position:relative;display:table;height:43px;margin:0 auto;padding-left:23px;background:url(../im/ico_pg.gif) no-repeat 0 10px;font-size:1em}
+								.u_pg_wrap{display:block;position:relative}
+								.u_pg_lod{display:block;position:absolute;top:0;width:21px;height:43px;margin-left:-29px}
+								.u_pg_lodic,.u_pg_lodjs{display:inline-block;overflow:hidden;width:21px;height:22px;margin-top:11px;text-indent:-999em}
+								.u_pg_lodic{background:url(../im/ico_lod2.gif) no-repeat 50% 50%}
+								.u_pg_lodjs{background:url(../im/ico_lod2_ngif.png) no-repeat}
+								.u_pg_txt{display:table-cell;line-height:1.25em;vertical-align:middle}
+								.u_pg_cnt{font-size:.79em;color:#666;line-height:1.25em}
+								.u_pg_total{color:#a6a6a6}
+								.u_pg_end .u_pg_btn{background:none;background-color:#fafafa;-webkit-box-shadow:none}
+								.u_pg_end .u_pg_area{background:none}
+								.u_pg_top{display:table-cell;width:53px;padding-top:18px;border-left:1px solid #fdfdfd;background:url(../im/ico_pg.gif) no-repeat 50% -53px;font-size:.8em;color:#707070;vertical-align:top}
+							</textarea>
+							<div class="t2">
+							마크업 논의
+							</div>
+						</dd>
+						<dt>Javascript</dt>
+						<dd>
+							<textarea class="brush: javascript;">
+								var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+									nTotalItem : 500, //실제 아이템 개수
+									nShowMaxItem : 47, //최대 더보기 하여 보여줄 개수
+									nItemPerPage : 6 //페이지당 더보기 할 건수	
+								});
+							</textarea>
+							<div class="t2">
+							</div>
+						</dd>
+					</dl>
+				</div>
+
+				
+				<!-- 초기화 옵션 -->
+				<h3>Option</h3>
+				<div class="t1">
+					<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">sClassPrefix</td>
+							<td>초기 HTML/CSS 구조에서 필요한 className 앞에 붙는 prefix 정보</td>
+							<td>'more_'</td>
+						</tr>
+						<tr>
+							<td class="name">nTotalItem</td>
+							<td>실제 아이템의 전체 개수. <br>화면에 전체 아이템 개수를 보여줄 값. <br>예를 들어 아이템 개수는 2만개 이고 더보기하여 로드할 아이템의 개수는 600개일 경우 nTotalItem에는
+							2만개를 세팅하고, nShowMaxItem에는 600개로 세팅한다. 전체 아이템 개수와 더보기할 아이템의 개수가 같을 경우 같은 값을 설정한다.
+							</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">nShowMaxItem</td>
+							<td>더보기 하여 화면에 보여줄 아이템의 최대 개수
+							</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">nItemPerPage</td>
+							<td>더보기 버튼을 클릭하였을 경우 추가될 아이템의 개수
+							</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">htAjax</td>
+							<td>더보기 할 때 마다 Ajax 호출이 필요하면  Ajax 호출에 대한 옵션을 설정한다.
+							Ajax 호출을 하지 않으면 이 값을 설정하지 않거나  null 값을 설정한다.
+							</td>
+							<td>
+								 {
+									sApi : null,
+									htAjaxOption : {
+										type: 'xhr'
+									},
+									htQuery : {},
+									sStart : 'start',
+									sDisplay : 'display'
+								};
+							</td>
+						</tr>
+						<tr>
+							<td> </td>
+							<td colspan = "2">
+								<table style="width:100%">
+									<tbody>
+										<tr>
+											<td class="name">sApi</td>
+											<td>Ajax 호출이 필요한 경우  API 를 저장한다.<br>
+											Ajax 호출이 필요 없을 경우에는 null 값을 저장한다.
+											</td>
+											<td>null</td>
+										</tr>
+										<tr>
+											<td class="name">htAjaxOption</td>
+											<td>Ajax 호출시에 onload를  제외한 필요한 옵션값을 저장한다.<br>
+											자세한  옵션 정보는 jindo.$Ajax의 옵션을 참고
+											</td>
+											<td>{type : "xhr"}</td>
+										</tr>
+										<tr>
+											<td class="name">htQuery</td>
+											<td>Ajax 호출시에 필요한 아이템의 시작 위치(start) 필요한 아이템 개수 (display)를 제외한 <br>
+												파라미터가 있을 경우에는 HashTable 형식으로 저장한다.
+											</td>
+											<td>{}(비어있는 HashTable)</td>
+										</tr>
+										<tr>
+											<td class="name">sStart </td>
+											<td>Ajax 호출시에 필요한 아이템의 시작 위치(start)의 파라미터 이름을 설정한다.
+											</td>
+											<td>"start"</td>
+										</tr>
+										<tr>
+											<td class="name">sDisplay </td>
+											<td>Ajax 호출시에 필요한 아이템 개수(display)의 파라미터 이름을 설정한다.
+											</td>
+											<td>"display"</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- 커스텀 이벤트 -->
+				<h3>Custom Event</h3>
+				<div class="t1">
+				<table class="customevent" cellpadding="0" cellspacing="0">
+					<tr>
+						<th>Name</th>
+						<th>Desc</th>
+						<th>Custom Event Object Properties</th>
+					</tr>
+					<tr class="title">
+						<td class="name">beforeMore</td>
+						<td>더보기 수행전 발생한다.</td>
+						<td>
+							<ul>
+								<li>sType (String) : 커스텀이벤트명</li>
+								<li>nPage (Number) : 더보기를 수행하여 이동할 페이지</li>
+								<li>nCurrentPage (Number) : 현재 페이지</li>
+								<li>stop (Function) : 더보기 수행을 중지한다. <br>
+								'beforeMore' 이후 커스텀 이벤트 ('more')를 발생하지 않는다.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="desc">
+						<td>&nbsp;</td>
+						<td colspan="2">
+							커스텀이벤트 핸들링 예제
+							<textarea class="brush: javascript;">
+								//물론  0보다 작은 페이지로 이동할 일은 없음
+							oComponent.attach("beforeMore", function(oCustomEvent) {
+								if(oCustomEvent.nPage < 0){
+									oCustomEvent.stop();
+								}
+							});
+							</textarea>
+						</td>
+					</tr>
+					<tr class="title">
+						<td class="name">more</td>
+						<td>더보기 수행 이후에 발생한다.</td>
+						<td>
+							<ul>
+								<li>sType (String) : 커스텀이벤트명</li>
+								<li>nPage (Number) : 현재 페이지</li>
+								<li>nStartIndex (Number) : 현재 페이지의 아이템 시작 인덱스</li>	
+								<li>nEndIndex (Number) : 현재 페이지의 아이템 끝 인덱스</li>
+								<li>oResponse (jindo.$Ajax.Response) : Ajax 호출 이후에 응답데이터<br>
+								Ajax 호출 설정이 되어 있을때에만 값이 존재한다.
+								</li>							
+							</ul>
+						</td>
+					</tr>
+					<tr class="desc">
+						<td>&nbsp;</td>
+						<td colspan="2">
+							커스텀이벤트 핸들링 예제
+							<textarea class="brush: javascript;">
+							//Ajax 호출의 예제						
+							oComponent.attach("more", function(oCustomEvent) {
+								//응답데이터를 json 형식으로 반환
+								var htData = oCustomEvent.oResponse.json();
+								var welDiv = jindo.$Element('div1');
+								
+								//응답 데이터 형식에 따라 아래 코드는 수정가능
+								$A(htData.aData).forEach(function(value, index, array){
+									welDiv.append($(value));
+								});
+							});
+							//Ajax 호출 하지 않을때 예제
+							oComponent.attach("more", function(oCustomEvent) {
+								var welDiv = jindo.$Element('div1');
+								for(var i = oCustomEvent.nStartIndex; i<= oCustomEvent.nEndIndex; i++){
+									welDiv.append($(aData[i]));
+								} 
+							});
+							</textarea>
+						</td>
+					</tr>
+					<tr class="title">
+						<td class="name">beforeMovePage</td>
+						<td>movePageTo 함수를 통해 페이지 이동 전에 발생한다.</td>
+						<td>
+							<ul>
+								<li>sType (String) : 커스텀이벤트명</li>
+								<li>nPage (Number) : 이동할 페이지</li>
+								<li>nCurrentPage (Number) :현재 페이지</li>	
+								
+								<li>stop (Function) : 페이지 이동을 중지한다. <br> movePage가 발생하지 않는다. </li>				
+							</ul>
+						</td>
+					</tr>
+					<tr class="desc">
+						<td>&nbsp;</td>
+						<td colspan="2">
+							커스텀이벤트 핸들링 예제
+							<textarea class="brush: javascript;">
+							oComponent.attach("beforeMovePage", function(oCustomEvent) {
+								//3페이지로 이동시 이동을 못하게 막는다.
+								if(oCustomEvent.nPage == 3){
+									oCustomEvent.stop();
+								}
+							});
+						
+							</textarea>
+						</td>
+					</tr>
+					<tr class="title">
+						<td class="name">movePage</td>
+						<td>movePageTo 함수를 통해 페이지 이동전에 발생한다.</td>
+						<td>
+							<ul>
+								<li>sType (String) : 커스텀이벤트명</li>
+								<li>nPage (Number) : 현재 페이지</li>
+								<li>nBeforePage (Number) : 이동 전 페이지</li>	
+								<li>nStartIndex (Number) : 첫번째 아이템의 인덱스 </li>
+								<li>nEndIndex (Number) : 현재 페이지의 마지막 아이템의 인덱스</li>
+								<li>stop (Function) : 호출 후에 영향 받는것 없다. </li>				
+							</ul>
+						</td>
+					</tr>
+					<tr class="desc">
+						<td>&nbsp;</td>
+						<td colspan="2">
+							커스텀이벤트 핸들링 예제
+							<textarea class="brush: javascript;">
+							oComponent.attach("movePage", function(oCustomEvent) {
+								//현재 페이지의 모든 아이템을그린다.
+								var aTemp = [];
+								for(var i=oCustomEvent.nStartIndex; i <= oCustomEvent.nEndIndex; i++){
+									waTemp.push($(aData[i]));
+								}
+								
+								welDiv.html(aTemp.join("");
+							});
+						
+							</textarea>
+						</td>
+					</tr>
+					<tr class="title">
+						<td class="name">goTop</td>
+						<td>맨위로 버튼을 클릭할 때 발생한다.</td>
+						<td>
+							<ul>
+								<li>sType (String) : 커스텀이벤트명</li>
+								<li>element (HTMLElement) : 클릭한 엘리먼트</li>
+								<li>stop (Function) : 호출 후에 영향 받는것 없다. </li>				
+							</ul>
+						</td>
+					</tr>
+					<tr class="desc">
+						<td>&nbsp;</td>
+						<td colspan="2">
+							커스텀이벤트 핸들링 예제
+							<textarea class="brush: javascript;">
+							oComponent.attach("goTop", function(oCustomEvent) {
+								window.scrollTo(0,1);
+							});						
+							</textarea>
+						</td>
+					</tr>
+					
+				</table>
+			</div>
+
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>Bug</td>
+                               	<td>updateInfo</td>
+                               	<td>setShowMaxItem(0)으로 설정후 updateInfo메소드 호출시 버그 수정</td>
+							 </tr>	
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>								 							 
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Bug</td>
+                               	<td>-</td>
+                               	<td>jindo mobile 2.0.x버전 문법 오류 수정</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.0.0</td>
+                               	<td>Update</td>
+                               	<td>beforeMovePage</td>
+                               	<td>CustomEvent 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>movePage</td>
+                               	<td>CustomEvent 추가</td>
+							 </tr>
+							 <tr>
+                               	<td>Update</td>
+                               	<td>goTop</td>
+                               	<td>CustomEvent 추가</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               	<td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

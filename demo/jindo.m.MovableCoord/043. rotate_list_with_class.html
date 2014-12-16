@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=0.6, minimum-scale=0.6, user-scalable=no, target-densitydpi=medium-dpi">
+<title>클래스로 만든 회전하는 목록</title>
+<meta name="class-lists" content="jindo.m.MovableCoord">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	.area {
+		background-color:#ddd;
+		position:relative;
+		width:500px; height:300px;
+		-webkit-perspective: 450px;
+		-moz-perspective: 450px;
+		-ms-perspective: 450px;
+		-o-perspective: 450px;
+		perspective: 450px;
+		margin:10px 0;
+	}
+
+	.list {
+		position:absolute;
+		left:250px; top:150px;
+		-webkit-transform:rotateY(0deg);
+		-webkit-transform-style: preserve-3d;
+		-moz-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		-o-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+	.list li {
+		position:absolute;
+		transition:.5s -webkit-transform ease;
+		cursor:pointer;
+	}
+
+	.list li div {
+		position:static;
+	}
+
+	.list li div span {
+		display:block;
+		position:absolute; left:0; top:0;
+		width:80px; height:80px;
+		border:2px solid #000;
+		border-radius:10px;
+		margin:-40px; text-align:center;
+	}
+
+	.list li div span.foreface {
+		font-size:2em;
+	}
+
+	.list li div span.backface {
+		background-color:#aaa; display:none;
+		-webkit-transform:rotateY(180deg);
+	}
+
+	@-webkit-keyframes rotate {
+		from { -webkit-transform:rotateY(0deg); }
+		to { -webkit-transform:rotateY(360deg); }
+	}
+
+	.list li.front, .list li.front div {
+		-webkit-transform-style: preserve-3d;
+		-moz-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		-o-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+	.list li.front div {
+		transition:.5s -webkit-transform ease;
+		-webkit-transform:scale(1.2);
+	}
+
+	.list li.front.flipped div {
+		/*-webkit-animation: rotate 5s linear infinite;*/
+		-webkit-transform:rotateY(180deg) scale(1.2);
+	}
+
+	.list li.front div span {
+		-webkit-backface-visibility:hidden;
+		backface-visibility:hidden;
+	}
+
+	.list li.front div span.backface {
+		display:block;
+	}
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div class="area" id="area1">
+	<ul class="list" id="list1">
+		<li><div><span style="background-color:#f00;">A</span></div></li>
+		<li><div><span style="background-color:#f80;">B</span></div></li>
+		<li><div><span style="background-color:#ff0;">C</span></div></li>
+		<li><div><span style="background-color:#8f0;">D</span></div></li>
+		<li><div><span style="background-color:#0f0;">E</span></div></li>
+		<li><div><span style="background-color:#0f8;">F</span></div></li>
+		<li><div><span style="background-color:#0ff;">G</span></div></li>
+		<li><div><span style="background-color:#08f;">H</span></div></li>
+		<li><div><span style="background-color:#00f;">I</span></div></li>
+		<li><div><span style="background-color:#80f;">J</span></div></li>
+		<li><div><span style="background-color:#f08;">K</span></div></li>
+	</ul>
+</div>
+
+<div class="area" id="area2">
+	<ul class="list" id="list2">
+		<li><div><span style="background-color:#f00;">A</span></div></li>
+		<li><div><span style="background-color:#f80;">B</span></div></li>
+		<li><div><span style="background-color:#ff0;">C</span></div></li>
+	</ul>
+</div>
+
+<div class="area" id="area3">
+	<ul class="list" id="list3">
+		<li><div>
+			<span class="foreface" style="background-color:#f00;">A클릭</span>
+			<span class="backface">A내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#f80;">B클릭</span>
+			<span class="backface">B내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#ff0;">C클릭</span>
+			<span class="backface">C내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#8f0;">D클릭</span>
+			<span class="backface">D내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#0f0;">E클릭</span>
+			<span class="backface">E내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#0f8;">F클릭</span>
+			<span class="backface">F내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#0ff;">G클릭</span>
+			<span class="backface">G내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#08f;">H클릭</span>
+			<span class="backface">H내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#00f;">I클릭</span>
+			<span class="backface">I내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#80f;">J클릭</span>
+			<span class="backface">J내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#f0f;">K클릭</span>
+			<span class="backface">K내용</span>
+		</div></li>
+		<li><div>
+			<span class="foreface" style="background-color:#f08;">L클릭</span>
+			<span class="backface">L내용</span>
+		</div></li>
+	</ul>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	/*@code title="JavaScript"*/
+	var RotateList = jindo.$Class({
+
+		$init : function(elList, oOptions) {
+
+			this._welList = jindo.$Element(elList);
+			this._aList = this._welList.queryAll('> li');
+			this._nLastIndex = null;
+
+			this.option({
+				nDeceleration : 0.0024,
+				nChangeSize : 3
+			});
+			this.option(oOptions || {});
+
+		},
+
+		_positionList : function() {
+
+			var aList = this._aList;
+			var nLen = aList.length;
+			var nStep = this._nStep = 360 / nLen;
+
+			for (var i = 0, welItem; welItem = aList[i]; i++) {
+				var oParam = {
+					welItem : welItem,
+					sTransform : 'rotateY(' + (nStep * i) + 'deg)'
+				};
+
+				this.fireEvent('position', oParam);
+				welItem.css('transform', oParam.sTransform);
+			}
+
+		},
+
+		initialize : function(welTouch, oBindOptions) {
+
+			var self = this;
+
+			this._positionList();
+			oBindOptions.nDirection = 1;
+
+			var welList = this._welList;
+			var aList = this._aList;
+			var nLen = aList.length;
+			var nStep = this._nStep;
+
+			var oOptions = this.option();
+
+			var holdPos = 0;
+
+			var inst = new jindo.m.MovableCoord([ 0, 0 ], {
+				aMin : [ 0, 0 ],
+				aMax : [ 360, 0 ],
+				aCircular : [ false, true, false, true ],
+				nDeceleration : oOptions.nDeceleration
+			}).attach({
+
+				'release' : function(oCustomEvent) {
+					var depaPos = oCustomEvent.aDepaPos;
+					var destPos = oCustomEvent.aDestPos;
+
+					var gap = destPos[0] - depaPos[0];
+					var gapLimit = nStep * oOptions.nChangeSize;
+					if (Math.abs(gap) > gapLimit) {
+						destPos[0] = depaPos[0] + (gap < 0 ? -gapLimit : gapLimit);
+					}
+
+					destPos[0] = Math.round(destPos[0] / nStep) * nStep;
+				},
+
+				'change' : function(oCustomEvent) {
+
+					var pos = oCustomEvent.aPos;
+
+					var pos = oCustomEvent.aPos;
+					var idx = Math.round(pos[0] / nStep) % nLen;
+
+					if (idx !== self._nLastIndex) {
+
+						var welOldItem = aList[self._nLastIndex];
+						var welCurItem = aList[self._nLastIndex = idx];
+
+						self.fireEvent('change', {
+							welOldItem : welOldItem,
+							welItem : welCurItem
+						});
+
+					}
+
+					var oParam = {
+						welList : welList,
+						sTransform : 'rotateY(-' + pos[0] + 'deg)'
+					};
+
+					self.fireEvent('rotate', oParam);
+					welList.css('transform', oParam.sTransform);
+
+				}
+
+			}).bind(welTouch, oBindOptions);
+
+			return this;
+		}
+
+	}).extend(jindo.m.Component);
+
+	setTimeout(function() {
+
+		new RotateList(jindo.$('list1'), {
+			nDeceleration : 0.0024,
+			nChangeSize : 1
+		}).attach({
+			'position' : function(oCustomEvent) {
+				oCustomEvent.sTransform += ' translateZ(150px)';
+			},
+			'rotate' : function(oCustomEvent) {
+				oCustomEvent.sTransform += ' rotateX(10deg)';
+			}
+		}).initialize(jindo.$('area1'), {
+			aScale : [ -0.5, 1 ],
+			nMaximumSpeed : 50/*px/ms*/
+		});
+
+		new RotateList(jindo.$('list2'), {
+			nDeceleration : 0.0024,
+			nChangeSize : 3
+		}).attach({
+			'position' : function(oCustomEvent) {
+				oCustomEvent.sTransform += ' translateZ(50px)';
+			}
+		}).initialize(jindo.$('area2'), {
+			aScale : [ -0.5, 1 ],
+			nMaximumSpeed : 50/*px/ms*/
+		});
+
+		new RotateList(jindo.$('list3'), {
+			nDeceleration : 0.0012,
+			nChangeSize : 3
+		}).attach({
+			'position' : function(oCustomEvent) {
+				oCustomEvent.sTransform += ' translateZ(200px)';
+			},
+			'rotate' : function(oCustomEvent) {
+				oCustomEvent.sTransform += ' rotateZ(10deg)';
+			},
+			'change' : function(oCustomEvent) {
+				oCustomEvent.welOldItem && oCustomEvent.welOldItem.removeClass('front');
+				oCustomEvent.welItem.addClass('front').removeClass('flipped');
+			}
+		}).initialize(jindo.$('area3'), {
+			aScale : [ -0.1, 1 ],
+			nMaximumSpeed : 50/*px/ms*/
+		});
+
+	}, 0);
+
+	jindo.$Element('area3').preventTapHighlight().delegate('click', 'li.front', function(oEvent) {
+		jindo.$Element(oEvent.delegatedElement).toggleClass('flipped');
+		oEvent.stopDefault();
+	});
+
+	/*code@*/
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>pushKeyframe 사용 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Morph, jindo.m.Keyframe"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="Morph 클래스의 pushKeyframe 메서드를 사용하는 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	body { }
+	ul { list-style:none; margin:0; padding:0; }
+	li { float:left; }
+
+	input, button { font-family:inherit; font-size:1.2em; padding:.25em;}
+
+	#wrap { padding:10px; }
+
+	#ball {
+		position:absolute;
+		z-index:9;
+		left:100px;
+		top:100px;
+		-webkit-transform:scale(3);
+		background-color:#f00;
+		border:5px solid #000;
+		border-radius:50px;
+		padding:1em 1em;
+		color:#fff;
+		pointer-events:none;
+	}
+
+	button:hover {
+		position:relative;
+		z-index:999;
+	}
+
+</style>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" charset="utf-8" src="../asset/jindo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.UIComponent.js"></script>
+	<!-- 기본 스크립트 끝 -->
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Keyframe.js"></script>
+	<script type="text/javascript" charset="utf-8" src="switcher.js"></script>
+	<ul>
+		<li><button onclick="morph.play(); return false;">play()</button></li>
+		<li><button onclick="morph.pause(); return false;">pause()</button></li>
+		<li><button onclick="morph.pause(0); return false;">pause(0)</button></li>
+		<li><button onclick="morph.pause(1); return false;">pause(1)</button></li>
+		<li><button onclick="morph.reset(); return false;">reset()</button></li>
+	</ul>
+	<div style="position:relative;">
+		<div id="ball"></div>
+	</div>
+	<script type="text/javascript">
+
+			/*@code title="JavaScript"*/
+			var keyf = new jindo.m.Keyframe({ fpEffect : jindo.m.Effect.linear, bExtendStart : true });
+
+			keyf
+			.set(0.2, [ 'ball', {
+				'@left' : '50px',
+				'@transform' : 'scale(1)',
+				'@background' : jindo.m.Effect.bounce('#0f0')
+			} ])
+			.set(0.6, [ 'ball', {
+				'@left' : '150px',
+				'@top' : jindo.m.Effect.linear('100px')
+			} ])
+			.set(0.8, [ 'ball', {
+				'@top' : jindo.m.Effect.bounce('200px'),
+				'@background' : jindo.m.Effect.easeIn('#f00')
+			} ])
+			.set(0.9, [ 'ball', {
+				'@transform' : jindo.m.Effect.bounce('scale(3) translateX(30px) translateY(15px)'),
+				'@background' : jindo.m.Effect.easeOut('#00f')
+			} ])
+
+			keyf.preprocess();
+			keyf.frame(0);
+
+			var morph = new jindo.m.Morph({
+				bUseTransition : USE_TRANSITION,
+				fEffect : jindo.m.Effect.linear
+			});
+
+			morph
+			.pushKeyframe(10000, keyf)
+			.pushCall(function() { alert('done'); });
+			/*code@*/
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+#### HTML
+
+	<div id="panel" class="accordion"> <!-- 기준 엘리먼트 -->
+		<dl class="accordion-block"> <!-- block 엘리먼트 (필수) -->
+			<dt>1</dt> <!-- 제목 (필수) -->
+			<dd>내용1</dd> <!-- 내용 (필수) -->
+		</dl>
+		<dl class="accordion-block"> <!-- block 엘리먼트 (필수) -->
+			<dt>2</dt> <!-- 제목 (필수) -->
+			<dd>내용2</dd> <!-- 내용 (필수) -->
+		</dl>
+	</div>
+
+* 기준엘리먼트의 자식노드로 block엘리먼트가 최소 1개 이상 포함되어야 한다.<br>
+block 엘리먼트는 [prefix]block 클래스명을 가진다.
+* block 엘리먼트는 제목부분인 dt엘리먼트와 내용부분인 dd엘리먼트로 구성된다.
+* [prefix]는 sClassPrefix 옵션으로 지정가능하다.
+디폴트 값은 "accordion-"이다.
+
+#### CSS
+
+	.accordion {}
+	.accordion-block {overflow:hidden;cursor:pointer;}
+	.accordion-block dt {}
+	.accordion-block dd {cursor:default;}
+
+#### Javascript
+
+	var oAccordion = new jindo.m.Accordion("panel");

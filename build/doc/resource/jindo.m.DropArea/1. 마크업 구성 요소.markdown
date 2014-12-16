@@ -1,0 +1,27 @@
+DropArea컴포넌트는 DragArea 컴포넌트로 드래그된 엘리먼트가 드랍되었을 때 지정한 동작을 수행할 수 있도록 도와주는 컴포넌트다. 
+
+DropArea 컴포넌트는 단독으로 사용할 수 없고, DragArea 컴포넌트와 함께 Drag&Drop을 기능을 완성한다.
+<br />  
+DragArea 인스턴스에서 발생하는 모든 커스텀 이벤트를 DropArea 컴포넌트에서도 발생시켜 따로 DragArea 인스턴스를 핸들링 하지 않고 DropArea 컴포넌트에서 커버가능하다.
+
+![](droparea.jpg "")
+
+[기준레이어안의 엘리먼트 구조] 
+<br />  
+위의 그림과 같이 기준 엘리먼트에는 드롭 영역이 여러개 존재 할 수있다.
+
+#### 드롭
+* 드래그 영역이 드롭 가능한 영역이다.
+* [prefix]+'area' 클래스명을 갖는다.
+* 드롭영역이면서 드래그영역도 가능하다.
+
+#### 커스텀 이벤트 발생 순서
+아래 그림처럼 커스텀 이벤트 발생한다.
+
+![](dropevent.jpg "")
+
+[커스텀이벤트 발생순서] 
+<br />  
+handleDown, dragStart, beforeDrag, drag, dragEnd, handleUp의 경우 DragArea에서 발생한 커스텀 이벤트를 DropArea에서 발생시킨다.
+
+드래그앤드롭 기능을 활용할때 따로 DragArea의 커스텀 이벤트를 이용하지 않고 DropArea의 커스텀 이벤트에서 핸들링 가능하다.

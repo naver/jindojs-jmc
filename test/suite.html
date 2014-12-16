@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+    	<title>Suite</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="author" content="hooriza.spam@gmail.com" />
+		<style type="text/css">
+			
+			html, body {
+				padding:0; margin:0;
+				height:100%;
+				color:#000;
+				background-color:#fff;
+			}
+			
+			body, button { font-family:나눔고딕, "맑은 고딕", 'Arial'; }
+			
+			div.list { float:left; width:230px; padding:0 10px; height:100%; background-color:#ccc; overflow:auto; position:relative; }
+			div.iframe { margin-left:250px; height:100%; }
+			
+			iframe { border:0; width:100%; height:100%; }
+			
+			h1, ul { margin:0; padding:0; }
+			h1 { font-size:1.5em; padding-top:10px; }
+			
+			#list { margin:10px 0; list-style:none; }
+			#list li { margin:5px 0; }
+			
+			#list li a {
+				color:#369; text-decoration:none;
+				border:2px solid #eee;
+				display:block;
+				font-family:Verdana;
+				font-size:11px; background-color:#eee; padding:2px 5px; border-radius:5px; 
+			}
+			
+			#list li.running a { border:2px solid #666; }
+			#list li.passed a { border:2px solid #0a0; color:#080; }
+			#list li.failed a { border:2px solid #a00; color:#800; }
+			 
+			#list a:hover {
+				color:#000;
+				background-color:#fff;
+			}
+			
+			#form { position:absolute; top:20px; right:10px; font-size:.75em; }
+			#form * { vertical-align:middle; }
+			
+		</style>
+    </head>
+	<body>
+		<div class="list">
+			<h1>Suite</h1>
+			<div id="form">
+				<input type="checkbox" id="cont" checked="checked"><label for="cont">Continuosly</label>
+			</div>
+			<ul id="list">
+				<li><a href="jindo.m.Accordion.test.html" target="suite_frame">jindo.m.Accordion</a></li>
+				<li><a href="jindo.m.AjaxHistory.test.html" target="suite_frame">jindo.m.AjaxHistory</a></li>
+				<li><a href="jindo.m.CheckBox.test.html" target="suite_frame">jindo.m.CheckBox</a></li>
+				<li><a href="jindo.m.CircularFlicking.test.html" target="suite_frame">jindo.m.CircularFlicking</a></li>
+				<li><a href="jindo.m.Component.test.html" target="suite_frame">jindo.m.Component</a></li>
+				<li><a href="jindo.m.CorePagination.test.html" target="suite_frame">jindo.m.CorePagination</a></li>
+				<li><a href="jindo.m.CoreScroll.test.html" target="suite_frame">jindo.m.CoreScroll</a></li>
+				<li><a href="jindo.m.CoverFlicking.test.html" target="suite_frame">jindo.m.CoverFlicking</a></li>
+				<li><a href="jindo.m.CubeFlicking.test.html" target="suite_frame">jindo.m.CubeFlicking</a></li>
+				<li><a href="jindo.m.CubeReveal.test.html" target="suite_frame">jindo.m.CubeReveal</a></li>
+				<li><a href="jindo.m.Datepicker.test.html" target="suite_frame">jindo.m.Datepicker</a></li>
+				<li><a href="jindo.m.Dialog.test.html" target="suite_frame">jindo.m.Dialog</a></li>
+				<li><a href="jindo.m.DragArea.test.html" target="suite_frame">jindo.m.DragArea</a></li>
+				<li><a href="jindo.m.DropArea.test.html" target="suite_frame">jindo.m.DropArea</a></li>
+				<li><a href="jindo.m.Effect.test.html" target="suite_frame">jindo.m.Effect</a></li>
+				<li><a href="jindo.m.Flicking.test.html" target="suite_frame">jindo.m.Flicking</a></li>
+				<li><a href="jindo.m.FloatingLayer.test.html" target="suite_frame">jindo.m.FloatingLayer</a></li>
+				<li><a href="jindo.m.IndexScroll.test.html" target="suite_frame">jindo.m.IndexScroll</a></li>
+				<li><a href="jindo.m.InfiniteCard.test.html" target="suite_frame">jindo.m.InfiniteCard</a></li>
+				<li><a href="jindo.m.Keyframe.test.html" target="suite_frame">jindo.m.Keyframe</a></li>
+				<li><a href="jindo.m.LayerEffect.test.html" target="suite_frame">jindo.m.LayerEffect</a></li>
+				<li><a href="jindo.m.LayerManager.test.html" target="suite_frame">jindo.m.LayerManager</a></li>
+				<li><a href="jindo.m.LayerPosition.test.html" target="suite_frame">jindo.m.LayerPosition</a></li>
+				<li><a href="jindo.m.Loading.test.html" target="suite_frame">jindo.m.Loading</a></li>
+				<li><a href="jindo.m.MoreContentButton.test.html" target="suite_frame">jindo.m.MoreContentButton</a></li>
+				<li><a href="jindo.m.Morph.test.html" target="suite_frame">jindo.m.Morph</a></li>
+				<li><a href="jindo.m.PageNavigation.test.html" target="suite_frame">jindo.m.PageNavigation</a></li>
+				<li><a href="jindo.m.PreventClickEvent.test.html" target="suite_frame">jindo.m.PreventClickEvent</a></li>
+				<li><a href="jindo.m.PreviewFlicking.test.html" target="suite_frame">jindo.m.PreviewFlicking</a></li>
+				<li><a href="jindo.m.RadioButton.test.html" target="suite_frame">jindo.m.RadioButton</a></li>
+				<li><a href="jindo.m.RevealSidebarUI.test.html" target="suite_frame">jindo.m.RevealSidebarUI</a></li>
+				<li><a href="jindo.m.Scroll.test.html" target="suite_frame">jindo.m.Scroll</a></li>
+				<li><a href="jindo.m.ScrollEnd.test.html" target="suite_frame">jindo.m.ScrollEnd</a></li>
+				<li><a href="jindo.m.Selectbox.test.html" target="suite_frame">jindo.m.Selectbox</a></li>
+				<li><a href="jindo.m.SlideFlicking.test.html" target="suite_frame">jindo.m.SlideFlicking</a></li>
+				<li><a href="jindo.m.Slider.test.html" target="suite_frame">jindo.m.Slider</a></li>
+				<li><a href="jindo.m.SlideReveal.test.html" target="suite_frame">jindo.m.SlideReveal</a></li>
+				<li><a href="jindo.m.SlideTab.test.html" target="suite_frame">jindo.m.SlideTab</a></li>
+				<li><a href="jindo.m.Tab.test.html" target="suite_frame">jindo.m.Tab</a></li>
+				<li><a href="jindo.m.Template.test.html" target="suite_frame">jindo.m.Template</a></li>
+				<li><a href="jindo.m.test.html" target="suite_frame">jindo.m.test</a></li>
+				<li><a href="jindo.m.TextArea.test.html" target="suite_frame">jindo.m.TextArea</a></li>
+				<li><a href="jindo.m.TextInput.test.html" target="suite_frame">jindo.m.TextInput</a></li>
+				<li><a href="jindo.m.ToggleSlider.test.html" target="suite_frame">jindo.m.ToggleSlider</a></li>
+				<li><a href="jindo.m.Touch.test.html" target="suite_frame">jindo.m.Touch</a></li>
+				<li><a href="jindo.m.Transition.test.html" target="suite_frame">jindo.m.Transition</a></li>
+				<li><a href="jindo.m.UIComponent.test.html" target="suite_frame">jindo.m.UIComponent</a></li>
+				<li><a href="jindo.m.Validation.test.html" target="suite_frame">jindo.m.Validation</a></li>
+				<li><a href="jindo.m.Validator.test.html" target="suite_frame">jindo.m.Validator</a></li>
+			</ul>
+		</div>
+		<div class="iframe"><iframe id="iframe" name="suite_frame"></iframe></div>
+		<script type="text/javascript">
+		
+			(function() {
+				
+				var $ = function(s) { return document.getElementById(s); };
+				
+				var list = $('list');
+				var iframe = $('iframe');
+				var cont = $('cont');
+				
+				var items = list.getElementsByTagName('li');
+				var running = -1;	
+				
+				function setClass(el, className, flag) {
+					
+					if (flag) {
+						el.className += ' ' + className;
+						return;	
+					}
+					
+					el.className = el.className.replace(new RegExp('(^|\\s+)' + className + '(\\s+|$)', 'g'), ' ');
+					
+				}
+			
+				function onClick(evt) {
+					
+					evt = evt || window.event;
+					
+					var anchor = evt.target || evt.srcElement;
+					if (anchor.tagName !== 'A') { return true; }
+					
+					var item = anchor.parentNode;
+					var index = 0;
+					
+					for (var sibling = item.previousSibling; sibling; sibling = sibling.previousSibling) {
+						if (sibling.nodeType === 1) { index++; }							
+					}
+					
+					run(index);
+					
+					return false;
+					
+				}
+				
+				$('list').onclick = onClick;
+			
+				function done(result) {
+					
+					setClass(items[running], 'failed', result.failed);
+					setClass(items[running], 'passed', !result.failed);
+					
+					var nextIndex = running + 1;
+					if (nextIndex >= items.length || !cont.checked) {
+						setRunning();
+						return;
+					}
+					
+					run(nextIndex);
+					
+				}
+				
+				function setRunning(index) {
+					
+					if (running != -1) {
+						setClass(items[running], 'running', false);
+						running = -1;
+					}
+
+					if (typeof index !== 'undefined') {
+						setClass(items[index], 'running', true);
+						running = index;
+					}
+					
+				}
+				
+				function run(index) {
+					
+					var item = items[index];
+					var anchor = item.getElementsByTagName('a')[0];
+					
+					setRunning(index);
+					iframe.src = 'about:blank';
+
+					setClass(items[running], 'failed', false);
+					setClass(items[running], 'passed', false);
+					
+					(function() {
+						
+						var fp = arguments.callee;
+						var src = null;
+						
+						try { src = iframe.contentWindow.location.href; } catch(e) {}
+						
+						if (src !== 'about:blank') {
+							setTimeout(fp, 0);
+							return;
+						}
+
+						iframe.src = anchor.href;
+						
+						(function() {
+							
+							var fp = arguments.callee;
+							var succ = null;
+							
+							try { succ = 'done' in iframe.contentWindow.QUnit; } catch(e) {}
+							
+							if (!succ) {
+								setTimeout(fp, 0);
+								return;
+							}
+							
+							iframe.contentWindow.QUnit.done = done;
+							
+						})();
+						
+					})();
+				
+				}
+				
+			})();
+			
+		</script>
+	</body>
+</html>

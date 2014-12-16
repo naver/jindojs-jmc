@@ -1,0 +1,5 @@
+#### Javascript
+
+	var oScrollEnd = new jindo.m.ScrollEnd();
+
+ScrollEnd 객체생성시, document.body의 스크롤 이벤트를 확인하여, scroll 완료 시점을 알려준다.

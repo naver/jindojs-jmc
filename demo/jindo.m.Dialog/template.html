@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.Dialog</title>
+<meta name="class-lists" content="jindo.m.Dialog">
+<meta name="description" content="일반 Text 쓰기">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<h4>&lt;p&gt;안에 Text 쓰기</h4>
+
+	<ul class="lst_type">
+		<li>&lt;p class="dot"&gt;으로 dot가 있는 Text 쓰기</li>
+	</ul>
+
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">
+&lt;p class="sub_box"&gt;안에 Text 쓰기
+	&lt;span class="tab1"&gt;으로 Text 들여쓰기
+		&lt;span class="tab2"&gt;으로 Text 들여쓰기
+			&lt;span class="tab3"&gt;으로 Text 들여쓰기
+</code></pre>
+	</div>
+
+	<h4>&lt;ul class="lst_type"&gt;으로 목록 만들기</h4>
+	<ul class="lst_type">
+		<li>목록1 <p>목록1 설명</p></li>
+		<li>목록2 <p>목록2 설명</p></li>
+	</ul>
+
+	<h4>&lt;span class="keyword"&gt;으로 Text <span class="keyword">강조</span>하기</h4>
+</div>
+
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		width 20짜리 Input<input type="text" class="op_w20" value="0"><br>
+		width 30짜리 Input<input type="text" class="op_w30" value="0"><br>
+		width 40짜리 Input<input type="text" class="op_w40" value="0"><br>
+		width 50짜리 Input<input type="text" class="op_w50" value="0"><br>
+		width 100짜리 Input<input type="text" class="op_w100" value="0"><br>
+		버튼 <button type="button" id="fadeln" class="btn">fadeln</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Dialog.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica,AppleGothic}
+body{position:relative;background-color:#f8f8f8;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+/* 컴포넌트 관련 CSS */
+
+.fcb-checkbox-on{border:0;background:#44AF50;font-weight:bold;color:#FFF;text-decoration:none;cursor:pointer;outline:0 none;text-shadow:0 -1px 1px #145072}
+.fcb-checkbox-disable{opacity:.3;cursor: default;}
+.fcb-checkbox-unit {position:relative;margin:0;padding:.7em 0 .7em 30px;border-bottom:1px solid #ccc;list-style:none}
+.fcb-checkbox-unit:last-child{border-bottom:0;}
+.fcb-checkbox-cont{overflow:hidden;border:1px solid #ccc;}
+.fcb-checkbox{position:absolute;top:10px;left:10px;margin:0}
+.fcb-checkbox-label{display:block;position:relative;margin:0;font-size:1em;font-family:Helvetica,Arial,sans-serif;font-weight:bold;color:#444;text-decoration:none;cursor:pointer;text-shadow:0 1px 1px #F6F6F6}
+
+
+</style>
+<!-- 사용자 css 끝 -->
+
+
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">CheckBox Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture"></div>
+
+<!-- UI content Start -->
+<div id="checkbox" style="padding:10px">
+	<fieldset>
+		<legend></legend>
+		<ul class="fcb-checkbox-cont">
+			<li class="fcb-checkbox-unit" id="check1">
+				<input type="checkbox" name="check1" id="news" value="뉴스" class="fcb-checkbox">
+				<label for="check1" class=fcb-checkbox-label>뉴스</label>
+			</li>
+			<li class="fcb-checkbox-unit" id="check2">
+				<input type="checkbox" name="check2" id="weather" value="날씨" class="fcb-checkbox">
+				<label for="check2" class="fcb-checkbox-label">날씨</label>
+			</li>
+			<li class="fcb-checkbox-unit" id="check3">
+				<input type="checkbox" name="check3" id="sports" value="스포츠" class="fcb-checkbox">
+				<label for="check3" class="fcb-checkbox-label">스포츠</label>
+			</li>
+			<li class="fcb-checkbox-unit" id="check4">
+				<input type="checkbox" name="check4" id="stock" value="증권" class="fcb-checkbox">
+				<label for="check4" class="fcb-checkbox-label">증권</label>
+			</li>
+			<li class="fcb-checkbox-unit" id="check5">
+				<input type="checkbox" name="check5" id="entertain" value="연예" class="fcb-checkbox">
+				<label for="check5" class="fcb-checkbox-label">연예</label>
+			</li>
+		</ul>
+	</fieldset>
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../src/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.CheckBox.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

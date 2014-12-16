@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+.accordion {border:1px solid #dedede;font-family:'돋움'dotum;}
+.accordion-block {overflow:hidden;cursor:pointer;margin:0px;}
+.accordion-block dt {height:30px;font-size:14px;padding:12px 0 0 10px;}
+.accordion-block dd {cursor:default;background-color:#F7F7F7;margin:0;padding:10px;font-size:12px;}
+</style>
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">PreventClickEvent Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+
+<!-- UI content Start -->
+	<div >
+		<div >
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			<p>레이어에서 발생하는 이벤트가 투과되어 뒤에 배치된 레이어에 전달되는 것을 방지한다.</p>
+		</br>
+			<ul>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+				<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+			</ul>
+			<div id="layer1" style="position:absolute; top:400px; left:50px; width:200px; height:200px; padding:5px; border:1px solid #000; background:#32a800">
+				레이어 Depth1 입니다.</br>
+				<button class="btn evt-except" onclick="alert('버튼(선택가능)')">Button (선택가능)</button></br>
+				<button class="btn" onclick="alert('버튼(선택불가능)')">Button (선택불가능)</button>
+				<div id="layer2" style="background: white; border:1px solid #000; padding: 5px; margin:5px">
+					레이어 Depth2 입니다.</br>
+					<button class="btn evt-except" onclick="alert('버튼(선택가능)')">Button (선택가능)</button></br>
+					<button class="btn" onclick="alert('버튼(선택불가능)')">Button (선택불가능)</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.PreventClickEvent.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.PreventClickEvent.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

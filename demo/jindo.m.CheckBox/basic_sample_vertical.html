@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>세로 기본형</title>
+<meta name="class-lists" content="jindo.m.CheckBox">
+<meta name="description" content="세로 기본형 CheckBox">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/* Check 시 적용 CSS */
+.fcb-checkbox-on{
+	background:#4596CE !important; /* 체크 되었을 경우 배경색 수정*/
+}
+/* Check 시 적용 Label CSS */
+.fcb-checkbox-on .fcb-checkbox-label{
+	color:#fff !important; /* 글자 색 변경 */
+}
+
+/* 비활성화시 적용 CSS */
+.fcb-checkbox-disable{
+	opacity:.3; /* 투명도 */
+	cursor: default; /* 마우스 포인터 모양 */
+}
+
+/* CheckBox 단위 Unit CSS */
+.fcb-checkbox-unit {
+	cursor:pointer;
+	position:relative;
+	margin:0;
+	padding:.7em 0 .7em 35px; /* 내부 여백 영역 이부분을 수정 하여 Unit의 Padding 을 조절 하여 높이나 label 부분의 위치를 조정*/
+	border-bottom:1px solid #ccc;
+	list-style:none;
+	background: #f7f7f7;
+}
+
+/* CheckBox 단위 Unit 첫번째 엘리먼트 CSS */
+.fcb-checkbox-unit:first-child {
+}
+
+/* CheckBox 단위 Unit 마지막 엘리먼트 CSS */
+.fcb-checkbox-unit:last-child{
+	border-bottom:0;
+}
+
+/* CheckBox Container CSS. CheckBox 외곽부분의 스타일 지정 */
+.fcb-checkbox-cont{
+	overflow:hidden;
+	border:1px solid #ccc;
+}
+/* CheckBox CSS */
+.fcb-checkbox{
+	position:absolute;top:7px;left:10px;margin:0; /*CheckBox 위치조정*/
+}
+
+/* CheckBox Label CSS */
+.fcb-checkbox-label{
+	display:block;
+	font-size:1em; font-weight:bold; color:#444; text-decoration:none;	/* CheckBox Label의 Font속성 수정 */
+	cursor:pointer;
+}
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div id="checkbox">
+	<ul class="fcb-checkbox-cont">
+	<li class="fcb-checkbox-unit">
+		<input type="checkbox" name="check1" id="news" value="뉴스" class="fcb-checkbox" checked="checked">
+		<label for="check1" class="fcb-checkbox-label">뉴스</label>
+	</li>
+	<li class="fcb-checkbox-unit" id="weatherUnit">
+		<input type="checkbox" name="check2" id="weather" value="날씨" class="fcb-checkbox">
+		<label for="check2" class="fcb-checkbox-label">날씨</label>
+	</li>
+	<li class="fcb-checkbox-unit">
+		<input type="checkbox" name="check3" id="sports" value="스포츠" class="fcb-checkbox">
+		<label for="check3" class="fcb-checkbox-label">스포츠</label>
+	</li>
+	<li class="fcb-checkbox-unit" id="stockUnit">
+		<input type="checkbox" name="check4" id="stock" value="증권" class="fcb-checkbox">
+		<label for="check4" class="fcb-checkbox-label">증권</label>
+	</li>
+	<li class="fcb-checkbox-unit">
+		<input type="checkbox" name="check5" id="entertain" value="연예" class="fcb-checkbox">
+		<label for="check5" class="fcb-checkbox-label">연예</label>
+	</li>
+	</ul>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oCheckbox = new jindo.m.CheckBox("checkbox");
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

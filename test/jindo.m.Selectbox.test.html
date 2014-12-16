@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica,AppleGothic}
+body{position:relative;background-color:#f8f8f8;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+/* 컴포넌트 관련 CSS */
+/* select박스 기본 디자인 */
+.selectbox {
+	width : 200px;
+	padding: 10px 10px;
+	margin: 10px;
+	-webkit-border-radius: 1em;	/* 외부 곡선 */
+	background:#F0F0F0;         					/* 그라데이션 적용이 안될때 사용될 배경색 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#DDD));    /* 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .3);	/* 안쪽 그림자 크기, 색상 수정 */
+}
+
+/* select박스 화살표 디자인 */
+.select-arrow {
+	background: rgba(0, 0, 0, .4);	/* 화살표 배경색 */
+	background-image: url(../../../sample/latest/im/icons-18-white.png);	/* 화살표 이미지 */
+	background-repeat: no-repeat;
+	background-position: -216px 50%;
+	-webkit-border-radius: 9px;	/* 화살표 배경 동그란 효과 */
+	/* 화살표 크기 */
+	width: 18px;
+	height: 18px;
+}
+
+/* select박스 content영역 디자인 */
+.select-content {
+	font-weight:bold;
+	color : black;	/* 글자색상 */
+}
+
+/* select박스가 disable되었을때 디자인 */
+.select-disable {
+	opacity : 0.5;
+}
+
+/* select박스의 selectmenu의 디자인 */
+.select-selectmenu {
+	-webkit-border-radius: 0.5em;	/* 외부 곡선 */
+	border : 5px solid #e5e5e5;	/* 테두리 색상 */
+	/* 스크롤 배경 */
+	background:#e1e1e1;                             /* 그라데이션 적용이 안될때 사용될 배경색 */
+   	-webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .6);	/* 안쪽 그림자 크기, 색상 수정 */
+}
+
+
+/* select박스의 selectmenu의 아이템 컨테이너 디자인 (주로 여백조절) */
+.select-selectmenu ul {
+	list-style: none;
+	padding: 0;
+	margin : 0px;
+}
+
+/* select박스의 selectmenu의 아이템들 디자인 (주로 여백조절) */
+.select-selectmenu li {
+	padding:5px;
+	text-align:center;
+	background:#e1e1e1;                             /* 그라데이션 적용이 안될때 사용될 배경색 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e1e1e1));    /* 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+    -webkit-box-shadow: 1px 1px 0px #fff inset; /* 안쪽 그림자 크기, 색상 수정 */
+}
+
+/* 선택된 select박스 아이템 디자인 */
+.select-selected{
+	text-decoration:none;
+    font-weight:bold;
+    color:#d9f3ff;                                  /* 선택된 날짜 텍스트 폰트 색상 설정 */
+    text-shadow: 1px 1px 2px #06344e;               /* 선택된 날짜 텍스트 그림자 크기, 색상 수정 */
+	background:#308fbb;                             /* 그라데이션 적용이 안될때 사용될 배경색 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#308fbb), to(#2d678f)) !important;    /* 선택된 날짜 영역의 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+    -webkit-box-shadow: 1px 1px 0px #6e94c9 inset  !important;	/* 안쪽 그림자 크기, 색상 수정 */
+}
+</style>
+<!-- 사용자 css 끝 -->
+
+
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">Select Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture"></div>
+
+<!-- UI content Start -->
+<div id="select1" class="selectbox">
+	<span class="select-content"></span>
+	<span class="select-arrow"></span>
+	<select class="select-selectmenu">
+		<option>구글</option>
+		<option>네이버</option>
+		<option>다음</option>
+		<option>파란</option>
+	</select>
+</div>
+<div id="select2" class="selectbox">
+	<span class="select-content"></span>
+	<span class="select-arrow"></span>
+	<div class="select-selectmenu">
+		<ul>
+			<li>구글</li>
+			<li>네이버</li>
+			<li>다음</li>
+			<li>파란</li>
+		</ul>
+	</div>
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Scroll.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Selectbox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.Selectbox.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본예제</title>
+<meta name="class-lists" content="jindo.m.PreventClickEvent">
+<meta name="description" content="레이어에서 발생하는 이벤트가 투과되어 뒤에 배치된 레이어에 전달되는 것을 방지한다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<ul class="lst_type">
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+		<li><a href="#" onclick="alert('목록이 선택되었습니다')">목록형 링크입니다. 선택해 주세요</a></li>
+	</ul>
+	<div id="layer1" style="position:absolute;top:110px;left:50px;width:200px;height:200px;padding:5px;border:1px solid #000;background:#32a800">
+		레이어 Depth1 입니다.</br>
+		<button class="btn evt-except" id="lvl1">Button (선택가능)</button></br>
+		<button class="btn" onclick="alert('버튼(선택불가능)')">Button (선택불가능)</button>
+
+		<div id="layer2" style="background: white; border:1px solid #000; padding: 5px; margin:5x">
+			레이어 Depth2 입니다.</br>
+			<button class="btn evt-except" id="lvl2">Button (선택가능)</button></br>
+			<button class="btn" onclick="alert('버튼(선택불가능)')">Button (선택불가능)</button>
+		</div>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.PreventClickEvent.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	/*@code title="JavaScript"*/
+	var oPreventClickEvent = new jindo.m.PreventClickEvent("layer1");
+	/*code@*/
+
+	oPreventClickEvent.attach({
+		"pass" : function(we) {
+			addConsole(we.sType + " → " + "이벤트 통과(" + we.wel.toString() + ")");
+		},
+		"prevent" : function(we) {
+			addConsole(we.sType + " → " + "이벤트 방지(" + we.wel.toString() + ")");
+		}
+	});
+	jindo.$Fn(function(we) {
+		//we.stop(jindo.$Event.CANCEL_ALL);
+		alert('버튼(선택가능)');
+		//return false;
+	},this).attach("lvl1","click")
+	.attach("lvl2","click");
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

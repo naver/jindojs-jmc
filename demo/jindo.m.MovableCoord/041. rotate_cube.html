@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, user-scalable=no, target-densitydpi=medium-dpi">
+<title>회전하는 상자</title>
+<meta name="class-lists" content="jindo.m.MovableCoord">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#area {
+		position:relative;
+		width:400px; height:400px;
+		-webkit-perspective: 450px;
+		-moz-perspective: 450px;
+		-ms-perspective: 450px;
+		-o-perspective: 450px;
+		perspective: 450px;
+	}
+
+	#box {
+		position:absolute;
+		left:50%; top:50%;
+		-webkit-transform-style: preserve-3d;
+		-moz-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		-o-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+	.face {
+		position:absolute;
+		width:200px; height:200px;
+		color:#fff; font-size:6em; font-weight:bold;
+		text-align:center; line-height:2.5;
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;
+		-o-backface-visibility:hidden;
+		backface-visibility:hidden;
+	}
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="area">
+	<div id="box">
+		<div class="face" style="background-color:#f00; -webkit-transform:rotateX(0deg) rotateY(0deg) translate3d(-100px,-100px,100px);">1</div>
+		<div class="face" style="background-color:#0f0; -webkit-transform:rotateY(-90deg) translate3d(0px,-100px,200px);">2</div>
+		<div class="face" style="background-color:#00f; -webkit-transform:rotateY(90deg) translate3d(0px,-100px,0px);">3</div>
+		<div class="face" style="background-color:#f80; -webkit-transform:rotateX(90deg) translate3d(-100px,0px,200px);">4</div>
+		<div class="face" style="background-color:#f0f; -webkit-transform:rotateY(180deg) translate3d(100px,-100px,100px);">5</div>
+		<div class="face" style="background-color:#0ff; -webkit-transform:rotateX(-90deg) translate3d(-100px,00px,0px);">6</div>
+	</div>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	/*@code title="JavaScript"*/
+	var welBox = jindo.$Element('box');
+
+	var inst = new jindo.m.MovableCoord([ 0, 0 ], {
+		aMin : [ 0, 0 ],
+		aMax : [ 360, 360 ],
+		aCircular : [ true, true, true, true ],
+		nDeceleration : 0.0024
+	}).attach({
+
+		'change' : function(oCustomEvent) {
+			/*
+				.aPos {Array}
+			*/
+			var pos = oCustomEvent.aPos;
+			welBox.css({
+				transform : 'rotateY(' + pos[0] + 'deg) rotateX(' + pos[1] + 'deg)'
+			})
+
+		}
+
+	});
+	/*code@*/
+
+	inst.
+	bind(document, {
+		nDirection : 3 | 12 | 16,
+		aScale : [ 0.5, 1 ],
+		nMaximumSpeed : 50/*px/ms*/
+	});
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

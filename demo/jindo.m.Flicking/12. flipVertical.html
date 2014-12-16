@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>플립 세로 플리킹</title>
+<meta name="class-lists" content="jindo.m.Flicking">
+<meta name="description" content="flip 형식으로 플리킹되는 예제 (세로)">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 플리킹 영역의 높이값을 지정가능합니다 */
+#mflick{width:100%;height:300px;}
+/*code@*/
+.flick-ct{position:absolute;width:100%;height:100%;background-color:#F8F8F8}
+a{color:inherit}
+.tli{overflow:hidden;margin:0 6px;margin:0;padding-bottom:1px;line-height:1.1em;letter-spacing:-1px}
+.tli_v2{margin:0 6px}
+.tli_l2{overflow:hidden;margin:0 4px;margin:0;padding:0 4px;border-bottom:1px solid #E5E5E5}
+.tli_l2_a{display:block;overflow:hidden;padding:8px 6px 11px;white-space:nowrap;text-overflow:ellipsis}
+
+.tli_l{float:left;width:25%;margin-top:8px;font-size:11px;text-align:center}
+.tli_v2 .tli_l{width:33.3%}
+.tli_m{display:block;margin:0 auto;border:1px solid #C9C9C9;vertical-align:top}
+.ico_movw{display:block;position:relative;width:69px;margin:0 auto;text-align:left}
+.tli_v2 .ico_movw{width:94px}
+.tli_t{width:92px}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="mflick" style="background-color:grey">
+	<div class="flick-container">
+		<div id="news_list" class="flick-ct">
+			<ul class="tli">
+				<li class="tli_l2">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=100&amp;sid2=267&amp;oid=001&amp;aid=0005592602" class="tli_l2_a"><div>美 "한국·일본, '동해병기' 합의해야"</div></a>
+				</li>
+				<li class="tli_l2">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=100&amp;sid2=269&amp;oid=001&amp;aid=0005592499" class="tli_l2_a"><div>김문수 "박근혜, 경선룰 고치자며 탈당하지 않았나"</div></a>
+				</li>
+				<li class="tli_l2">
+					<a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=101" class="tli_l2_a"><div><span class="subject_nf">삼성가 소송</span> 이건희의 분노 "감히 날 보고 건희.."</div></a>
+				</li>
+				<li class="tli_l2">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=106&amp;sid2=282&amp;oid=073&amp;aid=0002128265" class="tli_l2_a"><div>김종국, 이르면 5월께 새 음반 가수 컴백</div></a>
+				</li>
+				<li class="tli_l2">
+					<a href="http://m.sports.naver.com/soccer/index.nhn" class="tli_l2_a"><div>영국·멕시코·브라질·스페인 톱시드, 홍명보호 충격</div></a>
+				</li>
+			</ul>
+			<ul class="tli tli_v2">
+				<li class="tli_l">
+					<a href="http://m.news.naver.com/comment/list.nhn?gno=news008%2C0002829949&amp;aid=0002829949&amp;oid=008&amp;sid1=001&amp;backUrl=http%3A%2F%2Fm.news.naver.com%2Fmain.nhn%3Fmode%3DLSD%26sid1%3D101" class="tli_a">
+					<img src="http://imgnews.naver.net/image/upload/item20120424/8882_--.jpg" width="92" height="70" class="tli_m">
+					<span class="tli_t"><font color="#666666">[실시간 댓글]</font><br>이건희 작심발언</span>
+					</a>
+				</li>
+				<li class="tli_l">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=845638&amp;panelId=hot.011.148.845638&amp;oid=213&amp;aid=0000201784" class="tli_a">
+					<img src="http://imgnews.naver.net/image/upload/item20120424/8489_--.jpg" width="92" height="70" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span>
+					<span class="tli_t">이영은, 어린시절 '모태미인 입증'</span>
+					</a>
+				</li>
+				<li class="tli_l">
+					<a href="http://m.sports.naver.com/worldfootball/index.nhn" class="tli_a">
+					<img src="http://imgnews.naver.net/image/upload/item20120424/0704_03.jpg" width="92" height="70" class="tli_m">
+					<span class="tli_t">박지성, 올 시즌 끝으로 맨유 떠나나?</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="flick-ct">
+			<ul class="tli">
+				<li class="tli_l2">
+					<a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=100" class="tli_l2_a"><div><span class="subject_nf">이슈</span> "박영준 前차관에 10억 주라고 돈 건넸다"</div></a></li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=308&amp;aid=0000007019" class="tli_l2_a"><div>여권위조 이란인, 혹시 테러범이세요?</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=022&amp;aid=0002388651" class="tli_l2_a"><div>"술병 따"…안 따주자 편의점 여직원 흉기로 찔러</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=106&amp;sid2=221&amp;oid=108&amp;aid=0002141736" class="tli_l2_a"><div>'1박'스페셜, 강호동·나PD의 귀환? "고민 중"</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=214&amp;sid3=422&amp;oid=109&amp;aid=0002338301" class="tli_l2_a"><div>레알 호날두 "퍼거슨 감독과 맨유가 그립다"</div></a>
+				</li>
+			</ul>
+			<ul class="tli tli_v2">
+				<li class="tli_l"><a href="http://m.news.naver.com/photoViewer.nhn?componentId=853208&amp;panelId=hot.011.148.853208&amp;oid=016&amp;aid=0000416489" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/2781_--.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">'엄마도, 아들도' 휠체어 타고..</span></a>
+				</li>
+				<li class="tli_l"><a href="http://m.news.naver.com/photoViewer.nhn?componentId=845617&amp;panelId=hot.011.148.845617&amp;oid=108&amp;aid=0002141717" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/0373_1.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">빅토리아, 공항서 완벽 몸매 눈길</span></a>
+				</li>
+				<li class="tli_l"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=107&amp;oid=360&amp;aid=0000000119" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/3934_untitled-2.jpg" width="92" height="70" alt="" class="tli_m"><span class="tli_t"><font color="#666666">[조석 카툰]</font><br>거신 드록바 출격</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="flick-ct">
+			<ul class="tli">
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=028&amp;aid=0002139289" class="tli_l2_a"><div>박원순 "서울시 아닌 시민에 사과하라"</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=259&amp;oid=008&amp;aid=0002830158" class="tli_l2_a"><div>은행 고졸 채용은 생색내기?</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=102" class="tli_l2_a"><div><span class="subject_nf">사건사고</span> 경찰 "'악마 에쿠스', 고의성 없었다" 결론</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=038&amp;aid=0002251375" class="tli_l2_a"><div>"아침식사 않고 차가운 목욕하면 살 빠진다"</div></a>
+				</li>
+				<li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=213&amp;sid3=418&amp;oid=382&amp;aid=0000041767" class="tli_l2_a"><div>'박찬호 vs 윤석민' 최동원-선동열전 이후 최고</div></a>
+				</li>
+			</ul>
+			<ul class="tli tli_v2">
+				<li class="tli_l">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=863549&amp;panelId=hot.011.148.863549&amp;oid=108&amp;aid=0002141696" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/9037_1.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">'은교' 김고은, 패션계도 접수</span></a>
+				</li>
+				<li class="tli_l">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=836953&amp;panelId=hot.011.148.836953&amp;oid=079&amp;aid=0002352203" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/3361_1.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">LG전자, '옵티머스 뷰 화이트' 출시</span></a>
+				</li>
+				<li class="tli_l">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=863302&amp;panelId=hot.011.148.863302&amp;oid=076&amp;aid=0002206496" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/5929_--.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">윤기원 '9살 연하신부 싱글벙글'</span></a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	3개의 컨텐츠가 순환되지 않는다.
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<button type="button" id="aprev" class="btn">이전 콘텐츠 이동</button>
+		<button type="button" id="anext" class="btn">이후 콘텐츠 이동</button>
+		<input type="text" id="nIndex" class="op_w20" value="0"> 번째 콘텐츠로
+		<button type="button" id="amove" class="btn">이동</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+<div id="mflick">
+	<div class="flick-container">
+		<div  class="flick-ct" >
+			Layer 1
+		</div>
+		<div class="flick-panel" >
+			Layer 2
+		</div>
+		<div class="flick-panel" >
+			Layer 3
+		</div>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._FlickingAnimation_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._FlipFlicking_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+window.onload = function(){setTimeout(function(){
+
+	var oFlicking = new jindo.m.Flicking(jindo.$('mflick'),{
+		nDuration : 500,
+		nFlickThreshold : 50,
+		sAnimation :'flip',
+		bUseCircular : false,
+		bHorizontal : false
+	}).attach({
+		'beforeFlicking' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				addConsole('[before_Flicking ] → '+nIndex  +" 에서 → " + oCustomEvt.nContentsNextIndex + ' 이동예정');
+				//oCustomEvt.stop();
+			},
+
+		'afterFlicking' : function(oCustomEvt){
+			var nIndex = oCustomEvt.nContentsIndex;
+
+			var sMessage = oCustomEvt.bTop? '위쪽으로' : '아래쪽으로';
+			sMessage += '플리킹' + nIndex +'번째 컨텐츠';
+			addConsole('[after_flicking] → '+sMessage);
+		},
+		'beforeMove' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				//console.log(oCustomEvt);
+				addConsole('[before_Move] → '+ nIndex  +" 에서  → " + oCustomEvt.nContentsNextIndex + ' 이동예정' );
+
+		},
+
+		'move' :function(oCustomEvt){
+			var nIndex = oCustomEvt.nContentsIndex;
+
+			sMessage =  nIndex +'번째 컨텐츠로 이동';
+			addConsole('[MOVE] → '+sMessage);
+		}
+	});
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.movePrev();
+	},this).attach(jindo.$('aprev'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.moveNext();
+	},this).attach(jindo.$('anext'),'click');
+
+	jindo.$Fn(function(evt){
+		var nIndex = parseInt(jindo.$('nIndex').value,10);
+		oFlicking.refresh(nIndex);
+
+	},this).attach(jindo.$('amove'), 'click');
+
+	/*@code title="JavaScript"
+	var oFlicking = new jindo.m.Flicking(jindo.$('mflick'),{
+		nDuration : 500,
+		nFlickThreshold : 50,
+		sAnimation :'flip',
+		bUseCircular : false,
+		bHorizontal : false
+	});
+	oFlicking.attach({
+		'afterFlicking' : function(oCustomEvt){
+			//oCustomEvt.nContentsIndex 플리킹 이후 화면에 보이는 컨텐츠 인덱스
+		}
+	});
+	code@*/
+}, nDelay); }
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

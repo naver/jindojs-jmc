@@ -1,0 +1,15 @@
+**bUseTouchPoint 옵션값**<br /><br />
+
+drag엘리먼트가 drop 엘리먼트의 위에 있는지를 (over되어 있는지) 판단하는 기준이다
+
+true 일 경우 사용자 터치의 좌표를 기준으로 over를 판단한다.
+
+false일 경우 drag엘리먼트가 drop 엘리먼트와 겹쳐져 있는지를 가지고 판단한다
+
+![](dropPoint.jpg "")
+
+위의 그림과 같은 상황이라면,
+
+__bUseTouchPoint값이 true__ 일 경우 drop 엘리먼트에서 __"over" 커스텀 이벤트는 발생하지 않는다.__
+
+__bUseTouchPoint값이 false__ 일 경우 drop 엘리먼트에서 __"over" 커스텀 이벤트는 발생한다.__

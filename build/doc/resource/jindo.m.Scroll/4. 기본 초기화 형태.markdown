@@ -1,0 +1,71 @@
+#### HTML
+
+	<div id="view"> <!-- Wrapper -->
+		<div> <!-- Scrooller -->
+			<div class="[prefix]pullDown"> <!-- pulldown -->
+			</div>
+
+			스크롤될 대상 ul or div....
+
+			<div class="[prefix]pullUp"> <!-- pullup -->
+			</div>
+		</div>
+	</div>
+
+Scroll 컴포넌트는 최상위 Wrapper과 그 자식 Scroller div로 구성되며, 실제 스크롤링 하고자 하는 대상은 Scroller div하위에 존재한다.<br><br>
+
+* Scroller는 Wrapper의 첫번째 엘리먼트가 Scroller가 된다.
+* pull down/up update 기능을 사용 시(선택)에는 Scroller 내부에 2개의 엘리먼트가 추가로 위치할수 있다.
+* 이때, 이 엘리먼트의 class는 [prefix] + pullDown 과 [prefix] + pullUp 이다.
+
+<br> 
+최상위 Wrapper는 내부적으로 overflow:hidden 속성이 설정된다.<br />
+만약, Wrapper의 position이 static일 경우는 positon:relative으로 설정된다.<br />
+Scroller는 position:absolute 속성이 설정된다.<br />
+Scroller 하위는 position:static, position:relative 속성만 사용할 수 있다.
+
+
+#### Javascript
+
+	var oScroll = new jindo.m.Scroll("view", {
+		bActivateOnload : true,
+        bUseHScroll : false,
+        bUseVScroll : true,
+        bUseMomentum : true,
+        nDeceleration : 0.0006,
+        nOffsetTop : 0,
+        nOffsetBottom : 0,
+        nHeight : 0,
+        nWidth : 0,
+        bUseBounce : true,
+        bUseHighlight : true,
+        sClassPrefix : 'scroll_',
+        bUseCss3d : jindo.m._isUseCss3d(),
+        bUseTimingFunction : jindo.m._isUseTimingFunction(),
+        bUseTranslate : true,
+        bAutoResize : false,
+        
+        /* Dynamic 옵션 */
+        sListElement : '',
+        nRatio : 1.5,
+
+        /* 스크롤바 옵션 */
+        nScrollbarHideThreshold : 0,
+        bUseScrollbar : true,
+        bUseFixedScrollbar : false,
+        sScrollbarBorder : "1px solid white",
+        sScrollbarColor : "#8e8e8e",
+        bUseScrollBarRadius : true,
+
+        /* PullDown/PullUp 옵션 */
+        bUsePullDown : false,
+        bUsePullUp : false,
+        fnPullDownIdle : null,
+        fnPullDownBeforeUpdate : null,
+        fnPullDownUpdating : null,
+        fnPullUpIdle : null,
+        fnPullUpBeforeUpdate : null,
+        fnPullUpUpdating : null
+	});
+
+최상위 Wrapper를 생성자의 첫번째 파라미터로 받는다.

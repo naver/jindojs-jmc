@@ -1,0 +1,58 @@
+#### Javascript
+
+	// 인스턴스 생성
+	var oDialog = new jindo.m.Dialog();
+
+	// 커스텀 이벤트를 attach (1) - 인스턴스가 Release될 때까지 커스텀 이벤트가 유지됩니다.
+	oDialog.attach({
+		beforeShow : function(e) {
+			// Dailog가 보여지기 전에 호출되는 함수
+		},
+		show : function(e) {
+			// Dailog가 보여진 후에 호출되는 함수
+		},
+		beforeHide : function(e) {
+			// Dailog가 숨겨지기 전에 호출되는 함수
+		},
+		hide : function(e) {
+			// Dailog가 숨겨진 후에 호출되는 함수
+		}
+	});
+
+	// Dialog의 템플릿을 설정
+	var aTemplate = [];
+	aTemplate.push('<div class="u_dsc" style="background-color:white;border:2px solid #777777;">');
+	... 생략  ...
+	aTemplate.push('</div>');
+	var sTemplate = aTemplate.join("");
+	oDialog.setTemplate(sTemplate);
+
+	// 템플릿의 {=type}부분을 "일반형"로 치환하여 Dialog 노출
+	// 커스텀 이벤트를 attach하기 (2) - 다이얼로그창이 Hide되면 커스텀 이벤트가 삭제됩니다.
+	oDialog.show({type : "일반형"}, {
+		confirm : function(e) {
+			// 확인 버튼(dialog-confirm)이 눌렸을 경우 호출되는 함수
+		},
+		cancel : function(e) {
+			// 취소 버튼(dialog-cancel)이 눌렸을 경우 호출되는 함수
+		},
+		close : function(e) {
+			// 닫기 버튼(dialog-close)이 눌렸을 경우 호출되는 함수
+		}
+	});
+
+
+* dialog 레이어는 sClassPrefix + "layer"클래스명을 가진다.
+* dialog 레이어 내부의 닫기 버튼은 sClassPrefix + "close" 클래스명을 가진다.
+* dialog 레이어의 내부의 확인 버튼은 sClassPrefix + "confirm"클래스 명을 가진다.
+* dialog 레이어 내부의 추소 버튼은 sClassPrefix + "cancel" 클래스 명을 가진다.
+___
+
+	<div class="dialog-container" style="...">
+		<div class="dialog-fog" style="..."></div>
+		<div class="dialog-layer" style="...">
+			... 생략(sTemplate) ...
+		</div>
+	<div class="dialog-clone" style="position: absolute; left: -1000px; top: -1000px; display: none; ">
+		... 생략(sTemplate) ...
+	</div>

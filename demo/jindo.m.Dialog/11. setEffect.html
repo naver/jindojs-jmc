@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>Effect 변경하기 예제</title>
+<meta name="class-lists" content="jindo.m.Dialog">
+<meta name="description" content="이펙트 다르게 적용하여 Dialog 띄우기">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_dsc{padding:50px 10px 20px;background:url(../asset/img/ico_dsc.gif) no-repeat 50% 1.43em;font-size:13px;text-align:center}
+.u_dsc h2{border:0;background:none;font-size:13px;color:#000}
+.u_dsc_q{background-image:url(../asset/img/ico_dsc_q.gif)}
+.u_dsc_n{background-image:url(../asset/img/ico_dsc_n.gif)}
+.u_dsc .uc_h{font-size:1em}
+.u_dsc .uc_st{font-weight:bold;color:#3AA6B5}
+.u_dsc .uc_st_q{font-weight:bold;color:#32a800}
+.u_dsc .uc_st_n{font-weight:bold;color:#FF6347}
+.u_dsc .uc_wn{white-space:nowrap}
+.u_dsc .uc_p{margin-top:.5em;color:#909090}
+.u_dsc .uc_area{margin-top:1.25em}
+.u_dsc .u_btn{display:inline-block;padding:.36em .8em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));font-size:12px;color:#666;white-space:nowrap}
+.u_dsc .u_btn .uc_ico_ck{display:inline-block;margin-left:-.15em;padding-left:1.4em;background:url(../asset/img/ico.gif) no-repeat 0 3px}
+.guioHeaderClose{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;background:none;cursor:pointer}
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!--// Demo 영역 -->
+
+<ul class="lst_type">
+	<li>setEffect()함수를 사용하여 Dialog의 이펙트 종류와 지속시간 한번에 변경하기</li>
+	<li>setEffectType()함수를 사용하여 Dialog의 이펙트 종류 변경하기</li>
+	<li>setEffectDuration()함수를 사용하여 Dialog의 이펙트 지속시간 변경하기</li>
+</ul>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op" style="line-height:20px">
+		<button type="button" class="btn" onclick="show(1);return false">(1) Open Dialog</button><br>
+		<p>Dialog.setEffectDuration(<span class="keyword">1000</span>);</p><br>
+
+		<button type="button" class="btn" onclick="show(2);return false">(2) Open Dialog</button><br>
+		<p>Dialog.setEffect({ type : <span class="keyword">"slide-up"</span>, duration : <span class="keyword">500</span> });</p><br>
+
+		<button type="button" class="btn" onclick="show(3);return false">(3) Open Dialog</button><br>
+		<p>Dialog.setEffectType(<span class="keyword">"slide-down"</span>);</p><br>
+
+		<button type="button" class="btn" onclick="show(4);return false">(4) Open Dialog</button><br>
+		<p>Dialog.setEffect({ type : <span class="keyword">"flip"</span>, duration : <span class="keyword">300</span> });</p>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<div class="lm">
+	<ul class="lst_type">
+	<li>sEffectType : <span class="keyword">"pop"</span> <span class="red">(default)</span>
+		<p>Dialog가 "pop"효과를 내며 나타나고, 사라짐</p>
+	</li>
+	<li>sEffectType : <span class="keyword">"slide-up"</span>
+		<p>Dialog가 "slide-up"효과를 내며 나타남</p>
+		<p>Dialog가 "slide-down"효과를 내며 사라짐</p>
+	</li>
+	<li>sEffectType : <span class="keyword">"slide-down"</span>
+		<p>Dialog가 "slide-down"효과를 내며 나타남</p>
+		<p>Dialog가 "slide-up"효과를 내며 사라짐</p>
+	</li>
+	<li>sEffectType : <span class="keyword">"flip"</span>
+		<p>Dialog가 "flip"효과를 내며 나타고, 사라짐</p>
+		<p>iOS전용</p>
+	</li>
+	<li>nEffectDuration : <span class="keyword">500</span> <span class="red">(default)</span>
+		<p>- ms단위 정수 (최소값 : 100)</p>
+	</li>
+	</ul>
+</div>
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Dialog.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oDialog = null;
+var aTemplate = [];
+aTemplate.push('<div class="u_dsc u_dsc_q" style="background-color:#fff;{=sBorder}">');
+aTemplate.push('<h2 class="uc_h">{=sOptions}"</h2>');
+aTemplate.push('<div class="uc_area">');
+aTemplate.push('<a href="#" class="u_btn dialog-confirm" onclick="return false">{=sDescription}</a>');
+aTemplate.push('</div>');
+aTemplate.push('</div>');
+var sTemplate = aTemplate.join("");
+
+oDialog = new jindo.m.Dialog();
+oDialog.setTemplate(sTemplate);
+
+function show(sType) {
+	if(sType == 1) {
+		oDialog.setEffectDuration(1000);
+		oDialog.setPosition("center");
+		oDialog.show({
+			sBorder : "border:2px solid #777777;",
+			sOptions : "Dialog.setEffectDuration(<strong class='uc_st_q'>1000</strong>);",
+			sDescription : "이전에 적용된 효과가 그대로 유지되며,<br/><strong class='uc_st_q'>1</strong>초동안 나타납니다."
+		});
+	} else if(sType == 2) {
+		oDialog.setEffect({ type : "slide-up", duration : 500});
+		oDialog.setPosition("bottom");
+		oDialog.show({
+			sBorder : "border:2px solid #777777;border-bottom:none;",
+			sOptions : "Dialog.setEffect(<strong class='uc_st_q'>'slide-up'</strong>, <strong class='uc_st_q'>500</strong>);",
+			sDescription : "<strong class='uc_st_q'>0.5</strong>초동안<br/><strong class='uc_st_q'>'slide-up'</strong>효과로 나타납니다."
+		});
+	} else if(sType == 3) {
+		oDialog.setEffectType("slide-down");
+		oDialog.setPosition("top");
+		oDialog.show({
+			sBorder : "border:2px solid #777777;border-top:none;",
+			sOptions : "Dialog.setEffectType(<strong class='uc_st_q'>'slide-down'</strong>);",
+			sDescription : "이전에 적용된 시간이 그대로 유지되며,<br/><strong class='uc_st_q'>'slide-down'</strong>효과로 나타납니다."
+		});
+	} else if(sType == 4) {
+		oDialog.setEffect({ type : "flip", duration : 300});
+		oDialog.setPosition("all");
+		oDialog.show({
+			sBorder : "border-top:none;",
+			sOptions : "Dialog.setEffect(<strong class='uc_st_q'>'flip'</strong>, <strong class='uc_st_q'>300</strong>);",
+			sDescription : "<strong class='uc_st_q'>0.3</strong>초동안<br/><strong class='uc_st_q'>'flip'</strong>효과로 나타납니다."
+		});
+	}
+}
+
+
+/*@code title="JavaScript"
+var oDialog = new jindo.m.Dialog({ sPosition : "top" });
+
+var sTemplate = "<div>...생략...</div>";
+oDialog.setTemplate(sTemplate);
+
+// set [sEffectType]option & [nEffectDuration]option
+oDialog.setEffect({
+	type : "slide-up", 		//"slide-up"|"slide-down"|"pop"|"flip"
+	duration : 500			//100~ (ms)
+});
+
+// set only [sEffectType]option
+oDialog.setEffectType("flip");
+
+// set only [nEffectDuration]option
+oDialog.setEffectDuration(1000);
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

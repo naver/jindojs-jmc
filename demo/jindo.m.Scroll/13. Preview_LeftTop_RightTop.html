@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>좌측메뉴 상단 고정 / 우측메뉴 상단 고정</title>
+<meta name="class-lists" content="jindo.m.Scroll,jindo.m.SlideReveal">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+body{margin:0}
+/*@code title="CSS"*/
+.menubtn{
+    position:absolute;
+    top:5px;width:40px;
+    border-radius:9em;
+    background:#6e94c9;
+    line-height:20px;color:#FFF;
+    cursor:pointer;text-align:center
+}
+.menubtn.left{left:8px}
+.menubtn.right{right:8px}
+
+.rs-nav,.rs-right{display:none}
+.rs-contents{
+    background-color:#FFF;
+    box-shadow:0 0 20px rgba(0,0,0,.6);/* 안쪽 그림자 크기, 색상 수정 */
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,.6)/* 안쪽 그림자 크기, 색상 수정 */
+}
+.rs-contents h2{height:30px;background:url(../asset/img/bg.png) repeat-x 0 -85px;font-size:.93em;line-height:30px;color:#FFF;text-align:center}
+.rs-contents .title{background:#fff}
+.title{position:relative;width:100%;padding:10px 0;background:#777;text-align:center;white-space:nowrap;text-overflow:ellipsis}
+/*code@*/
+
+.demo-body{margin:0 !important;padding:0 !important;border:0 !important}
+</style>
+<script type="text/javascript">
+    var sAgent =  navigator.userAgent;
+    if (sAgent.indexOf("WebKit") < 0) {
+        window.onerror = function(){
+            return true;
+        }
+    }
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+     data-title="Jindo Mobile Component"
+     data-subtitle="=document.title"
+     data-backbutton="true"
+     data-viewsource="true"
+     data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+    <p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!--@code title="HTML"-->
+<div class="rs-body">
+
+    <div class="rs-wrap rs2-wrap" style="overflow:hidden !important;">
+        <div class="rs-nav" style="width:100%;position:absolute;left:0px;z-index:3000;display:none;">
+            <!-- header -->
+            <div class="nav_title title" position="fixed">
+                헤더 영역 (Left)
+            </div>
+            <!-- //header -->
+            <!-- content(필수) -->
+            <div class="celeb_wrap" id="celeblist_scroll">
+                <div style="width:100%;">
+                    <div class="rs-c33">
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                    </div>
+                    <div class="rs-footer title">
+                        풋터 영역입니다.
+                </div>
+                </div>
+            </div>
+            <!-- //content(필수) -->
+
+            <!-- footer -->
+
+            <!-- //footer -->
+        </div>
+
+
+
+        <div class="rs2-nav" style="width:100%;position:absolute;left:0px;z-index:3000;display:none;">
+            <!-- header -->
+            <div class="nav_title2 title" position="fixed">
+                헤더 영역 (Right)
+            </div>
+            <!-- //header -->
+            <!-- content(필수) -->
+            <div class="celeb_wrap" id="celeblist_scroll2">
+                <div style="width:100%;">
+                    <div class="rs-nnn">
+                        컨텐츠 영역입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+                    </div>
+                    <div class="rs-footer title" position="fixed">
+                            풋터 영역입니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rs-contents rs2-contents" style="">
+            <h2>PageLayoutUI를 사용하지 않는 경우</h2>
+            <div class="title">
+                헤더 영역 (Main)
+                <span class="menubtn left" onclick="oReveal.toggle()">메뉴</span>
+                <span class="menubtn right" onclick="oReveal2.toggle()">메뉴</span>
+            </div>
+            <p>
+                PageLayoutUI를 사용하지 않고, 사용자가 직접 마크업을 작성하여 구성할 수 있습니다.
+            </p>
+        </div>
+
+
+        <!-- //content(필수) -->
+
+        <!-- footer -->
+        <!-- //footer -->
+    </div>
+    </div>
+</div>
+<!--code@-->
+
+<!-- // Demo 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.RevealCommon.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.SlideReveal.js"></script>
+
+<!-- scroll  컴포넌트를 위한 js -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+
+
+<!-- // jindo 프레임웍 import -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+    // var oRevealSidebarUI = new jindo.m.RevealSidebarUI().attach({
+        // "beforeSlide" : function(we) {
+            // console.log(we.sType, we.sStatus);
+        // },
+        // "slide" : function(we) {
+            // console.log(we.sType, we.sStatus);
+        // },
+        // "beforeRestore" : function(we) {
+            // console.log(we.sType, we.sStatus);
+        // },
+        // "restore" : function(we) {
+            // console.log(we.sType, we.sStatus);
+        // }
+    // });
+    var htSize = jindo.$Document().clientSize();
+    var oReveal , oReveal2, oScroll2, oScroll , oScrollHeight = null;
+    var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+    window.onload = function(){
+        jindo.$Element(jindo.$$.getSingle(".rs-contents")).height(htSize.height);
+        setTimeout(function(){
+            oReveal = new jindo.m.SlideReveal({
+                "sClassPrefix" : "rs-",
+                "nDuration" : 300,
+                "nMargin" : 50,
+                "sDirection" : "right"
+            }).attach({
+                "beforeShow" : function(oCustomEvent){
+                      jindo.$Element(jindo.$$.getSingle(".rs-nav")).show();
+                        if(!oScroll){
+                            oScrollHeight = parseInt(jindo.$Element(jindo.$$.getSingle(".nav_title")).height());
+                            oScroll = new jindo.m.Scroll("celeblist_scroll", {
+                                bUseHScroll : false,
+                                bUseVScroll : true,
+                                bUseScrollbar : false,
+                                nHeight : this._htSize.height - oScrollHeight
+                            });
+                        }
+                    },
+                    "show" : function(oCustomEvent){
+                        // 화면에 보여지고 난 이후 wraper 영역 (overflow:hidden) 처리를 위한 높이값 재정의 필요.
+                        if(oScroll){
+                            oScroll.height(this._htSize.height - oScrollHeight);
+                        }
+                    },
+                    "hide" : function(oCustomEvent){
+                    },
+                    "rotate" : function(){
+                        // 화면이 회전하고 난 이후 wraper 영역 (overflow:hidden) 처리를 위한 높이값 재정의 필요.
+                        if(oScroll){
+                            oScroll.height(this._htSize.height - oScrollHeight);
+                        }
+                    }
+            });
+
+
+            oReveal2 = new jindo.m.SlideReveal({
+                "sClassPrefix" : "rs2-",
+                "nDuration" : 300,
+                "nMargin" : 50,
+                "sDirection" : "left"
+            }).attach({
+                "beforeShow" : function(oCustomEvent){
+                      jindo.$Element(jindo.$$.getSingle(".rs2-nav")).show();
+                        if(!oScroll2){
+                            oScrollHeight = parseInt(jindo.$Element(jindo.$$.getSingle(".nav_title2")).height());
+                            oScroll2 = new jindo.m.Scroll("celeblist_scroll2", {
+                                bUseHScroll : false,
+                                bUseVScroll : true,
+                                bUseScrollbar : false,
+                                nHeight : this._htSize.height - oScrollHeight
+                            });
+                        }
+                    },
+                    "show" : function(oCustomEvent){
+                        // 화면에 보여지고 난 이후 wraper 영역 (overflow:hidden) 처리를 위한 높이값 재정의 필요.
+                        if(oScroll2){
+                            oScroll2.height(this._htSize.height - oScrollHeight);
+                        }
+                    },
+                    "hide" : function(oCustomEvent){
+                    },
+                    "rotate" : function(){
+                        // 화면이 회전하고 난 이후 wraper 영역 (overflow:hidden) 처리를 위한 높이값 재정의 필요.
+                        if(oScroll2){
+                        }
+                    }
+            });
+        }, nDelay);
+    }
+
+
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+Accordion 컴포넌트는 header영역을 클릭시 해당 block을 확장(Expand)/축소(Collapse)하는 형태의 동작을 수행한다.<br />  
+Accordion 컴포넌트는 sClassPrefix+"block"으로 정의된 엘리먼트의 overflow속성을 hidden으로 만든 후, 사이즈를 조절하여 애니메이션 효과를 내는데 이 효과는 옵션을 통해 다양하게 지정할 수 있다.
+
+![](accordion2.jpg "")
+
+[컨텐츠 구조]
+
+#### block 영역
+header와 body를 감싸는 영역이다.
+
+#### head 영역
+각 block을 컨트롤 하는 handler 역할을 하는 엘리먼트이다.
+
+#### body 영역
+확장(Expand) / 축소(Collapse)되는 내용에 해당하는 엘리먼트이다.
+
+#### Note
+
+* 1개의 block은 1개의 header와 1개의 body로 구성되어야하며, Accordion에는 1개 이상의 block이 있어야한다.

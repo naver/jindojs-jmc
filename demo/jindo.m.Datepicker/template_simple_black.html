@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.Datepicker Design Template</title>
+<meta name="class-lists" content="jindo.m.Datepicker">
+<meta name="description" content="디자인형 Calendar - Black Type">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/* Datepicker Input CSS */
+.date_input {
+	height:23px;
+	width:80px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	border: 1px solid #b3b3b3;
+	color: #333;
+}
+
+
+/* Calendar CSS */
+/* Calendar에서 사용 하는 링크 스타일 CSS */
+.calendar-base a,
+.calendar-base a:visited,
+.calendar-base a:active{text-decoration:none;}
+.calendar-base a:hover{text-decoration:none;}
+
+/* Calendar Base 스타일 CSS */
+.calendar-base {
+	margin-top:2px;
+	width:210px; 									/* Calendar 가로 너비 설정 */
+	border :1px solid #373737;						/* Calendar 외곽 라인 스타일 설정 */
+	-webkit-box-shadow: 2px 2px 3px #b8b8b8;	  	/* Calendar의 바깥쪽 그림자 크기, 색상 수정 */
+	display:none;
+}
+
+/* Calendar Control 영역 스타일 CSS */
+.calendar-base div{
+	position: relative;
+	width:100%;
+	text-align: center;
+	line-height:35px;								/* Calendar Control 영역 높이값 */
+	background:#434343;		 					/* 그라데이션 적용이 안될때 사용될 배경색 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#434343), to(#373737));	/* Calendar Control 영역의 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	-webkit-box-shadow: 1px 1px 0px #696969 inset;	/* Calendar Control 영역의 안쪽 그림자 크기, 색상 수정 */
+}
+
+/* Calendar Control 영역 - 년/월 텍스트 부분 스타일 CSS */
+.calendar-base div .calendar-title{
+	float:none !important;
+	display: inline-block;
+	width:80px;
+	font-family: Helvetica;							/* 년/월 텍스트 폰트 설정 */
+	font-size: 1.2em;								/* 년/월 텍스트 폰트 사이즈 설정 */
+	color: #e0e0e0;									/* 년/월 텍스트 폰트 색상 설정 */
+	font-weight: bold;								/* 년/월 텍스트 폰트 굵기 설정 */
+}
+
+/* Calendar Control 영역 - 버튼 공통 스타일 CSS */
+.calendar-btn {
+	display: inline-block;
+	width:22px;										/* 버튼 너비값 */
+	font-size: .7em;								/* 버튼 텍스트 폰트 사이즈 설정 */
+	color: #e0e0e0;									/* 버튼 텍스트 폰트 색상 설정 */
+}
+
+/* Calendar Control 영역 - 이전년도 버튼 스타일 시트*/
+.calendar-base div .calendar-btn-prev-year{}
+/* Calendar Control 영역 - 이전달 버튼 스타일 시트*/
+.calendar-base div .calendar-btn-prev-mon{}
+/* Calendar Control 영역 - 다음달 버튼 스타일 시트*/
+.calendar-base div .calendar-btn-next-mon{}
+/* Calendar Control 영역 - 다음년도 버튼 스타일 시트*/
+.calendar-base div .calendar-btn-next-year{}
+
+/* Calendar 날짜 테이블 영역 스타일 CSS */
+.calendar-base table{width:100%;background:#ffffff;text-align:center;}
+.calendar-base table *{font-family:tahoma !important;font-size: .95em;}
+
+/* Calendar 요일 Index 스타일 CSS */
+.calendar-base table th{
+	font-size: .9em;
+	background:#f7f7f7;
+	border-bottom:1px solid #bbbbbb;
+	width:30px;										/* 각 요일의 너비값 설정 */
+	height:20px;									/* 요일영역 높이값 설정 */
+	color: #666666;									/* 요일 텍스트 폰트 색상 설정 */
+}
+
+/* Calendar 날짜 공통 스타일 CSS */
+.calendar-base table td{
+	text-align:center;
+	border-right:1px solid #bbbbbb;
+	border-bottom:1px solid #bbbbbb;
+	width:29px;
+	height:29px;
+	background:#ededed;								/* 그라데이션 적용이 안될때 사용될 배경색 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#dedede));	/* 날짜 영역의 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	-webkit-box-shadow: 1px 1px 0px #f9f9f9 inset;	/* 날짜 영역의 의 안쪽 그림자 크기, 색상 수정 */
+}
+.calendar-base table td a{
+	display : inline-block;
+	width:27px;
+	line-height:27px;
+	color:#4a4a4a;									/* 날짜 텍스트 폰트 색상 설정 */
+}
+
+/* Calendar 선택된 날짜 스타일 시트 CSS */
+.calendar-base table .calendar-selected{
+	background:#6eafbf;		 					/* 그라데이션 적용이 안될때 사용될 배경색 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#6eafbf), to(#569eb1));	/* 선택된 날짜 영역의 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	-webkit-box-shadow: 1px 1px 0px #6c98a4 inset;	/* 날짜 영역의 의 안쪽 그림자 크기, 색상 수정 */
+}
+.calendar-base table .calendar-selected a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#e0e0e0;									/* 선택된 날짜 텍스트 폰트 색상 설정 */
+	text-shadow: 1px 1px 2px #4d7a85;				/* 선택된 날짜 텍스트 그림자 크기, 색상 수정 */
+}
+
+/* Calendar 일요일, 휴일 날짜 스타일 CSS */
+.calendar-base table .calendar-sun, .calendar-base table .calendar-sun a{color:#810101 !important;} /* 일요일, 휴일 날짜 텍스트 폰트 색상 설정 */
+
+/* Calendar 토요일 날짜 스타일 CSS */
+.calendar-base table .calendar-sat, .calendar-base table .calendar-sat a{color:#34626e; !important;} /* 토요일 날짜 텍스트 폰트 색상 설정 */
+
+/* Calendar 오늘 날짜 스타일 CSS */
+.calendar-base table .calendar-today{
+	background:#9c9c9c;								/* 그라데이션 적용이 안될때 사용될 배경색 */
+	-webkit-box-shadow: 1px 1px 0px #b9b9b9 inset;	/* 날짜 영역의 의 안쪽 그림자 크기, 색상 수정 */
+}
+.calendar-base table .calendar-today a{
+	font-weight:bold;
+	text-decoration:none;
+	color:#ffffff;									/* 오늘 날짜 텍스트 폰트 색상 설정 */
+	text-shadow: 1px 1px 2px #373737;				/* 오늘 날짜 텍스트 그림자 크기, 색상 수정 */
+}
+
+/* Calendar 현재 달의 날짜외의 이전달 다음 달의 날짜 스타일 CSS */
+.calendar-base table .calendar-prev-mon, .calendar-base table .calendar-prev-mon a,
+.calendar-base table .calendar-next-mon, .calendar-base table .calendar-next-mon a
+{background:#ffffff !important;color:#bdbdbd !important;}
+
+/* Calendar 선택 하지 못하는 날짜 스타일 CSS */
+.calendar-base table .calendar-noselect {background:none !important;color:#d1d1d1 !important;}
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<input type="text" id="datepicker" class="date_input" />
+
+<div id="jmc_calt" class="calendar-base">
+	<div>
+		<!-- 이전 년도 버튼 -->
+		<a href="#" class="calendar-btn calendar-btn-prev-year">◀◀</a>
+		<!-- 이전 달 버튼 -->
+		<a href="#" class="calendar-btn calendar-btn-prev-mon">◀</a>
+		<!-- 년도 월 표시 영역 -->
+		<span class="calendar-title"></span>
+		<!-- 다음달 버튼 -->
+		<a href="#" class="calendar-btn calendar-btn-next-mon">▶</a>
+		<!-- 다음 년도 버튼 -->
+		<a href="#" class="calendar-btn calendar-btn-next-year">▶▶</a>
+	</div>
+	<!-- Calendar 날짜영역 -->
+	<table cellspacing="0" cellpadding="0">
+		<thead>
+			<!-- 요일 표시 헤더 영역 -->
+			<tr>
+				<th>SU</th>
+				<th>MO</th>
+				<th>TU</th>
+				<th>WE</th>
+				<th>TH</th>
+				<th>FR</th>
+				<th>SA</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 날짜 출력 템플릿 영역. -->
+			<tr class="calendar-week">
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+				<td><a href="#" class="calendar-date"></a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- jindo 프레임웍 import -->
+<!--
+	JMC(jindo mobile component) import
+	아래 파일들은 선택다운로드(http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html)에서
+	압축다운로드된 한개의 파일(jindo_mobile_component.js)로 대체 가능하다.
+-->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Calendar.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Datepicker.js" charset="utf-8"></script>
+<!-- // jindo 프레임웍 import -->
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+// Datepicker생성.
+var oDatepicker = new jindo.m.Datepicker("jmc_calt",{bUseEffect : true, bAutoHide: true});
+oDatepicker.addDatePickerSet("datepicker");
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

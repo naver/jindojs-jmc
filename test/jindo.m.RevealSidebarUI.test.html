@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+<style>
+/* Common Font*/
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif}
+
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif;font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica}
+body{position:relative;background-color:#f4f4f4;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+button {padding:4px 5px;border:1px solid #bababa;background-color:#f1f1f1;color:#606060;font-size:1em}
+
+.menubtn {
+    color : white;  /* 글자색상 */
+    background: #6e94c9;    /* 화살표 배경색 */
+    border-radius : 9em;
+    line-height : 20px;
+    width : 40px;
+}
+
+.rs-left {
+    display : none;
+}
+.rs-main {
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .6); /* 안쪽 그림자 크기, 색상 수정 */
+}
+.rs-right {
+    display : none;
+}
+
+.rs-left .rs-title {
+    text-align:center;margin:0;width:100%;padding:10px 0;text-overflow:ellipsis;white-space:nowrap;
+    background : #777;
+}
+
+.rs-right .rs-title {
+    text-align:center;margin:0;width:100%;padding:10px 0;text-overflow:ellipsis;white-space:nowrap;
+    background : #777;
+}
+
+</style>
+</head>
+<body>
+<div class="rs-body">
+<div class="rs-left">
+    <!-- header -->
+    <div class="rs-header rs-title" position="fixed">
+        헤더 영역 (Left)
+    </div>
+    <!-- //header -->
+    <!-- content(필수) -->
+    <div class="rs-content">
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+    </div>
+    <!-- //content(필수) -->
+
+    <!-- footer -->
+    <div class="rs-footer rs-title" position="fixed">
+            풋터 영역입니다.
+    </div>
+    <!-- //footer -->
+</div>
+
+<div class="rs-main">
+    <div>
+        <h2>PageLayoutUI를 사용하지 않는 경우</h2>
+         <table  style="width:100%">
+            <tr>
+                <td style="width:50px;"><center><div class="menubtn" onclick="oRevealSidebarUI.toggleSlide()">메뉴</div></center></td>
+                <td style="text-align:center">헤더 영역 (Main)</td>
+                <td style="width:50px;"><center><div class="menubtn" onclick="oRevealSidebarUI.toggleSlide(true)">메뉴</div></center></td>
+            </tr>
+        </table><br/>
+        <div>
+            <div>
+			 <h1 id="qunit-header">jindo.m.RevealSidebarUI Test</h1>
+			 <h2 id="qunit-banner"></h2>
+			 <div id="qunit-testrunner-toolbar"></div>
+			 <h2 id="qunit-userAgent"></h2>
+			 <ol id="qunit-tests"></ol>
+			 <div id="qunit-fixture">test markup, will be hidden</div>
+			</div>
+        </div>
+    </div>
+</div>
+<div class="rs-right">
+    <!-- header -->
+    <div class="rs-header rs-title" position="fixed" >
+        헤더 영역 (Right)
+    </div>
+    <!-- //header -->
+    <!-- content(필수) -->
+    <div class="rs-content">
+        컨텐츠 영역입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+        컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+    </div>
+    <!-- //content(필수) -->
+
+    <!-- footer -->
+    <div class="rs-footer rs-title" position="fixed">
+            풋터 영역입니다.
+    </div>
+    <!-- //footer -->
+</div>
+</div>
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script src="../src/jindo.m.CoreScroll.js" charset="uft-8"></script>
+<script src="../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script src="../src/jindo.m.Effect.js"></script>
+<script src="../src/jindo.m.Morph.js"></script>
+<script src="../src/jindo.m.Transition.js" charset="uft-8"></script>
+<script src="../src/jindo.m.RevealSidebarUI.js" charset="uft-8"></script>
+<script src="../src/jindo.m.RevealCommon.js"></script>
+<script src="../src/jindo.m.SlideReveal.js"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.RevealSidebarUI.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

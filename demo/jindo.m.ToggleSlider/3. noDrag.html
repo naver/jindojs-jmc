@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>드래그 안되는 예제</title>
+<meta name="class-lists" content="jindo.m.ToggleSlider">
+<meta name="description" content="[on]이 왼쪽영역에 있는 경우">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+	.tslider-wrapper{position:relative;margin:0;padding:10px 0 0}
+	.tslider-track{overflow:hidden;position:absolute;top:0;width:100%;height:40px;border-radius:1em;background:#ccc}
+	.tslider-track .tslider-thumb{position:absolute;z-index:1;width:50%;height:40px;border-radius:1em;background:#85bae4;cursor:pointer}
+	.tslider-track .tslider_aron{display:block;position:absolute;top:0;left:0;width:50%;height:30px;padding:10px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:1.5em;color:#fff;text-align:center;cursor:pointer}
+	.tslider-track .tslider_aroff{display:block;position:absolute;top:0;left:50%;width:50%;height:30px;padding:10px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:1.5em;color:#fff;text-align:center;cursor:pointer}
+
+/*@code title="CSS"*/
+	.tslider-wrapper{position:relative;margin:0;padding:10px 0 0}
+	.tslider-track{overflow:hidden;position:absolute;top:0;width:100%;height:40px;border-radius:1em;background:#ccc}
+	.tslider-track .tslider-thumb{position:absolute;z-index:1;width:50%;height:40px;border-radius:1em;background:#85bae4;cursor:pointer}
+	.tslider-track .tslider_aron{display:block;position:absolute;top:0;left:0;width:50%;height:30px;padding:10px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:1.5em;color:#fff;text-align:center;cursor:pointer}
+	.tslider-track .tslider_aroff{display:block;position:absolute;top:0;left:50%;width:50%;height:30px;padding:10px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:1.5em;color:#fff;text-align:center;cursor:pointer}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo" style="position:relative">
+
+	<div class="tslider-wrapper" style="width:150px;" id="toggleSlider1">
+		<form action="#">
+			<fieldset>
+				<input type="radio" name="tslider-radio" id="on" value="on" class="i_rad" disabled><label for="on">On</label>
+				<input type="radio" name="tslider-radio" id="off" value="off" class="i_rad" disabled><label for="off">Off</label>
+			</fieldset>
+		</form>
+		<!-- [D] 버튼의 상태에 따라 버튼의 배경색상 변경 u_bg_on, u_bg_off -->
+		<div class="tslider-track">
+			<!-- [D] 버튼의 상태에 따라 버튼의 위치 변경 u_bt_on, u_bt_off -->
+			<div class="tslider-thumb"></div>
+			<span class="tslider_aron">On</span>
+			<span class="tslider_aroff">Off</span>
+		</div>
+	</div>
+
+</div>
+
+<div class="lm">
+	<p>bDrag 옵션을 false 설정하여 드래그로 선택할 수 없다</p>
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<button type="button" id='btntoggle' class="btn">Toggle</button>
+		<button type="button" id='btnon' class="btn">On</button>
+		<button type="button" id='btnoff' class="btn">Off</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+	// 버튼의 전체 너비 지정
+	<div class="tslider-wrapper" style="width:150px;" id="toggleSlider1">
+		<form action="#">
+			<fieldset>
+				<input type="radio" name="tslider-radio" id="on" value="on" class="i_rad" disabled><label for="on">On</label>
+				<input type="radio" name="tslider-radio" id="off" value="off" class="i_rad" disabled><label for="off">Off</label>
+			</fieldset>
+		</form>
+		<div class="tslider-track">
+			<div class="tslider-thumb"></div>
+			<span class="tslider_aron">On</span>
+			<span class="tslider_aroff">Off</span>
+		</div>
+	</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.ToggleSlider.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var el = jindo.$('toggleSlider1');
+
+var oToggleSlider = new jindo.m.ToggleSlider(el,{bUseDrag: false}).attach({
+	'beforeChange' : function(oCustomEvt){
+		addConsole('[before]  →  '+(oCustomEvt.bOn? 'on' : 'off') );
+	},
+	'change' : function(oCustomEvt){
+		addConsole('[change]  →  ' +(oCustomEvt.bOn? 'on' : 'off') );
+	}
+});
+
+/* toggle 버튼 클릭 처리 */
+jindo.$Fn(function(evt){
+	evt.stop();
+	oToggleSlider.toggle();
+
+},this).attach(jindo.$('btntoggle'),'click');
+
+/* on 버튼 클릭 처리 */
+jindo.$Fn(function(evt){
+	evt.stop();
+	oToggleSlider.on();
+},this).attach(jindo.$('btnon'),'click');
+
+/* off 버튼 클릭 처리 */
+jindo.$Fn(function(evt){
+	evt.stop();
+	oToggleSlider.off();
+},this).attach(jindo.$('btnoff'),'click');
+
+/*@code title="JavaScript"*/
+	var oToggleSlider = new jindo.m.ToggleSlider('toggleSlider1',{
+		bUseDrag : false  //드래그 지원 여부
+	});
+
+	oToggleSlider.attach({
+		'beforeChange' : function(oCustomEvt){
+			//변경전
+		},
+		'change' : function(oCustomEvt){
+			//변경후
+		}
+	});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

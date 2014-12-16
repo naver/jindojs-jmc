@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>1단 메뉴 활용 예제</title>
+<meta name="class-lists" content="jindo.m.LayerManager">
+<meta name="description" content="1단 메뉴 활용 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_menu{position:relative}
+.u_menu_btn{display:block;position:relative;width:60px;padding:6px 20px 6px 10px;border:1px solid #49c;background:#7de}
+.u_menu_ico{display:block;overflow:hidden;position:absolute;top:13px;right:10px;width:1px;height:1px;padding:2px 4px 0 0;background:url(../asset/img/ico_arrow.png) no-repeat 0 0}
+.u_menu_on .u_menu_ico{background-position:0 -5px}
+.u_menu_l{display:none;position:absolute;left:0;margin-top:-1px;border:1px solid #49c;background:#fff}
+.u_menu_li{border-bottom:1px solid #49c}
+.u_menu_li:last-child{border-bottom:none}
+.u_menu_la{display:block;padding:6px 10px}
+.u_menu_on .u_menu_l{display:block}
+.u_menu_ico{_font-size:0}
+.u_menu_li{_zoom:1}
+.u_menu2{position:relative;margin:0 0 0 10px}
+.u_menu2_btn{display:block;position:relative;width:69px;padding:6px 20px 6px 10px;border:1px solid #49c;background:#7de}
+.u_menu2_ico{display:block;overflow:hidden;position:absolute;top:13px;right:10px;width:1px;height:1px;padding:2px 4px 0 0;background:url(../asset/img/ico_arrow.png) no-repeat 0 0}
+.u_menu2_on .u_menu2_ico{background-position:0 -5px}
+.u_menu2_l{display:none;position:absolute;left:0;width:300px;margin-top:-1px;border-top:1px solid #49c;border-left:1px solid #49c;background:#fff url(../asset/img/bg_menu2_l.png) repeat 0 0}
+.u_menu2_l:after{display:block;clear:both;content:''}
+.u_menu2_li{float:left;width:100px;height:30px;line-height:30px}
+.u_menu2_la{display:block;overflow:hidden;padding:0 10px;white-space:nowrap;text-overflow:ellipsis}
+.u_menu2_on .u_menu2_l{display:block}
+.u_menu2_ico{_font-size:0}
+.u_menu2_li{_zoom:1}
+.u_menu2_la{_width:100%;_padding:0;_text-indent:10px}
+.guideline{width:299px;padding:10px 10px 10px 9px;border:1px dashed #bcbcbc;background:#fff;font-size:.93em;color:#222;letter-spacing:-1px;text-align:justify;text-align:left}
+.u_wrt{display:table;width:100%;margin:.43em 0}
+.u_wrt_h,.u_wrt_ct{display:table-cell;vertical-align:middle}
+.u_wrt_h{width:4.5em}
+.u_wrt_txt{padding:0 .4em;text-align:center}
+.u_wrt_itw{display:block;padding:.1em .3em;border:1px solid #b0b0b0;border-radius:4px;background:#fff;-webkit-box-shadow:inset 0 1px #eee}
+.u_wrt_it{width:100%;height:1.6em;border:0;-webkit-border-radius:0;-webkit-appearance:none}
+.u_wrt_sel{width:100%;height:1.86em}
+.u_wrt .uc_vh{visibility:hidden}
+.u_wrt{*display:block}
+.u_wrt_h,.u_wrt_ct{*display:inline;*float:left}
+.u_wrt_it{*width:10em}
+.u_wrt_sel{*width:5em}
+
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo" style="height:200px">
+
+	<div class="u_menu" style="float:left">
+		<div class="u_wrt">
+			<a href="javascript:void(0);" class="u_menu_btn">메뉴 <span class="u_menu_ico">접기</span></a>
+		</div>
+		<ul class="u_menu_l" style="display:none">
+			<li class="u_menu_li"><a href="javascript:void(0);" class="u_menu_la">드라마</a></li>
+			<li class="u_menu_li"><a href="javascript:void(0);" class="u_menu_la">영화</a></li>
+			<li class="u_menu_li"><a href="javascript:void(0);" class="u_menu_la">연예/오락</a></li>
+			<li class="u_menu_li"><a href="javascript:void(0);" class="u_menu_la">스포츠/게임</a></li>
+			<li class="u_menu_li"><a href="javascript:void(0);" class="u_menu_la">어린이</a></li>
+		</ul>
+	</div>
+
+	<div class="u_menu2" style="float:left">
+		<div class="u_wrt">
+			<a href="javascript:void(0);" class="u_menu2_btn">메뉴 <span class="u_menu2_ico"></span></a>
+		</div>
+		<ul class="u_menu2_l" style="display:none">
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">드라마</a></li>
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">영화</a></li>
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">연예/오락</a></li>
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">스포츠/게임</a></li>
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">어린이</a></li>
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">뉴스/경제</a></li>
+			<li class="u_menu2_li"><a href="javascript:void(0);" class="u_menu2_la">일이삼사오육칠팔구십</a></li>
+		</ul>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+// 세로 메뉴 ------------------------------------------------------------------------------- 시작 //
+var welVMenuDiv = jindo.$Element(jindo.$$.getSingle(".u_menu"));
+var elVMenuBtn = jindo.$$.getSingle(".u_menu_btn");
+var elVMenuList = jindo.$$.getSingle(".u_menu_l");
+
+var fnVMenuBtn = jindo.$Fn(function(we) {
+	oLmVMenu.toggle();
+}, this).attach(elVMenuBtn, "click");
+
+var oLmVMenu = new jindo.m.LayerManager(elVMenuList)
+	.attach("beforeShow",function(we) {
+		welVMenuDiv.addClass('u_menu_on');
+	})
+	.attach("hide",function(we) {
+		welVMenuDiv.removeClass('u_menu_on');
+
+		// TextNode 선택시 상위 엘리먼트로 이벤트 전달
+		if (we.elTarget) {
+			we.elTarget = we.elTarget.nodeType == 3 ? we.elTarget.parentNode : we.elTarget;
+			var welTarget = jindo.$Element(we.elTarget);
+			if (welTarget.hasClass("u_menu_li") || welTarget.hasClass("u_menu_la")) {
+				elVMenuBtn.innerHTML = we.elTarget.innerHTML + "<span class='u_menu_ico'></span>";
+			}
+		}
+	}).link(elVMenuBtn);
+// 세로 메뉴 -------------------------------------------------------------------------------  끝 //
+
+// 가로 메뉴 ------------------------------------------------------------------------------- 시작 //
+var welHMenuDiv = jindo.$Element(jindo.$$.getSingle(".u_menu2"));
+var elHMenuBtn = jindo.$$.getSingle(".u_menu2_btn");
+var elHMenuList = jindo.$$.getSingle(".u_menu2_l");
+
+var fnHMenuBtn = jindo.$Fn(function(we) {
+	oLmHMenu.toggle();
+}, this).attach(elHMenuBtn, "click");
+
+var oLmHMenu = new jindo.m.LayerManager(elHMenuList)
+	.attach("beforeShow",function(we) {
+		welHMenuDiv.addClass('u_menu2_on');
+	})
+	.attach("hide",function(we) {
+		welHMenuDiv.removeClass('u_menu2_on');
+
+		// TextNode 선택시 상위 엘리먼트로 이벤트 전달
+		if(we.elTarget ) {
+			we.elTarget = we.elTarget.nodeType == 3 ? we.elTarget.parentNode : we.elTarget;
+			var welTarget = jindo.$Element(we.elTarget);
+			if(welTarget.hasClass("u_menu2_li") || welTarget.hasClass("u_menu2_la")) {
+				elHMenuBtn.innerHTML = we.elTarget.innerHTML + "<span class='u_menu2_ico'></span>";
+			}
+		}
+	}).link(elHMenuBtn);
+// 가로 메뉴 -------------------------------------------------------------------------------  끝 //
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

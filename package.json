@@ -1,0 +1,36 @@
+{
+	"name": "jindo-mobile-component",
+	"title": "jindo-mobile-component",
+	"version": "1.16.0",
+	"author": "NAVER corp",
+	"description": "JindoJS Mobile Component",
+	"main": "dist/jindo_mobile_component.js",
+	"homepage": "http://jindo.dev.naver.com/jindo_home/Mobile.html",
+	"repository": {
+		"type": "git",
+		"url": "http://gitlab.jindo.nhncorp.com/sculove/jindo-mobile-component.git"
+	},
+	"keywords": [
+		"jindo",
+		"jindojs",
+		"library",
+		"mobile",
+		"component",
+		"ui"
+	],
+	"licenses": [
+		{
+			"type": "LGPL v2",
+			"url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html"
+		}
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"grunt": "0.4.5",
+		"grunt-contrib-qunit": "0.4.0",
+		"grunt-contrib-jshint": "0.10.0",
+		"grunt-contrib-uglify": "0.4.0",
+		"grunt-exec": "0.4.5",
+		"auidocjs": "0.0.6"
+	}
+}

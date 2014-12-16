@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								사용자 대화창을 생성하는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">
+						Dialog 컴포넌트는 브라우저에서 쉽게 볼 수 있는 사용자 대화창이나 경고창 등을 디자인하여 사용할 수 있도록 도와주는 컴포넌트이다. <br/><br/>
+						
+						사용자 대화창이 필요하거나, 시스템이 제공하는 alert, confirm을 대체하고 싶은 경우, 이 컴포넌트를 사용하여 만들 수 있다. <br/>
+						Dialog를 직접 마크업으로 작성하기 때문에, 필요에 맞게 CSS로 디자인을 입힐 수 있고, 원하는 곳에 위치시킬 수 있다.<br/><br/>
+						
+						Dialog 컴포넌트는 내부적으로 [확인], [취소], [닫기]의 3가지의 버튼을 지원한다. <br/>
+						각 버튼은 클래스명으로 인식되며, 클래스명은 sClassPrefix + '버튼명칭'으로 구성된다.<br/><br/>
+						<div class="point_box">
+							sClassPrefix가 "dialog-"일 경우,<br/>
+							[확인], [취소], [닫기]버튼은 각각 "dialog-confirm", "dialog-cancel", "dialog-close"의 클래스명을 갖는다.
+						</div>
+					</div>
+				
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+					</div>
+				
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>			
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									// 인스턴스 생성
+									var oDialog = new jindo.m.Dialog();
+									
+									// 커스텀 이벤트를 attach (1) - 인스턴스가 Release될 때까지 커스텀 이벤트가 유지됩니다.
+									oDialog.attach({
+										beforeShow : function(e) {
+											// Dailog가 보여지기 전에 호출되는 함수
+										},
+										show : function(e) {
+											// Dailog가 보여진 후에 호출되는 함수
+										},
+										beforeHide : function(e) {
+											// Dailog가 숨겨지기 전에 호출되는 함수
+										},
+										hide : function(e) {
+											// Dailog가 숨겨진 후에 호출되는 함수
+										}
+									});
+									
+									// Dialog의 템플릿을 설정
+									var aTemplate = [];
+									aTemplate.push('<div class="u_dsc" style="background-color:white;border:2px solid #777777;">');
+									... 생략  ...
+									aTemplate.push('</div>');
+									var sTemplate = aTemplate.join("");
+									oDialog.setTemplate(sTemplate);
+									
+									// 템플릿의 {=type}부분을 "일반형"로 치환하여 Dialog 노출 
+									// 커스텀 이벤트를 attach하기 (2) - 다이얼로그창이 Hide되면 커스텀 이벤트가 삭제됩니다.
+									oDialog.show({type : "일반형"}, {
+										confirm : function(e) {
+											// 확인 버튼(dialog-confirm)이 눌렸을 경우 호출되는 함수
+										},
+										cancel : function(e) {
+											// 취소 버튼(dialog-cancel)이 눌렸을 경우 호출되는 함수
+										},
+										close : function(e) {
+											// 닫기 버튼(dialog-close)이 눌렸을 경우 호출되는 함수
+										}
+									});
+								</textarea>
+								<div class="t2">
+									<ul class="t2">
+										<li>dialog 레이어는 sClassPrefix + "layer"클래스명을 가진다.</li>
+										<li>dialog 레이어 내부의 닫기 버튼은 sClassPrefix + "close" 클래스명을 가진다.</li>
+										<li>dialog 레이어의 내부의 확인 버튼은 sClassPrefix + "confirm"클래스 명을 가진다.</li>
+										<li>dialog 레이어 내부의 추소 버튼은 sClassPrefix + "cancel" 클래스 명을 가진다.</li>
+									</ul>
+									<br/>위와 같이 다이얼로그를 띄우게 되면 아래와 같은 HTMLElement가 BODY에 추가됩니다.
+								</div>
+				
+								<textarea class="brush: xml;">
+									<div class="dialog-container" style="...">
+										<div class="dialog-fog" style="..."></div>
+										<div class="dialog-layer" style="...">
+											... 생략(sTemplate) ...		
+										</div>
+									<div class="dialog-clone" style="position: absolute; left: -1000px; top: -1000px; display: none; ">
+										... 생략(sTemplate) ...	
+									</div>
+								</textarea>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">sClassPrefix</td>
+							<td>Dialog에 적용될 Class의 prefix명<br/>layer와 각 버튼에 prefix+"명칭" 으로 클래스가 구성된다</td>
+							<td>"dialog-"</td>
+						</tr>
+						<tr>
+							<td class="name">sPosition</td>
+							<td>
+								Dialog 레이어가 보여질 위치
+								<ul>
+								<li>"top" : 화면 상단중앙</li>
+								<li>"center" : 중앙</li>
+								<li>"bottom" : 화면 하단중앙</li>
+								<li>"all" : 화면 전체</li>
+								</ul>
+							</td>
+							<td>"center"</td>
+						</tr>
+						<tr>
+							<td class="name">bUseEffect</td>
+							<td>Dialog 레이어가 보여질때 Effect(pop)효과 사용여부</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td class="name">bAutoClose</td>
+							<td>Dialog이외의 영역에 클릭(터치)발생시 Dialog 자동닫힘 사용여부</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td class="name">bAutoReposition</td>
+							<td>리사이즈 발생시 Dialog위치 자동재설정 사용여부</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td class="name">sFoggyColor</td>
+							<td>Foggy레이어 색상</td>
+							<td>"gray"</td>
+						</tr>
+						<tr>
+							<td class="name">nFoggyOpacity</td>
+							<td>Foggy레이어 투명도 (0~1)</td>
+							<td>0.5</td>
+						</tr>
+						<tr>
+							<td class="name">sEffectType</td>
+							<td>
+								이펙트 종류
+								<ul>
+								<li>"pop" : "pop"으로 보여지고, 사라짐</li>
+								<li>"slide-up" : "slide-up"으로 보여지고, "slide-down"으로 사라짐</li>
+								<li>"slide-down" : "slide-down"으로 보여지고, "slide-up"으로 사라짐</li>
+								<li>"flip" : "flip"으로 보여지고, 사라짐(iOS전용)</li>
+								</ul>
+							</td>
+							<td>"pop"</td>
+						</tr>
+						<tr>
+							<td class="name">nEffectDuration</td>
+							<td>이펙트 지속시간(ms단위, 최소값100)</td>
+							<td>500</td>
+						</tr>
+						<tr>
+							<td class="name">sDialogColor</td>
+							<td>Dialog 레이어의 백그라운드 컬러 </td>
+							<td>"white"</td>
+						</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeShow</td>
+								<td>Dailog가 보여지기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+										<li>stop (Function) : 수행시 다이얼로그가 Show되지 않음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									beforeExpand 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("beforeShow", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">show</td>
+								<td>Dailog가 보여진 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									show 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("show", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeHide</td>
+								<td>Dailog가 숨겨지기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+										<li>stop (Function) : 수행시 다이얼로그가 Hide되지 않음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									beforeHide 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("beforeHide", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">hide</td>
+								<td>Dailog가 숨겨진 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									hide 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("hide", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">confirm</td>
+								<td> 확인 버튼(dialog-confirm)이 눌렸을 경우에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									confirm 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("confirm", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">cancel</td>
+								<td>취소 버튼(dialog-cancel)이 눌렸을 경우에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									cancel 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("cancel", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">close</td>
+								<td>닫기 버튼(dialog-close)이 눌렸을 경우에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>elLayer (HTMLElement): 다이얼로그 Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									close 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oDialog.attach("close", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+
+							<!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>							 
+							<!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>							 
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>Update</td>
+                               	<td>sDialogColor</td>
+                               	<td>Option 추가</td>
+							 </tr>
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

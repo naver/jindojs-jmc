@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>transform CSS 에 matrix 를 사용하는 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Morph, jindo.m.Keyframe"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="transform CSS 에 matrix 가 지정되어 있을때의 동작을 확인하는 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	body { }
+	ul { list-style:none; margin:0; padding:0; }
+	li { float:left; }
+	button { font-family:inherit; font-size:2.4em; padding:.5em;}
+
+	#wrap { padding:10px; }
+
+	.ball {
+		position:absolute;
+		z-index:9;
+		width:50px; height:50px;
+		background-color:#f00;
+		border:5px solid #000;
+		border-radius:50px;
+		padding:1em 1em;
+		color:#fff;
+	}
+
+	#ball0 {
+		left:100px;
+		top:100px;
+		background-color:pink;
+	}
+
+
+	#ball1 {
+		left:200px;
+		top:0px;
+		background-color:red;
+	}
+
+</style>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<script type="text/javascript" charset="utf-8" src="switcher.js"></script>
+	<div style="position:relative;">
+		<div id="ball0" class="ball">0</div>
+		<div id="ball1" class="ball">1</div>
+	</div>
+	<!-- 사용자 script 파일 시작 -->
+	<script type="text/javascript" src="../../src/animation/jindo.m.Effect.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/animation/jindo.m.Morph.js" charset="utf-8"></script>
+	<!-- 사용자 script 파일 끝 -->
+	<script type="text/javascript">
+
+		jindo.$Element('ball0').css('WebkitTransform', 'scale(3)');
+
+		// setTimeout(function() {
+
+		// 	jindo.$Element('ball0').css('WebkitTransition', 'all 1s linear');
+		// 	jindo.$Element('ball0').css('WebkitTransform', 'translate(-50px, 50px)');
+
+		// 	var ball1 = jindo.$Element('ball1');
+		// 	var start = new Date();
+
+		// 	var effect = jindo.m.Effect.linear('2 0 0 2 -20 40', '1 0 0 1 0 0');
+
+		// 	(function loop() {
+		// 		requestAnimationFrame(function() {
+		// 			var per = Math.min(1, (new Date() - start) / 1000);
+		// 			ball1.css('WebkitTransform', 'matrix(' + effect(per).replace(/\s/g, ',') + ')');
+		// 			if (per < 1) { loop(); }
+		// 		});
+		// 	})();
+
+		// 	console.log(ball1.css('WebkitTransform'));
+
+		// }, 1000);
+
+		jindo.$Element('ball1').css('WebkitTransform', 'scale(2)');
+
+		setTimeout(function() {
+
+			jindo.$Element('ball0').css('WebkitTransition', 'all 1s linear');
+			jindo.$Element('ball0').css('WebkitTransform', 'translate(-50px, 50px)');
+
+			var ball1 = jindo.$Element('ball1');
+			var start = new Date();
+
+			var effect = jindo.m.Effect.linear(200, 100);
+
+			(function loop() {
+				requestAnimationFrame(function() {
+					var per = Math.min(1, (new Date() - start) / 1000);
+					ball1.css('left', '' + effect(per) + 'px');
+					if (per < 1) { loop(); }
+				});
+			})();
+
+			console.log(ball1.css('WebkitTransform'));
+
+		}, 1000);
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.RevealSidebarUI </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.RevealSidebarUI</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								슬라이드효과를 통해 좌,우에 존재하는 메뉴를 나타나게하는 템플릿
+							</p>
+							<a href="../../sample/latest/jindo.m.RevealSidebarUI/index.html" class="btn">Sample</a>
+							<!--a href="../../sample/latest/jindo.m.RevealSidebarUI/index.html" class="btn">Sample</a-->
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+						<!-- 설명 -->
+						<h3>Description</h3>
+						<div class="t1">
+							RevealSidebarUI는 슬라이드효과를 통해 좌,우에 존재하는 메뉴를 나타나게하는 템플릿이다.<br>
+							좌,우 메뉴는 jindo.m.PageLayoutUI의 마크업과 동일한 구조로 구성되어지며, Main 영역은 사용자의 편의에 따라 구현 가능하다.<br>
+							이 모든 구조는 rs-body를 최상위 부모로 가진다.<br><br>
+							<img src="../resource/img/RevealSidebar.jpg"/><br/>
+                        	[컨텐츠 구조]<br><br><br>
+							
+							<p style="padding:0px;line-height:17px;">
+								<strong>Left 영역</strong><br>
+								좌측 메뉴를 구성하는 한판의 페이지이다.<br>
+								rs-left 클래스명을 가지며, 헤더(rs-header), 컨텐츠(rs-content), 풋터(rs-footer)로 구성된다.<br><br>
+								
+								<strong>Main 영역</strong><br>
+								페이지내의 컨텐츠에 해당하는 영역이다.<br>
+								rs-main 클래스명을 가진다. 이 영역은 다양한 컨텐츠를 적용하여 활용할 수있다.<br><br>
+
+								<strong>Right 영역</strong><br>
+								우측 메뉴를 구성하는 한판의 페이지이다.<br>
+								rs-right 클래스명을 가지며, 헤더(rs-header), 컨텐츠(rs-content), 풋터(rs-footer)로 구성된다.<br><br>
+								
+								<strong>기능 설명</strong><br>
+								<div class="point_box">
+									<ul class="t2">
+										<li>Main영역에서 toggleSlide 또는 move 메소드를 통해 좌,우 메뉴를 보이게 할수 있다.</li>
+										<li>좌,우 메뉴가 노출되었을때 Main 영역을 선택하면 좌,우 메뉴가 슬라이드 효과로 닫힌다.</li>
+										<!--li>개발생산성을 향상시킬수 있는 간결한 마크업(concise markup)과 초기 페이지 로딩속도가 빠른 상세한 마크업(detailed markup)을 제공한다.<br/>
+											body에 "markup="detailed" 속성을 부여하면 상세한 마크업을 사용할 수 있다. 속성이 없으면 간결한 마크업형태를 사용한다.<br/>
+											간결한 마크업(concise markup) 사용시, RevealSidebarUI가 생성될때 내부적으로 상세한 마크업(detailed markup) 형태로 변경하여, 사용자의 개발생산성을 높인다.</br>
+											상세한 마크업(detailed markup) 사용시, RevealSidebarUI가 생성될때 DOM 조작이 일어나지 않아, 초기 페이지 로딩속도가 향상된다.
+										</li-->
+										<li>jindo.m.PageLayoutUI를 이용하여 Main 영역을 구성할 수 있다.</li>
+										<li>좌,우 메뉴는 각각 Header, Contents, Footer로 구성되어 있으며, 필요에 따라서 Header나 Footer를 사용하거나, 사용하지 않을 수 있다.</li>
+										<li>좌,우 메뉴의 Header나 Footer에 "position=fixed" 속성을 사용하면 고정영역으로 사용할 수 있다.</li>
+									</ul><br>
+									<div style="margin-left:40px;">
+									<font style="color:#e11b10;">√</font> 헤더영역이 position="fixed"일 경우 헤더영역을 제외한 컨텐츠와 풋터에 자동으로 스크롤이 적용된다.<br>	
+									<font style="color:#e11b10;">√</font> 풋터영역이 position="fixed"일 경우 풋터영역을 제외한 헤더와 컨텐츠에 자동으로 스크롤이 적용된다.<br>
+									<font style="color:#e11b10;">√</font> 헤더와 풋터 모두 position="fixed"일 경우 컨텐츠에만 자동으로 스크롤이 적용된다.<br><br>
+									<img src="../resource/img/RevealSidebar2_1.jpg"/>&nbsp;&nbsp;
+									<img src="../resource/img/RevealSidebar2_2.jpg"/>&nbsp;&nbsp;
+									<img src="../resource/img/RevealSidebar2_3.jpg"/>
+									</div>
+								</div><br/>
+							</p>
+						</div>	
+						<!--- Notice -->	
+						<h3 class="notice">Notice</h3>
+						<div class = "t1">
+							<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+							<ul class="t2">
+								<li>안드로이드 2.2 이상</li>
+								<li>iOS 3.0 이상</li>
+							</ul>
+							<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+							<dl>
+								<dd>
+								- <a href="../jindo.m.Scroll/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Scroll]</a>을 참고한다.</dd>
+								</dd>
+							</dl>
+								
+							<h4><font style="color:#e11b10;">√</font> 마크업 주의사항</h4>
+							<dl>
+								<dd>
+								- <a href="../jindo.m.Scroll/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Scroll]</a>을 참고한다.</dd>
+								</dd>
+							</dl>
+						</div>
+
+						<!-- 초기화 방법 -->
+						<h3>Initialization</h3>
+						<div class="t1">
+						    <dl>
+						        <dt>HTML</dt>
+						        <!--dd style="padding:15px 0;"><span style="color:#6699cc;font-weight:bold;">① 간결한 마크업(concise markup) 형태</span><br>초기 로딩 속도보다 사용자의 개발생산성 향상을 위해 간결한 마크업으로 구성할 수 있다.</dd-->
+						        <br/>
+						        <div class="t2">
+					            	<b>1) Left 상단 고정, Right 상단 고정</b>
+					            	<table>
+					            	<tr>
+					            		<td width="150">
+					            			<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftTop_RightTop.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb1.jpg" width="150" height="100" alt=""></a>
+					            		</td>
+					            		<td>
+					            			<textarea class="brush: xml;">
+<div class="rs-body">
+	<div class="rs-left">
+	    <div class="rs-header" position="fixed">...헤더...</div> 
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+
+	<div class="rs-main">...메인...</div>
+
+	<div class="rs-right">
+	    <div class="rs-header" position="fixed">...헤더...</div> 
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+</div>					            
+					            			</textarea>	
+					            		</td>
+					            	</tr>
+					            	</table>
+					            </div>
+
+						        <div class="t2">
+					            	<b>2) Left 상단 고정, Right 하단 고정</b>
+					            	<table>
+					            	<tr>
+					            		<td width="150">
+					            			<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftTop_RightBottom.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb2.jpg" width="150" height="100" alt=""></a>
+					            		</td>
+					            		<td>
+					            			<textarea class="brush: xml;">
+<div class="rs-body">
+	<div class="rs-left">
+	    <div class="rs-header" position="fixed">...헤더...</div> 
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+
+	<div class="rs-main">...메인...</div>
+
+	<div class="rs-right">
+	    <div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer" position="fixed">...풋터...</div>
+	</div>
+</div>					            
+					            			</textarea>	
+					            		</td>
+					            	</tr>
+					            	</table>
+					            </div>					            
+
+
+						        <div class="t2">
+					            	<b>3) Left 하단 고정, Right 상단 고정</b>
+					            	<table>
+					            	<tr>
+					            		<td width="150">
+					            			<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftBottom_RightTop.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb3.jpg" width="150" height="100" alt=""></a>
+					            		</td>
+					            		<td>
+					            			<textarea class="brush: xml;">
+<div class="rs-body">
+	<div class="rs-left">
+	    <div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer" position="fixed">...풋터...</div>
+	</div>
+
+	<div class="rs-main">...메인...</div>
+
+	<div class="rs-right">
+	    <div class="rs-header" position="fixed">...헤더...</div> 
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+</div>					            
+					            			</textarea>	
+					            		</td>
+					            	</tr>
+					            	</table>
+					            </div>
+
+ <div class="t2">
+					            	<b>4) Left 하단 고정, Right 단 고정</b>
+					            	<table>
+					            	<tr>
+					            		<td width="150">
+					            			<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftBottom_RightBottom.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb4.jpg" width="150" height="100" alt=""></a>
+					            		</td>
+					            		<td>
+					            			<textarea class="brush: xml;">
+<div class="rs-body">
+	<div class="rs-left">
+	    <div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer" position="fixed">...풋터...</div>
+	</div>
+
+	<div class="rs-main">...메인...</div>
+
+	<div class="rs-right">
+	    <div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer" position="fixed">...풋터...</div>
+	</div>
+</div>					            
+					            			</textarea>	
+					            		</td>
+					            	</tr>
+					            	</table>
+					            </div>
+
+
+						        <div class="t2">
+					            	<b>5) Left 상,하단 고정, Right 상,하단 고정</b>
+					            	<table>
+					            	<tr>
+					            		<td width="150">
+					            			<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftTopBottom_RightTopBottom.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb5.jpg" width="150" height="100" alt=""></a>
+					            		</td>
+					            		<td>
+					            			<textarea class="brush: xml;">
+<div class="rs-body">
+	<div class="rs-left">
+	    <div class="rs-header" position="fixed">...헤더...</div> 
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer" position="fixed">...풋터...</div>
+	</div>
+
+	<div class="rs-main">...메인...</div>
+
+	<div class="rs-right">
+	    <div class="rs-header" position="fixed">...헤더...</div> 
+	    <div class="rs-content">...컨텐츠...</div> 
+	    <div class="rs-footer" position="fixed">...풋터...</div>
+	</div>
+</div>					            
+					            			</textarea>	
+					            		</td>
+					            	</tr>
+					            	</table>
+					            </div>					            
+								</dd>
+						        <dt>CSS</dt>
+						        <dd>
+						        	<!-- css 구조 -->
+						            <textarea class="brush: css;">
+						            .rs-body {}
+						            .rs-left {}
+						            .rs-main {}
+						            .rs-right {}
+
+						            .rs-header {}
+						            .rs-content {}
+						            .rs-footer {}
+						            </textarea>
+								</dd>
+						        <dt>Javascript</dt>
+						        <dd>
+						        	<!-- 실행구문 -->
+						            <textarea class="brush: javascript;">
+var oRevealSidebarUI = new jindo.m.RevealSidebarUI(el, {
+	bActivateOnload : true,
+    nSildeThreshold : 50,
+    sDefaultArea : "main",
+    htScrollOption : {...},		// Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+    nSlideDuration : 200,
+    bUseCss3d : jindo.m._isUseCss3d(),
+    bUseTimingFunction : jindo.m._isUseTimingFunction()
+});						            
+						            </textarea>
+						            <div class="t2">
+					            	<span style="color:#6699cc;font-weight:bold;">① jindo.m.PageLayoutUI를 main으로 사용하지 않는 경우</span><br/>
+
+		                            &nbsp;&nbsp;&nbsp;첫번째 파라미터를 null로 지정한다. 사용법은 다음과 같다.<br/>
+		                             <textarea class="brush: javascript;">
+var oRevealSidebarUI = new jindo.m.RevealSidebarUI(null, {
+	bActivateOnload : true,
+    nSildeThreshold : 50,
+    sDefaultArea : "main",
+    htScrollOption : {...},		// Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+    nSlideDuration : 200,
+    bUseCss3d : jindo.m._isUseCss3d(),
+    bUseTimingFunction : jindo.m._isUseTimingFunction()
+});		            
+						            </textarea>
+						            <span style="color:#6699cc;font-weight:bold;">② jindo.m.PageLayoutUI를 main으로 사용하는 경우</span><br/>
+
+						            &nbsp;&nbsp;&nbsp;첫번째 파라미터를 jindo.m.PageLayoutUI의 최상위(Root) 엘리먼트를 파라미터로 받는다.<br/>
+									&nbsp;&nbsp;&nbsp;사용법은 다음과 같다.
+									<textarea class="brush: javascript;">
+var oRevealSidebarUI;
+var oPageLayoutUI = new jindo.m.PageLayoutUI({
+	vBaseElement : jindo.$$.getSingle('.rs-body'),
+	fnDomReady : function(oData) {
+		oRevealSidebarUI = new jindo.m.RevealSidebarUI(oData.welRoot, {
+			bActivateOnload : true,
+		    nSildeThreshold : 50,
+		    sDefaultArea : "main",
+		    htScrollOption : {...},		// Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+		    nSlideDuration : 200,
+            bUseCss3d : jindo.m._isUseCss3d(),
+            bUseTimingFunction : jindo.m._isUseTimingFunction()
+		});
+	}
+});					       
+						            </textarea>						            
+		                            </div>
+								</dd>
+							</dl>
+						</div>
+						
+						
+						<!-- Template -->
+						<h3>Template 적용하기</h3>
+						<div class="t1">
+							<div>
+								아래 이미지를 클릭하여 Template 페이지를 열고, 소스를 copy&paste하여 적용한다.<br>
+								헤더, 컨텐츠, 풋터 부분을  필요한 내용으로 수정한다.<br><br>
+								
+								<span style="color:#6699cc;font-weight:bold;">① jindo.m.PageLayoutUI을 main으로 사용하지 않는 경우</span><br><br>
+								<ul class="tumb_list">
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftTop_RightTop.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb1.jpg" width="150" height="100" alt=""></a>
+										<p>Left 상단 고정, Right 상단 고정</p>
+									</li>
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftTop_RightBottom.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb2.jpg" width="150" height="100" alt=""></a>
+										<p>Left 상단 고정, Right 하단 고정</p>
+									</li>
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftBottom_RightTop.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb3.jpg" width="150" height="100" alt=""></a>
+										<p>Left 하단 고정, Right 상단 고정</p>
+									</li>
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftBottom_RightBottom.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb4.jpg" width="150" height="100" alt=""></a>
+										<p>Left 하단 고정, Right 하단 고정</p>
+									</li>
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_LeftTopBottom_RightTopBottom.html" target="_blank"><img src="../resource/img/RevealSidebar_thumb5.jpg" width="150" height="100" alt=""></a>
+										<p>Left 상,하단 고정, Right 상,하단 고정</p>
+									</li>																		
+								</ul><div style="clear:both;"></div>
+
+								<span style="clear:both;color:#6699cc;font-weight:bold;"><br>② jindo.m.PageLayoutUI을 main으로 사용하는 경우</span><br><br>
+								<ul class="tumb_list">
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_type1.html" style="width:100%" target="_blank"><img src="../resource/img/RevealSidebar_sample1.jpg" alt=""></a>
+										<p style="width:100%">main이 싱글 PageLayoutUI 형태</p>
+									</li>
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_type2.html" style="width:100%" target="_blank"><img src="../resource/img/RevealSidebar_sample2.jpg" alt=""></a>
+										<p style="width:100%">main이 멀티 PageLayoutUI 형태</p>
+									</li>
+									<li class="tumb">
+										<a href="../../sample/latest/jindo.m.RevealSidebarUI/template_type3.html" style="width:100%" target="_blank"><img src="../resource/img/RevealSidebar_sample3.jpg" alt=""></a>
+										<p style="width:100%">main이 싱글 다중컨텐츠 PageLayoutUI 형태</p>
+									</li>
+								</ul>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+						
+						<!-- 초기화 옵션 -->
+						<h3>Option</h3>
+						<div class="t1">
+							<table class="option" cellpadding="0" cellspacing="0">
+								<tr>
+									<th>Name</th>
+									<th>Desc</th>
+									<th>Default</th>
+								</tr>
+								<tr>
+									<td class="name">nSildeThreshold</td>
+									<td>좌,우 메뉴 슬라이드후 보여지는 영역 크기</td>
+									<td>50</td>
+								</tr>
+								<tr>
+									<td class="name">sDefaultArea</td>
+									<td>초기 화면 상태<br/>
+										"left" : 좌측 메뉴가 열려있는 상태<br/>
+										"main" : 좌,우측 메뉴가 모두 닫혀있는 상태<br/>
+										"right" : 우측 메뉴가 열려있는 상태
+									</td>
+									<td>"main"</td>
+								</tr>
+								<tr>
+									<td class="name">nSlideDuration</td>
+									<td>슬라이드 효과 시간 (ms)</td>
+									<td>200</td>
+								</tr>
+								<tr>
+									<td class="name">htScrollOption</td>
+									<td>Scroll 생성시 초기화 옵션</td>
+									<td><a href="../jindo.m.Scroll/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Scroll]</a> 참고</td>
+								</tr>
+								<tr>
+									<td class="name">bUseCss3d</td>
+									<td>하드웨어 3d 가속 여부</td>
+									<td>모바일 단말기별로 다르게 설정된다.<br/>
+							ios, 갤럭시s3 에서는 true, 크롬및 안드로이드에서는 false</td>
+								</tr>
+								<tr>
+									<td class="name">bUseTimingFunction</td>
+									<td>애니메이션 동작방식을 결정한다.<br/> <font style="color:#e11b10;">bUseTimingFunction</font>가 true일 경우, CSS3로 애니메이션을 구현하고, false일 경우, 스크립트로 애니메이션을 구현한다.</td>
+									<td>모바일 단말기별로 다르게 설정된다.<br/>
+							ios true, 크롬및 안드로이드에서는 false</td>
+								</tr>		
+								<tr>
+		                            <td class="name">bActivateOnload</td>
+		                            <td>컴포넌트 로드시 activate 여부</td>
+		                            <td>true</td>
+		                        </tr>
+							</table>
+						</div>
+
+						<!-- 커스텀 이벤트 -->
+						<h3>Custom Event</h3>
+						<div class="t1">
+							<table class="customevent" cellpadding="0" cellspacing="0">
+								<tr>
+									<th>Name</th>
+									<th>Desc</th>
+									<th>Custom Event Object Properties</th>
+								</tr>
+								<tr class="title">
+									<td class="name">beforeSlide</td>
+									<td>페이지가 이동되기 전에 발생</td>
+									<td>
+										<ul>
+											<li>sType (String) : 커스텀 이벤트명</li>
+											<li>sStatus (String) : 이동 전 페이지 상태(left,main,right)</li>
+											<li>stop (Function) : 수행시 페이지가 이동되지 않음</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="desc">
+									<td>&nbsp;</td>
+									<td colspan="2">
+										커스텀이벤트 핸들링 예제
+										<textarea class="brush: javascript;">
+										oComponent.attach("beforeSlide", function(oCustomEvent) {
+											// oCustomEvent.sType;
+											// oCustomEvent.sStatus;
+											// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(slide)가 발생하지 않고, 현재 페이지 이동 작업도 중지됨
+										});
+										</textarea>
+									</td>
+								</tr>
+								
+								<tr class="title">
+									<td class="name">slide</td>
+									<td>페이지가 이동된 후에 발생</td>
+									<td>
+										<ul>
+											<li>sType (String) : 커스텀 이벤트명</li>
+											<li>sStatus (String) : 이동 후 페이지 상태(left,main,right)</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="desc">
+									<td>&nbsp;</td>
+									<td colspan="2">
+										커스텀이벤트 핸들링 예제
+										<textarea class="brush: javascript;">
+										oComponent.attach("slide", function(oCustomEvent) {
+											// oCustomEvent.sType;
+											// oCustomEvent.sStatus;
+										});
+										</textarea>
+									</td>
+								</tr>			
+								<tr class="title">
+									<td class="name">beforeRestore</td>
+									<td>페이지가 메인으로 복원되기 전에 발생</td>
+									<td>
+										<ul>
+											<li>sType (String) : 커스텀 이벤트명</li>
+											<li>sStatus (String) : 이동 전 페이지 상태(left,main,right)</li>
+											<li>stop (Function) : 수행시 페이지가 이동되지 않음</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="desc">
+									<td>&nbsp;</td>
+									<td colspan="2">
+										커스텀이벤트 핸들링 예제
+										<textarea class="brush: javascript;">
+										oComponent.attach("beforeRestore", function(oCustomEvent) {
+											// oCustomEvent.sType;
+											// oCustomEvent.sStatus;
+											// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(restore)가 발생하지 않고, 현재 페이지 이동 작업도 중지됨
+										});
+										</textarea>
+									</td>
+								</tr>
+								
+								<tr class="title">
+									<td class="name">restore</td>
+									<td>페이지가 메인으로 복원된 후에 발생</td>
+									<td>
+										<ul>
+											<li>sType (String) : 커스텀 이벤트명</li>
+											<li>sStatus (String) : 이동 후 페이지 상태(left,main,right)</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="desc">
+									<td>&nbsp;</td>
+									<td colspan="2">
+										커스텀이벤트 핸들링 예제
+										<textarea class="brush: javascript;">
+										oComponent.attach("slide", function(oCustomEvent) {
+											// oCustomEvent.sType;
+											// oCustomEvent.sStatus;
+										});
+										</textarea>
+									</td>
+								</tr>											
+							</table>
+						</div>
+						
+						<!-- 퍼블릭 메서드 -->
+							<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.RevealSidebarUI</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.RevealSidebarUI</strong>(el, htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Varient}</span> <strong>el</strong>
+									
+									: Main 엘리먼트 (필수)
+								</li>
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.UIComponent
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+							<h5>Requires : 
+									<a href="../jindo.m.Scroll/index.html#constructor">jindo.m.Scroll</a>, <a href="../jindo.m.Transition/index.html#constructor">jindo.m.Transition</a>
+							</h5>
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						jindo.m.RevealSidebarUI 에서 사용하는 모든 객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">destroy</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+oSelect.destroy();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="move"></a>move
+					</td>
+					<td>
+						타입을 선택하여 이동한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">move</strong>(sType, nDuration)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{[type]}</span> <strong>sType</strong>
+									
+									: left, main, right 세가지 타입 중 한가지 타입으로 이동한다.
+								</li>
+							
+								<li>
+									<span>{[type]}</span> <strong>nDuration</strong>
+									
+									: 이동시 이동시간 (기본 : 옵션값)
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="resize"></a>resize
+					</td>
+					<td>
+						화면사이즈 변경시 갱신한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">resize</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="restore"></a>restore
+					</td>
+					<td>
+						메인화면으로 복원시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">restore</strong>(nDuration)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{[type]}</span> <strong>nDuration</strong>
+									
+									: 이동시 이동시간 (기본 : 옵션값)
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="toggleSlide"></a>toggleSlide
+					</td>
+					<td>
+						왼쪽이나 오른쪽으로 메뉴를 슬라이드 한다.
+  만약, 왼쪽이나 오른쪽 메뉴가 보여지고 있을 경우에는 메인화면으로 복원된다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">toggleSlide</strong>(isRight)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Boolean}</span> <strong>isRight</strong>
+									
+									: true인 경우, 오른쪽 메뉴가, false인 경우 왼쪽 메뉴가 보인다.
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					
+						<!-- 변경 히스토리 -->
+						<h3>Change History</h3>
+						<div class="t1">
+							 <table class="option" cellpadding="0" cellspacing="0">
+							 <tbody></tbody>
+								 <tr>
+								 	<th>Release</th>
+								 	<th>Type</th>
+		                              	<th>Target</th>
+		                              	<th>Desc</th>
+								 </tr>
+								<!-- v1.4.0 -->
+								<tr>
+								 	<td class="name">v1.4.0</td>
+	                               	<td class="support">Support</td>	
+								 	<td>-</td>
+								 	<td>iOS 6 지원</td>
+								 </tr>
+								 <!-- v1.3.5 -->
+								 <tr>
+								 	<td class="name">v1.3.5 </td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+								 </tr>								 
+								 <!-- v1.3.0 -->
+								 <tr>
+								 	<td class="name">v1.3.0 </td>
+									<td>Release</td>
+									<td>-</td>
+									<td>최초 릴리즈</td>
+								 </tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

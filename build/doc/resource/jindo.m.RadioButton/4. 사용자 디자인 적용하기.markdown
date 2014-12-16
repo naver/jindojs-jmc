@@ -1,0 +1,54 @@
+#### HTML
+
+Initialization의 HTML구조와 동일
+
+
+#### CSS
+
+	/*class prefix가 'frb-' 인 경우*/
+
+	/*선택시 적용되는 CSS*/
+	.frb-radiobtn-on{...}
+
+	/*비활성화시 적용되는 CSS*/
+	.frb-radiobtn-disable{...}
+
+	/* RadioButton Container CSS. RadioButton 외곽부분의 스타일 지정 */
+	.frb-radiobtn-cont{...}
+
+	/* RadioButton 단위 Unit CSS*/
+	.frb-radiobtn-unit{...}
+
+	/* RadioButton 단위 Unit 첫번째 엘리먼트 CSS*/
+	.frb-radiobtn-unit:first-child {...}
+
+	/* RadioButton 단위 Unit 마지막 엘리먼트 CSS*/
+	.frb-radiobtn-unit:last-child{...}
+
+	/* RadioButton Form 스타일 CSS.*/
+	.frb-radiobtn{...}
+
+	/* RadioButton Label 영역 CSS.*/
+	.frb-radiobtn-label{...}								
+
+
+#### Javascript
+
+Initialization의 Javascript구조와 동일
+
+<br> 
+RadioButton 의 디자인을 사용자의 요구 사항에 맞게 변경하기 위해서는 각 CSS에 알맞는 속성을 적용 해야 한다.
+<br> 
+___
+* [prefix] + radiobtn-__on__ 클래스<br />
+클릭으로 선택된 RadioButton의 폰트, 배경색 등의 스타일을 지정한다.
+* [prefix] + radiobtn-__disable__ 클래스<br />
+비활성화되어 선택이 불가능한 RadioButton의 투명도, 커서 등의 스타일을 지정한다.
+* [prefix] + radiobtn-__unit__ 클래스<br />
+선택되기 전의 RadioButton에 기본으로 적용되는 스타일로, 폰트, 배경색, 너비, 높이등의 기본 스타일을 지정한다.
+* [prefix] + radiobtn-__unit:first-child__ 클래스<br />
+RadioButton 그룹에서 첫번째 RadioButton에 적용되는 스타일로, 주로 Radius 스타일을 지정하여 모서리 라운드 처리를 한다.
+* [prefix] + radiobtn-__unit:last-child__ 클래스<br />
+RadioButton 그룹에서 마지막번째 RadioButton에 적용되는 스타일로, 주로 Radius 스타일을 지정하여 모서리 라운드 처리를 한다.
+* [prefix] + radiobtn-__label__ 클래스<br />
+RadioButton의 설명을 표시하는 label 영역에 적용되는 스타일로, 폰트, 여백등의 스타일을 지정한다.

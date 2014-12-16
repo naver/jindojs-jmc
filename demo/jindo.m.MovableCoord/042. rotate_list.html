@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, user-scalable=no, target-densitydpi=medium-dpi">
+<title>회전하는 목록</title>
+<meta name="class-lists" content="jindo.m.MovableCoord">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#area {
+		position:relative;
+		width:400px; height:400px;
+		-webkit-perspective: 450px;
+		-moz-perspective: 450px;
+		-ms-perspective: 450px;
+		-o-perspective: 450px;
+		perspective: 450px;
+	}
+
+	#list {
+		position:absolute;
+		left:200px; top:200px;
+		-webkit-transform:rotateY(0deg);
+		-webkit-transform-style: preserve-3d;
+		-moz-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		-o-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+	#list li {
+		position:absolute;
+	}
+
+	#list li span {
+		display:block;
+		width:80px; height:80px;
+		margin:-40px; text-align:center;
+		background-color:#ddd;
+		border:2px solid #000;
+		border-radius:10px;
+		-webkit-transform:scale(0.75);
+		transition:all .2s ease;
+	}
+
+	#list li.highlight span {
+		-webkit-transform:scale(1);
+		z-index:9;
+	}
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="area">
+	<ul id="list">
+		<li style="-webkit-transform:rotateY(0deg) translateZ(150px);"><span style="background-color:#f00;">A</span></li>
+		<li style="-webkit-transform:rotateY(40deg) translateZ(150px);"><span style="background-color:#f80;">B</span></li>
+		<li style="-webkit-transform:rotateY(80deg) translateZ(150px);"><span style="background-color:#ff0;">C</span></li>
+		<li style="-webkit-transform:rotateY(120deg) translateZ(150px);"><span style="background-color:#8f0;">D</span></li>
+		<li style="-webkit-transform:rotateY(160deg) translateZ(150px);"><span style="background-color:#0f0;">E</span></li>
+		<li style="-webkit-transform:rotateY(200deg) translateZ(150px);"><span style="background-color:#0f8;">F</span></li>
+		<li style="-webkit-transform:rotateY(240deg) translateZ(150px);"><span style="background-color:#0ff;">G</span></li>
+		<li style="-webkit-transform:rotateY(280deg) translateZ(150px);"><span style="background-color:#08f;">H</span></li>
+		<li style="-webkit-transform:rotateY(320deg) translateZ(150px);"><span style="background-color:#00f;">I</span></li>
+	</ul>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	/*@code title="JavaScript"*/
+	var welList = jindo.$Element('list');
+	var aList = welList.queryAll('> li');
+
+	var welLast = aList[0].addClass('highlight');
+
+	var inst = new jindo.m.MovableCoord([ 0, 0 ], {
+		aMin : [ 0, 0 ],
+		aMax : [ 360, 0 ],
+		aCircular : [ false, true, false, true ],
+		nDeceleration : 0.0024
+	}).attach({
+
+		'release' : function(oCustomEvent) {
+			var pos = oCustomEvent.aDestPos;
+			pos[0] = Math.round(pos[0] / 40) * 40;
+		},
+
+		'change' : function(oCustomEvent) {
+			/*
+				.aPos {Array}
+			*/
+			var pos = oCustomEvent.aPos;
+			var idx = Math.round(pos[0] / 40) % 9;
+
+			welLast.removeClass('highlight');
+			(welLast = aList[idx]).addClass('highlight');
+
+			welList.css({
+				transform : 'rotateY(-' + pos[0] + 'deg) rotateX(10deg)'
+			})
+
+		}
+
+	});
+
+	inst.
+	bind(document, {
+		nDirection : 1,
+		aScale : [ -0.5, 1 ],
+		nMaximumSpeed : 50/*px/ms*/
+	});
+	/*code@*/
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

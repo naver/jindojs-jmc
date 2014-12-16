@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.Dialog</title>
+<meta name="class-lists" content="jindo.m.Transition">
+<meta name="description" content="가장 기본적인 사용 예제입니다.">
+<!-- SamplePage 기본 CSS -->
+
+<style type="text/css">
+#div1{width:100px;height:100px}
+</style>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../../external/jindo/jindo.min.ns.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../external/jindo-component/jindo.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../external/jindo-component/jindo.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.ExpandEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.ContractEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript">
+	//window.onerror = function(){return true;}
+</script>
+</head>
+
+<body>
+
+<div id="div1" style="width:100%;height:150px;background-color:pink;opacity:0.7">
+	div1
+</div>
+
+<div id="div5" style="width:80%;height:100px;background-color:red;margin-left:10px;">
+	div5
+</div>
+
+<button id="contractleft">contract-left</button>
+<button id="contractright">contract-right</button>
+<button id="contractup">contract-up</button>
+<button id="contractdown">contract-down</button>
+<button id="ex-left">expand-left</button>
+<button id="ex-right">expand-right</button>
+<button id="ex-up">expand-up</button>
+<button id="ex-down">expand-down</button>
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oEffect5 = new jindo.m.LayerEffect('div5');
+//	console.log('-------------------- effect 5-------------------');
+	jindo.$Fn(function(){
+		oEffect5.contract({sDirection : 'left'});
+	},this).attach(jindo.$('contractleft'),'click');
+
+	jindo.$Fn(function(){
+		oEffect5.contract({sDirection : 'right'});
+	},this).attach(jindo.$('contractright'),'click');
+
+	jindo.$Fn(function(){
+		oEffect5.contract({sDirection : 'up'});
+	},this).attach(jindo.$('contractup'),'click');
+
+	jindo.$Fn(function(){
+		oEffect5.contract({sDirection : 'down'});
+	},this).attach(jindo.$('contractdown'),'click');
+
+
+	jindo.$Fn(function(){
+		oEffect5.expand({sDirection : 'left'});
+	},this).attach(jindo.$('ex-left'),'click');
+
+	jindo.$Fn(function(){
+		oEffect5.expand({sDirection : 'right'});
+	},this).attach(jindo.$('ex-right'),'click');
+
+	jindo.$Fn(function(){
+		oEffect5.expand({sDirection : 'up'});
+	},this).attach(jindo.$('ex-up'),'click');
+
+	jindo.$Fn(function(){
+		oEffect5.expand({sDirection : 'down'});
+	},this).attach(jindo.$('ex-down'),'click');
+
+</script>
+
+div6
+
+<div id="div6" style="width:100%;height:150px;background-color:blue">
+	div6
+</div>
+<button id="flipleft">flip-left</button>
+<button id="flipright">flip-right</button>
+<button id="flipup">flip-up</button>
+<button id="flipdown">flip-down</button>
+<script>
+	var oEffect6 = new jindo.m.LayerEffect('div6');
+//	console.log('-------------------- effect 6-------------------');
+	jindo.$Fn(function(){
+		oEffect6.flip({sDirection : 'left'});
+	},this).attach(jindo.$('flipleft'),'click');
+
+	jindo.$Fn(function(){
+		oEffect6.flip({sDirection : 'right'});
+	},this).attach(jindo.$('flipright'),'click');
+
+	jindo.$Fn(function(){
+		oEffect6.flip({sDirection : 'up'});
+	},this).attach(jindo.$('flipup'),'click');
+
+	jindo.$Fn(function(){
+		oEffect6.flip({sDirection : 'down'});
+	},this).attach(jindo.$('flipdown'),'click');
+</script>
+
+
+으앙..
+<div id="div2" style="width:100px;height:150px;background-color:green">
+	div2
+</div>
+
+
+<div id="div3" style="width:200px;height:150px;background-color:yellow;left:100px;">
+	div3
+</div>
+
+<button id="expandleft">expand-left</button>
+<button id="expandright">expand-right</button>
+
+<button id="expandup">expand-up</button>
+<button id="expanddown">expand-down</button>
+
+<button id="fadein">fade-in</button>
+<button id="fadeout">fade-out</button>
+<button id="popin">pop-in</button>
+<button id="popout">pop-out</button>
+<button id="slideleft">slide-left</button>
+<button id="slideright">slide-right</button>
+<button id="slideup">slide-up</button>
+<button id="slidedown">slide-down</button>
+
+<button id="slidebaseleft">slide-base-left</button>
+<button id="slidebaseright">slide-base-right</button>
+
+<button id="slidebaseup">slide-base-up</button>
+<button id="slidebasedown">slide-base-down</button>
+
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oEffect = new jindo.m.LayerEffect('div1');
+//	console.log('-------------------- effect 1-------------------');
+	oEffect.expand({
+		sDirection :'left',
+		nDuration : 1000,
+		htFrom : {
+			opacity : 0.5
+		},
+		htTo : {
+			opacity : 1
+		}
+	});
+
+	jindo.$Fn(function(){
+		oEffect.expand({sDirection : 'left'});
+	},this).attach(jindo.$('expandleft'),'click');
+
+
+	jindo.$Fn(function(){
+		oEffect.expand({sDirection : 'right'});
+	},this).attach(jindo.$('expandright'),'click');
+
+	jindo.$Fn(function(){
+		oEffect.expand({sDirection : 'down'});
+	},this).attach(jindo.$('expanddown'),'click');
+
+	jindo.$Fn(function(){
+		oEffect.expand({sDirection : 'up'});
+	},this).attach(jindo.$('expandup'),'click');
+
+
+	jindo.$Fn(function(){
+		oEffect.fade({
+			htFrom : {'z-index' : 100},
+			htTo :{'z-index' : 10}
+		});
+
+	},this).attach(jindo.$('fadein'),'click');
+
+	jindo.$Fn(function(){
+		oEffect.fade({
+			sDirection : 'out'
+		});
+	},this).attach(jindo.$('fadeout'),'click');
+
+	jindo.$Fn(function(){
+		oEffect.pop({
+			sDirection : 'in'
+		});
+	},this).attach(jindo.$('popin'),'click');
+
+	jindo.$Fn(function(){
+		oEffect.pop({
+			sDirection : 'out'
+		});
+	},this).attach(jindo.$('popout'),'click');
+
+
+
+	var oEffect2 = new jindo.m.LayerEffect('div2');
+
+//	console.log('-------------------- effect 2-------------------');
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'left'
+		});
+	}, this).attach(jindo.$('slideleft'),'click');
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'right'
+		});
+	}, this).attach(jindo.$('slideright'),'click');
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'up'
+		});
+	}, this).attach(jindo.$('slideup'),'click');
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'down'
+		});
+	}, this).attach(jindo.$('slidedown'),'click');
+
+
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'left',
+			elBaseLayer : jindo.$('div3')
+		});
+	}, this).attach(jindo.$('slidebaseleft'),'click');
+
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'right',
+			elBaseLayer : jindo.$('div3')
+		});
+	}, this).attach(jindo.$('slidebaseright'),'click');
+
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'up',
+			elBaseLayer : jindo.$('div3')
+		});
+	}, this).attach(jindo.$('slidebaseup'),'click');
+
+
+	jindo.$Fn(function(){
+		oEffect2.slide({
+			sDirection : 'down',
+			elBaseLayer : jindo.$('div3')
+		});
+	}, this).attach(jindo.$('slidebasedown'),'click');
+
+</script>
+
+
+</body>
+</html>

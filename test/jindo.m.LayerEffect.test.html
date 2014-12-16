@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+	#wrapper {
+		margin : 10px;
+		-webkit-perspective: 1200;
+		width : 70%;
+		height: 200px;
+		overflow:hidden;
+		-webkit-transform-style: preserve-3d;
+		position:relative;
+	}
+	#wrapper .ex{
+		height:inherit;
+		width:100%;
+		padding-top:30px;
+		background-color:#c0c0c0;
+	}
+	#wrapper p{
+		text-align :center;
+	}
+	#layer1{
+		background-color : #ff0080;
+		width : 130px;
+		height: 100px;
+		position:absolute;
+	}
+	#layer1 p{
+		color:#ffffff;
+		padding : 30px 10px;
+	}
+</style>
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+
+
+<!-- UI content Start -->
+<div id='wrapper'>
+	<div class='ex'><p>DEMO 영역</p></div>
+</div>
+
+<div id='layer1'>
+	<p>LayerAnimation</p>
+</div>
+
+ <h1 id="qunit-header">LayerEffect Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script>
+<script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Effect.js"></script>
+<script src="../src/jindo.m.Morph.js"></script>
+<script src="../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script src="../src/jindo.m.ContractEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.ExpandEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.LayerEffect.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

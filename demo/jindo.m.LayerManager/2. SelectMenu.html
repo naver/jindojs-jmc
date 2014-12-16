@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>SelectMenu 활용 예제</title>
+<meta name="class-lists" content="jindo.m.LayerManager">
+<meta name="description" content="SelectMenu 활용 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_sel,.u_sel_d{display:inline-block;border:1px solid #c9c9c9;border-radius:2px;background:#f5f5f5;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#fff),color-stop(.05,#fafafa),to(#f1f1f1));font-size:1em;vertical-align:middle}
+.u_sel_unfd,.u_sel_fd{display:inline-block;overflow:hidden;height:2.5em;padding:0 30px 0 .5em;background:url(../asset/img/btn_sel.gif) no-repeat 100% -12px;line-height:2.5em}
+.u_sel_fd{background-position:100% -60px}
+.u_sel_d{color:#909090}
+.u_sel_d .u_sel_unfd{background-position:100% -106px}
+.u_sel_d .u_sel_fd{background-position:100% -154px}
+.u_sel_o .u_sel_olk{display:block;padding:.57em 10px;border-bottom:1px solid #e7e7e7;font-size:1em;color:#1172b6}
+
+.u_sel_unfd,.u_sel_fd{_padding-bottom:1px}
+.u_sel_o{_zoom:1}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo" style="height:300px">
+
+	<div id="menuLayer" style="position:absolute">
+		<a href="javascript:void(0);" id="box" class="u_sel"><span id='selectedItem' class="u_sel_fd">선택해주세요</span></a>
+
+		<ul id="menuList" style='display:none'>
+			<li class="u_sel_o"><a href="javascript:void(0);" class="u_sel_olk">강원도 삼척시 교동</a></li>
+			<li class="u_sel_o"><a href="javascript:void(0);" class="u_sel_olk">울산광역시 중구 교동</a></li>
+			<li class="u_sel_o"><a href="javascript:void(0);" class="u_sel_olk">일이삼사오육칠팔구십 일이삼사오육칠팔구십 일이삼사오육칠팔구십 교동</a></li>
+		</ul>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var elSelectedItem = jindo.$("selectedItem");
+var oLmMenu = new jindo.m.LayerManager("menuList")
+	.attach("beforeShow", function(we) {
+		addConsole(we.sType + " → " + "보여지기 전에 호출");
+		elSelectedItem.className = "u_sel_unfd";
+	})
+	.attach("show", function(we) {
+		addConsole(we.sType + " → " + "보여진 후에 호출");
+	})
+	.attach("beforeHide", function(we) {
+		addConsole(we.sType + " → " + "사라지기 전에 호출 (선택된 영역 : " + we.elTarget + ")");
+	})
+	.attach("hide", function(we) {
+		addConsole(we.sType + " → " + "사라진 후에 호출 (선택된 영역 : " + we.elTarget + ")");
+		if(we.elTarget) {
+			var welTarget = jindo.$Element(jindo.m.getNodeElement(we.elTarget));
+			if(welTarget.hasClass("u_sel_olk")) {
+				elSelectedItem.innerHTML = we.elTarget.innerHTML;
+			}
+		}
+		elSelectedItem.className = "u_sel_fd";
+	})
+	.attach("ignore", function(we) {
+		addConsole(we.sType + " → " + "무시된 경우 호출 (무시된 영역 : " + we.elTarget + ")");
+	}).link("selectedItem");
+/*code@*/
+
+jindo.$Fn(function(we) {
+	  oLmMenu.toggle();
+	  we.stop(jindo.$Event.CANCEL_ALL);
+	  return false;
+}).attach("box","touchstart");
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

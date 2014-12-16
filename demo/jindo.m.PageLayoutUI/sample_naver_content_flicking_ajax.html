@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<style type="text/css">
+/* Common Font*/
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif}
+
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica}
+body{position:relative;background-color:#f4f4f4;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+
+/* Page 영역 CSS */
+.jmc-page{
+	background:#fff;	/* 전체 페이지의 배경색 */
+	border:0;width:100%;display:none;
+}
+
+/* Header 영역 CSS */
+.jmc-header {
+    width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Footer 영역 CSS */
+.jmc-footer {
+    width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Content 영역 CSS */
+.jmc-content{
+	clear:both;width:100%;display:none;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="http://s.nm.naver.net/css/w_20120607.css">
+<link rel="stylesheet" type="text/css" href="http://s.nm.naver.net/css/e_20120607.css">
+<style type="text/css">
+.imsv{background-image:url(http://static.naver.net/www/u/2012/0606/mma_111345977.jpg)}
+@media screen and (-webkit-min-device-pixel-ratio:1.5){.imsv{background-image:url(http://static.naver.net/www/u/2012/0606/mma_111359854.jpg);-webkit-background-size:216px 361px;}}
+</style>
+</head>
+<body flicking="yes">
+<div class="jmc-page">
+	<!-- header -->
+	<div class="jmc-header" position="fixed">
+		<header role="banner">
+			<!-- 상단 바로가기 -->
+			<div class="lgslk">
+			<h1 class="lg"><a href="http://m.naver.com" class="lg_a"><img src="http://static.naver.net/www/m/im3/lg_naver.png" width="84" height="30" alt="네이버" class="lg_m" onclick="nclk(this,'top.naver','','')"></a></h1>
+			<ul class="slk">
+
+			<li class="slk_l"><a href="http://m.me.naver.com" class="slk_a" onclick="nclk(this, 'top.me', '', '');"><span class="en">me</span> </a></li>
+			<li class="slk_l"><a href="http://m.mail.naver.com" class="slk_a" onclick="nclk(this, 'top.mail', '', '');">메일 </a></li>
+			<li class="slk_l"><a href="http://m.cafe.naver.com" class="slk_a" onclick="nclk(this, 'top.cafe', '', '');">카페 </a></li>
+
+			<li class="slk_l"><a href="services.html" class="slk_a" onclick="nclk(this, 'top.services', '' , '');">전체 <span class="imrd imrd_nn slk_n"><span class="imrd_in">N</span></span></a></li>
+			</ul>
+			</div>
+			<!-- //상단 바로가기 -->
+
+			<!-- 상단 검색창 -->
+			<div id="sch" class="sch sch_write">
+			<section>
+			<form role="search" name="search" id="search" action="http://m.search.naver.com/search.naver" onsubmit="return oAutoComplete.onSubmitForm();">
+			<h1 class="u_vc">검색</h1>
+			<span class="sch_inpw">
+			<span class="sch_inpw_in">
+
+			<input type="text" id="query" name="query" title="검색어 입력" value="" class="sch_inp" autocorrect="off" autocomplete="off" autocapitalize="off" maxlength="255" data-initval="" onfocus="this.setAttribute('data-focus','focus');">
+
+			<input type="hidden" name="where" value="m">
+			<input type="hidden" id="sm" name="sm" value="mtp_hty">
+			<button id="clear_input" type="button" class="sch_del"><span class="imsc imsc_del">입력 내용 삭제</span></button>
+			<button type="submit" class="sch_submit" onclick="nclk(this, 'sta.search', '', '', 1);"><span class="imsc imsc_submit">검색</span></button>
+			</span>
+			</span>
+			<button id="btn_voice_search" type="button" class="sch_btn sch_voice" title="voicerecg" onclick="nclk(this, 'sta.voice', '', '');"><span class="imsc imsc_voice">음성검색</span></button>
+			<button id="sch_ext_btn" type="button" class="sch_btn sch_region"><span class="imsc imsc_region">지역검색 펼치기</span></button>
+			</form>
+			<div class="u_atcp_wrap">
+			<div class="u_tp_area" id="nx_keyword_layer" style="display:none;">
+			<ul class="u_tp_tab" id="nx_keyword_tab">
+			<li class="u_tp_tab_l u_tp_tab_on"><a href="javascript:;" class="u_tp_tab_a">최근 검색어</a></li>
+			<li class="u_tp_tab_l"><a href="javascript:;" class="u_tp_tab_a">생활 검색어</a></li>
+			</ul>
+			<div class="u_tp_a" id="nx_ht_layer">
+			<h3 class="u_hc">최근 검색어</h3>
+			<div style="overflow: hidden; background-color: rgb(255, 255, 255); "><ul class="u_atcp_tp u_t_nl"></ul></div>
+			<p class="u_atcp_tptx" id="nx_ht_nothing" style="display:none"> 최근 검색어내역이 없습니다.</p>
+			<p class="u_atcp_tptx" id="nx_ht_off" style="display:none"> 검색어저장 기능이 꺼져 있습니다.</p>
+			<div class="u_atcp_fc">
+			<div id="nx_ht_layer_clean">
+			<span id="nx_clean_save">
+			<button type="button" class="u_atcp_fcb">기록삭제</button>
+			<span class="u_atcp_dv">|</span>
+			</span>
+			<button type="button" class="u_atcp_fcb" id="nx_toggle_save">검색어저장 끄기</button>
+			</div>
+			<div id="nx_ht_layer_allclean" style="display:none;">
+			<span id="nx_allclean_save" onclick="oAutoComplete.allCleanKeyword(event);">
+			<button type="button" class="u_atcp_fcb">기록 전체 삭제</button>
+			<span class="u_atcp_dv">|</span>
+			</span>
+			<button type="button" class="u_atcp_fcb" id="nx_done_clean" onclick="oAutoComplete.doneCleanKeyword(event);">완료</button>
+			</div>
+			<button type="button" class="u_atcp_fcb u_atcp_x" id="nx_ht_layer_close"><span class="u_atcp_xic" id="nx_ht_layer_close"></span>닫기</button>
+			</div>
+			</div>
+			<div class="u_tp_a" id="nx_keyword_life" style="display:none">
+			</div>
+			</div>
+			<div class="u_atcp_area" id="autocomplete_layer" style="display: none; ">
+			<div class="_atcp_answer_template" style="display:none;">
+			<p class="atcp_crt" id="_atcp_answer_1" onclick="oAutoComplete.selectAnswer(event, 1, true);"><a href="javascript:;" class="atcp_crt_a">@1@<span> </span><strong class="atcp_crt_sn">@2@</strong></a></p>
+			<p class="atcp_crt" id="_atcp_answer_2" onclick="oAutoComplete.selectAnswer(event, 2, true);"><a href="javascript:;" class="atcp_crt_a">@1@<span> </span><strong class="atcp_crt_sn">@2@</strong></a></p>
+			<p class="atcp_crt atcp_lotto" id="_atcp_answer_3" onclick="oAutoComplete.selectAnswer(event, 3, true);"><a href="javascript:;" class="atcp_crt_a"><strong class="atcp_lotto_num">@2@</strong>, <strong class="atcp_lotto_num">@3@</strong>, <strong class="atcp_lotto_num">@4@</strong>, <strong class="atcp_lotto_num">@5@</strong>, <strong class="atcp_lotto_num">@6@</strong>, <strong class="atcp_lotto_num">@7@</strong> <span class="atcp_lotto_plus">+</span> <strong class="atcp_lotto_num2">@8@</strong> <span class="atcp_lotto_pr">@1@회차<br>(@9@)</span></a></p>
+			<p class="atcp_crt atcp_url" id="_atcp_answer_4" onclick="oAutoComplete.selectAnswer(event, 4, false);"><a href="http://@1@" class="atcp_crt_a"><span class="atcp_crt_t">바로가기</span> @1@</a></p>
+			</div>
+			<div class="atcp_crt_w _atcp_answer_wrap"></div>
+			<div style="overflow: hidden; background-color: rgb(255, 255, 255); "><ul title="자동완성" class="u_atcp u_atcp_at"></ul></div>
+			<div class="u_atcp_fc">
+			<button type="button" id="switch_input" class="u_atcp_fcb">자동완성 끄기</button>
+			<button type="button" id="close_input" class="u_atcp_fcb u_atcp_x"><span class="u_atcp_xic"></span>닫기</button>
+			</div>
+			</div>
+			</div>
+			</section>
+			</div>
+			<!-- //상단 검색창 -->
+
+			<!-- 실시간 급상승 -->
+			<div id="u_rkw" class="u_rkw">
+			<section>
+			<h1 class="u_rkw_h"><a id="rkw_title_btn" href="#" class="u_rkw_ha" onclick="nclk(this, 'lve.title', '', '', 1);">실시간 급상승</a></h1>
+			<p id="u_rkw_rol" class="u_rkw_rol"><a href="http://m.search.naver.com/search.naver?where=m&amp;sm=mtp_lve&amp;query=%EB%B8%94%EB%A6%AC%EC%9E%90%EB%93%9C%EC%BD%94%EB%A6%AC%EC%95%84" class="u_rkw_a" onclick="nclk(this, 'lve.kwd', '', '2');"><span class="u_rkw_kw"><span class="u_rkw_rkn">2</span> 블리자드코리아</span> <span class="u_rkw_n u_rkw_up"><span class="u_rkw_ico">상승</span> 93</span></a></p>
+			<button id="rkw_btn" type="button" class="u_rkw_tg" onclick="nclk(this, 'lve.more', '', '');"><span class="u_rkw_ico">추천검색어 펼치기</span></button>
+			</section>
+			</div>
+			<!-- //실시간 급상승 -->
+		</header>
+	</div>
+	<!-- //header -->
+
+	<!-- content -->
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page1 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+					<!-- 상단 탭 -->
+					<div id="nav" class="nav">
+					<nav role="navigation">
+					<ul class="nav_u">
+					<li class="nav_l nav_1 nav_lon"> <a class="nav_a">뉴스<span class="nav_pg"> <span class=" nav_pgn nav_pgnon" title="현재페이지">1</span> <span class="nav_pgn" onclick="oPageLayoutUI.moveTo(1);">2</span> </span> </a> </li>
+					<li class="nav_l nav_2" onclick="oPageLayoutUI.moveTo(2);"> <a class="nav_a">연예</a> </li>
+					<li class="nav_l nav_3" onclick="oPageLayoutUI.moveTo(3);"> <a class="nav_a">스포츠</a> </li>
+					<li class="nav_l nav_4" onclick="oPageLayoutUI.moveTo(4);"> <a class="nav_a">라이프<span class="nav_pg"> <span class="nav_pgn">1</span> <span class="nav_pgn">2</span> </span> </a> </li>
+					<li class="nav_l nav_5" onclick="oPageLayoutUI.moveTo(6);"> <a class="nav_a">FUN</a> </li>
+					<li class="nav_l nav_6" onclick="oPageLayoutUI.moveTo(7);"> <a class="nav_a">쇼핑</a> </li>
+					</ul>
+					</nav>
+					</div>
+					<!-- // 상단 탭 -->
+					<div class="wrap id_news" data-createtime="2012-06-11 16:08:48">
+					<div class="wrap_margin"></div>
+					<div class="wrap_cont">
+					<div class="cont">
+					<section>
+					<h1 class="u_vc">뉴스</h1>
+					<ul class="lst_w">
+					<li class="lst2 lst2_v1">
+					<a href="http://m.news.naver.com/home.nhn " class="lst2_a" onclick="nclk(this,'nw1.ihead','','')">
+					<span class="lst2_mw lst2_mw_w115">
+					<img data-src="../asset/img/c2.jpg" width="115" height="84" alt="" class="lst2_m" src="http://mwig.naver.net/alcatraz_mig/m.jsp?src=http://imgnews.naver.net/image/upload/item20120611/5361_09090909.jpg&amp;twidth=0&amp;theight=0&amp;cmd=2&amp;qlt=90&amp;rf=main">
+					</span>
+					<span class="lst2_h">
+					IAEA조사단 "고리1호기 발전설비 상태 양호"</span>
+					<span class="lst2_d">
+					국제원자력기구(IAEA)는 고리1호기가 안전에 문제가 없다는 결론을 내렸다. IAEA 전문가 안전점검단은...</span>
+					</a>
+					</li></ul><ul class="lst_w">
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=001&amp;aid=0005644052 " class="lst_a" onclick="nclk(this,'nw1.txt','','')">
+					'운전면허 간소화'로 취득자 증가…사고는 감소</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=100 " class="lst_a" onclick="nclk(this,'nw1.txt','','')">
+					<span class="subject_blue">전두환 '사열' </span>전두환·노태우 국립묘지 안장도 가능</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=263&amp;oid=277&amp;aid=0002797610 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					'비명·한숨·썰렁'…대한민국 '슬픈 트렌드3'</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=106 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					<span class="subject">[연예]</span>
+					유세윤, 은퇴 발언 해명 "경솔했다..뻥이야!"</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.sports.naver.com/worldfootball/news/read.nhn?oid=076&amp;aid=0002223421 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					<span class="subject">[스포츠]</span>
+					정대세 "월드컵 후 北 감독 탄광 갔다고?"</a>
+					</li>
+					</ul><ul class="tlst_w tlst_w_bx">
+					<li class="tlst">
+					<a href="http://m.news.naver.com/photoHome.nhn " class="tlst_a" onclick="nclk(this,'nw1.ipht','','')">
+					<img data-src="../asset/img/c3.jpg" width="92" height="70" alt="" class="tlst_m" src="http://mwig.naver.net/alcatraz_mig/m.jsp?src=http://imgnews.naver.net/image/upload/item20120611/8643_1.jpg&amp;twidth=0&amp;theight=0&amp;cmd=2&amp;qlt=90&amp;rf=main">
+					<span class="tlst_d">
+					1000만원대 2인승 미니전기차 나온다</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=836674&amp;panelId=hot.011.148.836674&amp;oid=117&amp;aid=0002241048 " class="tlst_a" onclick="nclk(this,'nw1.ipht','','')">
+					<img data-src="../asset/img/c4.jpg" width="92" height="70" alt="" class="tlst_m" src="http://mwig.naver.net/alcatraz_mig/m.jsp?src=http://imgnews.naver.net/image/upload/item20120611/0826_1.jpg&amp;twidth=0&amp;theight=0&amp;cmd=2&amp;qlt=90&amp;rf=main">
+					<span class="tlst_icw"><span class="im im_pho">포토 슬라이드</span></span>
+					<span class="tlst_d">
+					이장우, 우월 '기린다리' 포착</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=304909&amp;panelId=hot.011.148.304909&amp;oid=038&amp;aid=0002266749 " class="tlst_a" onclick="nclk(this,'nw1.ipht','','')">
+					<img data-src="../asset/img/c5.jpg" width="92" height="70" alt="" class="tlst_m" src="http://mwig.naver.net/alcatraz_mig/m.jsp?src=http://imgnews.naver.net/image/upload/item20120611/5280_untitled-8.jpg&amp;twidth=0&amp;theight=0&amp;cmd=2&amp;qlt=90&amp;rf=main">
+					<span class="tlst_icw"><span class="im im_pho">포토 슬라이드</span></span>
+					<span class="tlst_d">
+					'절반 성장?' 9㎏ 세계 최대 고양이</span>
+					</a>
+					</li>
+					</ul><ul class="lst_w">
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=260&amp;oid=008&amp;aid=0002856215 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					"피랍에 로켓포 공격까지"…목숨건 5천억불 수주</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=100&amp;oid=021&amp;aid=0002115467 " class="lst_a" onclick="nclk(this,'nw1.txt','','')">
+					검찰, MB사저 '무혐의' 불법사찰 윗선 '모름'</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=105&amp;oid=001&amp;aid=0005644298 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					개인정보보호위, '구글 개인정보 취급' 위법 우려</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=261&amp;oid=008&amp;aid=0002856220 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					중국인 "긴 게 좋아"...아반떼 '롱바디' 검토</a>
+					</li>
+					<li class="lst li_last">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=105&amp;sid2=228&amp;oid=092&amp;aid=0002002577 " class="lst_a" onclick="nclk(this,'nw1.tpht','','')">
+					마약탐지는 개가, 지뢰탐지는 쥐가!</a>
+					</li>
+					</ul>
+					<div class="toif">
+					<div class="toif_uw toif_isu">
+					<ul class="toif_u ROLLING" style="margin-top: -408px; ">
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/sise/siseIndex.nhn?code=KOSPI" class="toif_aw" onclick="nclk(this,'nw1.kospi','','')">
+					<div class="toif_c">증권<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">코스피</em>
+					<span class="toif_ks toif_ksup">
+					<em class="toif_ksv">1867.04</em>
+					<span class="toif_ksd"><span class="im im_rkup">상승</span> 31.40 +1.71%</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/sise/siseIndex.nhn?code=KOSDAQ" class="toif_aw" onclick="nclk(this,'nw1.kosdaq','','')">
+					<div class="toif_c">증권<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">코스닥</em>
+					<span class="toif_ks toif_ksup">
+					<em class="toif_ksv">469.59</em>
+					<span class="toif_ksd"><span class="im im_rkup">상승</span> 7.60 +1.65%</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/marketindex/item.nhn?marketindexCd=FX_USDKRW" class="toif_aw" onclick="nclk(this,'nw1.exchange','','')">
+					<div class="toif_c">환율<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">미국</em>
+					<span class="toif_ks toif_ksdw">
+					<em class="toif_ksv">1166.0</em>
+					<span class="toif_ksd"><span class="im im_rkdw">하락</span> -8.0 -0.68%</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/marketindex/item.nhn?marketindexCd=OIL_GSL" class="toif_aw" onclick="nclk(this,'nw1.oil','','')">
+					<div class="toif_c">유가<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">휘발유</em>
+					<span class="toif_ks toif_ksdw">
+					<em class="toif_ksv">1986.03</em>
+					<span class="toif_ksd"><span class="im im_rkdw">하락</span> -1.0 원/리터</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/marketindex/item.nhn?marketindexCd=OIL_CL" class="toif_aw" onclick="nclk(this,'nw1.oil','','')">
+					<div class="toif_c">유가<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">WTI</em>
+					<span class="toif_ks toif_ksdw">
+					<em class="toif_ksv">84.10</em>
+					<span class="toif_ksd"><span class="im im_rkdw">하락</span> -0.72 달러/배럴</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/marketindex/item.nhn?marketindexCd=CMDT_GD" class="toif_aw" onclick="nclk(this,'nw1.gold','','')">
+					<div class="toif_c">금시세<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">국내 금</em>
+					<span class="toif_ks toif_ksup">
+					<em class="toif_ksv">59952.50</em>
+					<span class="toif_ksd"><span class="im im_rkup">상승</span> 616.99 +1.04%</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					<li class="toif_l">
+					<a href="http://m.stock.naver.com/marketindex/item.nhn?marketindexCd=CMDT_GC" class="toif_aw" onclick="nclk(this,'nw1.wgold','','')">
+					<div class="toif_c">금시세<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">국제 금</em>
+					<span class="toif_ks toif_ksup">
+					<em class="toif_ksv">1590.10</em>
+					<span class="toif_ksd"><span class="im im_rkup">상승</span> 3.50 +0.22%</span>
+					</span>
+					</div>
+					</a>
+					</li>
+					</ul>
+					</div>
+					<div class="toif_uw toif_wt">
+					<ul class="toif_u">
+					<li class="toif_l">
+					<a href="http://m.weather.naver.com/m/crntWetr.nhn?cityRgnCd=CT001013" class="toif_aw" onclick="nclk(this,'nw1.weather','','')">
+					<div class="toif_c">날씨<span class="im im_arr"></span></div>
+					<div class="toif_a">
+					<em class="toif_h">서울 27.0°C</em>
+					<span class="toif_d">강수량 0.0mm</span>
+					<span class="imwt imwt21">구름많음</span>
+					</div>
+					</a>
+					</li>
+					</ul>
+					</div>
+					</div>
+					<p class="mr"><a href="http://m.news.naver.com/home.nhn" class="mr_a" onclick="nclk(this,'nw1.more','','')">뉴스 더보기<span class="im im_arr"></span></a></p>
+					</section>
+					</div>
+					<div class="reco2">
+					<section>
+					<h1 class="h">투데이 스토리</h1>
+					<ul class="tlst_w">
+					<li class="tlst">
+					<a href="http://m.navercast.naver.com/contents.nhn?contents_id=8376" class="tlst_a" onclick="nclk(this,'nw1.mgz','7837A10E_000000000D1F','');">
+					<img data-src="http://static.naver.net/www/u/2012/0611/mma_1562648.jpg" width="92" height="70" alt="김지선 가족" class="tlst_m" src="http://static.naver.net/www/u/2012/0611/mma_1562648.jpg">
+					<span class="tlst_d">
+					<span class="tlst_ds">
+					<span class="cate">피플</span>
+					'다산 여왕'
+					<br>
+					김지선의 일상
+					</span>
+					<span class="tlst_dn">
+					</span>
+					</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.navercast.naver.com/contents.nhn?contents_id=7226&amp;category_type=series" class="tlst_a" onclick="nclk(this,'nw1.mgz','7837A10E_000000000D1D','');">
+					<img data-src="http://static.naver.net/www/u/2012/0611/mma_132125334.jpg" width="92" height="70" alt="허브가든" class="tlst_m" src="http://static.naver.net/www/u/2012/0611/mma_132125334.jpg">
+					<span class="tlst_d">
+					<span class="tlst_ds">
+					<span class="cate">살림</span>
+					필요할 때
+					<br>
+					뜯어 쓰세요
+					</span>
+					<span class="tlst_dn">
+					</span>
+					</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.navercast.naver.com/mobile_contents.nhn?contents_id=9044" class="tlst_a" onclick="nclk(this,'nw1.mgz','7837A10E_000000000D1E','');">
+					<img data-src="http://static.naver.net/www/u/2012/0611/mma_132610612.jpg" width="92" height="70" alt="뷰티 도우미" class="tlst_m" src="http://static.naver.net/www/u/2012/0611/mma_132610612.jpg">
+					<span class="tlst_d">
+					<span class="tlst_ds">
+					<span class="cate">쇼핑</span>
+					진동 화장품
+					<br>
+					깐깐 리뷰
+					</span>
+					<span class="tlst_dn">
+					</span>
+					</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.navercast.naver.com/contents.nhn?contents_id=8341" class="tlst_a" onclick="nclk(this,'nw1.mgz','7837A10E_000000000D22','');">
+					<img data-src="http://static.naver.net/www/u/2012/0611/mma_13245688.jpg" width="92" height="70" alt="아토피 예방" class="tlst_m" src="http://static.naver.net/www/u/2012/0611/mma_13245688.jpg">
+					<span class="tlst_d">
+					<span class="tlst_ds">
+					<span class="cate">건강</span>
+					아토피 예방
+					<br>
+					식생활 노하우
+					</span>
+					<span class="tlst_dn">
+					</span>
+					</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.navercast.naver.com/contents.nhn?contents_id=9117" class="tlst_a" onclick="nclk(this,'nw1.mgz','7837A10E_000000000D20','');">
+					<img data-src="http://static.naver.net/www/u/2012/0611/mma_103116406.jpg" width="92" height="70" alt="싼타페" class="tlst_m" src="http://static.naver.net/www/u/2012/0611/mma_103116406.jpg">
+					<span class="tlst_d">
+					<span class="tlst_ds">
+					<span class="cate">자동차</span>
+					궁금하다
+					<br>
+					이 차, 신형 SUV
+					</span>
+					<span class="tlst_dn">
+					</span>
+					</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.music.naver.com/album/index.nhn?albumId=322237" class="tlst_a" onclick="nclk(this,'nw1.mgz','7837A10E_000000000D21','');">
+					<img data-src="http://static.naver.net/www/u/2012/0611/mma_133012874.jpg" width="92" height="70" alt="신사의품격" class="tlst_m" src="http://static.naver.net/www/u/2012/0611/mma_133012874.jpg">
+					<span class="tlst_d">
+					<span class="tlst_ds">
+					<span class="cate">뮤직</span>
+					'신사의 품격'
+					<br>
+					달달한 OST
+					</span>
+					<span class="tlst_dn">
+					</span>
+					</span>
+					</a>
+					</li>
+					</ul>
+					</section>
+					</div>
+					<div class="margin"></div>
+					<div class="ad" style="height:50px" id="adw_da"><h3 class="u_hc">광고</h3><a href="http://ad.naver.com/adclick?unit=876B&amp;ac=4188807&amp;src=1625966&amp;br=1509643" style="display:block;background:#fff;"><span style="background:#fff url(http://adcreative.naver.com/ad3/1004/1004874/cc_3.jpg);display:block;text-decoration:none;text-align:center;"><img src="http://adcreative.naver.com/ad3/1004/1004874/c_5.jpg" alt="AD" width="320" height="50" style="vertical-align:top;border:none"></span></a><img src="http://ad.naver.com/adshow?unit=876B&amp;ac=4188807&amp;src=1625966&amp;t=i" border="0" style="display:none" alt=""></div>
+					</div>
+					<div class="reco">
+					<div class="margin"></div>
+					<div class="fvsv">
+					<section>
+					<div class="fvsv_header">
+					<h1 class="fvsv_h">자주가는 서비스</h1>
+					<a href="services_edit.html" class="fvsv_set" onclick="nclk(this, 'fsv.set', '', '');">설정<span class="im im_set"></span></a>
+					</div>
+					<ul id="favorite_svc" class="sv">
+					<li class="sv_l" data-code="svc.cafe" data-default="true">
+					<a href="http://m.cafe.naver.com/" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-36px 0px"></span>
+					</span>
+					<em class="sv_t">카페</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.blog" data-default="true">
+					<a href="http://m.blog.naver.com" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:0px -36px"></span>
+					</span>
+					<em class="sv_t">블로그</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.note" data-default="true">
+					<a href="http://m.note.naver.com" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-180px 0px"></span>
+					</span>
+					<em class="sv_t">쪽지</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.mail" data-default="true">
+					<a href="http://m.mail.naver.com/" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-108px 0px"></span>
+					</span>
+					<em class="sv_t">메일</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.ndrive" data-default="true">
+					<a href="http://m.ndrive.naver.com" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-144px -72px"></span>
+					</span>
+					<em class="sv_t">N드라이브</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.comic" data-default="true">
+					<a href="http://m.comic.naver.com" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-108px -36px"></span>
+					</span>
+					<em class="sv_t">웹툰</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.land" data-default="true">
+					<a href="http://m.land.naver.com/" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:0px -108px"></span>
+					</span>
+					<em class="sv_t">부동산</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.dic" data-default="true">
+					<a href="http://m.dic.naver.com" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-36px -108px"></span>
+					</span>
+					<em class="sv_t">사전</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.kitchen" data-default="true">
+					<a href="http://m.kitchen.naver.com" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-180px -108px"></span>
+					</span>
+					<em class="sv_t">레시피</em>
+					</a>
+					</li>
+					<li class="sv_l" data-code="svc.shopping" data-default="true">
+					<a href="http://m.shopping.naver.com/" class="sv_a">
+					<span class="sv_mw">
+					<span class="imsv" style="background-position:-72px -252px"></span>
+					<span class="im im_n">New</span></span>
+					<em class="sv_t">지식쇼핑</em>
+					</a>
+					</li>
+					</ul>
+					<p class="fvsv_mr"><a href="services.html" class="fvsv_mra" onclick="nclk(this, 'fsv.more', '', '');">네이버 모바일 서비스 전체보기<span class="im im_arr"></span></a></p>
+					</section>
+					</div>
+					</div>
+					</div>
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page1 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page2 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+					<!-- 상단 탭 -->
+					<div id="nav" class="nav">
+					<nav role="navigation">
+					<ul class="nav_u">
+					<li class="nav_l nav_1 nav_lon"> <a class="nav_a">뉴스<span class="nav_pg"> <span class=" nav_pgn" onclick="oPageLayoutUI.moveTo(0);">1</span> <span class="nav_pgn nav_pgnon" title="현재페이지">2</span> </span> </a> </li>
+					<li class="nav_l nav_2" onclick="oPageLayoutUI.moveTo(2);"> <a class="nav_a">연예</a> </li>
+					<li class="nav_l nav_3" onclick="oPageLayoutUI.moveTo(3);"> <a class="nav_a">스포츠</a> </li>
+					<li class="nav_l nav_4" onclick="oPageLayoutUI.moveTo(4);"> <a class="nav_a">라이프<span class="nav_pg"> <span class="nav_pgn">1</span> <span class="nav_pgn">2</span> </span> </a> </li>
+					<li class="nav_l nav_5" onclick="oPageLayoutUI.moveTo(6);"> <a class="nav_a">FUN</a> </li>
+					<li class="nav_l nav_6" onclick="oPageLayoutUI.moveTo(7);"> <a class="nav_a">쇼핑</a> </li>
+					</ul>
+					</nav>
+					</div>
+					<!-- //상단 탭 -->
+					<div class="wrap id_news2" data-createtime="2012-06-11 16:05:26">
+					<div class="wrap_margin"></div>
+					<div class="wrap_cont">
+					<div class="cont">
+					<section>
+					<h1 class="u_vc">뉴스</h1>
+					<ul class="lst_w">
+					<li class="lst2 ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=006&amp;aid=0000057385 " class="lst2_a" onclick="nclk(this,'nw2.thead','','')">
+					<span class="lst2_h">
+					'김미화 하차' MBC 관련 동향 문건 나왔다</span>
+					<span class="lst2_d">
+					김미화 자신의 트위터에 밝혀…사실로 드러날 경우 파문 클 듯지난 2009년 국무총리실..</span>
+					</a>
+					</li>
+					</ul><ul class="lst_w">
+					<li class="lst ">
+					<a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=101 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					"300만원 이상 입금 후 찾을 때 10분 지연"</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=103&amp;sid2=239&amp;oid=008&amp;aid=0002855987 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					자동차 급발진 조사과정 언론에 모두 공개</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=008&amp;aid=0002855992 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					서울대 '수의대' 이어 약대에서도 '논문 조작 의혹'</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=104&amp;oid=001&amp;aid=0005643996 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					中 식품안전 또 문제…이번엔 '농약봉투 사과'</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.sports.naver.com/baseball/news/read.nhn?oid=109&amp;aid=0002363968 " class="lst_a" onclick="nclk(this,'nw2.tpht','','')">
+					<span class="subject">[스포츠]</span>
+					이용훈 "고의적 부정투구면 몰래 했을 것"</a>
+					</li>
+					</ul><ul class="tlst_w tlst_w_bx">
+					<li class="tlst">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=867252&amp;panelId=hot.011.148.867252&amp;oid=145&amp;aid=0000009671 " class="tlst_a" onclick="nclk(this,'nw2.ipht','','')">
+					<img src="../asset/img/c6.jpg" width="92" height="70" alt="" class="tlst_m">
+					<span class="tlst_icw"><span class="im im_pho">포토 슬라이드</span></span>
+					<span class="tlst_d">
+					하루 한 끼 디톡스 샐러드</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=849491&amp;panelId=hot.011.148.849491&amp;oid=311&amp;aid=0000131741 " class="tlst_a" onclick="nclk(this,'nw2.ipht','','')">
+					<img src="../asset/img/c7.jpg" width="92" height="70" alt="" class="tlst_m">
+					<span class="tlst_icw"><span class="im im_pho">포토 슬라이드</span></span>
+					<span class="tlst_d">
+					신세경, 가수 데뷔? 티저 공개</span>
+					</a>
+					</li>
+					<li class="tlst">
+					<a href="http://m.news.naver.com/photoViewer.nhn?componentId=845652&amp;panelId=hot.011.148.845652&amp;oid=003&amp;aid=0004547003 " class="tlst_a" onclick="nclk(this,'nw2.ipht','','')">
+					<img src="../asset/img/c8.jpg" width="92" height="70" alt="" class="tlst_m">
+					<span class="tlst_icw"><span class="im im_pho">포토 슬라이드</span></span>
+					<span class="tlst_d">
+					헬기 잔해 속 희생자 시신 수습</span>
+					</a>
+					</li>
+					</ul><ul class="lst_w">
+					<li class="lst2 ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=008&amp;aid=0002856026 " class="lst2_a" onclick="nclk(this,'nw2.it','','')">
+					<span class="lst2_h">
+					MBC 김재철 사장 "2014년 임기 다 채울 것"</span>
+					<span class="lst2_d">
+					총파업 134일째를 맞는 MBC의 김재철 사장이 "반드시 2014년 임기까지 채우겠다"고 재차 사퇴..</span>
+					</a>
+					</li>
+					</ul><ul class="lst_w">
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=003&amp;aid=0004547069 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					LH 간부 등 21명 200억대 신도시 보상금 비리 적발</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=105&amp;sid2=230&amp;oid=018&amp;aid=0002612336 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					"한도 초과하셨습니다"…모바일 요금폭탄 막는다</a>
+					</li>
+					<li class="lst ">
+					<a href="http://m.news.naver.com/issueGroup.nhn?sid1=102&amp;pid=mbs.875.102&amp;cid=893866&amp;type=issue&amp;page=1 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					<span class="subject_blue">사건 </span>남편 수장시켜 보험금 탄 50대 女 구속</a>
+					</li>
+					<li class="lst li_last">
+					<a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=034&amp;aid=0002394240 " class="lst_a" onclick="nclk(this,'nw2.txt','','')">
+					전국 76% 가뭄 심각…저수율 54%</a>
+					</li>
+					</ul>
+					<p class="mr"><a href="http://m.news.naver.com/home.nhn" class="mr_a" onclick="nclk(this,'nw2.more','','')">뉴스 더보기<span class="im im_arr"></span></a></p>
+					</section>
+					</div>
+					<div class="margin"></div>
+					<div class="ad" style="height:50px" id="adw_da"><h3 class="u_hc">광고</h3><a href="http://ad.naver.com/adclick?unit=876B&amp;ac=4188810&amp;src=1625981&amp;br=1509648" style="display:block;background:#fff;"><span style="background:#fff url(http://adcreative.naver.com/ad3/1004/1004874/dd_3.jpg);display:block;text-decoration:none;text-align:center;"><img src="http://adcreative.naver.com/ad3/1004/1004874/d_3.jpg" alt="AD" width="320" height="50" style="vertical-align:top;border:none"></span></a><img src="http://ad.naver.com/adshow?unit=876B&amp;ac=4188810&amp;src=1625981&amp;t=i" border="0" style="display:none" alt=""></div>
+					</div>
+					<div class="reco">
+					<section>
+					<div class="tab">
+					<ul class="tab_u">
+					<li class="tab_l tab_lon" style="width:50%"><a href="#" class="tab_a" onclick="nclk(this,'nw2.pop','','',1);TUIC.select(this, 'NEWS_RANKING', 0);return false;">가장 많이 본 뉴스</a></li>
+					<li class="tab_l" style="width:50%"><a href="#" class="tab_a" onclick="nclk(this,'nw2.cmt','','',1);TUIC.select(this, 'NEWS_RANKING', 1);return false;">댓글 많은 뉴스</a></li>
+					</ul>
+					</div>
+					<div class="tabc NEWS_RANKING_TC">
+					<h1 class="tabc_h">가장 많이 본 뉴스</h1>
+					<ul class="reif lklst2">
+					<li class="reif_l"><a href="http://m.news.naver.com/rankingRead.nhn?oid=032&amp;aid=0002225303&amp;sid1=100&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.plist','','')">[정치] 전두환, 노태우 국립묘지 안장도 가능하다</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/rankingRead.nhn?oid=277&amp;aid=0002797595&amp;sid1=101&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.plist','','')">[경제] 직원들은 탄력근무제, 삼성그룹 2인자는 새벽 출근</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/rankingRead.nhn?oid=006&amp;aid=0000057385&amp;sid1=102&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.plist','','')">[사회] ‘김미화 하차시켜라’ MBC 교체 관련 동향 문건 나왔다</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/rankingRead.nhn?oid=076&amp;aid=0002223529&amp;sid1=106&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.plist','','')">[연예] 구하라-용준형, 무대 위 아이컨택 '딱 걸렸네'</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/rankingRead.nhn?oid=018&amp;aid=0002612336&amp;sid1=105&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.plist','','')">[IT] "한도를 초과하셨습니다"..모바일 결제 요금폭탄 막는다</a></li>
+					</ul>
+					<p class="mr"><a href="http://m.news.naver.com/rankingList.nhn" class="mr_a" onclick="nclk(this,'nw2.pmore','','')"> 더보기<span class="im im_arr"></span></a></p>
+					</div>
+					<div class="tabc NEWS_RANKING_TC tabc_hide">
+					<h1 class="tabc_h">댓글 많은 뉴스</h1>
+					<ul class="reif lklst2">
+					<li class="reif_l"><a href="http://m.news.naver.com/memoRankingRead.nhn?oid=032&amp;aid=0002225303&amp;sid1=100&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.clist','','')">[정치] 전두환, 노태우 국립묘지 안장도 가능하다</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/memoRankingRead.nhn?oid=366&amp;aid=0000062722&amp;sid1=101&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.clist','','')">[경제] [단독] 정부, 장마저축 세제혜택 폐지 검토</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/memoRankingRead.nhn?oid=008&amp;aid=0002856026&amp;sid1=102&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.clist','','')">[사회] MBC 김재철 사장 "반드시 2014년 임기 다 채울 것"</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/memoRankingRead.nhn?oid=038&amp;aid=0002266727&amp;sid1=106&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.clist','','')">[연예] ‘나가수2’ MC 박명수, 이건 2인자의 문제가 아니다</a></li>
+					<li class="reif_l"><a href="http://m.news.naver.com/memoRankingRead.nhn?oid=092&amp;aid=0002002556&amp;sid1=105&amp;ntype=RANKING" class="reif_a" onclick="nclk(this,'nw2.clist','','')">[IT] 블리자드 '디아3' 점검 사실상 무기한 연장</a></li>
+					</ul>
+					<p class="mr"><a href="http://m.news.naver.com/memoRankingList.nhn" class="mr_a" onclick="nclk(this,'nw2.cmore','','')"> 더보기<span class="im im_arr"></span></a></p>
+					</div>
+					</section>
+					</div>
+					</div>
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page2 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page3 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page3 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page4 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page4 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page5 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++++ Page5 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page6 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page6 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page7 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page7 ++++++++++++++++++++++++++++++++++++++ -->
+
+	<!-- ++++++++++++++++++++++++++++++++++++++ Page8 ++++++++++++++++++++++++++++++++++++++ -->
+	<div class="jmc-content">
+	</div>
+	<!-- //++++++++++++++++++++++++++++++++++++ Page9 ++++++++++++++++++++++++++++++++++++++ -->
+	<!-- //content -->
+
+	<!-- footer -->
+	<div class="jmc-footer" position="fixed">
+		<div id="footer">
+		<div class="tip">
+		<section>
+		<a href="javascript:nclk(this, 'fot.top', '', '');window.scrollTo(0,1);" class="tip_top">맨위로<span class="im im_top"></span></a>
+		</section>
+		</div>
+	</div>
+	<!-- //footer -->
+</div>
+
+<!-- jindo 프레임웍 import -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<!--
+    - JMC(jindo mobile component) import import.
+    아래 파일들은 선택다운로드(http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html)에서
+    압축다운로드된 한개의 파일(jindo_mobile_component.js)로 대체 가능하다.
+-->
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.AjaxHistory.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Loading.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.PageLayoutUI.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+//실행구문
+var aLoaded = [true, true];
+var aContainer = jindo.$$(".jmc-content");
+var nTargetIndex = 0;
+var oPageLayoutUI = new jindo.m.PageLayoutUI({
+	"bUseLoading" : true,
+	"fnDomReady" : function(oCustomEvt) {
+		console.log(":::::::::::::domReady", oCustomEvt);
+	}
+}).attach({
+	"beforeMovePage" : function(oCustomEvt) {
+		// 페이지 이동전 호출되는 함수
+		console.log("beforeMovePage", oCustomEvt);
+		nTargetIndex = oCustomEvt.nPage;
+		if(!aLoaded[nTargetIndex]) {
+			oAjax.url("./mockup/mockUpData_" + nTargetIndex + ".html");
+			callAjax();
+		}
+	},
+	"afterMovePage" : function(oCustomEvt) {
+		// 페이지 이동후 호출되는 함수
+		console.log("afterMovePage", oCustomEvt);
+
+		for(var i = 1; i <= 2; i++) {
+			nTargetIndex = oCustomEvt.nCurrentPage + i;
+			if(!aLoaded[nTargetIndex]) {
+				oAjax.url("./mockUpData_" + nTargetIndex + ".html");
+				callAjax();
+			}
+		}
+	}
+});
+var oAjax;
+var initAjax = function() {
+	var sAPI = "./mockup/mockUpData_2.html";
+	var htOption = {
+		type : "xhr",
+		method : "get",     	// GET 방식으로 통신
+	   	onload : function(res){ // 요청이 완료되면 실행될 콜백 함수
+			var sHTML = res.text();
+			aContainer[nTargetIndex].innerHTML = sHTML;
+			aLoaded[nTargetIndex] = true;
+		},
+		timeout : 3,      		// 3초 이내에 요청이 완료되지 않으면 ontimeout 실행 (생략 시 0)
+		ontimeout : function(){ // 타임 아웃이 발생하면 실행될 콜백 함수, 생략 시 타임 아웃이 되면 아무 처리도 하지 않음
+	    	alert("Timeout!");
+	   	},
+	   	async : true      		// 비동기로 호출하는 경우, 생략하면 true
+	};
+	oAjax = new jindo.$Ajax(sAPI, htOption);
+};
+
+var callAjax = function() {
+	oAjax.request();
+};
+
+initAjax();
+</script>
+</body>
+</html>

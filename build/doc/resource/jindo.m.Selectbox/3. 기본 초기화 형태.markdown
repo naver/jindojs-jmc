@@ -1,0 +1,73 @@
+#### CSS
+
+	/* content 영역의 CSS */
+	.[sClassPrefix]content {
+	}
+
+	/* selectmenu 영역의 CSS */
+	.[sClassPrefix]selectmenu {
+	}
+
+	/* arrow 영역의 CSS (옵션) */
+	.[sClassPrefix]arrow {
+	}
+
+	/* disable되었을 때의 CSS */
+	.[sClassPrefix]disable {
+	}
+
+	/* select 되었을 때의 CSS (사용자가 정의한 마크업 방식일 경우 사용가능) */
+	.[sClassPrefix]selected {
+	}
+	
+[sClassPrefix]selected는 사용자가 정의한 마크업 방식일 경우 사용가능하다.
+
+
+#### HTML
+
+	<!-- 브라우저 기본 select 사용 마크업. -->
+	<div id="select">
+		<span class="[sClassPrefix]content"></span> <!-- 필수 -->
+		<span class="[sClassPrefix]arrow"></span> <!-- 옵션 -->
+		<select class="[sClassPrefix]selectmenu"> <!-- 필수 -->
+			<option>...</option>
+			<option>...</option>
+			<option>...</option>
+			<option>...</option>
+		</select> 
+	</div>
+
+	<!-- 사용자 select 사용 마크업. -->
+	<div id="select">
+		<span class="[sClassPrefix]content"></span> <!-- 필수 -->
+		<span class="[sClassPrefix]arrow"></span> <!-- 옵션 -->
+		<select class="[sClassPrefix]selectmenu"> <!-- 필수 -->
+			<ul>
+				<li>...</li>
+				<li>...</li>
+				<li>...</li>
+				<li>...</li>
+			</ul>
+		</select> 
+	</div>
+
+select 박스는 2가지 형태로 마크업을 구성할수 있다. 
+
+##### 브라우저에서 사용하는 select 형태
+selectmenu영역을 select 태그로 구성하고, 그 하위 값은 option 태그로 구성한다.
+
+##### 사용자가 정의한 마크업으로 구성하는 형태
+selectmenu영역을 div나 ul과 같은 태그로 구성하고, 그 하위의 값은 sItemTag 옵션에 명시된 태그로 구성한다.
+
+#### Javascript
+
+	var oSelect = new jindo.m.Selectbox("select",{
+		bActivateOnload : true,
+		sClassPrefix : "select-",
+		sPlaceholder : "선택해주세요",
+		nHeight : 80,
+		sItemTag : "li",
+		nDefaultIndex : -1
+	});
+
+브라우저에서 사용하는 select 형태를 사용할 경우, nHeight, sItemTag 옵션은 무시된다.

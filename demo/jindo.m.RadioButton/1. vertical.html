@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>세로형 예제</title>
+<meta name="class-lists" content="jindo.m.RadioButton">
+<meta name="description" content="세로형 RadioButton">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.frb-radiobtn-cont{overflow:hidden;border:1px solid #ccc}
+.frb-radiobtn-on{overflow:hidden;border:0;background:#77BD2C;font-weight:bold;color:#FFF;text-decoration:none;cursor:pointer;outline:0 none;}
+.frb-radiobtn-disable{opacity:.3;cursor: default;}
+.frb-radiobtn-unit{position:relative;margin:0;padding:.7em 0 .7em 30px;border-bottom:1px solid #ccc;list-style:none}
+.frb-radiobtn-unit:last-child{border-bottom:0}
+.frb-radiobtn{position:absolute;top:7px;left:10px;margin:0;}
+.frb-radiobtn-label{display:block;position:relative;margin:0;font-size:1em;font-family:Helvetica,Arial,sans-serif;font-weight:bold;color:#444;text-decoration:none;cursor:pointer;}
+
+/*@code title="CSS"*/
+.[prefix]radiobtn-on{border:0;background:#44AF50;font-weight:bold;color:#FFF;outline:0 none;}
+.[prefix]radiobtn-disable{opacity:.3;cursor:default;}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<div id="radioBtn">
+		<ul class="frb-radiobtn-cont">
+			<li class="frb-radiobtn-unit">
+				<input type="radio" name="radio_name" id="fruit1" value="Apple" class="frb-radiobtn" checked="checked">
+				<label for="fruit1" class="frb-radiobtn-label">Apple</label>
+			</li>
+			<li class="frb-radiobtn-unit">
+				<input type="radio" name="radio_name" id="fruit2" value="Banana" class="frb-radiobtn">
+				<label for="fruit2" class="frb-radiobtn-label">Banana</label>
+			</li>
+			<li class="frb-radiobtn-unit">
+				<input type="radio" name="radio_name" id="fruit3" value="Orange" class="frb-radiobtn">
+				<label for="fruit3" class="frb-radiobtn-label">Orange</label>
+			</li>
+			<li class="frb-radiobtn-unit">
+				<input type="radio" name="radio_name" id="fruit4" value="Lemon" class="frb-radiobtn">
+				<label for="fruit4" class="frb-radiobtn-label">Lemon</label>
+			</li>
+			<li class="frb-radiobtn-unit">
+				<input type="radio" name="radio_name" id="fruit5" value="Grape" class="frb-radiobtn">
+				<label for="fruit5" class="frb-radiobtn-label">Grape</label>
+			</li>
+		</ul>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op" style="line-height: 25px">
+		<button type="button" id="viewValue" class="btn">선택한 값 얻어오기</button>
+		선택 한 값 :<input type="text" id="viewResult" class="op_w100"><br>
+		<button type="button" id="radioAllEnable" class="btn">모두 활성화</button>
+		<button type="button" id="radioAllDisable" class="btn">모두 비활성화</button><br>
+		<button type="button" id="radioEnable" class="btn">Banana,Lemon 활성화</button>
+		<button type="button" id="radioDisable" class="btn">Banana,Lemon 비활성화</button><br>
+		<button type="button" id="radioChecked" class="btn">Lemon 선택</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+
+<!--@code title="HTML"
+<div id="radioBtn">
+	<ul class="[prefix]radiobtn-cont">
+	<li class="[prefix]radiobtn-unit">
+		<input type="checkbox" name="check1" id="news" value="뉴스" class="[prefix]radiobtn">
+		<label for="check1" class=[prefix]radiobtn-label>뉴스</label>
+	</li>
+	<li>... 생략 ...</li>
+	<li>... 생략 ...</li>
+	</ul>
+</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.RadioButton.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oRadioButton = new jindo.m.RadioButton("radioBtn");
+
+jindo.$Fn(function(){
+	jindo.$("viewResult").value = oRadioButton.getCheckedValue();
+},this).attach(jindo.$("viewValue"), "click");
+
+jindo.$Fn(function(){
+	oRadioButton.enable();
+},this).attach(jindo.$("radioAllEnable"), "click");
+
+jindo.$Fn(function(){
+	oRadioButton.disable();
+},this).attach(jindo.$("radioAllDisable"), "click");
+
+jindo.$Fn(function(){
+	oRadioButton.enable([jindo.$("fruit2"),jindo.$("fruit4")]);
+},this).attach(jindo.$("radioEnable"), "click");
+
+jindo.$Fn(function(){
+	oRadioButton.disable([jindo.$("fruit2"),jindo.$("fruit4")]);
+},this).attach(jindo.$("radioDisable"), "click");
+
+
+jindo.$Fn(function(){
+	oRadioButton.setCheckedButton(oRadioButton.getElementByIndex(3).elRadioButton);
+},this).attach(jindo.$("radioChecked"), "click");
+
+/*@code title="JavaScript"
+	var oRadioButton = new jindo.m.RadioButton("radioBtn",{
+		sType : "v"
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

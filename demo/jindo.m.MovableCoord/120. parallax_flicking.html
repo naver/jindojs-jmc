@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, user-scalable=no, target-densitydpi=medium-dpi">
+<title>시차 Flicking 구현 예제</title>
+<meta name="class-lists" content="jindo.m.MovableCoord, jindo.m.Keyframe">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#area {
+		width:300px;
+		height:400px;
+		border:10px solid #888;
+		overflow:hidden;
+	}
+
+	#lists {
+		list-style:none;
+		margin:0;
+		padding:0;
+		width:1500px;
+	}
+
+	#lists li {
+		position:relative;
+		float:left;
+		margin:0;
+		padding:0;
+		width:300px;
+		height:400px;
+		font-size:1.5em;
+		background-size:150% 150%;
+		background-position:0 0;
+	}
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="area">
+	<ul id="lists">
+		<li style="color:#fff; background-image:url(http://cafefiles.naver.net/20140116_35/superielts_1389861773138TdBqS_JPEG/1_%2875%29.jpg);">
+			PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1
+			PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1
+			PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1
+			PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1
+			PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1
+			PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1 PANEL 1
+		</li>
+		<li style="color:#000; background-image:url(http://blogfiles15.naver.net/20131230_14/bc23a_1388385778506r8vvJ_JPEG/hu_1265538725_317699238.jpg);">
+			PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2
+			PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2
+			PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2
+			PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2
+			PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2
+			PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2 PANEL 2
+		</li>
+		<li style="color:#fff; background-image:url(http://cafefiles.naver.net/20120731_89/wjddusgml007_1343691156697GvNTo_JPEG/%C0%CC%B9%CC%C1%F6%C0%C7_%B8%F0%B5%E7%B0%CD_%28316%29.jpg);">
+			PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3
+			PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3
+			PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3
+			PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3
+			PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3
+			PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3 PANEL 3
+		</li>
+		<li style="color:#fff; background-image:url(http://blogfiles10.naver.net/20130215_297/rdh112_1360927313341ja0QR_JPEG/%C5%C2%C7%B3.jpg);">
+			PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4
+			PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4
+			PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4
+			PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4
+			PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4
+			PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4 PANEL 4
+		</li>
+		<li style="color:#fff; background-image:url(http://blogfiles7.naver.net/data33/2008/6/5/54/jusangi89_star8894.jpg);">
+			PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5
+			PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5
+			PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5
+			PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5
+			PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5
+			PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5 PANEL 5
+		</li>
+	</ul>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Keyframe.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	var welLists = jindo.$Element('lists');
+	var oKeyframe = new jindo.m.Keyframe();
+
+	var dummy = null;
+	var fEl = function() { return dummy; };
+
+	oKeyframe.set(0.0, [
+		fEl, { '@backgroundPosition' : '0 0' }
+	]);
+
+	oKeyframe.set(1.0, [
+		fEl, { '@backgroundPosition' : '200% 0' }
+	]);
+
+	oKeyframe.preprocess();
+
+	var oInst = new jindo.m.MovableCoord([ 0, 0 ], {
+		aMin : [ 0, 0 ],
+		aMax : [ 1200, 0 ],
+		aBounce : [ 0, 50, 0, 50 ]
+	}).attach({
+		'change' : function(oCustomEvent) {
+
+			var pos = oCustomEvent.aPos;
+
+			var base = pos[0] / 300;
+			var idx = Math.ceil(base);
+
+			var rate = 0;
+
+			var list = welLists.queryAll('> li');
+			var len = list.length;
+
+			if (list[idx-1]) {
+				rate = (idx-base)/2;
+				dummy = list[idx-1].$value();
+				// list[idx-1].html(rate);
+				oKeyframe.frame(rate, true);
+			}
+
+			if (list[idx]) {
+				rate = (idx-base)/2 + 0.5;
+				dummy = list[idx].$value();
+				// list[idx].html(rate);
+				oKeyframe.frame(rate, true);
+			}
+
+			if (list[idx+1]) {
+				rate = 1;
+				dummy = list[idx+1].$value();
+				// list[idx+1].html(rate);
+				oKeyframe.frame(rate, true);
+			}
+
+			welLists.css({
+				'webkitTransform' : 'translate3d(' + (-pos[0]) + 'px,0,0)'
+			});
+
+		},
+		'hold' : function(oCustomEvent) {
+			//$('console').innerHTML = 'hold';
+		},
+		'release' : function(oCustomEvent) {
+			//$('console').innerHTML = 'release';
+			var pos = oCustomEvent.aDestPos;
+			pos[0] = Math.round(pos[0] / 300) * 300;
+		}
+	}).bind(jindo.$('area'), {
+		aScale : [ -1, 0 ],
+		nDirection : 1
+	});
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

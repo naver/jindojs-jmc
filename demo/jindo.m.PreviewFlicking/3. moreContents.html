@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>10개 순환 예제</title>
+<meta name="class-lists" content="jindo.m.PreviewFlicking">
+<meta name="description" content="10개의 컨텐츠 순환 예제">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+
+.flick-container .flick-ct-dmm .ct-dmm{display:block;position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.75;z-index:10;}
+
+.p_content {
+    height : 240px;
+}
+
+.flick-container .flick-ct .flick-wrap{
+    max-width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+</style>
+
+<script type="text/javascript">
+    var sAgent =  navigator.userAgent;
+    if (sAgent.indexOf("WebKit") < 0) {
+        window.onerror = function(){
+            return true;
+        }
+    }
+</script>
+<!--// 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+     data-title="Jindo Mobile Component"
+     data-subtitle="=document.title"
+     data-backbutton="true"
+     data-viewsource="true"
+     data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+    <p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="previewFlick" class="">
+<div class="flick-base">
+    <ul class="flick-container p_content">
+        <!-- [D] .flick-ct 인라인 스타일은 컴포넌트 제어 영역 -->
+        <li class="flick-ct ">
+            <div class="flick-wrap" style="background-color: rgb(255, 192, 0);">
+                <p class="p_content" style="padding-top:120px">
+                    <a href="http://naver.com" onclick="">Layer 1</a>
+                </p>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="flick-wrap" style="background-color: rgb(119, 189, 44);">
+                <p class="p_content" style="padding-top:120px">
+                    <a href="http://naver.com" onclick="">Layer 2</a>
+                </p>
+            </div>
+        </li>
+        <li class="flick-ct ">
+            <div class="flick-wrap" style="background-color: rgb(102, 204, 204);">
+                <p class="p_content" style="padding-top:120px">
+                    <a href="http://naver.com" onclick="">Layer 3</a>
+                </p>
+            </div>
+        </li>
+        <li class="flick-ct" >
+            <div class="flick-wrap"  style="background-color: rgb(25, 147, 31);">
+                <p class="p_content" style="padding-top:120px">
+                    <a href="http://naver.com" onclick="">Layer 9</a>
+                </p>
+            </div>
+        </li>
+        <li class="flick-ct" >
+            <div class="flick-wrap" style="background-color: rgb(199, 31, 59);">
+                <p class="p_content" style="padding-top:120px">
+                    <a href="http://naver.com" onclick="">Layer 10</a>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div id="option">
+    <div class="op" style="text-valign:middle">
+        <button type="button" id="aprev" class="btn">이전컨텐츠이동</button>
+        <button type="button" id="anext" class="btn">이후컨텐츠이동</button>
+        <input type="text" id="nIndex" class="op_w20" value="0">번째 인덱스로
+        <button type="button" id="amove" class="btn">이동</button>
+    </div>
+</div>
+
+<!-- Log 영역 -->
+<div class="scroll">
+    <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+    <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+
+<div id="previewFlick">
+    <div class="[prefix]-base">
+        <ul class="[prefix]-container">
+            <li class="[prefix]-ct"></li>
+            <li class="[prefix]-ct"></li>
+            <li class="[prefix]-ct"></li>
+            <li class="[prefix]-ct"></li>
+            <li class="[prefix]-ct"></li>
+        </ul>
+    </div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PreviewFlicking.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+    var aContentList = [
+        '<div class="flick-wrap" style="background-color: rgb(255, 192, 0);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 1</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(119, 189, 44);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 2</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(102, 204, 204);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 3</a></p></div>',
+        '<div class="flick-wrap"  style="background-color: rgb(52, 164, 164);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 4</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(22, 124, 124);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 5</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(234, 68, 68);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 6</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(77, 225, 84);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 7</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(210, 214, 58);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 8</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(25, 147, 31);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 9</a></p></div>',
+        '<div class="flick-wrap" style="background-color: rgb(199, 31, 59);"><p class="p_content" style="padding-top:120px"><a href="http://naver.com" onclick="">Layer 10</a></p></div>'
+    ];
+
+    /*@code title="JavaScript"*/
+    var oPreviewFlicking = new jindo.m.PreviewFlicking("previewFlick", {
+        "nMinWidth" : "260px",
+        "nTotalContents" : aContentList.length,
+        "bUseCircular" : true
+    })
+    /*code@*/
+
+    oPreviewFlicking.attach({
+        "beforeFlicking" : function(oCustomEvt){
+
+            var nIndex = oCustomEvt.nContentsIndex * 1;
+            addConsole('[before_Flicking ] → '+nIndex  +" 에서 → " + oCustomEvt.nContentsNextIndex + ' 이동예정');
+        },
+        "flicking" : function(oCustomEvt){
+            var sMessage = ''
+            //플리킹 효과를 통해 현재 화면을 움직였을 경우
+            if(oCustomEvt.bLeft){
+                //왼쪽으로 움직였을 경우 오른쪽 panel만 업데이트
+
+                var n = this.getIndexByElement(this.getElement().$value());
+                var nMax = this._htWElement.aPanel.length - 1;
+                var nIndex = n+2;
+                var nGap =  nIndex - nMax;
+
+                if(nIndex > nMax){
+                    nIndex = nGap - 1;
+                }
+
+                var nContentIndex = oCustomEvt.nContentsIndex+2;
+                var nCMax = this.getTotalContents() - 1;
+                var nCGap = nContentIndex - nCMax;
+                if(nContentIndex > nCMax){
+                    nContentIndex = nCGap - 1;
+                }
+
+
+                this._htWElement.aPanel[nIndex].html(aContentList[nContentIndex]);
+                sMessage += '왼쪽으로 플리킹';
+            }else{
+
+                var n = this.getIndexByElement(this.getElement().$value());
+                var nMax = this._htWElement.aPanel.length - 1;
+                var nIndex = n-2;
+                var nGap =  nIndex - nMax;
+                if(nIndex < 0){
+                    nIndex = nMax + nIndex + 1;
+                }
+
+                var nContentIndex = oCustomEvt.nContentsIndex-2;
+                var nCMax = this.getTotalContents() - 1;
+                var nCGap = nContentIndex - nCMax;
+                if(nContentIndex < 0){
+                    nContentIndex = nCMax + nContentIndex + 1;
+                }
+
+                this._htWElement.aPanel[nIndex].html(aContentList[nContentIndex]);
+
+
+                //오른쪽으로 움직였을 경우 왼쪽 panel만 업데이트
+                this.getPrevElement().html(aContentList[this.getPrevIndex()]);
+                sMessage += '오른쪽으로 플리킹';
+            }
+
+            sMessage+= ', '+ oCustomEvt.nContentsIndex+'번째 Content';
+
+            addConsole('[flicking] → ' +sMessage);
+        },
+        "beforeMove" : function(oCustomEvt){
+            var nIndex = oCustomEvt.nContentsIndex * 1;
+            addConsole('[before_Move] → '+ nIndex  +" 에서  → " + oCustomEvt.nContentsNextIndex + ' 이동예정' );
+
+        },
+        "move" : function(oCustomEvt){
+            var welCenter = this.getElement();
+            var welNext = this.getNextElement();
+            var welPrev = this.getPrevElement();
+
+
+            welCenter.html(aContentList[this.getContentIndex()]);
+            welNext.html(aContentList[this.getNextIndex()]);
+            welPrev.html(aContentList[this.getPrevIndex()]);
+
+            addConsole('[Move] → '+oCustomEvt.nContentsIndex+'번째 컨텐츠로 이동함');
+
+        },
+        "touchStart" : function(e){
+            if(this._oAnimation.isPlaying()){
+                e.stop();
+            }
+            // addConsole("touchStart");
+        },
+        "touchMove" : function(e){
+            if(this._oAnimation.isPlaying()){
+                e.stop();
+            }
+            // addConsole("touchMove");
+        },
+        "touchEnd" : function(){
+            // addConsole("touchEnd");
+        },
+        "rotate" : function(e){
+            // addConsole("rotate");
+
+        },
+        "scroll" : function(){
+            // addConsole("scroll");
+        }
+    });
+
+    jindo.$Fn(function(evt){
+        evt.stop();
+        oPreviewFlicking.movePrev();
+    },this).attach(jindo.$('aprev'),'click');
+
+    jindo.$Fn(function(evt){
+        evt.stop();
+        oPreviewFlicking.moveNext();
+    },this).attach(jindo.$('anext'),'click');
+
+    jindo.$Fn(function(evt){
+        evt.stop();
+        var nIndex = jindo.$('nIndex').value;
+
+        oPreviewFlicking.moveTo(nIndex*1, 100);
+
+    },this).attach(jindo.$('amove'),'click');
+</script>
+    <!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

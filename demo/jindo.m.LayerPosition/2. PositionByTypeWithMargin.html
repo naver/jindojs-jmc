@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>타입별 마진 변경 예제</title>
+<meta name="class-lists" content="jindo.m.LayerPosition">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_addhm{position:absolute;left:0;z-index:100;width:308px;height:94px;font-size:12px;line-height:13px;text-align:center}
+.u_addhm .uc_area{position:relative;width:308px;height:94px;margin:0 auto;background:url(../asset/img/bg_addhm.png) no-repeat 0 0;text-align:left}
+.u_addhm .uc_p{margin-left:5px;padding:12px 0 10px 20px;color:#222;line-height:16px;letter-spacing:-1px;white-space:nowrap}
+.u_addhm .uc_st{color:#04779d}
+.u_addhm .uc_btn{display:block;position:absolute;top:5px;right:9px;width:50px;height:62px;border:0;background:none}
+.strike{color:red}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo" style="height:300px">
+
+	<div id="layer_top" class="u_addhm">
+		<div class="uc_area">
+			<p class="uc_p">
+				이 레이어는 <strong class="strike">상단중앙 Top영역</strong>에 위치합니다.<br/>
+				- 왼쪽 <strong class="strike">-40</strong>, 위쪽 <strong class="strike">10</strong> 마진을 준 레이어입니다.<br/>
+				- 화면 변경시 <strong class="uc_st">자동으로 포지션을 조절</strong>합니다.<br/>
+			</p>
+			<button type="button" class="uc_btn">Top</button>
+		</div>
+	</div>
+
+	<div id="layer_center" class="u_addhm">
+		<div class="uc_area">
+			<p class="uc_p">
+			이 레이어는 <strong class="strike">화면중앙 Center 영역</strong>에 위치합니다.<br/>
+			- 왼쪽 <strong class="strike">0</strong>, 위쪽 <strong class="strike">-10</strong> 마진을 준 레이어입니다.<br/>
+			- 화면 변경시 <strong class="uc_st">자동으로 포지션을 조절</strong>합니다.<br/>
+			</p>
+			<button type="button" class="uc_btn">Center</button>
+		</div>
+	</div>
+
+	<div id="layer_bottom" class="u_addhm">
+		<div class="uc_area">
+			<p class="uc_p">
+			이 레이어는 <strong class="strike">하단중앙 Bottom 영역</strong>에 위치합니다.<br/>
+			- 왼쪽 <strong class="strike">-40</strong>, 아래쪽 <strong class="strike">40</strong> 마진을 준 레이어입니다.<br/>
+			- 화면 변경시 <strong class="uc_st">자동으로 포지션을 조절</strong>합니다.<br/>
+			</p>
+			<button type="button" class="uc_btn">Bottom</button>
+		</div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!--@code title="HTML"
+	<div id="layer_top">Layer</div>
+	<div id="layer_center">Layer</div>
+	<div id="layer_bottom">Layer</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oLpTop = new jindo.m.LayerPosition("layer_top", {
+	sPosition : "top",
+	nLeftMargin : -40,
+	nTopMargin : 10
+});
+var oLpCenter = new jindo.m.LayerPosition("layer_center", {
+	sPosition : "center",
+	nLeftMargin : 0,
+	nTopMargin : -10
+});
+var oLpBottom = new jindo.m.LayerPosition("layer_bottom", {
+	sPosition : "bottom",
+	nLeftMargin : -40,
+	nBottomMargin : 30
+});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

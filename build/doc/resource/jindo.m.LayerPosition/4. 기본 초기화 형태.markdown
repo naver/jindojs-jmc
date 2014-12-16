@@ -1,0 +1,26 @@
+#### HTML
+
+	<body>
+		<div id="layer">Layer</div>
+	</body>
+
+* 위치를 설정할 레이어 엘리먼트는 documeny.body의 바로 아래에 존재하여야 한다. 그렇지 않을 경우 강제로 body의 자식으로 위치시킨다.
+* 위치를 설정할 레이어 엘리먼트는 기본적으로, __position:absolute__로 변경된다
+<br /> 
+단, 최적의성능을 위해, __bAutoReposition__가 true이고, __bUseFixed__ 옵션이 true일 경우, 만약, __position:fixed__ 속성이 지원되는 기기일 경우, position:fixed로 변경된다.
+
+#### Javascript
+
+	var oComponent = new jindo.LayerPosition("layer", {
+		 bActivateOnload : true,
+		 bAutoReposition : true,
+		 sPosition : "center",
+		 nLeftMargin : 0,
+		 nRightMargin : 0,
+		 nTopMargin : 0,
+		 nBottomMargin : 0,
+		 bUseFixed : true	
+	});
+
+* 첫번째 parameter는 Layer로써, 문자형태의 id또는 HTML Element객체를 받을수 있음
+* 두번째 parameter는 option으로 써, 아래 표 참조

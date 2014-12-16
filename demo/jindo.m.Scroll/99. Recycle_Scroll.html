@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>Recycle+ Scroll 사용 예</title>
+<meta name="class-lists" content="jindo.m.Scroll">
+<meta name="description" content="Recycle + Scroll 사용 예제. Recycle을 이용하여 무한 스크롤을 구현할수 있다">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+.view {
+	border : 1px solid #000;
+}
+.h-ct {
+	float:left;
+	height : 100%;
+	font-size : 2.5em;
+	text-align: center;
+}
+.v-ct {
+	width : 100%;
+	font-size : 2.5em;
+	text-align: center;
+}
+ul li:nth-child(2n) {
+	background-color: green;
+	color : white;
+}
+</style>
+
+<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<h3> 수평예제 </h3><br>
+	<div id="viewH" class="view">
+	    	<ul id="recycleH">
+	        <li class="h-ct">
+	            마크업의 Node 0
+	        </li>
+	        <li class="h-ct">
+	            마크업의 Node 1
+	        </li>
+	        <li class="h-ct">
+	            마크업의 Node 2
+	        </li>
+	    </ul>
+	</div>
+	<br>
+	<h3> 수직예제 </h3><br>
+	<div id="viewV"  class="view">
+	    	<ul id="recycleV">
+	        <li class="v-ct">
+	            마크업의 Node 0
+	        </li>
+	        <li class="v-ct">
+	            마크업의 Node 1
+	        </li>
+	        <li class="v-ct">
+	            마크업의 Node 2
+	        </li>
+	        <li class="v-ct">
+	            마크업의 Node 3
+	        </li>
+	        <li class="v-ct">
+	            마크업의 Node 4
+	        </li>
+	        <li class="v-ct">
+	            마크업의 Node 5
+	        </li>
+	        <li class="v-ct">
+	            마크업의 Node 6
+	        </li>
+	    </ul>
+	</div>
+</div>
+<!-- // Demo 영역 -->
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	jindo.m.Scroll 컴포넌트의 <span class="red">bUseTimingFunction</span>을 <span class="red">false</span>로 지정해야만 스크롤이 매번 바뀌는 position 이벤트에서 Recycle을 update할수 있다.
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Recycle.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+// 수평
+var oInfiteH = new jindo.m.Recycle("recycleH", {
+	nCardSize : 150,
+	nCardCount: 5,
+	nExpandSize : 120,
+	nTotalContents : 50,
+	sClassName : "h-ct",
+	bHorizontal : true,
+	nViewSize : jindo.$Element("viewH").width()
+}).attach({
+	"draw" : function(we) {
+		// console.log("draw", we);
+		// 성능향상을 위해, innerHTML 대신, textContent나 nodeValue를 이용하여 부분만 변경하는 방식이 효과적임
+		we.wel.$value().textContent= we.nIndex;
+	}
+});
+
+var oScrollH = new jindo.m.Scroll("viewH", {
+	nHeight: 130,
+	bUseHScroll : true,
+	bUseVScroll : false,
+	bUseTimingFunction : false,
+	bAutoResize : true
+}).attach({
+	"position" : function(we) {
+		oInfiteH.update(-we.nLeft);
+	}
+});
+
+
+// 수직
+var oInfiteV = new jindo.m.Recycle("recycleV", {
+	nCardSize : 150,
+	nCardCount: 5,
+	nExpandSize : 120,
+	nTotalContents : 50,
+	sClassName : "v-ct",
+	bHorizontal : false,
+	nViewSize : jindo.$Element("viewV").height()
+}).attach({
+	"draw" : function(we) {
+		// console.log("draw", we);
+		// 성능향상을 위해, innerHTML 대신, textContent나 nodeValue를 이용하여 부분만 변경하는 방식이 효과적임
+		we.wel.$value().textContent= we.nIndex;
+	}
+});
+
+var oScrollV = new jindo.m.Scroll("viewV", {
+	nHeight: 180,
+	bUseHScroll : false,
+	bUseVScroll : true,
+	bUseTimingFunction : false,
+	bAutoResize : true
+}).attach({
+	"position" : function(we) {
+		oInfiteV.update(-we.nTop);
+	}
+});
+
+// 사이즈 갱신
+oScrollH.refresh();
+oScrollV.refresh();
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

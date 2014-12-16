@@ -1,0 +1,37 @@
+<h4 class="red">멀티터치 pinch, rotate</h4>
+
+iOS의 경우 gesture 이벤트가 있지만 각 touch지점에 대한 좌표값을 얻을 수 없기 때문에 이 이벤트를 사용하지 않고 touch이벤트로 분석한다. <br />
+안드로이드의 경우 3.0부터 touchmove에 멀티터치가 지원되지만. 브라우저 성능상 touchmove에서 엘리먼트의 scale, rotate이 불가능하다.<br />
+안드로이드의 경우 4.0이상부터 pinch와 rotate를 이용하는것이 권장한다.
+
+#### 안드로이드3.0, 안드로이드4.0
+
+touch이벤트가 기본 스크롤과 함께 동작할 때 touchmove, touchend 이벤트가 발생하지 않는 버그가 있다.<br />
+정상적으로 touch이벤트를 발생하기 위해서는 기본 스크롤 기능을 막는 코드를 추가 해주어야 한다.
+
+	var oTouch = new jindo.m.Touch("layer1");
+	//touchstart 혹은 touchmove에서 한번만 작업해 주면 된다.
+	oTouch.attach({
+		'touchStart' : function(oCustomEvent){
+			oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
+		},
+		'touchMove' : function(oCustomEvent){
+			oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
+		}
+	});
+
+#### 안드로이드2.1
+
+기본 touchmove 이벤트가 제대로 발생하지 않는다.<br />
+<small>안드로이드2.1의 경우 손을 화면에서 떼는 순간 touchmove가 발생하는 브라우저 버그가 있다.<br />
+touchmove이벤트를 제대로 발생시키기 위해서는 touchstart에서 기본동작을 중지시켜야 한다.</small>
+
+#### iOS 3.X
+
+'longTap' 커스텀 이벤트가 발생하지 않는다.<br />
+<small>클립보드 기능이 활성화 되는 순간 touchCancel이 발생되면서 터치 정보를 얻어 올 수 없다.</small>
+
+#### NexusS(안드로이드2.3)
+
+클립보드 기능이 활성화 되는 순간 DOM에 대한 조작이 불가능하다.<br />
+<small>'longTap'이벤트에 DOM에 대한 조작을 하는 핸들러를 추가했다면 그 부분이 정상동작하지 않는것 처럼 보일 수 있다.</small>

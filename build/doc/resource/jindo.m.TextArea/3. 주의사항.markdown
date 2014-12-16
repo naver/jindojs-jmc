@@ -1,0 +1,14 @@
+##### 안드로이드
+
+* Form에 focus,blur될 때 focus,blur 이벤트가 2번 발생한다.
+* Textarea에서 스크롤은 컨텐츠가 Textarea 영역보다 크고, 입력모드인 경우에 가능하다.
+* 갤럭시Note 4.0.3, 갤럭시S2 LTE 4.0.3에서는 실시간으로 TextArea의 크기가 변경되지 않는다.
+* blur가 발생한 이후 TextArea에 상태가 변경된다.
+
+##### iOS3, iOS4
+
+Textarea에서 스크롤은 투핑거 스크롤로 작동한다. 반면, iOS5는 원핑거 스크롤이 가능하다.
+
+##### 안드로이드 2.1, iOS3, iOS4
+
+Textarea영역 내부에서는 touch관련 이벤트가 발생하지 않는다.

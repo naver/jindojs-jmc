@@ -1,0 +1,49 @@
+jindo.m.Morph 가 시간에 따라 자동으로 재생되는 애니메이션을 구현하기 위한 컴퍼넌트라면, jindo.m.Keyframe 은 사용자의 인터랙션에 따라 진행되는 애니메이션을 구현하기 위해 사용 할 수 있는 컴퍼넌트이다.
+
+jindo.m.Keyframe 컴퍼넌트 사용자는 set 메서드를 통해서 애니메이션이 어떻게 동작시킬지 지정 할 수 있으며,
+지정 방법과 개념은 CSS 의 keyframes 기능과 유사하다.
+
+예를 들어 아래와 같은 CSS 는,
+
+	<style type="text/css">
+		@keyframes mymove {
+			0%   { left:100px; background:#f00; }
+			100% { left:150px; background:#00f; }
+		}
+
+		#foo { animation: mymove 5s; }
+	</style>
+
+아래와 같이 jindo.m.Keyframe 를 사용하여 표현 할 수 있다.
+
+	<script type="text/javascript">
+		var mymove = jindo.m.Keyframe();
+		mymove.set(0.0/*   0% */, [ $('foo'), { '@left' : '100px', '@background' : '#f00' } ]);
+		mymove.set(1.0/* 100% */, [ $('foo'), { '@left' : '150px', '@background' : '#00f' } ]);
+	</script>
+
+jindo.m.Keyframe 를 사용 할 때, left 와 background 앞에 붙은 @ 는 style. 의 약자로 보면 되며,
+따라서 아래와 같이 엘리먼트의 스타일이 아닌 일반적인 값을 변경 하는 것도 가능하다.
+
+	<script type="text/javascript">
+		mymove.set(0.5, [ $('foo'), { 'scrollTop' : 300 } ]);
+	</script>
+
+이렇게 set 메서드를 사용하여 지정 한 규칙은 탐색에 최적화 되지 않아서
+frame 메서드를 사용하여 원하는 상태로 빠르게 만들기에 어려움이 따르는데,
+이후 사용 시 빠르게 동작하도록 하기 위해 규칙을 지정 또는 변경 한 이후에는
+반드시 preprocess 메서드를 호출하여 전처리 과정을 거쳐야 한다.
+
+만약 규칙이 변경된 이후에 preprocess 메서드를 호출하지 않고 frame 또는 get 메서드를 사용하는 경우,
+아래와 같은 Exception 이 발생한다.
+
+	First, you need to call preprocess().
+
+따라서 frame, get 메서드를 사용 할 때에는 preprocess 가 모두 완료 되었을 때 발생하는
+preprocessEnd 이벤트를 활용하여 아래와 같이 사용하는 것이 좋다.
+
+	mymove.attach('preprocessEnd', function() {
+		mymove.frame(0.1);
+	});
+
+	mymove.preprocess();

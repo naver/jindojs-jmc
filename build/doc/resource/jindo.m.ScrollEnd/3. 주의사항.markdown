@@ -1,0 +1,25 @@
+모바일 OS, 제조사에 따라 scroll이벤트의 발생순서와 횟수가 다르다.
+
+##### iOS
+
+touchstart - touchmove - touchend - scroll 순으로 이벤트가 발생한다.
+<br /> 
+<small>scroll 이벤트는 스크롤이 완료된 후에 발생한다.</small>
+
+##### 안드로이드
+
+touchstart - touchmove(n개) - scroll(0 ~ n개) - touchend - scroll(0 ~ n개) 순으로 발생한다.
+
+<small>touch이벤트는 touchstart -> touchmove -> touchmove -> ... -> touchend 순으로 발생한다.<br />
+Android 2.3 갤럭시S, S2 는 touchmove와 scroll 이벤트가 한 번씩 발생한다.<br />
+Android 2.1에서는 touchend 시점에 touchmove, scroll이 한꺼번에 발생한다.</small>
+
+##### 안드로이드 3.0, 4.0
+
+스크롤이 존재할 경우, touchend 이벤트가 발생하지 않는다.
+
+이를 방지하기 위해서는 touchstart나 touchmove에서 preventDefault()를 이용하여 브라우저 기본기능을 제거해야만 touchend 이벤트가 발생한다.
+
+touchend가 발생하지만, 스크롤, 클릭과 같은 기본기능이 동작하지 않는다.
+
+<small>ScrollEnd 컴포넌트는 Android3.0, 4.0에서, 주소창 내 스크롤종료시점을 확인 할 수 없다.</small>

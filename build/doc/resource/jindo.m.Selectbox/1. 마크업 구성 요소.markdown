@@ -1,0 +1,22 @@
+[jindo.m.Selectbox](../../doc/internal/classes/jindo.m.Selectbox.html)는 브라우저에서 제공하는 select를 이용할 수도 있고, 별도의 HTML 마크업을 구성하여 사용할 수도 있다.<br />
+[jindo.m.Selectbox](../../doc/internal/classes/jindo.m.Selectbox.html)는 디자인 변경이 용이하도록 별도의 템플릿으로 정의하여 사용한다.
+
+<br> 
+![](select.png "")
+
+[컨텐츠 구조]
+
+##### content 영역
+
+필수 요소이며, [jindo.m.Selectbox](../../doc/internal/classes/jindo.m.Selectbox.html) 에서 선택된 값이 표기된다.
+
+##### selectmenu 영역
+
+필수 요소이며, selectbox 메뉴가 표기되는 영역이다.<br />
+이 영역은 브라우저의 기본 select와 사용자의 HTML을 사용할 수 있다.<br />
+브라우저 기본 select일 경우, option 태그로 아이템들이 구성되어 진다.<br />
+사용자 디자인 select일 경우, sItemTag 옵션에 지정된 태그로 아이템들이 구성되어 진다.<br />
+
+##### arrow 영역
+
+선택 요소이며, 화살표를 표시하는 디자인 영역이다.

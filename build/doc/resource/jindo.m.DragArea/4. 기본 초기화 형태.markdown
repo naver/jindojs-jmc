@@ -1,0 +1,54 @@
+#### HTML
+
+	<!-- 기준 엘리먼트 -->
+	<div id="drag">
+		<div class="drag-dragging">Darg me1</div>
+		<div class="drag-dragging">
+			<div class="drag-handle">핸들영역</div>
+			Darg me2
+		</div>
+	</div>
+
+* 기준 엘리먼트를 기준으로 컴포넌트 내부에서 드래깅 엘리먼트를 찾는다
+* 드래그 대상 엘리먼트의 경우 [prefix]+'dragging' 클래스명을 갖는다.
+* 핸들 영역은 드래그 엘리먼트 내부에 있으며 [prefix]+'handle' 클래스명을 갖는다
+
+
+#### CSS
+
+	.drag-dragging {position:absolute;}
+
+컴포넌트 내부에서 실제로 드래깅할때 position속성을 absolute로 수정한다.
+
+
+#### Javascript
+
+	var oDrag = new jindo.m.DragArea('drag',{
+		sClassPrefix : 'drag-', //class prefix
+		bFlowOut : false, //기준 엘리먼트 영역 밖으로 이동 가능한지에 대한 여부
+		nThreshold : 10, //dragstart를 발생시킬 움직임 임계값
+		nMoveThreshold : 3, //drag를 발생시킬 움직임 임계값
+		bActivateOnload : true //컴포넌트 로드시 activate 여부
+	}).attach({
+		'handleDown' : function(oCustomEvent){
+			/* 사용자가 드래깅엘리먼트 (혹은 핸들엘리먼트)에 터치를 하였을 경우 발생 */
+		},
+		'dragStart' : function(oCustomEvent){
+			/* nThreshold 옵션값 이상 사용자가 움직여서  드래그를 시작할 경우 발생 */
+		},
+		'beforeDrag' : function(oCustomEvent){
+			/* 실제 엘리먼트의 위치를 이동시키기 전 발생  */
+			/* 드래그가 시작된 이후 nMoveThreshold 값 이상 움직였을 때 발생한다 */
+		},
+		'drag' : function(oCustomEvent){
+			/* 실제 엘리먼트의 위치를 이동 시킨 이후 발생  */
+			/* 드래그가 시작된 이후  nMoveThreshold 값 이상 움직였을 때 발생한다 */
+		},
+		'dragEnd' : function(oCustomEvent){
+			/* 드래그가 끝났을 경우 */
+		},
+		'handleUp' : function(oCustomEvent){
+			/* 드래그가 끝났을 경우 */
+		}
+		
+	});

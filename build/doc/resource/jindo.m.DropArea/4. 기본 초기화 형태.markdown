@@ -1,0 +1,42 @@
+#### HTML
+
+	<div id="drag" class="drag-dragging">
+		Drag me
+	</div>
+	<!-- drop 기준 엘리먼트 -->
+	<div id="drop">
+		<div class="drop-area">
+			Drop1
+		</div>
+		<div class="drop-area">
+			Drop2
+		</div>
+	</div>
+
+* 기준 엘리먼트를 기준으로 컴포넌트 내부에서 드롭 엘리먼트를 찾는다
+* 드롭 대상 엘리먼트의 경우 [prefix]+'area' 클래스명을 갖는다.
+
+
+#### Javascript
+
+	var oDrag = new jindo.m.DragArea('drag');
+	var oDrop = new jindo.m.DropArea('drop' , {
+		sClassPrefix : 'drop-', //class prefix
+		oDragInstance : oDrag, //jindo.m.DragArea 인스턴스
+		bUseTouchPoint : true //drop엘리먼트의 over를 계산할때 현재 사용자 터치 좌표를 이용할것인지에 대한 여부
+	}).attach({
+		'over' : function(oCustomEvent){
+			/* drop 엘리먼트 위에 올라갈 경우 발생*/
+		},
+		'move' : function(oCustomEvent){
+			/* drop 엘리먼트 내에서 이동할 경우 발생 */
+		},
+		'out'  : function(oCustomEvent){
+			/* drop 엘리먼트에서 빠져 나갈 경우 발생*/
+		},
+		'drop'  : function(oCustomEvent){
+			/* drop 엘리먼트위에서 drag엘리먼트가 드롭된 경우 발생*/
+		}
+	});
+
+oDragInstance 옵션에 [jindo.m.DragArea](../../doc/internal/classes/jindo.m.DragArea.html) 인스턴스를 설정해야 한다.

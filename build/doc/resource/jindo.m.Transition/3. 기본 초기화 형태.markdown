@@ -1,0 +1,18 @@
+#### HTML
+
+	<div id="div1">
+	</div>
+
+
+#### Javascript
+
+	var oTransition = new jindo.m.Transition();
+	oTransition.queue(jindo.$('div1'), 1000,
+		{
+			htStyle : {
+				opacity : 0
+			}
+		}
+	);
+
+"div1" 엘리먼트를 1초동안 opcaity를 0으로 설정하는 예제.

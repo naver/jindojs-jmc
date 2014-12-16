@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>쇼핑 예제</title>
+<meta name="class-lists" content="jindo.m.PreviewFlicking">
+<meta name="description" content="쇼핑 컨텐츠를 이용한 PreviewFlicking">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+
+.flick-container .flick-ct-dmm .ct-dmm{display:block;position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.75;z-index:10;}
+
+.flick-container .flick-ct .flick-wrap{
+	max-width:100%;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+
+/*상품내 style*/
+
+.con2 {
+	width: 284px;
+}
+.lucky_hot {
+	position: relative;
+	display: inline-block;
+	margin: 13px auto 0;
+	-webkit-box-shadow: 0 0 4px rgba(37,39,44,.4);
+}
+
+.ico_hotitem {
+	overflow: hidden;
+	position: absolute;
+	top: -1px;
+	left: 13px;
+	width: 43px;
+	height: 52px;
+	line-height: 1000px;
+	background: url(http://static.shopping.naver.net/m3/im/sp_lc_v2.png) no-repeat 0 -70px;
+}
+
+.lucky_top {
+	padding-bottom: 5px;
+	border-top: 1px solid #2c2f36;
+	border-bottom: 1px solid #2c2f36;
+	background: ,url(http://static.shopping.naver.net/m3/im/bg_luckytop_pattern_v1.png) repeat;
+	background: url(http://static.shopping.naver.net/m3/im/bg_luckygradation_v1.png) no-repeat 50% 0,url(http://static.shopping.naver.net/m3/im/bg_luckytop_pattern_v1.png) repeat;
+	-webkit-background-size: 100% auto;
+	text-align: center;
+}
+
+.lucky_hot img {
+	border: 1px solid #191a1e;
+	vertical-align: top;
+}
+
+.add_info {
+	position: relative;
+	width: 182px;
+	border: 1px solid #191a1e;
+	padding: 9px 90px 9px 12px;
+	border-top: 0;
+	-webkit-box-shadow: inset 1px 1px 1px #393c40;
+	text-shadow: 1px 1px 1px #222428;
+	text-align: left;
+	background: url(http://static.shopping.naver.net/m3/im/bg_luckytop_pattern2_v1.png) repeat;
+}
+
+.discount {
+	position: absolute;
+	top: 18px;
+	right: 9px;
+	font-size: 31px;
+	color: #fff;
+}
+
+.price {
+	font-size: 15px;
+	color: #fa2745;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(34,36,40,.4);
+}
+
+.price del {
+	margin-left: 4px;
+	color: #585e66;
+	font-size: 10px;
+}
+
+
+.benefit {
+	overflow: hidden;
+	display: inline-block;
+	height: 13px;
+	line-height: 100px;
+	background: url(http://static.shopping.naver.net/m3/im/sp_lc_v2.png) no-repeat;
+	vertical-align: -3px;
+}
+
+.limit {
+	width: 42px;
+	background-position: 0 -265px;
+}
+.lowprice {
+width: 50px;
+background-position: 0 -235px;
+}
+.lkprice {
+width: 42px;
+background-position: 0 -280px;
+}
+.add_info {
+	text-shadow: 1px 1px 1px #222428;
+	text-align: left;
+}
+
+.tit {
+	overflow: hidden;
+	width: 100%;
+	font-size: 11px;
+	line-height: 14px;
+	letter-spacing: -1px;
+	color: #fff;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!--// 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="previewFlick" class="sp_rgplus lucky_top">
+<div class="flick-base">
+	<ul class="flick-container">
+		<!-- [D] .flick-ct 인라인 스타일은 컴포넌트 제어 영역 -->
+		<li class="flick-ct flick-ct-dmm">
+			<div class="flick-wrap con2">
+				<a href="http://cr2.shopping.naver.com/adcr.nhn?x=ieOj6TaZ7eG0HxDnnYeIU%2F%2F%2F%2Fw%3D%3Dsjf3qfM0Y1deT0JWqPjL%2B1A5JfTilVIUKuoZ718ai5hZj39r2LpoNid1OEW5xy6QY2BK0TDQIngdzeiJWRtJA%2F%2Fspe6SqYqa0V1Jn4ybyIakhIeA6hofel%2FAxfL%2Fc7qsKu5U8vGf8cmO3TRPJ21619q0Yah0tduNqG%2Fhdd9XSEYFqWdVJLO%2F%2Bf%2F4FmFgTO2YtRwN39s4cfHdnFS%2FrzQ0NRzwghWIpKoRusdtNkjMd67YgoZSKluXNkk%2Bqx0anFcYjbT7W5VxMw3XalMgBb%2B1U%2Fpr40MbZ%2BsAph5NsFIVwkzjJ0hG4uE1wbprMF2d18zkO050d23WB1r1mp4OZl2QYD28qMMwPdhqmWdw7jTrGe4oHe0iBOyYC%2FmMbVhFkr7i51dUnjRp9h%2BHkxYx%2FMLy%2FtIBiPaSWJzXAbVDbONini2RtySY5uUuw0c7rJ1OR%2F%2FhWzoszOI%2FjDf1otVBumzLaNCifYh%2F2sM5yUREBLU%2B4GiQu%2BGrbHM2%2B8a%2FCyB5HUmoU" class="N=a:hot.item lucky_hot">
+					<span class="ico_hotitem">Hot Item</span>
+					<img src="http://imgshopping.naver.net/admin/iu/luckytoday/13/0304/d7dgn6kzkqh.jpg" width="284" height="146" alt="">
+					<div class="add_info">
+						<p class="tit">LG외장하드 1TB 2.5인치 XE2</p>
+						<span class="discount"><span>5</span>%</span>
+						<span class="price">112,460<span>원</span><del>118,380</del></span>
+						<span class="benefit lowprice">최저가보장</span>
+					</div>
+				</a>
+			</div>
+		</li>
+		<li class="flick-ct">
+			<div class="flick-wrap con2">
+			<a href="http://cr2.shopping.naver.com/adcr.nhn?x=E5gPp%2BLiBNoXDZoW8nuQsv%2F%2F%2Fw%3D%3DsefLpXq6lfsRFwO8HVK%2BzF1m5jTWuw8Yny5pmzubdqNPsGWp%2B2exBZlzhu94pguhnAmfW0KwiZ5HlRJpRyrTLbFM1fwSJZ9Sj7X2oqPDaxr4PGspdMca5SaH%2FPmBmUzSdziLJu1nS00JA4AqIJ7Kh1T1uavzyT8SFQe2pI6cibgAPmiFF8VMAUQIvT%2BUPmZ0O5U3pXnN%2BhluvR%2FjVh1DMojr99qTTWmndEZV%2ByzPvAFXaLVPc7TH8%2FkWz%2BZ34rLKPrAElRSytaazy3oh3P5uGt2IodMSHTTmz2s6VG5ps6dIMpc7Zx8Xb9%2Fh8q69eBrmHt3m9Lj%2BItcUH29e%2FhQpMlSXIsPJbgS1cejzM9nmbqEImYsX%2FA5CpuOMJgYVSqp5Jz3EfJBpszbQUxo9160U55Ln6y31q96WXZSG%2BE8njdESggGbXtA1whyxI1QmEIgjVTy2ba9Js17%2BrUSiTF%2FSpPLcuPpgO5sioTLyBh8XMNLXhcvlx0WDVIxRdwgFzLBzc" class="N=a:hot.item lucky_hot">
+				<span class="ico_hotitem">Hot Item</span>
+				<img src="http://imgshopping.naver.net/admin/iu/luckytoday/13/0225/19160953331948337.jpg" width="284" height="146" alt="모바일 배너 이미지">
+				<div class="add_info">
+					<p class="tit">잔디로 스포츠 FIT 이너웨어</p>
+					<span class="discount"><span>57</span>%</span>
+					<span class="price">9,500<span>원</span><del>22,000</del></span>
+					<span class="benefit lowprice">최저가보장</span>
+				</div>
+			</a>
+			</div>
+		</li>
+		<li class="flick-ct flick-ct-dmm">
+			<div class="flick-wrap con2">
+			<a href="http://cr2.shopping.naver.com/adcr.nhn?x=eiQG0kt5yAvbJVg5Y14tv%2F%2F%2F%2Fw%3D%3DsI5vh2Mbwio2i38svpSwRlhDYZFkP%2B%2BdDKwImFHrfvP0NwXPpz%2B1J%2FmQJbO3ckuRXhlCHl2XkUJqf6UMARKMCAxECJAzxPg2a7HD6wdbte70WDZSr6rRqEHhnpsSfyoKtl7FCWeaPaRYRR6wwwfVTKeoFfKGews3Yx7bqJ0a4BH0zLsjPDn8C5HfrfxEy6V2yF%2BNWN%2FWIM7h%2BjpJoKUqXYY3seWbUXE%2BRMyOtDaVuF2F8Iv98hINX6j4bl%2Fje%2Bi0ZBKS5UgaO2KLvM8Eb%2FAVFAwc5VoKwrw%2Bk8KEw55w8GuoMRzgiktsNtK66AEHBVi9c7yY6oTCgLdLhZa1ywUBAxYSx7OEqfiwYWi9bgJGTu7dKTT%2FPRbMCjfoxt4RTgcO2HWENWdWpQ4IK2leWbXwLtDjHYWG9pVgiSP%2FJeDmQ9SfZsmfFlvFGYtwss6qPg1ia6NadeNb0D8CCTFXDtaI8DRyAMuuIOa5zCAzDV9SfOvGUKCfKDUGTjDQ9swTploS%2BumbbMvXMpOcmNw%2Bfjl01vQ%3D%3D" class="N=a:hot.item lucky_hot">
+				<span class="ico_hotitem">Hot Item</span>
+				<img src="http://imgshopping.naver.net/admin/iu/luckytoday/13/0228/d46qs9vamhk.jpg" width="284" height="146" alt="">
+				<div class="add_info">
+					<p class="tit">최고급퀄리티수제화~핑크기린 여성슈즈</p>
+					<span class="discount"><span>47</span>%</span>
+					<span class="price">29,800<span>원</span><del>56,000</del></span>
+					<span class="benefit lkprice">럭투특가</span>
+				</div>
+			</a>
+			</div>
+		</li>
+		<li class="flick-ct">
+			<div class="flick-wrap con2">
+			<a href="http://cr2.shopping.naver.com/adcr.nhn?x=nY9rsm0KXGJ8hIZGNZzOcf%2F%2F%2Fw%3D%3Dss6rFg8bZeRPB4lj0nLvSnoX1rKfK04CmnGF73ET8GKVDNSMYayw0pSzTlBUHZw8uJsJwrHquujNVHtcPzPX%2FZFWcyn8cx4Vt1jv7HF7nUFcM0F%2FyrSSXDGVXwluEC7FoC%2FyZRKd6IHsaQqoMXd%2B6GQr81JjTylhRdpfesy%2FTTvinu3SLaW5kNwJTgN177%2B8Ya6gleMYALY1Z4Tif%2BuwxF3yo84949runx486onkyEHlS0MlE9Zhp0ZdexlLGrR6%2FrEaUcX0jgTeKstHoo8iewB6gKLkk33TwhJ%2BeE9Cda9%2Fr0WmaFWIdi02saFHND%2BGBbP2C%2B1kbCQBBobNlkYKnRVRH0tThYMCpF%2BOZsho2r6on2aN%2F5tqivSgseJ8w%2FQsnW4icBZmh%2F72KqCLQft1KURCNE47YjTP%2FPWPFrfXhr7lntjNTpZ6PnpY9HvdntEj0Nui3NjdQhjnc5%2F6jmThiKRtxmZlkBh6OGm%2Fp7FM%2FX9Mlkq8sP0AhERaqNkDjC5pr" class="N=a:hot.item lucky_hot">
+				<span class="ico_hotitem">Hot Item</span>
+				<img src="http://imgshopping.naver.net/admin/iu/luckytoday/13/0304/19769511997990630.jpg" width="284" height="146" alt="모바일 배너 이미지">
+				<div class="add_info">
+					<p class="tit">하기스 프리미어와 함께 봄마중! </p>
+					<span class="discount"><span>15</span>%</span>
+					<span class="price">61,900<span>원</span><del>72,900</del></span>
+					<span class="benefit lkprice">럭투특가</span>
+				</div>
+			</a>
+		</div>
+		</li>
+		<li class="flick-ct">
+			<div class="flick-wrap con2">
+			<a href="http://cr2.shopping.naver.com/adcr.nhn?x=3Qv%2F8T4BpHdE1j3VLoSo%2Ff%2F%2F%2Fw%3D%3DsfNI0h%2BbCIj2ImwweMmrgbiHP%2FMP8Zz81JTtgWI1i1UhXPNWytEBcK5moTWUTCTV7hlCHl2XkUJqf6UMARKMCAxECJAzxPg2a7HD6wdbte70WDZSr6rRqEHhnpsSfyoKtl7FCWeaPaRYRR6wwwfVTKRUccboUbt%2BCH8UXAGpSdwCFZNG9N1hPkYmXE%2B%2B475UI4enTGg7SSAuWRx%2FctA%2Bj9U2CrhAo1fN7JrAr0P7PyEd1Vb1XzKmjD6Idarsaoct0Wnf0s6vquEwB%2BkNI6NQh1cbqygb%2FbJSTbNk3PDRm81BLqTO9qGfkJ4MdlupfqSjEU3g8EVVuS0i51qhXysH3Zu6fIjhuiL%2Fl%2FsO35pjTee9tX%2BFwBsK9PeB1Bn6DsjVGSGcStrXIZyeJqIq%2F4nxENybWTj6VxwUKzEqF3o9MbixXRjdyObpAo8S7Z%2FXE6JNw6NadeNb0D8CCTFXDtaI8DRyAMuuIOa5zCAzDV9SfOvFuYvJTbvNJrC7VbZufdqt8csieYP4v5BlB7YjVYo3IzQ%3D%3D" class="N=a:hot.item lucky_hot">
+				<span class="ico_hotitem">Hot Item</span>
+				<img src="http://imgshopping.naver.net/admin/iu/luckytoday/13/0228/19439156099360671.jpg" width="284" height="146" alt="모바일 배너 이미지">
+				<div class="add_info">
+					<p class="tit">완전♥예쁜♥슈즈~7,900원+무료배송</p>
+					<span class="discount"><span>60</span>%</span>
+					<span class="price">7,900<span>원</span><del>19,800</del></span>
+					<span class="benefit limit">한정수량</span>
+				</div>
+			</a>
+			</div>
+		</li>
+	</ul>
+</div>
+</div>
+<!--// Demo 영역 -->
+
+<div id="option">
+	<div class="op" style="text-valign:middle">
+		<button type="button" id="aprev" class="btn">이전컨텐츠이동</button>
+		<button type="button" id="anext" class="btn">이후컨텐츠이동</button>
+		<input type="text" id="nIndex" class="op_w20" value="0">번째 인덱스로
+		<button type="button" id="amove" class="btn">이동</button>
+	</div>
+</div>
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!--@code title="HTML"
+
+<div id="previewFlick">
+	<div class="[prefix]-base">
+		<ul class="[prefix]-container">
+			<li class="[prefix]-ct"></li>
+			<li class="[prefix]-ct"></li>
+			<li class="[prefix]-ct"></li>
+			<li class="[prefix]-ct"></li>
+			<li class="[prefix]-ct"></li>
+		</ul>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PreviewFlicking.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	/*@code title="JavaScript"*/
+	var oPreviewFlicking = new jindo.m.PreviewFlicking("previewFlick", {
+		"nMinWidth" : "295px"
+	});
+	/*code@*/
+
+	oPreviewFlicking.attach({
+	"beforeFlicking" : function(e){
+			// e.stop();
+			addConsole("beforeFlicking");
+		},
+		"flicking" : function(){
+			addConsole("flicking");
+		},
+		"beforeMove" : function(){
+			addConsole("beforeMove");
+
+		},
+		"move" : function(){
+			addConsole("move");
+
+		},
+		"rotate" : function(e){
+			// addConsole("rotate");
+
+		},
+		"touchStart" : function(e){
+			// addConsole("touchStart");
+
+		},
+		"touchMove" : function(){
+			// addConsole("touchMove");
+
+		},
+		"touchEnd" : function(){
+			// addConsole("touchEnd");
+
+		},
+		"scroll" : function(){
+			// addConsole("scroll");
+		}
+	});
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oPreviewFlicking.movePrev();
+	},this).attach(jindo.$('aprev'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oPreviewFlicking.moveNext();
+	},this).attach(jindo.$('anext'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		var nIndex = jindo.$('nIndex').value;
+
+		oPreviewFlicking.moveTo(nIndex*1, 100);
+
+	},this).attach(jindo.$('amove'),'click');
+
+</script>
+	<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+
+</body>
+</html>

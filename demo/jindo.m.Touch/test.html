@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>수직방향 scroll 예제</title>
+<meta name="class-lists" content="jindo.m.Touch">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.layer { width:150%; overflow:scroll; position:relative; }
+/*code@*/
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript">
+
+	function createTouch(el, options) {
+
+		var log = function(str) {
+			var txt = jindo.$('<div>');
+			txt.textContent = new Date().getTime() + ' - ' + str;
+			el.appendChild(txt);
+			el.scrollTop += 999;
+		};
+
+		new jindo.m.Touch(el, options).attach({
+			touchStart : function(oCustomEvent) {
+				log('touchStart');
+			},
+			touchMove : function(oCustomEvent) {
+				log('touchMove(' + oCustomEvent.sStartMoveType + '/' + oCustomEvent.sMoveType + ')');
+			},
+			touchEnd : function(oCustomEvent) {
+				log('touchEnd');
+			}
+		});
+
+	}
+
+</script>
+
+<div class="layer" id="layer1" style="height:150px;background-color:#66cccc;text-align:center">
+	<p>세로로 터치 인식, 가로로는 시스템 스크롤 되도록</p>
+</div>
+<script type="text/javascript">
+	createTouch(jindo.$('layer1'), {
+		nUseDiagonal : 0,
+		// nMoveThreshold : 50,
+		nSlopeThreshold : 20,
+		bHorizental : false,
+		bVertical : true
+	});
+</script>
+
+<div class="layer" id="layer2" style="height:150px;background-color:#cc66cc;text-align:center">
+	<p>가로로 터치 인식, 세로로는 시스템 스크롤 되도록</p>
+</div>
+<script type="text/javascript">
+	createTouch(jindo.$('layer2'), {
+		nUseDiagonal : 0,
+		// nMoveThreshold : 50,
+		nSlopeThreshold : 20,
+		bHorizental : true,
+		bVertical : false
+	});
+</script>
+
+<div class="layer" id="layer3" style="height:150px;background-color:#cccc66;text-align:center">
+	<p>가로/세로 둘다 터치 인식</p>
+</div>
+<script type="text/javascript">
+	createTouch(jindo.$('layer3'), {
+		nUseDiagonal : 0,
+		// nMoveThreshold : 50,
+		nSlopeThreshold : 20,
+		bHorizental : true,
+		bVertical : true
+	});
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

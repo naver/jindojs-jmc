@@ -1,0 +1,37 @@
+사용자 Validator를 만들어 [jindo.m.Validation](../../doc/internal/classes/jindo.m.Validation.html) 에서 관리할 수 있다.
+
+#### 사용자 Validator 만들기
+
+* 생성하는 Validator는 **jindo.m.XxxxValidator** 형태로 작성한다.
+* [jindo.m.Validation](../../doc/internal/classes/jindo.m.Validation.html)를 상속받는다
+* validate을 구현한다
+
+	정제된 문자열은 sCorrectedValue로 반환한다. 정제된 문자가 없을 경우는 null을 반환한다.<br />
+	정제된 문자열 기준으로 Validate한다. Validate결과는 bValid로 반환한다<br /><br />
+
+* validate은 htValidate객체({bValid : 성공여부, sCorrectedValue : 수정된 값})를 반환한다.
+
+<br> 
+
+	jindo.m.CustormValidator = Class({
+		validate : function(sValue, sFormat) {
+			/* 1.정제된 문자열로 만든다
+				정제된 문자열이 있으면 sCorrectedValue로 반환한다. */
+			/* 2. 정제된 문자열을 기준으로 validate 한다.
+				validate결과는 bValid에 반환한다. */
+		}
+	}).extends(jindo.m.Validator);
+
+
+#### 사용자 Validator 사용하기
+
+* jindo.m.Validation.add를 호출하여 생성한 사용자 Validator를 추가한다
+* jindo.m.Validation.validate로 추가한 Validator를 사용한다<br>
+
+<br> 
+
+	// 페이지 호출시 딱 한번 호출
+	jindo.m.Validation.add("custom", "jindo.m.CustomValidator");
+
+	// require Validator와 새로 만든 CustomValidator 를 validate 한다.
+	var htResult = jindo.m.Validation.validate("custom:require", "유효성을 검증할 문자");

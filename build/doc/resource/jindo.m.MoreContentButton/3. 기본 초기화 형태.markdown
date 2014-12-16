@@ -1,0 +1,70 @@
+#### HTML
+
+	<!-- 기준 엘리먼트  class prefix가 'more_'일 경우--> 
+	<div class="u_pg" id="contentMore">
+		<a href="#" class="u_pg_btn more_button"> 
+				<span class="u_pg_wrap">
+				<span class="u_pg_area">	
+						<span class="u_pg_lod more_loading" style="display:none;">
+							<span class="u_pg_lodic">로딩중..</span>
+						</span>									
+					<span class="u_pg_txt">
+						<span><span class="more_moreCnt">10</span>개 더보기</span><br/>
+						<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span>
+							<!-- 남은 건수 표기 (생략가능) 
+							<span class='more_remainder'></span-->
+						</span>
+					</span>
+				</span>
+			</span>
+		</a>
+		<!-- 모든 아이템이 로드된 이후에 보여질 엘리먼트  A 링크가 span으로 바뀌면서 클릭이 안된다. 초기 로드에는 display:none으로 설정한다 -->
+		<span class="u_pg_btn more_last " style="display:none;"> 
+			<span class="u_pg_wrap">
+				<span class="u_pg_area">
+					<span class="u_pg_txt">
+						<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span>
+							<!-- 남은 건수 표기 (생략가능) 
+							<span class='more_remainder'></span-->
+						</span>
+					</span>
+				</span>
+			</span>
+		</span>
+		<a href="#" class="u_pg_top more_top">맨위로</a> <!-- 서비스에 따라 생략 가능 -->
+	</div>
+
+* 기준 엘리먼트를 기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.
+* 로딩 이미지를 처리하는 엘리먼트의 경우 [prefix]+'loading'클래스명을 가진다.
+* 더보기할 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'moreCnt'클래스명을 가진다.
+* 현재까지 로딩된 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'current'클래스명을 가진다.
+* 현재까지 남은 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'remainder'클래스명을 가진다.
+* 전체 더보기할 아이템의 개수를 보여주는 엘리먼트의 경우 [prefix]+'total'클래스명을 가진다.
+* 모든 아이템이 로드된 이후에 보여줘야 할 엘리먼트의 경우 [prefix]+'last'클래스명을 가진다.초기 로드시에는 display:none 형태로 로드한다.
+* 서비스에 따라 맨위로 버튼이 더보기 컴포넌트와 함께 있을 수도 있다. 그 경우 [prefix]+'top' 클래스명을 가진다.
+
+#### CSS
+
+	.u_pg,.u_pg_lod{background:#e6e7e7;background:-webkit-gradient(linear,0 0,0 100%,from(#f9f9f9),color-stop(.3,#f6f6f6),color-stop(.8,#e7eae9),to(#dde3e4));-webkit-box-shadow:inset 0 1px 0 #fefefe,inset 0 -1px 0 #d8dada}
+	.u_pg{display:table;position:relative;width:100%;height:45px;margin-top:-1px;border-top:1px solid #dfdfdf;border-bottom:1px solid #cecece;text-align:center}
+	.u_pg_btn{display:table-cell;border-right:1px solid #d3d3d3;line-height:1em}
+	.u_pg_area{position:relative;display:table;height:43px;margin:0 auto;padding-left:23px;background:url(../im/ico_pg.gif) no-repeat 0 10px;font-size:1em}
+	.u_pg_wrap{display:block;position:relative}
+	.u_pg_lod{display:block;position:absolute;top:0;width:21px;height:43px;margin-left:-29px}
+	.u_pg_lodic,.u_pg_lodjs{display:inline-block;overflow:hidden;width:21px;height:22px;margin-top:11px;text-indent:-999em}
+	.u_pg_lodic{background:url(../im/ico_lod2.gif) no-repeat 50% 50%}
+	.u_pg_lodjs{background:url(../im/ico_lod2_ngif.png) no-repeat}
+	.u_pg_txt{display:table-cell;line-height:1.25em;vertical-align:middle}
+	.u_pg_cnt{font-size:.79em;color:#666;line-height:1.25em}
+	.u_pg_total{color:#a6a6a6}
+	.u_pg_end .u_pg_btn{background:none;background-color:#fafafa;-webkit-box-shadow:none}
+	.u_pg_end .u_pg_area{background:none}
+	.u_pg_top{display:table-cell;width:53px;padding-top:18px;border-left:1px solid #fdfdfd;background:url(../im/ico_pg.gif) no-repeat 50% -53px;font-size:.8em;color:#707070;vertical-align:top}
+
+#### Javascript
+
+	var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+		nTotalItem : 500, //실제 아이템 개수
+		nShowMaxItem : 47, //최대 더보기 하여 보여줄 개수
+		nItemPerPage : 6 //페이지당 더보기 할 건수	
+	});

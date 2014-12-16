@@ -1,0 +1,9 @@
+#### 안드로이드
+
+z-Index 상 맨 앞에 있는 레이어에서 발생한 이벤트가 투과되어 뒤에 존재하는 레이어에 이벤트가 발생하는 문제가 있다.
+
+#### iOS3.0, Android2.1
+
+iOS3.0, Android2.1 에서는 로딩바가 돌아가지 않고, 깜빡이기만 한다.
+
+<small>내부적으로 keyframe Animation을 사용하는데, iOS3.0과 Android2.1은 keyframe Animation을 완벽하게 지원하지 않는다.</small>

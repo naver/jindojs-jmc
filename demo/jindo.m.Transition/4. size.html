@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>width 값 변경 예제</title>
+<meta name="class-lists" content="jindo.m.Transition">
+<meta name="description" content="width 값 변경 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+#div1{width:100px;height:100px}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+<!--@code title="HTML"-->
+	<div id="div1" style="background-color:#0075C8">
+		 <p class="desc">Transition  <br> 대상 엘리먼트</p>
+	</div>
+<!--code@-->
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		width (px) : <input type="text" class="op_w40" id='width' value="200"><br>
+		nDuration (ms) : <input type="text" class="op_w40" id='nDuration' value="1000"><br>
+		<button type="button" id="start" class="btn">Transition Start</button> <br>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oTransition = new jindo.m.Transition();
+oTransition.attach({
+	'start' : function(oCustomEvent){
+		addConsole('[START] : '+ oCustomEvent.sTaskName + ' 시작');
+	},
+	'end' : function(oCustomEvent){
+		addConsole('[END] : '+ oCustomEvent.sTaskName + ' 끝');
+	}
+})
+
+var el = jindo.$('div1');
+var wel = jindo.$Element(el);
+var nDuration = 1000;
+
+function addTask(){
+	oTransition.queue(el, jindo.$('nDuration').value, {
+		sTaskName : 'width 조정',
+		htStyle : {
+			"width" : jindo.$('width').value +"px"
+		}
+	});
+}
+
+jindo.$Fn(function(){
+	if(oTransition.isPlaying()){
+		alert('현재 진행중입니다');
+		return;
+	}
+
+	if(!oTransition.isExistTask()){
+		addTask();
+	}
+
+	oTransition.start();
+},this).attach(jindo.$('start'),'click');
+
+
+/*@code title="JavaScript"
+	var oTransition = new jindo.m.Transition();
+	var el = jindo.$('div1');
+
+	oTransition.queue(el, jindo.$('nDuration').value, {
+		sTaskName : 'width 조정',
+		htStyle : {
+			"width" : jindo.$('width').value +"px"
+		}
+	});
+
+	oTransition.start();
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

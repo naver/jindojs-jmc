@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>옵션 변경 예제</title>
+<meta name="class-lists" content="jindo.m.Loading">
+<meta name="description" content="로딩 컴포넌트의 옵션을 변경">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.desc {color:green;}
+/*@code title="CSS"*/
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!-- // Demo 영역 -->
+
+<div class="lm" style="padding:0">
+
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<ul class="lst_type">
+		<li>로딩이미지 크기 지정
+			<p><strong class="strike">nWidth</strong> : 로딩모양의 width를 지정한다.</p>
+			<p><strong class="strike">nHeight</strong> : 로딩모양의 height를 지정한다.</p>
+		</li>
+		<li>로딩이미지 색상 변경
+			<p><strong class="strike">sDefaultForeground</strong> : 로딩이미지의 색상을 지정한다.</p>
+			<p><strong class="strike">sDefaultBackground</strong> : 로딩이미지의 배경색을 지정한다.</p>
+		</li>
+		<li>로딩텍스트 변경
+			<p><strong class="strike">sLoadingText</strong> : 로딩텍스트를 html으로 지정할 수 있다.
+		</li>
+		<li>Foggy 변경
+			<p><strong class="strike">bUseFoggy</strong>  : 전체를 기준으로 로딩컴포넌트를 구성했을 경우, 기본으로 사용한다.</p>
+			<p><strong class="strike">sFoggyColor</strong>  : Foggy의 배경색을 지정한다.</p>
+			<p><strong class="strike">nFoggyOpacity</strong>  : Foggy의 투명도(opacity)를 지정한다.</p>
+		</li>
+	</ul><br />
+
+	<p class="red">&lt;기본 옵션을 제외하고, 추가로 설정한 옵션은 아래와 같다.&gt;</p>
+	<div class="example-content">
+<pre class="code"><code class="prettyprint">nWidth : 150,
+nHeight : 150,
+sDefaultForeground : red,
+sDefaultBackground : transparent
+sLoadingText : &ltstrong&gt&ltfont color='red'&gt옵션이 변경된 로딩바입니다&lt/font&gt&lt/strong&gt
+bUseFoggy : true
+sFoggyColor : green
+nFoggyOpacity : 0.5</code></pre>
+	</div>
+
+	<strong class="desc">위 옵션 사용시, 150x150크기의 빨간색 로딩이미지가 '옵션이 변경된 로빙바입니다' 라는 빨간 텍스트와 함께 표시된다. 또한, Foggy는 투명도가 0.5인 그린색이다.</strong>
+
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		로딩컴포넌트가 보여지고 5초 후에 자동 사라집니다. <button type="button" id="show" class="btn">로딩보이기</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+	var oLoading = new jindo.m.Loading(null, {
+		nWidth : 150,
+		nHeight : 150,
+		sDefaultForeground : "red",
+		sDefaultBackground : "transparent",
+		sLoadingText : "&ltstrong&gt&ltfont color='red'&gt옵션이 변경된 로딩바입니다&lt/font&gt&lt/strong&gt",
+		bUseFoggy : true,
+		sFoggyColor : "green",
+		nFoggyOpacity : 0.5
+	});
+/*code@*/
+</script>
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Loading.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oLoading = new jindo.m.Loading(null, {
+		nWidth : 150,
+		nHeight : 150,
+		sDefaultForeground : "red",
+		sDefaultBackground : "transparent",
+		sLoadingText : "<strong><font color='red'>옵션이 변경된 로딩바입니다</font></strong>",
+		bUseFoggy : true,
+		sFoggyColor : "green",
+		nFoggyOpacity : 0.5
+	});
+
+	jindo.$Fn(function(we) {
+		oLoading.show();
+		setTimeout(function() {
+			oLoading.hide();
+		},5000);
+	}).attach("show", "click");
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

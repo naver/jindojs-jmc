@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>사용자 이벤트 예제</title>
+<meta name="class-lists" content="jindo.m.LayerPosition">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_addhm{position:absolute;left:0;z-index:100;width:308px;height:94px;font-size:12px;line-height:13px;text-align:center}
+.u_addhm .uc_area{position:relative;width:308px;height:94px;margin:0 auto;background:url(../asset/img/bg_addhm.png) no-repeat 0 0;text-align:left}
+.u_addhm .uc_p{margin-left:5px;padding:12px 0 10px 20px;color:#222;line-height:16px;letter-spacing:-1px;white-space:nowrap}
+.u_addhm .uc_st{color:#04779d}
+.u_addhm .uc_btn{display:block;position:absolute;top:5px;right:9px;width:50px;height:62px;border:0;background:none}
+.strike {color:red;}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div id="layer" class="u_addhm">
+		<div class="uc_area">
+			<p class="uc_p">
+			레이어의 위치가 지정되기전 사용자 이벤트<br/>
+			<strong class="uc_st">beforePosition</strong>이 발생하고,<br/>
+			위치 지정이 완료되면 <strong class="uc_st">position</strong>이 발생합니다.<br/>
+			</p>
+			<button type="button" class="uc_btn"></button>
+		</div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<button type="button" id="btn_top" class="btn">TOP</button>
+		<button type="button" id="btn_center" class="btn">CENTER</button>
+		<button type="button" id="btn_bottom" class="btn">BOTTOM</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+<div id="layer">
+	Layer
+</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	jindo.$Fn(function(we){
+		we.stop();
+		oLp.top();
+	}, this).attach(jindo.$("btn_top"), 'click');
+
+	jindo.$Fn(function(we){
+		we.stop();
+		oLp.center();
+	}, this).attach(jindo.$("btn_center"), 'click');
+
+	jindo.$Fn(function(we){
+		we.stop();
+		oLp.bottom();
+	}, this).attach(jindo.$("btn_bottom"), 'click');
+
+
+	var oLp = new jindo.m.LayerPosition("layer", {
+		bActivateOnload : false,
+		sPosition : "center"
+	}).attach("beforePosition", function(we) {
+		addConsole(we.sType + " → " + "포지션 설정 전에 호출");
+		addConsole("(" + (we.htPosition.nTop || we.htPosition.nTop ===0 ? "nTop:" + we.htPosition.nTop :  "nBottom:" + we.htPosition.nBottom) + ", nLeft:" + we.htPosition.nLeft + ")");
+	}).attach("position", function(we) {
+		addConsole(we.sType + " → " + "포지션 설정 후에 호출");
+		addConsole("(" + (we.htPosition.nTop || we.htPosition.nTop ===0  ? "nTop:" + we.htPosition.nTop :  "nBottom:" + we.htPosition.nBottom) + ", nLeft:" + we.htPosition.nLeft + ")");
+	});
+	oLp.activate();
+
+
+/*@code title="JavaScript"
+var oLp = new jindo.m.LayerPosition("layer", {
+	bActivateOnload : false,
+	sArea : "center"
+}).attach("beforeAdjust", function(we) {
+	addConsole(we.sType + " → " + "포지션 설정 전에 호출
+(nTop:" + we.htPosition.nTop + ", nLeft:" + we.htPosition.nLeft + ")");
+}).attach("adjust", function(we) {
+	addConsole(we.sType + " → " + "포지션 설정 후에 호출
+(nTop:" + we.htPosition.nTop + ", nLeft:" + we.htPosition.nLeft + ")");
+});
+oLp.activate();
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

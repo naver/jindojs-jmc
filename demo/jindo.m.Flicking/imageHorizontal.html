@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>네비게이션과 연동예제</title>
+<meta name="class-lists" content="jindo.m.Flicking">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 높이값을 지정합니다 */
+.slide_area{height:113px;position:relative}
+/*code@*/
+
+.slide_area_toon{overflow:hidden;}
+.tli{overflow:hidden;margin:0 6px;line-height:1.1em;letter-spacing:-1px}
+.tli_l{float:left;width:25%;margin-top:8px;font-size:11px;text-align:center}
+.tli_a{display:block;padding:2px;color:#222}
+.tli_m{border:1px solid #C9C9C9;vertical-align:top}
+.tli_a{color:#222}
+.tli_t{display:block;overflow:hidden;width:67px;height:2.6em;margin:3px auto 0}
+.tli_ts,.tli_tn{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tli_tn{color:#999}
+.pg{clear:both;margin-top:.7em;text-align:center}
+.pg_btn{overflow:hidden;width:42px;height:23px;border:1px solid #C9C9C9;background:#FAFAFA url(http://static.naver.net/www/m/im2/ico_v3.png) no-repeat 50% -555px;font-size:1px;color:#FBFBFB;letter-spacing:-1px;text-align:left;vertical-align:middle;-webkit-border-radius:1px;-webkit-box-shadow:inset 1px 1px #fff,inset -1px -1px #f7f7f7}
+.pg_num_area{display:inline-block;width:54px;height:23px;font-size:.93em;line-height:23px;color:#999;letter-spacing:2px;vertical-align:middle}
+.pg_btn_next{background-position:50% -604px}
+h3{border-bottom:1px dotted #888;font-size:.9em}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	// if (sAgent.indexOf("WebKit") < 0) {
+		// window.onerror = function(){
+			// return true;
+		// }
+	// }
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div class="sec_toon" style="padding:10px;border:1px solid #E7E7E7;background-color:#fff">
+	<div class="h_area">
+		<h3 class="h"><a href="http://m.comic.naver.com/index.nhn">오늘의 웹툰</a></h3>
+	</div>
+	<div class="slide_area" id="webtoon_flickarea" >
+		<div class="slide_area slide_area_toon flick-container">
+			<div class="slide flick-ct">
+				<ul class="tli">
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=113119" class="tli_a"><img src="http://thumb.comic.naver.net/webtoon/113119/thumbnail/title_thumbnail_20091224161454_t83x90.jpg" width="67" height="54" alt="아부쟁이" class="tli_m"><span class="tli_t"><span class="tli_ts">아부쟁이</span><span class="tli_tn">이익수</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=316909" class="tli_a"><img src="../asset/img/c1.jpeg" width="67" height="54" alt="그 판타지 세계에서 사는 법" class="tli_m"><span class="tli_t"><span class="tli_ts">그 판타지 세계에서 사는 법</span><span class="tli_tn">촌장</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=316912" class="tli_a"><img src="../asset/img/c2.jpg" width="67" height="54" alt="내 어린고양이와 늙은개" class="tli_m"><span class="tli_t"><span class="tli_ts">내 어린고양이와 늙은개</span><span class="tli_tn">초</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=226807"><img src="../asset/img/c3.jpg" width="67" height="54" alt="그린보이" class="tli_m"><span class="tli_t"><span class="tli_ts">그린보이</span><span class="tli_tn">정재한 / 임진국</span></span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="slide flick-ct">
+				<ul class="tli">
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=337962" class="tli_a"><img src="../asset/img/c4.jpg" width="67" height="54" alt="오늘의 낭만부" class="tli_m"><span class="tli_t"><span class="tli_ts">오늘의 낭만부</span><span class="tli_tn">억수씨</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=259937" class="tli_a"><img src="../asset/img/c5.jpg" width="67" height="54" alt="별의 유언" class="tli_m"><span class="tli_t"><span class="tli_ts">별의 유언</span><span class="tli_tn">후은</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=337964" class="tli_a"><img src="../asset/img/c6.jpg" width="67" height="54" alt="타임인조선" class="tli_m"><span class="tli_t"><span class="tli_ts">타임인조선</span><span class="tli_tn">이윤창</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=81482" class="tli_a"><img src="../asset/img/c7.jpg" width="67" height="54" alt="놓지마 정신줄" class="tli_m"><span class="tli_t"><span class="tli_ts">놓지마 정신줄</span><span class="tli_tn">신태훈 / 나승훈</span></span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="slide flick-ct">
+				<ul class="tli">
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=25455" class="tli_a"><img src="../asset/img/c8.jpg" width="67" height="54" alt="노블레스" class="tli_m"><span class="tli_t"><span class="tli_ts">노블레스</span><span class="tli_tn">손제호 / 이광수</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=52946" class="tli_a"><img src="../asset/img/c9.jpg" width="67" height="54" alt="스쿨홀릭" class="tli_m"><span class="tli_t"><span class="tli_ts">스쿨홀릭</span><span class="tli_tn">신의철</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=20853" class="tli_a"><img src="../asset/img/c2.jpg" width="67" height="54" alt="마음의소리" class="tli_m"><span class="tli_t"><span class="tli_ts">마음의소리</span><span class="tli_tn">조석</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=336945" class="tli_a"><img src="../asset/img/c3.jpg" width="67" height="54" alt="길에서 만나다" class="tli_m"><span class="tli_t"><span class="tli_ts">길에서 만나다</span><span class="tli_tn">쥬드 프라이데이</span></span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="slide flick-ct">
+				<ul class="tli">
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=160461" class="tli_a"><img src="../asset/img/c4.jpg" width="67" height="54" alt="뜨거운 것이 좋아." class="tli_m"><span class="tli_t"><span class="tli_ts">뜨거운 것이 좋아.</span><span class="tli_tn">고민정</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=258206" class="tli_a"><img src="../asset/img/c5.jpg" width="67" height="54" alt="LOST" class="tli_m"><span class="tli_t"><span class="tli_ts">LOST</span><span class="tli_tn">정민용</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=113119" class="tli_a"><img src="../asset/img/c6.jpg" width="67" height="54" alt="아부쟁이" class="tli_m"><span class="tli_t"><span class="tli_ts">아부쟁이</span><span class="tli_tn">이익수</span></span></a>
+					</li>
+					<li class="tli_l">
+						<a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=316909" class="tli_a"><img src="../asset/img/c7.jpg" width="67" height="54" alt="그 판타지 세계에서 사는 법" class="tli_m"><span class="tli_t"><span class="tli_ts">그 판타지 세계에서 사는 법</span><span class="tli_tn">촌장</span></span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div style="position:absolute;width:1px;height:100%;background-color:red;left:80px;z-index:100;top:0px;"></div>
+		<div style="position:absolute;width:1px;height:100%;background-color:red;right:80px;z-index:100;top:0px;"></div>
+	</div>
+
+	<div class="pg" id="webtoon_pagearea">
+		<button type="button" id="aprev" class="pg_btn pg_btn_prev">이전 페이지</button>
+		<span class="pg_num_area" id='pg_area'><em title="현재 페이지" class="pg_num_on2">1</em>/4</span>
+		<button type="button" id="anext" class="pg_btn pg_btn_next">다음 페이지</button>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<span class="red">붉은색 선</span>영역은 80px 기준선<br>
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op" style="text-valign:middle">
+		<input type="text" id="nIndex" class="op_w20" value="1"> 번째 페이지로
+		<button type="button" id="amove" class="btn">이동</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+<div id="webtoon_flickarea" class='[prefix]-view'>
+	<div id="content" class="[prefix]-container">
+		<div class="[prefix]-ct"></div>
+		<div  class="[prefix]-ct"></div>
+		<div  class="[prefix]-ct"></div>
+	</div>
+</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+window.onload = function(){setTimeout(function(){
+	/*@code title="JavaScript"*/
+	var welPage = jindo.$Element('pg_area');
+	var sTpl = '<em title="현재 페이지" class="pg_num_on2">{=NPAGE}</em>/4'
+	oFlicking = new jindo.m.Flicking('webtoon_flickarea',{
+		/*nDefaultIndex:1, */
+		nFlickThreshold : 80
+	}).attach({
+		'beforeFlicking' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				addConsole('[before_Flicking ] → '+nIndex  +" 에서 → " + oCustomEvt.nContentsNextIndex + ' 이동예정');
+				//oCustomEvt.stop();
+			},
+		'afterFlicking' : function(oCustomEvt){
+
+			var nIndex = (oCustomEvt.nContentsIndex*1)+1;
+
+			addConsole('[after_Flicking] → ' + nIndex +'번째 컨텐츠');
+			welPage.html(sTpl.replace(/{=NPAGE}/,nIndex));
+		},
+		'beforeMove' : function(oCustomEvt){
+				var nIndex = oCustomEvt.nContentsIndex * 1;
+				addConsole('[before_Move] → '+ nIndex  +" 에서  → " + oCustomEvt.nContentsNextIndex + ' 이동예정' );
+
+			},
+		'move' : function(oCustomEvt){
+			var nIndex = (oCustomEvt.nContentsIndex*1)+1;
+
+			addConsole('[Move] 현재페이지 ' + nIndex );
+			welPage.html(sTpl.replace(/{=NPAGE}/,nIndex));
+		}
+	});
+	/*code@*/
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.movePrev();
+	},this).attach(jindo.$('aprev'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.moveNext();
+	},this).attach(jindo.$('anext'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		var nIndex = jindo.$('nIndex').value;
+		nIndex = (nIndex *1)-1;
+
+		oFlicking.moveTo(nIndex, 0);
+
+	},this).attach(jindo.$('amove'),'click');
+}, nDelay); }
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

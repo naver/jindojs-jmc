@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.PageLayoutUI </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.PageLayoutUI</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								페이지의 레이아웃을 잡는 UI 템플릿
+							</p>
+							<a href="../../sample/latest/jindo.m.PageLayoutUI/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+						<!-- 설명 -->
+						<h3>Description</h3>
+						<div class="t1">
+							한페이지 또는 여러장의 페이지로 레이아웃을 잡을 수 있는 UI 템플릿이다.<br>
+							몇장의 페이지/컨텐츠로 구성되었느냐에 따라 SinglePageLayout, MultiContentLayout와 MultiPageLayout으로 나뉜다.<br><br>
+							
+							<span style="color:#6699cc;font-weight:bold;">①  SinglePageLayout</span><br>
+							한장의 페이지로 구성된 레이아웃이다.<br>
+							페이지는 각 한개의 Header, Content, Footer로 구성된다.<br> 
+							필요에 따라서 Header나 Footer는 사용하거나, 사용하지 않을 수 있다.
+							<div style="padding:10px 0px 30px 0px;">
+								<img src="../resource/img/SinglePage.jpg"/><br/>
+                        		[SinglePageLayout 구조]
+                        	</div>
+                        	
+                        	<span style="color:#6699cc;font-weight:bold;">②  MultiContentLayout</span><br>
+							한장의 페이지안에 여러장 컨텐츠로 구성된 레이아웃이다.<br>
+							페이지는 각 한개의 Header, Footer와 여러개의 Content로 구성된다.<br>
+							필요에 따라서 Header나 Footer는 사용하거나, 사용하지 않을 수 있다.
+							<div style="padding:10px 0px 30px 0px;">
+								<img src="../resource/img/MultiContent.jpg"/><br/>
+                        		[MultiContnetLayout 구조]
+                        	</div>
+							
+							<span style="color:#6699cc;font-weight:bold;">③ MultiPageLayout</span><br>
+							여러장의 페이지로 구성된 레이아웃이다.<br>
+							각각의 페이지는 SinglePageLayout로 구성된다.<br>
+							<div style="padding:10px 0px 30px 0px;">
+								<img src="../resource/img/MultiPage.jpg"/><br/>
+                        		[MultiPageLayout 구조]
+                        	</div>
+							
+							<div style="padding:20px 0px 20px 30px;">
+								<strong>루트 영역</strong><br>
+								&lt;body&gt;영역으로 실제 jindo.m.PageLayout의 Root가 되는 엘리먼트이다.<br>
+								MultiContnetLayout와 MultiPageLayout의 경우 &lt;body&gt;에 flicking="yes"속성을 설정할 경우, 플리킹으로 페이지가 이동된다.<br><br>
+								
+								<strong>페이지 영역</strong><br>
+								실제 화면을 구성하는 한판의 페이지이다.<br>
+								jmc-page 클래스명을 가지며, 헤더, 컨텐츠, 풋터로 구성된다.<br><br>
+								
+								<strong>헤더 영역</strong><br>
+								페이지내의 헤더에 해당하는 영역이다.<br>
+								jmc-header 클래스 명을 가지며, position="fixed"로 설정할 경우 페이지 상단에 항상 고정된다.<br>
+								헤더를 사용하지 않을 경우 마크업에서 헤더(&lt;div class="jmc-header"&gt;...&lt;/div&gt;)를 선언하지 않으면된다.<br><br>
+								
+								<strong>타이틀 영역</strong><br>
+								페이지내의 타이틀에 해당하는 영역이다.<br>
+								jmc-title 클래스 명을 가지며, 타이틀의 내용은 가로기준으로 중앙정렬된다..<br>
+								헤더영역, 컨텐츠 영역, 풋터영역 내에 어디든 추가될 수 있으며, 개수에 제한이 없다.<br>
+								타이틀을 사용하지 않을 경우 마크업에서 타이틀(&lt;div class="jmc-title"&gt;...&lt;/div&gt;)을 선언하지 않으면된다.<br><br>
+								
+								<strong>컨텐츠 영역</strong><br>
+								페이지내의 컨텐츠에 해당하는 영역이다.<br>
+								jmc-content 클래스 명을 가지며, 필수로 한개이상 선언되어야하는 영역이다.<br><br>
+								
+								<strong>풋터 영역</strong><br>
+								페이지내의 풋터에 해당하는 영역이다.<br>
+								jmc-footer 클래스 명을 가지며, position="fixed"로 설정할 경우 페이지 하단에 항상 고정된다.<br>
+								풋터를 사용하지 않을 경우 마크업에서 풋터(&lt;div class="jmc-footer"&gt;...&lt;/div&gt;)를 선언하지 않으면된다.<br><br><br>
+								
+								<strong>기능 설명</strong><br>
+								<div class="point_box">
+									<ul class="t2">
+									<li>각 페이지는 Header, Contents, Footer로 구성되어 있으며, 필요에 따라서 Header나 Footer를 사용하거나, 사용하지 않을 수 있다.</li>
+									<li>각 페이지는 "fixed" 속성을 사용하여 Header나 Footer를 고정영역으로 사용할 수 있다.</li>
+									<li>페이지내 고정영역이 있을 경우, 고정영역 외의 영역에는 자동으로 Scoll처리 된다.</li>
+									<li>&lt;body&gt;태그에 flicking="yes"의 선언 여부에 따라 페이지간 이동은 플리킹(사용자 swipe액션 이용) 또는 API(페이지 인덱스를 이용)로 처리할 수 있다.</li>
+									<li>페이지간 이동은 자동으로 히스토리 처리되어 [앞으로가기]/[뒤로가기]기능을 사용할 수 있다.</li>
+									<li>필요에 따라 페이지 초기 로딩시 로딩레이어를 사용하거나, 사용하지 않을 수 있다.</li>
+									</ul><br>
+									<div style="margin-left:40px;">
+									<font style="color:#e11b10;">√</font> 헤더영역이 position="fixed"일 경우 헤더영역을 제외한 컨텐츠와 풋터에 자동으로 스크롤이 적용된다.<br>	
+									<font style="color:#e11b10;">√</font> 풋터영역이 position="fixed"일 경우 풋터영역을 제외한 헤더와 컨텐츠에 자동으로 스크롤이 적용된다.<br>
+									<font style="color:#e11b10;">√</font> 헤더와 풋터 모두 position="fixed"일 경우 컨텐츠에만 자동으로 스크롤이 적용된다.<br><br>
+									<img src="../resource/img/SinglePage2_1.jpg"/>&nbsp;&nbsp;
+									<img src="../resource/img/SinglePage2_2.jpg"/>&nbsp;&nbsp;
+									<img src="../resource/img/SinglePage2_3.jpg"/>
+									</div>
+								</div><br/>
+							</div>
+						</div>	
+						
+						<!--- Notice -->	
+						<h3 class="notice">Notice</h3>
+						<div class = "t1">
+							<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+							<ul class="t2">
+								<li>안드로이드 2.2 이상</li>
+								<li>iOS 3.0 이상</li>
+							</ul>
+							<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+							<dl>
+								<dd>- <a href="../jindo.m.AjaxHistory/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.AjaxHistory]</a>을 참고한다.</dd>
+								<dd>- <a href="../jindo.m.Scroll/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Scroll]</a>을 참고한다.</dd>
+								<dd>- <a href="../jindo.m.Flicking/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Flicking]</a>을 참고한다.</dd>
+								<dd>- <a href="../jindo.m.Loading/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Loading]</a>을 참고한다.</dd>
+								<dd>MultiContnetLayout와 MultiPageLayout의 경우, 컨텐츠와 페이지는 사용자의 필요에 따라 갯수에 제한없이 추가할 수 있지만, 서비스 성능에 영향을 주는 부분이므로 너무 많은 페이지를 사용하는것은 지양한다.</dd>
+							</dl>
+								
+							<h4><font style="color:#e11b10;">√</font> 마크업 주의사항</h4>
+							<dl><dd>- <a href="../jindo.m.Scroll/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Scroll]</a>을 참고한다.</dd></dl>
+								<dd>- <a href="../jindo.m.Flicking/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Flicking]</a>을 참고한다.</dd>
+						</div>
+
+						<!-- 초기화 방법 -->
+						<h3>Initialization</h3>
+						<div class="t1">
+						    <dl>
+						        <dt>HTML</dt>
+						        <dd style="padding:15px 0;">
+						        	<span style="color:#6699cc;font-weight:bold;">①  SinglePageLayout</span><br>
+						        	한장의 페이지로 구성된 레이아웃의 경우 아래 3가지 중 하나를 선택하여 사용할 수 있다.
+						        </dd>
+						        <dd>
+						            <!-- 마크업 구조 -->
+						            <div class="t2">
+						            	<b>1) 상단 고정형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_header.html" target="_blank"><img src="../resource/img/SinglePage_thumb1.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body>
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div>
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //page  마크업 끝-->
+</body>					            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>
+						            </div>
+
+						            <div class="t2">
+						            	<b>2) 하단 고정형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_footer.html" target="_blank"><img src="../resource/img/SinglePage_thumb2.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body>
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div>
+</div>
+<!-- //page  마크업 끝-->
+</body>				            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>						            
+						            </div>
+						            
+						            <div class="t2">
+						            	<b>3) 상/하단 고정형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_header_footer.html" target="_blank"><img src="../resource/img/SinglePage_thumb3.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body>
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div>
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div>
+</div>
+<!-- //page  마크업 끝-->
+</body>				            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>							            	
+						            </div>
+								</dd>
+						        <dd style="padding:15px 0;">
+						        	<span style="color:#6699cc;font-weight:bold;">②  MultiContentLayout</span><br>
+						        	한장의 페이지에 여러장의 컨텐츠로 구성된 경우, 아래 2가지 중 하나를 선택하여 사용할 수 있다.
+						        </dd>
+						        <dd>
+						            <!-- 마크업 구조 -->
+						            <div class="t2">
+						            	<b>1) 기본형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_content.html" target="_blank"><img src="../resource/img/MultiContent_thumb1.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body>
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠 1...</div>
+	<div class="jmc-content">...컨텐츠 2...</div>
+	<div class="jmc-content">...컨텐츠 3...</div>
+	...
+	<div class="jmc-content">...컨텐츠 N...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //page  마크업 끝-->
+</body>						            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>
+						            </div>
+						            
+						            <div class="t2">
+						            	<b>2) 상단 고정 플리킹형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_header_flicking.html" target="_blank"><img src="../resource/img/MultiContent_thumb2.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body flicking="yes">
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div>
+	<div class="jmc-content">...컨텐츠 1...</div>
+	<div class="jmc-content">...컨텐츠 2...</div>
+	<div class="jmc-content">...컨텐츠 3...</div>
+	...
+	<div class="jmc-content">...컨텐츠 N...</div>
+</div>
+<!-- //page  마크업 끝-->
+</body>				            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>						            
+						            </div>
+						            
+						            <div class="t2">
+						            	<b>3) 하단 고정 플리킹형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_footer_flicking.html" target="_blank"><img src="../resource/img/MultiContent_thumb3.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body flicking="yes">
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-content">...컨텐츠 1...</div>
+	<div class="jmc-content">...컨텐츠 2...</div>
+	<div class="jmc-content">...컨텐츠 3...</div>
+	...
+	<div class="jmc-content">...컨텐츠 N...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div>
+</div>
+<!-- //page  마크업 끝-->
+</body>				            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>						            
+						            </div>
+
+						            <div class="t2">
+						            	<b>4) 상/하단 고정 플리킹형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_content_flicking.html" target="_blank"><img src="../resource/img/MultiContent_thumb4.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body flicking="yes">
+<!-- page 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div> 
+	<div class="jmc-content">...컨텐츠 1...</div>
+	<div class="jmc-content">...컨텐츠 2...</div>
+	<div class="jmc-content">...컨텐츠 3...</div>
+	...
+	<div class="jmc-content">...컨텐츠 N...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div> 
+</div>
+<!-- //page  마크업 끝-->
+</body>				            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>						            
+						            </div>						        
+						        </dd>
+						        <dd style="padding:15px 0;">
+						        	<span style="color:#6699cc;font-weight:bold;">③ MultiPageLayout</span><br>
+						        	여러장의 페이지로 구성된 레이아웃의 경우 아래 5가지 중 하나를 선택하여 사용할 수 있다.
+						        </dd>
+						        <dd>
+						            <!-- 마크업 구조 -->
+						            <div class="t2">
+						            	<b>1) 기본형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_page.html" target="_blank"><img src="../resource/img/MultiPage_thumb1.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body>
+<!-- page1 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //page1  마크업 끝-->
+<!-- page2 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //page2  마크업 끝-->
+...
+<!-- pageN 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //pageN  마크업 끝-->
+</body>						            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>
+						            </div>
+
+						            <div class="t2">
+						            	<b>2) 플리킹형</b>
+						            	<table>
+						            	<tr>
+						            		<td width="150">
+						            			<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_page_flicking.html" target="_blank"><img src="../resource/img/MultiPage_thumb2.jpg" width="150" height="100" alt=""></a>
+						            		</td>
+						            		<td>
+						            			<textarea class="brush: xml;">
+<body flicking="yes">
+<!-- page1 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //page1  마크업 끝-->
+<!-- page2 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //page2  마크업 끝-->
+...
+<!-- pageN 마크업 시작 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+	<div class="jmc-content">...컨텐츠...</div>
+	<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+</div>
+<!-- //pageN  마크업 끝-->
+</body>			            
+						            			</textarea>						            		
+						            		</td>
+						            	</tr>
+						            	</table>						            
+						            </div>						        
+						        </dd>						        
+						        <dt>CSS</dt>
+						        <dd>
+						        	<!-- css 구조 -->
+						            <textarea class="brush: css;">
+/* Page 영역 CSS */
+.jmc-page{
+	background:#fff;		/* 전체 페이지의 배경색 */
+	border:0;width:100%;display:none;
+}
+  
+/* Header 영역 CSS */
+.jmc-header {
+    background-color:black; /* 헤더 영역의 배경색 */
+    color:white;            /* 헤터 영역의 폰트색 */
+    height : 50px;			/* 헤터 영역의 높이 */
+    width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Footer 영역 CSS */
+.jmc-footer {
+    background-color:black; /* 풋터 영역의 배경색 */
+    color:white;            /* 풋터 영역의 폰트색 */
+    height : 50px;			/* 풋터 영역의 높이 */
+    width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+  
+/* Content 영역 CSS */
+.jmc-content{clear:both;width:100%;display:none;}
+  
+/* Title 영역 CSS */
+.jmc-title {
+	margin:0 5%;			/* 타이틀 마진 */
+	width:90%;				/* 타이틀 너비 */
+	padding:5px 0;			/* 타이틀 패딩 */
+	height:40%;				/* 타이틀 높이 */
+	text-align:center;text-overflow:ellipsis;white-space:nowrap;
+}
+						            </textarea>
+								</dd>
+						        <dt>Javascript</dt>
+						        <dd style="padding-top:15px;">
+						        	<span style="color:#6699cc;font-weight:bold;">① SinglePageLayout</span><br>
+						        	한장의 페이지로 구성된 레이아웃의 경우 아래와 같이 스크립트를 실행한다.
+						        </dd>
+						        <dd>
+						        	<!-- 실행구문 -->
+						            <textarea class="brush: javascript;">
+var oPageLayoutUI = new jindo.m.PageLayoutUI();
+						            </textarea>
+								</dd>
+								<dd style="padding-top:15px;">
+									<span style="color:#6699cc;font-weight:bold;">②MultiContentLayout / ③ MultiPageLayout</span><br>
+									여러장의 컨텐츠/페이지로 구성된 레이아웃의 경우 아래와 같이 스크립트를 실행한다.
+								</dd>
+						        <dd>
+						        	<!-- 실행구문 -->
+						            <textarea class="brush: javascript;">
+var oPageLayoutUI = new jindo.m.PageLayoutUI({
+	nDefaultIndex : 2			// 초기 로딩시 보여줄 페이지 인덱스번호 (기본값 : 0)
+	bUseLoading : true,			// 로딩레이어 사용 여부 (기본값 : false)    
+	fnDomReady : function(htLayout) {
+		// Layout 마크업이 생성된후 호출되는 함수
+		console.log("htLayout", htLayout);
+	},
+	bUseFullScreen : false,
+	htLoadingOption : {...},	// Loading 생성시 초기화 옵션 (기본값 : jindo.m.Loading의 기본 옵션값) 
+	htHistoryOption : {...},	// AjaxHistory 생성시 초기화 옵션 (기본값 : jindo.m.AjaxHistory의 기본 옵션값)    
+	htScrollOption : {...},		// Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+	htFlickingOption : {...}	// Flicking 생성시 초기화 옵션 (기본값 : jindo.m.Flicking의 기본 옵션값)
+}).attach({
+	"beforeMovePage" : function(oCustomEvt) {
+		// 페이지 이동전 호출되는 함수
+		console.log("beforeMovePage", oCustomEvt); 
+	},
+	"afterMovePage" : function(oCustomEvt) {
+		// 페이지 이동후 호출되는 함수
+		console.log("afterMovePage", oCustomEvt); 
+	}
+});						            				            
+						            </textarea>
+								</dd>
+							</dl>
+						</div>
+						
+						<!-- Template -->
+						<h3>Template 적용하기</h3>
+						<div class="t1">
+							<div>
+								아래 이미지를 클릭하여 Template 페이지를 열고, 소스를 copy&paste하여 적용한다.<br>
+								헤더, 컨텐츠, 풋터 부분을  필요한 내용으로 수정한다.<br><br>
+								
+								<span style="color:#6699cc;font-weight:bold;">①  SinglePageLayout</span><br><br>
+								<ul class="tumb_list">
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_header.html" target="_blank"><img src="../resource/img/SinglePage_thumb1.jpg" width="150" height="100" alt=""></a>
+									<p>상단 고정형 Template</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_footer.html" target="_blank"><img src="../resource/img/SinglePage_thumb2.jpg" width="150" height="100" alt=""></a>
+									<p>하단 고정형 Template</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_header_footer.html" target="_blank"><img src="../resource/img/SinglePage_thumb3.jpg" width="150" height="100" alt=""></a>
+									<p>상/하단 고정형 Template</p>
+								</li>
+								</ul>
+								
+								<div style="clear:both;"></div>
+								<span style="clear:both;color:#6699cc;font-weight:bold;"><br>② MultiContentLayout</span><br><br>
+								<ul class="tumb_list">
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_content.html" target="_blank"><img src="../resource/img/MultiContent_thumb1.jpg" width="150" height="100" alt=""></a>
+									<p>기본형 Template</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_header_flicking.html" target="_blank"><img src="../resource/img/MultiContent_thumb2.jpg" width="150" height="100" alt=""></a>
+									<p>상단 고정 플리킹형 Template</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_fixed_footer_flicking.html" target="_blank"><img src="../resource/img/MultiContent_thumb3.jpg" width="150" height="100" alt=""></a>
+									<p>하단 고정 플리킹형 Template</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_content_flicking.html" target="_blank"><img src="../resource/img/MultiContent_thumb4.jpg" width="150" height="100" alt=""></a>
+									<p>상/하단 고정 플리킹형 Template</p>
+								</li>
+								</ul>
+								
+								<div style="clear:both;"></div>
+								<span style="clear:both;color:#6699cc;font-weight:bold;"><br>③ MultiPageLayout</span><br><br>
+								<ul class="tumb_list">
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_page.html" target="_blank"><img src="../resource/img/MultiPage_thumb1.jpg" width="150" height="100" alt=""></a>
+									<p>기본형 Template</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.PageLayoutUI/template_multi_page_flicking.html" target="_blank"><img src="../resource/img/MultiPage_thumb2.jpg" width="150" height="100" alt=""></a>
+									<p>플리킹형 Template</p>
+								</li>
+								</ul>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+					
+						<!-- 초기화 옵션 -->
+						<h3>Option</h3>
+						<div class="t1">
+							<table class="option" cellpadding="0" cellspacing="0">
+								<tr>
+									<th>Name</th>
+									<th>Desc</th>
+									<th>Default</th>
+								</tr>
+								<tr>
+									<td class="name">nDefaultIndex</td>
+									<td>페이지 로딩시 초기에 보여져야할 페이지 인덱스번호<br>(MultiContentLayout / MultiPageLayout일 경우에만 해당됨)</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td class="name">bUseLoading</td>
+									<td>페이지 초기 로딩시 로딩레이어 사용여부</td>
+									<td>false</td>
+								</tr>
+								<tr>
+									<td class="name">fnDomReady</td>
+									<td>내부적으로 Layout 마크업이 생성된후에 호출되는 함수</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td class="name">bUseFullScreen</td>
+									<td>주소창을 가린, 풀스크린 사용 여부</td>
+									<td>false</td>
+								</tr>
+								<tr>
+									<td class="name">htScrollOption</td>
+									<td>Scroll 생성시 초기화 옵션</td>
+									<td><a href="../jindo.m.Scroll/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Scroll]</a> 참고</td>
+								</tr>
+								<tr>
+									<td class="name">htHistoryOption</td>
+									<td>AjaxHistory 생성시 초기화 옵션<br>(MultiPageLayout일 경우에만 해당됨)</td>
+									<td><a href="../jindo.m.AjaxHistory/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.AjaxHistory]</a> 참고</td>
+								</tr>
+								<tr>
+									<td class="name">htFlickingOption</td>
+									<td>Flicking 생성시 초기화 옵션<br>(MultiPageLayout일 경우에만 해당됨)</td>
+									<td><a href="../jindo.m.Flicking/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Flicking]</a> 참고</td>
+								</tr>
+								<tr>
+									<td class="name">htLoadingOption</td>
+									<td>Loading 생성시 초기화 옵션</td>
+									<td><a href="../jindo.m.Loading/index.html" style="margin:0px;padding:0px;line-height:17px;color:blue;">[jindo.m.Loading]</a> 참고</td>
+								</tr>
+							</table>
+						</div>
+					
+						<!-- 커스텀 이벤트 -->
+						<h3>Custom Event</h3>
+						<div class="t1">
+							<table class="customevent" cellpadding="0" cellspacing="0">
+								<tr>
+									<th>Name</th>
+									<th>Desc</th>
+									<th>Custom Event Object Properties</th>
+								</tr>
+								<tr class="title">
+									<td class="name">beforeMovePage</td>
+									<td>페이지가 이동되기 전에 발생<br>(MultiPageLayout일 경우에만 해당됨)</td>
+									<td>
+										<ul>
+											<li>sType (String) : 커스텀 이벤트명</li>
+											<li>nCurrentPage (Number) : 현재 페이지의 인덱스 번호</li>
+											<li>nPage (Number) : 이동할 페이지의 인덱스 번호</li>
+											<li>stop (Function) : 수행시 페이지가 이동되지 않음</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="desc">
+									<td>&nbsp;</td>
+									<td colspan="2">
+										커스텀이벤트 핸들링 예제
+										<textarea class="brush: javascript;">
+										oComponent.attach("beforeMovePage", function(oCustomEvent) {
+											// oCustomEvent.sType;
+											// oCustomEvent.nCurrentPage;
+											// oCustomEvent.nPage;
+											// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(afterMovePage)가 발생하지 않고, 현재 페이지 이동 작업도 중지됨
+										});
+										</textarea>
+									</td>
+								</tr>
+								
+								<tr class="title">
+									<td class="name">afterMovePage</td>
+									<td>페이지가 이동된 후에 발생<br>(MultiPageLayout일 경우에만 해당됨)</td>
+									<td>
+										<ul>
+											<li>sType (String) : 커스텀 이벤트명</li>
+											<li>nCurrentPage (Number) : 현재 페이지의 인덱스 번호</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="desc">
+									<td>&nbsp;</td>
+									<td colspan="2">
+										커스텀이벤트 핸들링 예제
+										<textarea class="brush: javascript;">
+										oComponent.attach("afterMovePage", function(oCustomEvent) {
+											// oCustomEvent.sType;
+											// oCustomEvent.nCurrentPage;
+										});
+										</textarea>
+									</td>
+								</tr>			
+							</table>
+						</div>
+					
+						<!-- 퍼블릭 메서드 -->
+							<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.PageLayoutUI</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.PageLayoutUI</strong>(htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.Component
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+							<h5>Requires : 
+									<a href="../jindo.m.AjaxHistory/index.html#constructor">jindo.m.AjaxHistory</a>, <a href="../jindo.m.Flicking/index.html#constructor">jindo.m.Flicking</a>, <a href="../jindo.m.Loading/index.html#constructor">jindo.m.Loading</a>, <a href="../jindo.m.Scroll/index.html#constructor">jindo.m.Scroll</a>
+							</h5>
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+		</table>
+	</div>
+						
+						<!-- 변경 히스토리 -->
+						<h3>Change History</h3>
+						<div class="t1">
+							 <table class="option" cellpadding="0" cellspacing="0">
+							 <tbody></tbody>
+								 <tr>
+								 	<th>Release</th>
+								 	<th>Type</th>
+		                              	<th>Target</th>
+		                              	<th>Desc</th>
+								 </tr>
+
+								<!-- v1.4.0 -->
+								 <tr>
+								 	<td class="name" rowspan="4">v1.4.0</td>
+	                               	<td class="support">Support</td>	
+								 	<td>-</td>
+								 	<td>iOS 6 지원</td>
+								 </tr>
+
+								 <tr>
+								 	<td>Update</td>
+								 	<td>bUseFullScreen</td>
+								 	<td>옵션 추가</td>
+								 </tr>
+								 <tr>
+								 	<td>Bug</td>
+								 	<td>-</td>
+								 	<td>jindo2 1.4.7에서 스크립트 버그 수정</td>
+								 </tr>
+								 <tr>
+								 	<td>Bug</td>
+								 	<td>-</td>
+								 	<td>Flingking sClassPrefix 지정해도 적용되지 않는 버그 수정</td>
+								 </tr>
+
+								 <!-- v1.3.5 -->
+								 <tr>
+								 	<td class="name">v1.3.5 </td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+								 </tr>
+
+								 <!-- v1.3.0 -->
+								 <tr>
+								 	<td class="name">v1.3.0 </td>
+									<td>Release</td>
+									<td>-</td>
+									<td>최초 릴리즈</td>
+								 </tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

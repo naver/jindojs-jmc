@@ -1,0 +1,27 @@
+#### HTML
+
+Initialization의 HTML구조와 동일
+
+#### CSS
+
+	/* class prefix가 'slider-' 인 경우*/
+	.slider-wrapper{float:left;position:relative;text-align:left;top:.8em;border-radius:0.5em 0.5em;width:293px;height:0.8em;margin-right:15px;border:1px solid #AAA;background:#EBEBEC;}
+	.slider-range{display:block;position:absolute;z-index:1;top:0;left:0;border-radius:0.5em 0.5em;height:100%;border:0 none;background:#999;font-size:.7em}
+	.slider-thumb{position:absolute;z-index:2;top:-.5em;border-radius:0.5em 0.5em;width:1.6em;height:1.6em;margin-left:-.8em;border:1px solid #BABABA;background:#F1F1F1;cursor:pointer}
+
+#### Javascript
+
+Initialization의 Javascript구조와 동일
+
+#### Note
+※ Slider 의 디자인을 사용자의 요구 사항에 맞게 변경하기 위해서는 각 CSS에 알맞는 속성을 적용 해야 한다.<br /><br />
+
+
+* [prefix] + __wrapper__ 클래스<br />
+track 영역의 크기, 둥글림정도, 배경색 등의 스타일을 지정한다.<br />
+가로형일 경우 width, 세로형일 경우 height을 조정한다.
+* [prefix] + __range__ 클래스<br />
+range 영역의 배경색, 둥글림정도 등의 스타일을 지정한다.<br />
+가로형일 경우 width, 세로형일 경우 height을 조정한다.
+* [prefix] + __thumb__ 클래스<br />
+thumb 영역의 배경색, 둥글림정도 등의 스타일을 지정한다.

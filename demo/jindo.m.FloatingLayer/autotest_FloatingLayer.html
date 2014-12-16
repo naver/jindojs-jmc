@@ -1,0 +1,205 @@
+﻿<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/demo.css">
+<style type="text/css">
+.u_addhm{position:absolute;left:0;z-index:100;width:308px;height:94px;font-size:12px;line-height:13px;text-align:center}
+.u_addhm .uc_area{position:relative;width:308px;height:94px;margin:0 auto;background:url(http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/bg_addhm.png) no-repeat 0 0;text-align:left}
+.u_addhm .uc_p{margin-left:5px;padding:23px 0 10px 20px;color:#222;letter-spacing:-1px;white-space:nowrap}
+.u_addhm .uc_st{color:#04779d}
+.u_addhm .uc_btn{display:block;position:absolute;top:5px;right:9px;width:50px;height:62px;border:0;background:none}
+</style>
+
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/js/jindo.js?debug=true" charset="utf-8"></script>
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/mobile_test/js/fakeEvent.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/mobile_test/js/step.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/mobile_test/js/repeat.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.UIComponent.js" charset="utf-8"></script>
+
+
+
+</head>
+<body>
+<!-- Demo 영역 -->
+<!-- 플로팅 레이어  -->
+<div id="layer" class="u_addhm" style="position:absolute;z-index:10000">
+	<div class="uc_area">
+		<p class="uc_p">스크롤을 움직이면 레이어가 따라가요<br/><strong class="uc_st">X</strong>를 누르면 사라집니다.</p>
+		<button type="button" class="uc_btn" onclick="oFp.hide()"><img src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/btn_addhm.gif" width="16" height="15" /></button>
+	</div>
+</div>
+<!-- // Demo 영역 -->
+
+
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+
+
+			<form name="setOption">
+			* 위치<br>
+			<input type="radio" id="pos1" name="pos" onclick="setPosition('top');"><label for="pos1">상단 중앙</label></input></br>
+			<input type="radio" id="pos2" name="pos" onclick="setPosition('center');"><label for="pos2" >화면 중앙</label></input></br>
+			<input type="radio" id="pos3" name="pos" onclick="setPosition('bottom');" checked><label for="pos3" >화면 하단 중앙</label></input></br>
+			<br>
+
+			* slide 되는방향<br>
+			<input type="radio"  id="di1" name="di" onclick="setDirection('up');"  checked><label for="di1" >위로</label></input></br>
+			<input type="radio"  id="di2" name="di" onclick="setDirection('down');"><label for="di2" >아래로</label></input></br>
+			<input type="radio"  id="di3" name="di" onclick="setDirection('left');"><label for="di3" >왼쪽으로</label></input></br>
+			<input type="radio"  id="di4" name="di" onclick="setDirection('right');"><label for="di4" >오른쪽으로</label></input></br>
+			<br>
+			
+			* 화면에 완전히 보여지는 시간 (단위ms)<br>
+			<input type="text"  id="duration" value="2000"></input></br>
+			</br>
+			
+			
+			* Slide 시 애니메이션 효과<br>
+			<input type="radio"  id="stfun1" name="sa" onclick="setSlideTimingFn('ease');"><label for="stfun1" >ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</label></input><br>
+			<input type="radio"  id="stfun2" name="sa" onclick="setSlideTimingFn('linear');"><label for="stfun2" >linear : 등속효과</label></input><br>
+			<input type="radio"  id="stfun3" name="sa" onclick="setSlideTimingFn('ease-in');"><label for="stfun3" >ease-in : 속도가 점점 빨라지는 가속 효과</label></input></br>
+			<input type="radio"  id="stfun4" name="sa" onclick="setSlideTimingFn('ease-out');"><label for="stfun4" >ease-out : 속도가 천천히 줄어드는 감속효과</label></input></br>
+			<input type="radio"  id="stfun5" name="sa" onclick="setSlideTimingFn('ease-in-out');"  checked><label for="stfun5" >ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</label></input></br>
+			</br>
+
+			* fixed 사용 여부 <br>
+			<input type="radio"  id="ufixed1" name="uf" onclick="setUseFixed(true);"><label for="ufixed1" >사용</label></input><br>
+			<input type="radio"  id="ufixed2" name="uf" onclick="setUseFixed(false);" checked><label for="ufixed2" >사용하지 않음</label></input><br>
+			</br>
+
+			* FloatingLayer가 스크롤될때 사라졌다 fadein되는 시간 (단위 ms)<br>
+			<input type="text"  id="fadeinduration" value="2000"></input></br>
+			</br>
+			
+			* Fadein 시 애니메이션 효과<br>
+			<input type="radio"  id="fitfun1" name="fia" onclick="setFadeInTimingFn('ease');"><label for="fitfun1" >ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</label></input><br>
+			<input type="radio"  id="fitfun2" name="fia" onclick="setFadeInTimingFn('linear');"><label for="fitfun2" >linear : 등속효과</label></input><br>
+			<input type="radio"  id="fitfun3" name="fia" onclick="setFadeInTimingFn('ease-in');"><label for="fitfun3" >ease-in : 속도가 점점 빨라지는 가속 효과</label></input></br>
+			<input type="radio"  id="fitfun4" name="fia" onclick="setFadeInTimingFn('ease-out');"><label for="fitfun4" >ease-out : 속도가 천천히 줄어드는 감속효과</label></input></br>
+			<input type="radio"  id="fitfun5" name="fia" onclick="setFadeInTimingFn('ease-in-out');"  checked><label for="fitfun5" >ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</label></input></br>
+			</br>
+			
+			* FloatingLayer가 hide될 때 fadeout되는 시간 (단위 ms)<br>
+			<input type="text"  id="fadeoutduration" value="2000"></input></br>
+			</br>
+			
+			* FadeOut 시 애니메이션 효과<br>
+			<input type="radio"  id="fotfun1" name="foa" onclick="setFadeOutTimingFn('ease');"><label for="fotfun1" >ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</label></input><br>
+			<input type="radio"  id="fotfun2" name="foa" onclick="setFadeOutTimingFn('linear');"><label for="fotfun2" >linear : 등속효과</label></input><br>
+			<input type="radio"  id="fotfun3" name="foa" onclick="setFadeOutTimingFn('ease-in');"><label for="fotfun3" >ease-in : 속도가 점점 빨라지는 가속 효과</label></input></br>
+			<input type="radio"  id="fotfun4" name="foa" onclick="setFadeOutTimingFn('ease-out');"><label for="fotfun4" >ease-out : 속도가 천천히 줄어드는 감속효과</label></input></br>
+			<input type="radio"  id="fotfun5" name="foa" onclick="setFadeOutTimingFn('ease-in-out');"  checked><label for="fotfun5" >ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</label></input></br>
+			</br>
+
+			<input type="button" onclick="Init();" value="적용">
+			</form>
+			<br>
+			
+	</div>
+</div>
+<textarea id="codeText" rows="20" style="width:100%"></textarea>
+<div style="height:200px;"></div>
+
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/effect/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/effect/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/effect/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.ScrollEnd.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FloatingLayer.js" charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+var oFp = {};
+var htOption = {};
+
+
+function Init(){
+
+	try{
+		oFp.hide();
+		oFp.destroy();
+	}catch(e){}
+	
+	htOption = {
+	    sPosition : htOption.sPosition || "bottom",
+	    sDirection : htOption.sDirection || "up",
+	    nSlideDuration : jindo.$("duration").value || 2000,
+	    sSlideTimingFunction : htOption.sSlideTimingFunction || "ease-in-out",
+	    nFadeInDuration : jindo.$("fadeinduration").value || 2000,
+	    sFadeInTimingFunction : htOption.sFadeInTimingFunction || "ease-in-out",
+	    nFadeOutDuration : jindo.$("fadeoutduration").value || 2000,
+	    sFadeOutTimingFunction : htOption.sFadeOutTimingFunction || "ease-in-out",
+	    bUseFixed : htOption.bUseFixed || false,
+	    nTimeout : 3000
+	}
+
+	oFp = new jindo.m.FloatingLayer("layer", htOption);
+	oFp.show();
+	showOption();
+	actTest();
+
+}
+
+
+
+function setPosition(sPos){
+	htOption.sPosition = sPos;
+}
+function setDirection(sDirection){
+	htOption.sDirection = sDirection;
+}
+function setSlideTimingFn(sFn){
+	htOption.sSlideTimingFunction = sFn;
+}
+function setFadeInTimingFn(sFn){
+	htOption.sFadeInTimingFunction = sFn;
+}
+function setFadeOutTimingFn(sFn){
+	htOption.sFadeOutTimingFunction = sFn;
+}
+function setUseFixed(bBoolean){
+	htOption.bUseFixed= bBoolean;
+}
+
+function showOption(){
+	var sText = [];
+	for (var key in htOption){
+		sText.push('"'+key+'" : "' + htOption[key] + '"');
+	}
+	$Element("codeText").text(sText.join(",\n"));
+}
+
+function actTest(){
+	var i = 0;
+	var z = 0;
+	
+	setTimeout(function(){
+		$Element(document).xFakeEvent("click",{"touches":[{"pageX":100,"pageY":100}]});
+		z = setInterval(function(){
+				if(i > 400){
+					clearInterval(z);
+					z = 0;
+				}
+				i = i + 50;
+				window.scrollTo(0, i);
+			}, 60);
+	}, htOption.nSlideDuration);
+		
+}
+
+Init();
+</script>
+</body>
+</html>

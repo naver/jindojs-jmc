@@ -1,0 +1,38 @@
+#### HTML
+
+	<!-- 기준 엘리먼트 -->
+	<div id="mflick">
+		<!-- container 엘리먼트는  '[prefix]+container' class를 가진다 -->
+		<div class="flick-container">
+			<!-- 각 contents 영역은 '[prefix]+ct' class를 가진다 -->
+			<div class="flick-ct" >
+				<p>Layer 1</p>
+			</div>
+			<div class="flick-ct" >
+				<p>Layer 2</p>
+			</div>
+			<div class="flick-ct">
+				<p>Layer 3</p>
+			</div>
+		</div>
+	</div>	
+
+* 기준 엘리먼트를 기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.
+* container영역의 엘리먼트의 경우 [prefix]+'container'의 클래스명을 가진다.
+* contents영역의 엘리먼트의 경우 [prefix]+'ct'의 클래스명을 가진다. 
+* sContentClass옵션을 통해 "ct"가 아닌 다른 suffix를 설정할 수 있다.
+
+
+#### Javascript
+
+	var oCoverFlicking = new jindo.m.CoverFlicking('mflick',{
+		bHorizontal : true,  	//가로형 여부
+		nDefaultScale : 0.94,	// 줌인되는 엘리먼트의 초기사이즈
+		sClassPrefix : 'flick-', //Class의 prefix
+		bUseCircular : false,  //순환여부 
+		nDefaultIndex: 2 		//로드시에 화면에 보이는 콘텐츠의 인덱스
+	}).attach({
+		'flicking' : function(oCustomEvt){
+			/* 현재 화면에 콘텐츠가 바뀔 경우 발생 */
+		}
+	});

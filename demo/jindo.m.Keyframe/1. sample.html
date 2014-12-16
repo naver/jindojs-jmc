@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>기본 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Keyframe"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="기본 동작을 확인 할 수 있는 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+	body { }
+	ul { list-style:none; margin:0; padding:0; }
+	li { float:left; }
+	input, button { font-family:inherit; font-size:1.2em; padding:.25em;}
+	#wrap { padding:10px; }
+	.ball {
+		position:absolute;
+		z-index:9;
+		left:100px;
+		top:100px;
+		-webkit-transform:scale(3);
+		background-color:#f00;
+		border:5px solid #000;
+		border-radius:50px;
+		padding:1em 1em;
+		color:#fff;
+	}
+</style>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" charset="utf-8" src="../asset/jindo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.UIComponent.js"></script>
+	<!--// 기본 스크립트 끝 -->
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Keyframe.js"></script>
+	<div style="position:relative;">
+		<div id="ball1" class="ball"></div>
+	</div>
+	<div style="position:relative; top:100px;">
+		<div id="ball2" class="ball"></div>
+	</div>
+	<div id="wrap">
+		아래 입력폼에 직접 0~1 사이의 숫자를 넣거나 스크롤바를 움직여서 조절하세요.
+		<hr/>
+		<input type="text" id="slider_rate" value="0.00" placeholder="0~1 사이의 숫자" />
+		<button onclick="keyf.frame(jindo.$('slider_rate').value);">frame(...)</button>
+		<div id="slider" style="width:500px; height:20px; -webkit-overflow-scrolling: touch; overflow-x:scroll; overflow-y:hidden;">
+			<span style="display:block; width:5500px; height:20px;"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+			/*@code title="JavaScript"*/
+			var keyf = new jindo.m.Keyframe({ fpEffect : jindo.m.Effect.linear, bExtendStart : true });
+			var balls = function() {
+				return ['ball1','ball2'];
+			};
+			keyf
+			.set(0.2, [ balls, {
+				'@left' : '50px',
+				'@transform' : 'scale(1)',
+				'@background' : jindo.m.Effect.bounce('#0f0'),
+				'@display' : 'block'
+			} ])
+			.set(0.6, [ balls, {
+				'@left' : '150px',
+				'@top' : jindo.m.Effect.linear('100px')
+			} ])
+			.set(0.8, [ balls, {
+				'@top' : jindo.m.Effect.bounce('200px'),
+				'@background' : jindo.m.Effect.easeIn('#f00')
+			} ])
+			.set(0.9, [ balls, {
+				'@transform' : jindo.m.Effect.bounce('scale(3) translateX(30px) translateY(15px)'),
+				'@background' : jindo.m.Effect.easeOut('#00f'),
+				'@display' : 'none'
+			} ])
+			keyf.attach('preprocessEnd', function() {
+				var self = this;
+				self.frame(0);
+				jindo.$Fn(function() {
+					var nScrollLeft = jindo.$('slider').scrollLeft;
+					var nRate = nScrollLeft / 5000;
+					self.frame(nRate);
+					jindo.$('slider_rate').value = Math.floor(nRate * 100) / 100;
+				}).attach('slider', 'scroll');
+			});
+			keyf.preprocess();
+			/*code@*/
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

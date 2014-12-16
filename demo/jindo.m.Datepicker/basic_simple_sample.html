@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.Datepicker Design Template</title>
+<meta name="class-lists" content="jindo.m.Datepicker">
+<meta name="description" content="Simple Calendar 스타일. Control 영역없음">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* Datepicker Input CSS */
+.date_input {
+	height:23px;
+	width:80px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	border: 1px solid #b3b3b3;
+	color: #333;
+}
+
+/* Calendar CSS */
+
+/* Calendar Base Warpper 스타일 CSS */
+.calendar-base {
+	width:180px; 		/* Calendar width 크기*/
+	border :#AEB8C5 solid 1px;	/* 외곽 border 설정*/
+	/* 라운드 처리*/
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding:10px;		/* 여백 설정*/
+	background:#EFF1F4;	/* Calendar 배경색*/
+	display:none;
+
+}
+/* Calendar 링크 스타일 CSS */
+.calendar-base a,
+.calendar-base a:visited,
+.calendar-base a:active{text-decoration:none;}
+.calendar-base a:hover{text-decoration:none;}
+
+/* Calendar Control 영역 스타일 CSS */
+.calendar-base div{
+	text-align: center;		/* 글자 정렬 */
+	height:28px;			/* 높이값*/
+	position: relative;
+	padding-top:3px;		/* 여백 설정*/
+}
+
+/* Calendar Control 영역 - 년도 월 부분 스타일 CSS */
+.calendar-base div .calendar-title{
+	float:none !important;
+	/* 년도 숫자 부분 폰트 스타일 지정.*/
+	font-family: Helvetica;
+	font-size: 20px;
+	line-height: 20px;
+	color: #0B1623;
+	font-weight: bold;
+}
+
+/* Calendar 날짜 테이블 영역 스타일 CSS */
+.calendar-base table{
+	border : 1px solid #EEE;
+	background : #ffffff;
+	margin:0 auto;
+	text-align:center;
+}
+.calendar-base table *{
+	font-family:tahoma !important;
+	font-size: 0.92em;
+}
+
+/* Calendar 날짜 테이블- 요일 공통 스타일 CSS */
+.calendar-base table th{
+	font-family:Dotum !important;
+	font-size:11px;
+	width:25px;
+	height:25px;
+	color: #909090;
+	background: #FBFBFB;
+	font-size: 0.92em;
+	border-bottom : 1px solid #EEE;
+}
+
+/* Calendar 날짜 테이블- 날짜 공통 스타일 CSS */
+.calendar-base table td{
+	height:25px;
+	text-align:center;
+	color:#000000;
+}
+.calendar-base table td a{
+	width:25px;
+	height:22px;
+	display : inline-block;
+	padding-top:3px;
+	color:#000000;
+}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS */
+.calendar-base table .calendar-selected{background:#FFC080 !important;;}
+.calendar-base table .calendar-selected a{color:#800000;text-decoration:none;}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS */
+.calendar-base table .calendar-sun{color:#ED2121 !important;}
+.calendar-base table .calendar-sun a{color:#ED2121 !important;}
+
+/* Calendar 날짜 테이블- 토요일 스타일 CSS */
+.calendar-base table .calendar-sat{color:#0075C8 !important;}
+.calendar-base table .calendar-sat a{color:#0075C8 !important;}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS */
+.calendar-base table .calendar-today{background:#FFC080;color:#ffffff;}
+.calendar-base table .calendar-today a{font-weight:bold;text-decoration:none;color:#fff}
+.calendar-base table .calendar-today a:hover,
+.calendar-base table .calendar-today a:visited,
+.calendar-base table .calendar-today a:active{background:#FFC080;color:#fff}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS */
+.calendar-base table .calendar-prev-mon .calendar-date,
+.calendar-base table .calendar-next-mon .calendar-date {display:none}
+
+/* Calendar 날짜 테이블- 공휴일 스타일 CSS */
+.calendar-base table .calendar-noselect {background:none !important;color:#d1d1d1 !important;}
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<input type="text" id="datepicker" class="date_input" />
+
+<div id="jmc_calt" class="calendar-base">
+	<div>
+		<!-- 년도 월 표시 영역 -->
+		<strong class="calendar-title"></strong>
+	</div>
+	<!-- Calendar 날짜영역 -->
+	<table cellspacing="0" cellpadding="0">
+	<thead>
+		<!-- 요일 표시 헤더 영역 -->
+		<tr>
+			<th class="calendar-sun">일</th>
+			<th>월</th>
+			<th>화</th>
+			<th>수</th>
+			<th>목</th>
+			<th>금</th>
+			<th class="calendar-sat">토</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	<!-- 날짜 출력 템플릿 영역. -->
+	<tr class="calendar-week">
+		<td><a href="#" class="calendar-date"></a></td>
+		<td><a href="#" class="calendar-date"></a></td>
+		<td><a href="#" class="calendar-date"></a></td>
+		<td><a href="#" class="calendar-date"></a></td>
+		<td><a href="#" class="calendar-date"></a></td>
+		<td><a href="#" class="calendar-date"></a></td>
+		<td><a href="#" class="calendar-date"></a></td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../external/jindo-component/jindo.Calendar.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Datepicker.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+// Datepicker생성.
+var oDatepicker = new jindo.m.Datepicker("jmc_calt",{bUseEffect : true});
+oDatepicker.addDatePickerSet("datepicker");
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

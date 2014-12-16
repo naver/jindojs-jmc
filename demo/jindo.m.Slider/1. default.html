@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본예제</title>
+<meta name="class-lists" content="jindo.m.Slider">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.slider-wrapper{float:left;position:relative;top:.8em;width:293px;height:.8em;margin-right:15px;border-radius:.5em .5em;border:1px solid #AAA;background:#EBEBEC;text-align:left}
+.slider-wrapper .slider-range{display:block;position:absolute;top:0;left:0;z-index:1;height:100%;border-radius:.5em .5em;border:0 none;background:#999;font-size:.7em}
+.slider-wrapper .slider-thumb{position:absolute;top:-.5em;z-index:2;width:1.6em;height:1.6em;margin-left:-.8em;border-radius:.5em .5em;border:1px solid #BABABA;background:#F1F1F1;cursor:pointer}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo" style="position:relative">
+	<div style="height:50px">
+		<div class="slider-wrapper" id="slider" style="width:150px">
+			<!-- [D] 슬라이더 영역의 위치와 색상 인라인으로 변경 가능 -->
+			<div class="slider-range" style="width:0%;background:#85BAE4"></div>
+			<div id="a1" class="u_sbar_hdle slider-thumb" style="left: 0%"></div>
+		</div>
+
+		<div style="display:inline-block;margin-top:6px">
+			현재 값:<input type="text" id="txt1" value="0" class="op_w50" disabled="disabled" />
+		</div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		minValue<input type="text" id="nMin" class="op_w40" value="0">
+		maxValue<input type="text" id="nMax" class="op_w40" value="400">
+		<button type="button" id="apply" class="btn">적용</button><br>
+
+		<input type="text" id="nValue" class="op_w40"><button type="button" id="setValue" style="margin-left:5px;"class="btn">setValue</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!--@code title="HTML"
+<div class="slider-wrapper" id="slider" style="width:150px">
+	<div class="slider-range" style="width:0%;background:#85BAE4"></div>
+	<div id="a1" class="slider-thumb" style="left:0%"></div>
+</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slider.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oSlider = new jindo.m.Slider('slider',{
+		 nMinValue : 0,
+		 nMaxValue : 400,
+		 nDefaultValue : 400
+	});
+
+	jindo.$Element('txt1').text(oSlider.getValue());
+
+	oSlider.attach({
+		'beforeChange' : function(oCustomEvt){
+			var nBefore = oCustomEvt.nValue;
+			var nPos = oCustomEvt.nValue.toFixed(2);
+			oCustomEvt.nAdjustValue = nPos;
+			var sText = oCustomEvt.sType + " → 조정전 값 : "+  nBefore + ' , 조정후 :' +nPos;
+			addConsole(sText);
+		},
+		'change' : function(oCustomEvt){
+			jindo.$Element('txt1').text(oCustomEvt.nAdjustValue);
+			var sText = oCustomEvt.sType + " → 조정후 값 : "+  oCustomEvt.nAdjustValue;
+			addConsole(sText);
+		}
+	});
+
+	//적용버튼 클릭시
+	jindo.$Fn(function(evt){
+		evt.stop();
+
+		oSlider.option('nMinValue', jindo.$('nMin').value);
+		oSlider.option('nMaxValue', jindo.$('nMax').value);
+
+		oSlider.setValue(jindo.$('nMax').value);
+
+	},this).attach(jindo.$('apply'),'click');
+
+	//setValue 적용 버튼
+	jindo.$Fn(function(evt){
+		evt.stop();
+
+		var nValue = jindo.$('nValue').value * 1;
+		oSlider.setValue(nValue);
+
+	},this).attach(jindo.$('setValue'),'click');
+
+
+/*@code title="JavaScript"
+	var oSlider = new jindo.m.Slider('slider',{
+		 nMinValue : 0,
+		 nMaxValue : 400,
+		 nDefaultValue : 200
+	}).attach({
+		'beforeChange' : function(oCustomEvt){
+			//반올림하여 정수로 값을 설정할때
+			var nPos = Math.round(oCustomEvt.nValue);
+			oCustomEvt.nAdjustValue = nPos;
+		}
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

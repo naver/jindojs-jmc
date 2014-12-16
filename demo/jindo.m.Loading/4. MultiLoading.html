@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>복수개 로딩 예제</title>
+<meta name="class-lists" content="jindo.m.Loading">
+<meta name="description" content="부분영역을 기준으로 로딩 컴포넌트가 실행">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!--@code title="HTML"-->
+	<div id="target">
+	</div>
+	<!--code@-->
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		로딩컴포넌트가 보여지고 5초 후에 자동 사라집니다.<br />
+		<button type="button" id="show1" class="btn">부분로딩 보이기</button>
+		<button type="button" id="show2" class="btn">전체로딩 보이기</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Loading.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oLoading1 = new jindo.m.Loading("target", {
+	nHeight : 50,
+	nWidth : 50,
+	sDefaultForeground : "green",
+	sLoadingText : "부분 로딩바입니다"
+});
+var oLoading2 = new jindo.m.Loading(null, {
+	nHeight : 150,
+	nWidth : 150,
+	sDefaultForeground : "red",
+	sLoadingText : "전체 로딩바입니다"
+});
+/*code@*/
+
+jindo.$Fn(function(we) {
+	oLoading1.show();
+	setTimeout(function() {
+		oLoading1.hide();
+	},5000);
+}).attach("show1", "click");
+jindo.$Fn(function(we) {
+	oLoading2.show();
+	setTimeout(function() {
+		oLoading2.hide();
+	},5000);
+}).attach("show2", "click");
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>옵션 변경 예제</title>
+<meta name="class-lists" content="jindo.m.Tab">
+<meta name="description" content="옵션을 이용하여 다양한 탭을 구성할 수 있다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.tc-base{overflow:hidden}
+.tc-tab-cont{display:table;position:relative;width:100%;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab.gif) repeat-x 0 100%}
+.tc-tab {float:left;margin-right:2px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_left.gif) no-repeat}
+.tc-taba {display:block;margin-left:3px;padding-right:8px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_right.gif) no-repeat 100% 0}
+.tc-taba a{color:#666;line-height:14px;text-decoration:none;display:block;padding:8px 10px 6px;}
+
+.tc-tab.tc-selected{background-position:0 -28px}
+.tc-tab.tc-selected span{background-position:100% -28px}
+.tc-tab.tc-selected span a{color:#333;font-weight:bold;letter-spacing:-1px;}
+
+.tc-panel-cont{display:table;width:100%;}
+.tc-panel {display:none;padding:10px; border:1px solid #ccc;background:#f4f4f4;color:#666;background:#F4F5F5;}
+.tc-selected {display:block}
+
+/*@code title="CSS"*/
+.tc-tab-cont{}
+.tc-tab {}
+.tc-taba {}
+.tc-panel-cont{}
+.tc-panel {display:none;}
+.tc-selected {display:block}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+
+<!--@code title="HTML"-->
+<div id="tabComponent" class="tc-base">
+	<ul class="tc-tab-cont">
+		<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">뉴스홈</a></span></li>
+		<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">스포츠</a></span></li>
+		<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">부동산</a></span></li>
+		<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">증권</a></span></li>
+	</ul>
+	<div class="tc-panel-cont">
+		<div class="tc-panel">
+			<strong style="color:#800080">뉴스홈</strong><br/><br/>
+			오늘의 뉴스 입니다.<br/><br/>
+			<strong style="color:#800080">Custom CSS</strong>로 구성된 탭입니다.<br/>
+			처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#800080">2</strong>입니다.
+		</div>
+		<div class="tc-panel">
+			<strong style="color:#006400">스포츠</strong><br/><br/>
+			오늘의 스포츠 경기 결과 입니다.<br/><br/>
+			<strong style="color:#006400">Custom CSS</strong>로 구성된 탭입니다.<br/>
+			처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#006400">2</strong>입니다.
+		</div>
+		<div class="tc-panel">
+			<strong style="color:#0000CD">부동산</strong><br/><br/>
+			오늘의 부동산 시세 입니다.<br/><br/>
+			<strong style="color:#0000CD">Custom CSS</strong>로 구성된 탭입니다.<br/>
+			처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#0000CD">2</strong>입니다.
+		</div>
+		<div class="tc-panel">
+			<strong style="color:#0000DF">증권</strong><br/><br/>
+			오늘의 증 시세 입니다.<br/><br/>
+			<strong style="color:#0000DF">Custom CSS</strong>로 구성된 탭입니다.<br/>
+			처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#0000DF">2</strong>입니다.
+		</div>s
+	</div>
+</div>
+<!--code@-->
+
+
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<ul class="lst_type">
+		<li>초기 선택되는 탭은 <strong class="strike">nDefaultIndex</strong> 옵션을 통해 조절 할수 있다.</li>
+		<li>패널 슬라이드 효과는 <strong class="strike"> nPanelDuration</strong> 옵션을 통해 설정 할수 있다.<br/>
+			nPanelDuration이 0이면 슬라이드 효과가 발생하지 않는다.</li>
+		<li>
+			패널 슬라이드 효과를 사용할때는 <strong class="strike">nWidth, nHeight</strong> 옵션을 통해 패널의 크기를 조절 해야만 한다.<br>
+			nWidth가 0일 경우, width는 [sClassPrefix]panel-cont의 width(padding값은 제외)로 설정되고, 0 이상일 경우는 지정한 옵션값으로 설정된다.<br/>
+			nHeight는 지정한 옵션값으로 설정된다.
+		</li>
+	</ul>
+</div>
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Tab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+window.onload = function(){
+	var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+	setTimeout(function(){
+/*@code title="JavaScript"*/
+	var oTab = new jindo.m.Tab("tabComponent", {
+		sClassPrefix 		: "tc-",
+		nDefaultIndex 		: 2,
+		nPanelDuration		: 500,
+		nHeight				: 150,
+		nWidth 				: 0
+	});
+/*code@*/
+}, nDelay);
+}
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

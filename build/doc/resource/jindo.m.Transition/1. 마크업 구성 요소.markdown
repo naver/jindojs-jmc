@@ -1,0 +1,2 @@
+Transition 컴포넌트는 엘리먼트의 css style의 변화를 주어 움직이는 효과를 주는 컴포넌트이다. <br />
+모바일에 최적화 하기위해 css3 Transtion을 이용한다.

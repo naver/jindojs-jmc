@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>수직방향 scroll 예제</title>
+<meta name="class-lists" content="jindo.m.Touch">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.check{margin-top: -2px;vertical-align:middle;}
+
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<div id="layer1" style="height:150px;background-color:#66cccc;text-align:center">
+		<p class="desc"> 영역 내에서 <strong class="white">수직방향의  scroll</strong>에 대한 커스텀 이벤트를 확인 할 수 있습니다. </p>
+		<p>테스트를 위해 영역내에서는 브라우저 스크롤이 되지 않도록 막았습니다</p>
+		<p>touchMove 커스텀이벤트 로그의 경우 수직방향의 scroll에 대해서만 로그를 생성합니다</p>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		방향성을 판단하는 최소 거리 <input type="text" id=nDis class="op_w50" value="25"> (px)<br>
+		가속여부를 판단하는 시간 <input type="text" id="nTime" class="op_w50" value="350"> (ms)<br>
+		touchmove 이벤트를 발생시키는 최소 거리 <input type="text" id="nMove" class="op_w50" value="7"> (px)<br>
+		<input type="checkbox" id="moveEvent" class='check'> touchmove 커스텀이벤트 사용
+		<button type="button" id="apply" class="btn">적용</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!--@code title="HTML"
+<div id="layer1"></div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var elBody = document.body;
+
+//scroll을 막기 위한 코드 추가
+var sEvtName = 'touchmove';
+var htInfo = jindo.m.getDeviceInfo();
+var oTouch = {};
+//andriod 2.1 bug fix
+if(htInfo.android && htInfo.version == '2.1'){
+	sEvtName = 'touchstart';
+}
+
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+window.onload = function(){
+	setTimeout(function(){
+		jindo.$Fn(function(evt){
+			evt.$value().preventDefault();
+		},this).attach(jindo.$('layer1'),sEvtName);
+		//scroll을 막기 위한 코드 추가 끝
+
+		oTouch = new jindo.m.Touch('layer1');
+		oTouch.attach({
+			'vScroll' : function(oCustomEvt){
+				var aTemp = [];
+				aTemp.push('vScroll →');
+				if (oCustomEvt.nDistanceY > 0) {
+					aTemp.push('아래쪽으로')
+				}
+				else {
+					aTemp.push('위쪽으로')
+				}
+				aTemp.push(Math.abs(oCustomEvt.nDistanceY)+"px 이동");
+
+				aTemp.push('마지막 터치의 좌표  X:'+oCustomEvt.nX+", Y:"+oCustomEvt.nY);
+
+				if(oCustomEvt.nMomentumY > 0){
+					aTemp.push('[가속발생! 속도 :'+oCustomEvt.nSpeedY +" ,운동에너지:"+oCustomEvt.nMomentumY+"]");
+				}
+
+				addConsole(aTemp.join(" "));
+			}
+		});
+	}, nDelay);
+}
+var fMoveHandler = function(oCustomEvt){
+	if (oCustomEvt.sMoveType == jindo.m.MOVETYPE[1]) {
+		addConsole('touchmove → 현재 좌표 X:'+oCustomEvt.nX+", Y:"+oCustomEvt.nY);
+		//addConsole('touchmove → 현재 좌표 X:' + oCustomEvt.nX + ", Y:" + oCustomEvt.nY + " 방향 : " + oCustomEvt.sMoveType);
+	}
+
+}
+
+//apply button
+function apply(){
+	oTouch.option('nSlopeThreshold', jindo.$('nDis').value);
+	oTouch.option('nMomentumDuration', jindo.$('nTime').value);
+	oTouch.option('nMoveThreshold', jindo.$('nMove').value);
+
+	var elCheck = jindo.$('moveEvent');
+
+	if(elCheck.checked){
+		if (typeof oTouch._htEventHandler['touchMove'] == 'undefined' || (oTouch._htEventHandler['touchMove'].length == 0)) {
+			oTouch.attach('touchMove', fMoveHandler);
+		}else{
+			oTouch.detach('touchMove', fMoveHandler);
+			oTouch.attach('touchMove', fMoveHandler);
+		}
+	}else{
+		if(typeof oTouch._htEventHandler['touchMove'] != 'undefined' && (oTouch._htEventHandler['touchMove'].length > 0)) {
+			oTouch.detach('touchMove', fMoveHandler);
+		}
+	}
+	addConsole('적용되었습니다');
+}
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	apply();
+}, this).attach(jindo.$('apply'),'click');
+
+document.addEventListener("unload" , function(){});
+/*@code title="JavaScript"
+	var oTouch = new jindo.m.Touch('layer1');
+	oTouch.attach({
+		vScroll : function(e) {... 생략 ...}
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

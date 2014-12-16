@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica,AppleGothic}
+body{position:relative;background-color:#f8f8f8;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+/* 컴포넌트 관련 CSS */
+/* 레이블 (사용자) */
+.mf_lable{
+	width:110px;
+	vertical-align: top;
+	display: inline-block;
+	margin: 0 10px;
+	padding:0 10px;
+	font-size: 13px;
+	line-height: 30px;
+	font-weight: normal;
+}
+.mf_label_cont {
+	border: 1px solid #b3b3b3;
+    color: #333;
+    text-shadow:0 1px 0 #fff;
+}
+
+
+/* TextInput UNIT(필수) */
+.fit-textinput-unit{
+	padding:0px 30px 0px 5px;
+	width : 100px;
+	display: inline-block;
+    border: 1px solid #b3b3b3;
+    color: #333;
+    text-shadow:0 1px 0 #fff;
+    background: #f0f0f0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
+    background-image: -webkit-linear-gradient(top, #eee, #fff);
+    background-image: -o-linear-gradient(top, #eee, #fff);
+    background-image: linear-gradient(top, #eee, #fff);
+}
+
+/* 삭제 버튼 (선택) */
+.fit-clear-btn {
+	display:none;
+	width: 30px;
+	height: 28px;
+	border: none;
+	background: url(http://static.naver.net/www/m/im2/ico_v3.png) no-repeat 6px -314px;
+	text-indent: -9999px;
+	outline: 0!important;
+}
+
+/* input (필수) */
+.mf_input{
+	width : 100%;
+    display: inline-block;
+	padding: .4em 0;
+	font-size: 13px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	background:transparent none;
+	border: none;
+	outline:none;
+}
+
+.fit-focus {
+	background: #f0f0f0 !important;
+	-moz-box-shadow: 0 0 8px #387bbe !important;
+	-webkit-box-shadow:0 0 8px #387bbe !important;
+	box-shadow: 0 0 8px #387bbe !important;
+}
+
+.fit-disable {
+	background: #eee !important;
+}
+
+.me_corner {
+	-webkit-border-radius: 0.5em;
+    border-radius: 0.5em;
+}
+
+.me_shadow_inset {
+ -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .2);
+ -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .2);
+ box-shadow: inset 0 1px 4px rgba(0, 0, 0, .2);
+}
+
+
+.mf_msg {
+	display:none;
+	border:1px solid #ccc;
+	background:#fff;
+	color:#444;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	box-shadow: 0 1px 4px rgba(0,0,0,.3);
+	margin-top:5px;
+	padding:0 10px;
+	font-size: 12px;
+	line-height: 15px;
+}
+.mf_msg_invalid {
+	border:1px solid #FF1818;
+	background:#FFBFBF;
+	color:#FF1818;
+}
+
+.result {
+	margin : 0px 0px 0px 5px;
+}
+
+.valid {
+	color : blue
+}
+
+.invalid {
+	color : red
+}
+</style>
+<!-- 사용자 css 끝 -->
+
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">TextInput Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture"></div>
+
+<!-- UI content Start -->
+<div id="form_base">
+	<!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">URL </label>
+    <div class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="url"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+	<span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">이메일 <font color="red">*</font></label>
+    <div class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="textEmailAddress" class="mf_input" data-validate="require;email"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">필수입력 <font color="red">*</font></label>
+    <div id="input2" class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="require"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">전화번호</label>
+    <div id="input3" class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="tel:-"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">날짜(yyyy.mm.dd)</label>
+    <div class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="date:yyyy.mm.dd"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">날짜(mm.dd.yyyy)</label>
+    <div class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="date:mm.dd.yyyy"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">숫자</label>
+    <div class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="number"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">숫자(,)</label>
+    <div id="numberUnit" class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" id="numberInput" class="mf_input" data-validate="number:,"/>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">통화(￦)</label>
+    <div class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input type="text" class="mf_input" data-validate="currency:￦"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+    <!-- 레이블  (선택)-->
+    <label class="mf_lable mf_label_cont me_corner">통화($)</label>
+    <div id="currencyUnit" class="fit-textinput-unit me_corner me_shadow_inset">
+        <!-- 필수 -->
+        <input id="currencyInput" type="text" class="mf_input" data-validate="currency:$"/>
+        <!-- 삭제 (선택) -->
+        <div class="fit-clear-btn" id="currencyDel"><a href="#">삭제</a></div>
+    </div>
+    <span class="result"></span>
+    <br/>
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Validator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.RequireValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.TelValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.UrlValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.EmailValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.DateValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.NumberValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.CurrencyValidator.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.Validation.js" charset="utf-8" ></script>
+<script src="../src/jindo.m.TextInput.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.TextInput.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

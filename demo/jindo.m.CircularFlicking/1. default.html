@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>가로 플리킹 예제</title>
+<meta name="class-lists" content="jindo.m.CircularFlicking">
+<meta name="description" content="Layer1, Layer2, Layer3의 콘텐츠가 무한으로 플리킹되는 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 높이값과 넓이값 지정은  #mflick에서 하면 됩니다 */
+#mflick{overflow:hidden;position:relative;width:100%;height:200px}
+.flick-container{clear:both}
+.flick-panel{float:left;position:absolute;width:100%;height:100%}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div id="mflick" style="background-color:grey">
+		<div class="flick-container">
+			<div id="layer1" class="flick-panel" style="background-color:pink">
+				<p style="font-size:2.0em;text-align:center;padding-top:50px">Layer 1</p>
+			</div>
+			<div id="layer2" class="flick-panel" style="background-color:skyblue">
+				<p style="font-size:2.0em;text-align:center;padding-top:50px">Layer 2</p>
+			</div>
+			<div id="layer3" class="flick-panel" style="background-color:#ffc000">
+				<p style="font-size:2.0em;text-align:center;padding-top:50px">Layer 3</p>
+			</div>
+		</div>
+		<div style="position:absolute;width:1px;height:100%;background-color:red;left:40px;z-index:100;top:0"></div>
+		<div style="position:absolute;width:1px;height:100%;background-color:red;right:40px;z-index:100;top:0"></div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<span class="red">붉은색 선</span>영역은 40px 기준선<br>
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<button type="button" id="aprev" class="btn">이전 콘텐츠 이동</button>
+		<button type="button" id="anext" class="btn">이후 콘텐츠 이동</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+	<div id="mflick">
+		<div class="flick-container">
+			<div id="layer1" class="flick-panel" style="background-color:pink">
+				Layer 1
+			</div>
+			<div id="layer2" class="flick-panel" style="background-color:skyblue">
+				Layer 2
+			</div>
+			<div id="layer3" class="flick-panel" style="background-color:yellow">
+				Layer 3
+			</div>
+		</div>
+	</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CircularFlicking.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oFlicking = new jindo.m.CircularFlicking(jindo.$('mflick'),{
+		nDuration : 200,
+		nDefaultIndex : 4
+	}).attach({
+		'afterFlicking' : function(oCustomeEvt){
+			var nIndex = oCustomeEvt.nPanelIndex;
+
+			var sMessage = oCustomeEvt.bLeft? '왼쪽으로' : '오른쪽으로';
+			sMessage += '플리킹' + nIndex +'번째 Panel';
+			addConsole('[Afterflicking] → '+sMessage);
+		}
+	});
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.movePrev();
+	},this).attach(jindo.$('aprev'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.moveNext();
+	},this).attach(jindo.$('anext'),'click');
+
+/*@code title="JavaScript"
+	var oFlicking = new jindo.m.CircularFlicking(jindo.$('mflick'),{
+		nDuration : 200
+	});
+	oFlicking.attach({
+		'afterFlicking' : function(oCustomeEvt){
+			//oCustomeEvt.nPanelIndex 플리킹 이후 화면에 보이는 Panel 인덱스
+		}
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

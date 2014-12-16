@@ -1,0 +1,32 @@
+#### HTML
+
+Initialization의 HTML구조와 동일
+
+
+#### CSS
+
+	/*class prefix가 'fta-' 인 경우*/	
+
+	/*TextArea 적용되는 CSS*/
+	.fta-textarea {...}
+
+	/*Focus시 적용되는 CSS*/
+	.fta-textarea-focus{...}
+
+	/*비활성화시 적용되는 CSS*/
+	.fta-textarea-disable{...}
+
+
+#### Javascript
+
+Initialization의 Javascript구조와 동일
+
+<br> 
+※ TextArea 의 디자인을 사용자의 요구 사항에 맞게 변경하기 위해서는 각 CSS에 알맞는 속성을 적용 해야 한다.<br /><br />
+
+* [prefix] + textarea 클래스<br />
+기본 TextArea 클래스를 지정한다. 주로 배경색 그라데이션 지정과 border 스타일을 지정 한다.
+* [prefix] + textarea-focus 클래스<br />
+TextArea 포커스시 배경색이나 border 부분 스타일을 지정한다.
+* [prefix] + textarea-disable 클래스<br />
+비활성화되어 선택이 불가능한 TextArea의 투명도, 커서 등의 스타일을 지정한다.

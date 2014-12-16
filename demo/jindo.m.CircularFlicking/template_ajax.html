@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.Circular Template</title>
+<meta name="class-lists" content="jindo.m.CircularFlicking">
+<meta name="description" content="ajax 호출하여 컨텐츠를 불러오는  CircularFlicking">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 플리킹 영역의 높이값을 지정가능합니다 */
+#mflick{overflow:hidden;position:relative;width:100%;height:200px;border:1px solid #F7F7F7}
+.flick-container{clear:both}
+.flick-panel{float:left;position:absolute;width:100%;height:100%;background-color:#c0c0c0}
+
+/* 각 패널내의 css를 설정합니다 */
+.flick-panel p{padding-top:50px;font-size:2em;text-align:center}
+
+/* 각 패널들의 css를 따로 설정하고 싶을 경우 아래에서 수정해서 사용 합니다 */
+.flick-panel:first-child{}
+.flick-panel:last-child{}
+.flick-panel:nth-child(2){}
+/*code@*/
+
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div id="mflick">
+	<div class="flick-container">
+		<div class="flick-panel">
+			<p>1번째 아이템</p>
+		</div>
+		<div class="flick-panel">
+			<p>2번째 아이템</p>
+		</div>
+		<div class="flick-panel">
+			<p>3번째 아이템</p>
+		</div>
+	</div>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CircularFlicking.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var sTpl = '<p>{=TEXT}</p>'
+this.htDataHistory = {};
+this.nStartIndex = null;
+this.nCnt = 5; //ajax 호출시에 한번에 가져올 데이터 수
+this.nLastHistoryIndex = 0;
+this.bPaint = false;
+var self = this;
+
+//ajax 통신
+var sAjaxUrl = "mockUpData.html"; //ajax 호출을 위한 url
+this.oAjax = new jindo.$Ajax(sAjaxUrl, {
+	type : 'xhr',
+	onload : function(res){
+		var data = res.json().aData;
+		var nTotal = res.json().nTotal;
+
+		for(var i=self.nStartIndex, nLen = self.nStartIndex +self.nCnt; i<nLen; i++){
+			var nIndex = (i > nTotal-1)? i-nTotal: i;
+			self.htDataHistory[nIndex] = data[nIndex];
+			//console.log(nIndex);
+		}
+		self.nStartIndex = null;
+
+		if(self.bPaint){
+			self.paintPanel(self.htInfo);
+			self.bPaint = false;
+		}
+	}
+});
+
+//ajax 호출하여 현재 히스토리에 추가하기
+function callAjax(nIndex){
+	if(typeof nIndex == 'undefined'){
+		nIndex = this.nLastHistoryIndex;
+	}
+
+	if(typeof this.htDataHistory[(nIndex)] != 'undefined'){ return; }
+
+	this.nStartIndex = nIndex;
+	this.nLastHistoryIndex = nIndex+this.nCnt-1;
+	this.oAjax.request({startIndex : nIndex, nDisplay: this.nCnt });
+}
+
+function paintPanel(oCustomEvent){
+	oCircularFlicking.getPanelElement().html(sTpl.replace(/{=TEXT}/,self.htDataHistory[oCustomEvent.nContentIndex]));
+	oCircularFlicking.getRightPanelElement().html(sTpl.replace(/{=TEXT}/,self.htDataHistory[oCustomEvent.nContentRightIndex]));
+	oCircularFlicking.getLeftPanelElement().html(sTpl.replace(/{=TEXT}/,self.htDataHistory[oCustomEvent.nContentLeftIndex]));
+}
+
+var aElPanel = jindo.$$('.flick-panel', jindo.$('mflick'));
+
+var oCircularFlicking = new jindo.m.CircularFlicking("mflick",{
+	nTotalContents : 30//전체 플리킹할 컨텐츠의 수
+}).attach({
+	'move' : function(oCustomEvent){
+		if(typeof self.htDataHistory[oCustomEvent.nContentLeftIndex]  == 'undefined'){
+			self.bPaint = true;
+			self.htInfo = {
+				nContentRightIndex : oCustomEvent.nContentRightIndex,
+				nPanelIndex: oCustomEvent.nPanelIndex,
+				nPanelRightIndex : oCustomEvent.nPanelRightIndex,
+				nPanelLeftIndex : oCustomEvent.nPanelLeftIndex,
+				nContentLeftIndex : oCustomEvent.nContentLeftIndex,
+				nContentIndex : oCustomEvent.nContentIndex
+			};
+			callAjax(oCustomEvent.nContentLeftIndex-1);
+		}else{
+			paintPanel(oCustomEvent);
+		}
+
+	},
+	'afterFlicking' : function(oCustomEvent){
+		var nCallAjaxIndex = oCustomEvent.nContentRightIndex+1;
+
+		if(oCustomEvent.bLeft){ //오른쪽 컨텐츠 업데이트
+			this.getRightPanelElement().html(sTpl.replace(/{=TEXT}/,self.htDataHistory[oCustomEvent.nContentRightIndex]));
+		}else{ //왼쪽 컨텐츠 업데이트
+			this.getLeftPanelElement(sTpl.replace(/{=TEXT}/,self.htDataHistory[oCustomEvent.nContentLeftIndex]));
+			nCallAjaxIndex = oCustomEvent.nContentLeftIndex-1;
+		}
+
+		callAjax(nCallAjaxIndex);
+	}
+});
+
+oCircularFlicking.setContentIndex(0);
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

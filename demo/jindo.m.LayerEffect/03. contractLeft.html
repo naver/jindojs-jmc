@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>ContractLeft</title>
+<meta name="class-lists" content="jindo.m.LayerEffect">
+<meta name="description" content="왼쪽으로 축소되는 레이어">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+<!-- Content -->
+<div id="ct" class="content">
+
+	<!-- Demo 영역 -->
+	<div id="demo" style="height:100px;">
+
+		<div id="layer1" style="background-color:#FF729A">
+			<p class="desc" style="white-space:nowrap">왼쪽으로 축소되는 레이어</p>
+		</div>
+		<div id="notice" style="display:none">
+			<p class="desc" style="white-space:nowrap">레이어가 왼쪽으로 Contract되었습니다.</p>
+		</div>
+
+	</div>
+	<!--// Demo 영역 -->
+
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			<input type="text" class="op_w100" value="1000" id="nDuration">(ms) 시간동안 왼쪽으로
+			<button type="button" id="contract" class="btn">contract</button>
+		</div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+	<div class="scroll">
+		<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+		<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+	</div>
+	<!-- Log 영역 -->
+
+</div>
+<!--// Content -->
+
+<!--@code title="HTML"
+<div id="layer">
+	레이어
+</div>
+code@-->
+
+
+<script type="text/javascript">
+
+</script>
+<!-- 사용자 script 파일 시작 -->
+<script src="../../src/jindo.m.Effect.js"></script>
+<script src="../../src/jindo.m.Morph.js"></script>
+
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.ContractEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var welContents = jindo.$Element('ct');
+var welDemo = jindo.$Element('demo');
+var welLayer = jindo.$Element('layer1');
+var welNotice = jindo.$Element('notice');
+
+var nInitH = welDemo.height();
+var nInitW = welDemo.width();
+var nMinLayerH = 250;
+
+//화면리사이즈 처리
+function setSize(){
+	welDemo.height(nInitH);
+
+	var nCurrentH = welContents.height();
+	var nScreenH =  jindo.$Document().clientSize().height;
+
+
+	if(nCurrentH > nScreenH){ //스크롤이 생겼을 경우
+		var nNewH = nCurrentH - nScreenH;
+		nNewH = nInitH - nNewH;
+		nNewH = Math.max(nMinLayerH, nNewH);
+	}else{ //화면이 클경우
+		var nNewH = nScreenH - nCurrentH + nInitH -50;
+	}
+
+	welDemo.height(nNewH);
+	if(welLayer.width() != 0){
+		welLayer.height(nNewH-20);
+		//boder 1px
+		welLayer.width(welDemo.width()-2);
+	}
+	welNotice.height(nNewH-40);
+
+}
+setSize();
+
+//화면 로테이션 및 리사이즈 처리
+jindo.m.bindRotate(jindo.$Fn(this.setSize, this).bind());
+
+// 이펙트 초기화
+var oEffect = new jindo.m.LayerEffect();
+
+oEffect.attach({
+		'beforeEffect' : function(oCustomEvt){
+			addConsole('before → '+ oCustomEvt.sEffect +' 발생전');
+			jindo.$('notice').style.display = "none";
+		},
+		'afterEffect' : function(oCustomEvt){
+			addConsole('end → '+ oCustomEvt.sEffect +' 완료');
+			jindo.$('notice').style.display = "block";
+			welLayer.height(0);
+		}
+});
+
+var wfContractLeft = jindo.$Fn(function(evt){
+		if(typeof evt !== 'undefined'){
+			evt.stop();
+		}
+		if(oEffect.isPlaying()){
+			alert('현재 축소중이예요!!');
+			return;
+		}
+
+		//화면 리사이즈에 따른 레이어 width가 변했을 경우에 대한 코드 처리
+		if(welLayer.width() == 0){
+			jindo.$('notice').style.display = "none";
+			welLayer.height(welDemo.height()-20);
+			//boder 1px
+			welLayer.width(welDemo.width()-2);
+			oEffect.setSize();
+		}
+
+		var htOption={};
+
+		var nTime = jindo.$('nDuration').value;
+		if(nTime.length > 1){
+			htOption.nDuration = nTime*1;
+		}
+
+		oEffect.contract(welLayer.$value(), "left", htOption);
+},this);
+
+	wfContractLeft.attach(jindo.$('contract'), 'click');
+	window.onload = function(){
+		var nDelay = jindo.m.getDeviceInfo().android? 1000: 500;
+		setTimeout(function(){
+			setSize();
+			wfContractLeft.$value()();
+		},nDelay);
+	}
+	//wfContractLeft.attach(window, 'load');
+
+
+/*@code title="JavaScript"
+var oEffect = new jindo.m.LayerEffect('layer1');
+
+oEffect.contract({
+	sDirection: 'left',
+	nDuration : 1000
+});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

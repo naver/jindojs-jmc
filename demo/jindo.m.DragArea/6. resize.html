@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>커스텀이벤트를 이용한 리사이즈 예제</title>
+<meta name="class-lists" content="jindo.m.DragArea">
+<meta name="description" content="커스텀 이벤트에서  드래깅을 막는 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+#baseLayer{position:relative;height:300px}
+.drag-dragging{position:absolute;width:100%;height:20px;height:20px;padding-top:7px;background-color:#CCC;font-size:12px;text-align:center}
+
+/*@code title="CSS"*/
+#baseLayer{position:relative}
+.drag-dragging{position:absolute;cursor:move}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!--@code title="HTML"-->
+	<div id="baseLayer">
+		<div style="position:relative;">
+			<div style="background-color:#ff80c0;height:50px;padding:10px;" id="content">
+				아래 회색영역의 드래그 부분을 잡고 늘리면 이 영역의 높이가 높아져요.<br>
+				최소 50픽셀 최대  250픽셀까지 늘어납니다.
+			</div>
+			<div class="drag-dragging" id="drag">이 부분을 잡고 움직여 보세요</div>
+		</div>
+	</div>
+	<!--code@-->
+
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<span class="keyword">"beforeDrag"</span> 커스텀 이벤트에서  드래깅을 막는 예제.
+</div>
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.DragArea.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oDrag = new jindo.m.DragArea(jindo.$('baseLayer'),{
+	bFlowOut : true
+});
+var sMinH = 50;
+var welHandle = jindo.$Element('drag');
+var welContent = jindo.$Element('content');
+
+var nContentTop = welContent.offset().top;
+var nContentMax = nContentTop + 250 + welHandle.height();
+
+var  htInitOffset = welHandle.offset();
+
+oDrag.attach({
+	'handleDown' : function(oCustomEvent){
+		addConsole('[hadnleDown]');
+	},
+
+	'beforeDrag' : function(oCustomEvent){
+		oCustomEvent.nX = htInitOffset.left;
+		if(oCustomEvent.nY < htInitOffset.top){
+			oCustomEvent.nY = htInitOffset.top;
+			addConsole('[beforeDrag] 에서 50픽셀 이하로 드래그 안되게 막음');
+		}else if(oCustomEvent.nY > nContentMax){
+			oCustomEvent.nY = nContentMax;
+			addConsole('[beforeDrag] 에서 250픽셀 이상으로 드래그 안되게 막음');
+		}
+
+	},
+
+	'drag' : function(oCustomEvent){
+		addConsole('[drag]');
+		welContent.height(oCustomEvent.nY - nContentTop);
+
+	},
+
+	'dragEnd' : function(oCustomEvent){
+		addConsole('[dragEnd]');
+	}
+});
+
+
+/*@code title="JavaScript"
+	var oDrag = new jindo.m.DragArea(jindo.$('baseLayer'),{
+		bFlowOut : true
+	});
+
+	var welHandle = jindo.$Element('drag');
+	var welContent = jindo.$Element('content');
+	var nContentTop = welContent.offset().top;
+
+	var  htInitOffset = welHandle.offset();
+	var nContentMax = nContentTop + 250 + welHandle.height();
+
+	oDrag.attach({
+		'beforeDrag' : function(oCustomEvent){
+			oCustomEvent.nX = htInitOffset.left;
+			if(oCustomEvent.nY < htInitOffset.top){
+				oCustomEvent.nY = htInitOffset.top;
+			}else if(oCustomEvent.nY > nContentMax){
+				oCustomEvent.nY = nContentMax;
+			}
+		}
+	});
+
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

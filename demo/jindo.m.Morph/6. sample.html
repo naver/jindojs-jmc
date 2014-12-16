@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>transform CSS 에 matrix 를 사용하는 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Morph, jindo.m.Keyframe"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="transform CSS 에 matrix 가 지정되어 있을때의 동작을 확인하는 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	body { }
+	ul { list-style:none; margin:0; padding:0; }
+	li { float:left; }
+	button { font-family:inherit; font-size:2.4em; padding:.5em;}
+
+	#wrap { padding:10px; }
+
+	.ball {
+		position:absolute;
+		z-index:9;
+		width:50px; height:50px;
+		background-color:#f00;
+		border:5px solid #000;
+		border-radius:50px;
+		padding:1em 1em;
+		color:#fff;
+	}
+
+	#ball0 {
+		left:100px;
+		top:100px;
+		background-color:pink;
+	}
+
+	#ball1 {
+		left:100px;
+		top:100px;
+		-webkit-transform:translate(10px, 20px);
+		-moz-transform:translate(10px, 20px);
+		-ms-transform:translate(10px, 20px);
+		-o-transform:translate(10px, 20px);
+		transform:translate(10px, 20px);
+	}
+
+	#ball2 {
+		left:300px;
+		top:100px;
+		-webkit-transform:scale(2.1) translate(10px, 20px);
+		-moz-transform:scale(2.1) translate(10px, 20px);
+		-ms-transform:scale(2.1) translate(10px, 20px);
+		-o-transform:scale(2.1) translate(10px, 20px);
+		transform:scale(2.1) translate(10px, 20px);
+	}
+
+	#ball3 {
+		left:200px;
+		top:150px;
+		-webkit-transform:scale(1.5) translate(5px, 10px);
+		-moz-transform:scale(1.5) translate(5px, 10px);
+		-ms-transform:scale(1.5) translate(5px, 10px);
+		-o-transform:scale(1.5) translate(5px, 10px);
+		transform:scale(1.5) translate(5px, 10px);
+	}
+
+</style>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" charset="utf-8" src="../asset/jindo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.js"></script>
+
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.UIComponent.js"></script>
+	<!--// 기본 스크립트 끝 -->
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Keyframe.js"></script>
+	<script type="text/javascript" charset="utf-8" src="switcher.js"></script>
+	<ul style="width:600px; float:left;">
+		<li><button onclick="morph.play(); return false;">play()</button></li>
+		<li><button onclick="morph.pause(); return false;">pause()</button></li>
+		<li><button onclick="morph.pause(0); return false;">pause(0)</button></li>
+		<li><button onclick="morph.pause(1); return false;">pause(1)</button></li>
+		<!--<li><button onclick="morph.reset(); return false;">reset()</button></li>-->
+	</ul>
+	<div style="position:relative;">
+		<div id="ball0" class="ball">0</div>
+		<div id="ball1" class="ball">1</div>
+		<div id="ball2" class="ball">2</div>
+		<div id="ball3" class="ball">3</div>
+	</div>
+	<script type="text/javascript">
+
+			/*@code title="JavaScript"*/
+			var morph = new jindo.m.Morph({
+				bUseTransition : USE_TRANSITION,
+				fEffect : jindo.m.Effect.linear
+			});
+
+			jindo.$Element('ball1').css('transform', 'translate(0, 0)').css('msTransform', 'translate(0, 0)');
+
+			morph
+			.pushAnimate(1000, [
+				jindo.$('ball1'), { '@transform' : 'translate(-100%, 50px)' },
+				jindo.$('ball2'), { '@transform' : 'scale(1.5)' },
+				jindo.$('ball3'), { '@transform' : 'translateX(100%) translateY(-100%)' }
+			])
+			.pushCall(function() { alert('done'); });
+			/*code@*/
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

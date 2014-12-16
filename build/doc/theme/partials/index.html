@@ -1,0 +1,314 @@
+<div class="section_inn first">
+
+    <div class="intro">
+        <h3 class="h_txt_jd jmc"><span class="blind">Jindo Mobile Component(JMC)는 NAVER에서 제작한 JavaScript library입니다.</span></h3>
+        <p>
+            Jindo Mobile Component(JMC)는 Jindo 기반으로 개발된 재사용 가능한 독립적인 자바스크립트 모듈로써, 국내 모바일 환경에 최적화된 모바일 컴포넌트입니다.
+            오픈 소스인 JMC는 사내 및 사외 JavaScript Mobile Application 제작시에 반복적으로 발생하는 로직을 컴포넌트화하여 결과물의 품질을 향상시키기 위한 목적으로 작성되었습니다.
+            NAVER의 수많은 모바일 서비스에서 사용하고 있을 정도로 품질과 안정성이 뛰어난 JMC는 120여종의 샘플과 상세한 가이드를 제공하고 있어서, 초급자도 손쉽게 고품질의 UI를 개발할 수 있습니다
+        </p>
+    </div>
+
+    <!-- 다운로드 -->
+    <div class="sc_dw">
+        <h2>다운로드</h2>
+        <table class="tbl_board">
+            <caption class="hide">다운로드</caption>
+            <colgroup>
+                <col style="50%">
+                <col style="50%">
+            </colgroup>
+            <tr>
+                <th scope="row">전체 다운로드</th>
+                <th scope="row">선택 다운로드</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>
+				<span id="radio-zipped">
+					<span class="radio-mark radio-checked"></span>
+					<input type="radio" name="zipped" id="file_zipped" checked="checked" value="true">
+				</span><label for="file_zipped">압축 함</label>
+                        </li>
+                        <li>
+				<span id="radio-unzipped">
+					<span class="radio-mark"></span>
+					<input type="radio" name="zipped" id="file_unzipped" value="false">
+				</span><label for="file_unzipped">압축 안 함</label>
+                        </li>
+                    </ul>
+                    <a href="#" target="_blank" class="btn_dw download_all" onclick="doDownload(this); return false;">Download</a>
+                </td>
+                <td>
+                    <li>
+				<span id="radio-newSelectDownload" class="radio-applied">
+					<span class="radio-mark radio-checked"></span>
+					<input type="radio" name="selectDownload" id="down_selected1" checked="checked" value="true">
+				</span><label for="down_selected1">1.5.0 이상</label>
+                    </li>
+                    <li>
+				<span id="radio-selectDownload" class="radio-applied">
+					<span class="radio-mark"></span>
+					<input type="radio" name="selectDownload" id="down_selected2" value="false">
+				</span><label for="down_selected2">1.4.0 이하</label>
+                    </li>
+                    <!-- <p>(선택 다운로드 페이지로 이동합니다.)</p> -->
+                    <button type="button" class="btn_dw" onclick="doSelectDownload(); return false;" >Go</button>
+                </td>
+            </tr>
+        </table>
+        <p class="version">버전 :<em><%=this.projectVersion%></em></p>
+    </div>
+    <!-- // 다운로드 -->
+</div>
+
+
+<div class="section_inn preview" style="display:table-cell">
+    <h2>Demo</h2>
+    <div class="usage" id="demoList">
+        <ul>
+            <li class="dl">
+                <ul>
+                    <li><a href="classes/jindo.m.SlideFlicking.html">jindo.m.SlideFlicking</a></li>
+                    <li class="img"><img src="../../build/doc/resource/jindo.m.SlideFlicking/jindo.m.SlideFlicking.png" width="90%"></li>
+                </ul>
+            </li>
+            <li class="dl">
+                <ul>
+                    <li><a href="classes/jindo.m.LayerEffect.html">jindo.m.LayerEffect</a></li>
+                    <li class="img"><img src="../../build/doc/resource/jindo.m.LayerEffect/jindo.m.LayerEffect.png" width="90%"></li>
+                </ul>
+            </li>
+            <li class="dl">
+                <ul>
+                    <li><a href="classes/jindo.m.Scroll.html">jindo.m.Scroll</a></li>
+                    <li class="img"><img src="../../build/doc/resource/jindo.m.Scroll/jindo.m.Scroll.png" width="90%"></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+
+    $Element("demoList").delegate("mouseover", "img", function(e){
+
+       e.element.src=e.element.src.replace(/(jindo.m.\w+.png)/, "1. $1").replace("png", "gif");
+    });
+    $Element("demoList").delegate("mouseout", "img", function(e){
+        e.element.src=e.element.src.replace(/([0-9].%+[0-9]+)/, "").replace("gif", "png");
+    });
+</script>
+
+<div class="section_inn">
+    <h2>사용방법</h2>
+
+    <div class="usage">
+        우상단 전체 다운로드 또는 선택 다운로드 링크를 통해 JS 파일을 다운로드 받아 HTML 파일에 아래와 같이 삽입하여 사용합니다.
+
+        <pre class="code"><code class="prettyprint">&lt;script type="text/javascript" src="jindo_mobile_component.js"&gt;&lt;/script&gt;</code></pre>
+
+        만약 다른 이름으로 변경된 Jindo 와 함께 사용한다면
+        <a href="http://jindo.nhncorp.com/utils/downloader/?target=jindo_mobile&version=<%=this.projectVersion%>" target="_blank" class="btn_dw">선택 다운로드</a>의
+        '상세옵션' 에서 변경 된 이름을 지정하여 다운로드 받거나,
+        아래와 같이 파라미터를 지정하여 변경된 Jindo 의 이름을 지정 할 수 있습니다.
+
+        <pre class="code"><code class="prettyprint">&lt;script type="text/javascript" src="jindo_mobile_component.js?jindo=FOO"&gt;&lt;/script&gt;</code></pre>
+    </div>
+</div>
+
+<div class="section_inn">
+    <h2>활용 예제</h2>
+
+    <div class="usage">
+        다음 예제는 JMC 를 이용해 적용 가능한 데모이다. m.Flicking, m.Scroll, m.SlideReveal 등을 통해 다음과 같은 예제를 만들어 사용할 수 있다.
+        1.12.0 까지 제공하던 m.PageLayoutUI, m.RevealSlidebarUI 는 제거하고 기존 JMC 를 이용하여 사용가능한 형태의 데모를 제공한다.
+        <br><br>
+        <div class="release">
+            <ol>
+                <li>
+                    <span  style="padding-left: 15px; width:80%">m.SlideReveal, m.Scroll 을 이용한 RevealSlide</span>
+                    <a href="/docs/jindo-mobile/archive/latest/demo/jindo.m.SlideReveal/ex.Preview_leftTop_RightTop.html" target="_blank" class="btn_more" style="top:auto !important;margin-top: 3px; width:52px">Demo <span class="ic"></span></a>
+                </li>
+                <li>
+                    <span  style="padding-left: 15px; width:80%">m.Flicking, m.Scroll 을 이용한 PageLayout</span>
+                    <a href="/docs/jindo-mobile/archive/latest/demo/jindo.m.SlideReveal/ex.pagelayout_flicking_scroll.html" target="_blank" class="btn_more" style="top:auto !important;margin-top: 3px; width:52px">Demo <span class="ic"></span></a>
+                </li>
+                <li>
+                    <span  style="padding-left: 15px; width:80%">m.Scroll 을 이용한 PageLayout</span>
+                    <a href="/docs/jindo-mobile/archive/latest/demo/jindo.m.SlideReveal/ex.pagelayout_scroll.html" target="_blank" class="btn_more" style="top:auto !important;margin-top: 3px; width:52px">Demo <span class="ic"></span></a>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="section_inn">
+    <h2>릴리즈 노트</h2>
+    <div class="release">
+        <script type="text/javascript">
+
+			function notice(info) {
+
+				var lists = info.notices;
+				var html = [];
+
+				for (var i = 0, len = lists.length; i < len; i++) {
+
+					var item = lists[i];
+
+					html.push([
+						'<li>',
+							'<span class="date">' + $Date(item.date * 1000).format("Y-m-d") + '</span>',
+							'<a href="' + item.link + '">' + $S(item.title).escapeHTML() + '</a>',
+						'</li>'
+					].join(' '));
+
+				}
+
+				jindo.$Element('notice_list').html(html.join(''));
+
+			}
+
+		</script>
+        <ol id="notice_list"><div style="text-align:center; padding:10px;">불러오는 중</div></ol>
+    </div>
+    <a href="#" class="btn_more release_note">더보기<span class="ic"></span></a>
+</div>
+
+<script type="text/javascript">
+
+	var url = (
+		location.hostname === 'jindo.dev.naver.com' ?
+		{
+			download_all : "http://jindo.dev.naver.com/utils/downloader/?target=jindo_mobile&action=download&version=<%=this.projectVersion%>",
+			download_select : "http://jindo.dev.naver.com/utils/downloader/?target=jindo_mobile&version=<%=this.projectVersion%>",
+			download_select_old : "http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html",
+			release_note : "http://dev.naver.com/news/?group_id=29",
+			release_list : "http://jindo.dev.naver.com/docs/jindo-mobile/archive/api/info.php?callback=notice"
+		} :
+		{
+			download_all : "http://jindo.nhncorp.com/utils/downloader/?target=jindo_mobile&action=download&version=<%=this.projectVersion%>",
+			download_select : "http://jindo.nhncorp.com/utils/downloader/?target=jindo_mobile&version=<%=this.projectVersion%>",
+			download_select_old : "http://jindo.nhncorp.com/docs/jindo-mobile/download/index.html",
+			release_note : "http://devcode.nhncorp.com/news/?group_id=557",
+			release_list : "http://jindo.nhncorp.com/docs/jindo-mobile/archive/api/info.php?callback=notice"
+		}
+	);
+
+	for (var k in url) if (url.hasOwnProperty(k)) {
+		jindo.$ElementList(jindo.$$('a.' + k)).attr('href', url[k]);
+	}
+
+    jindo.$Ajax(url.release_list, {
+    	type : 'jsonp',
+    	callbackname : 'callback',
+    	onload : function(res) {
+    		notice(res.json());
+    	}
+    }).request();
+
+</script>
+
+<!--div class="section_inn">
+	<h2>지원환경</h2>
+
+	<div class="support support_spec">
+		<h3>현재 지원환경</h3>
+		<div class="support_list ios">
+			<strong class="tit"><span class="ic ios"></span>iOS</strong>
+			<ul class="">
+			<li>
+				<p class="ver">3.0</p>
+				<p class="txt">iPod Touch</p>
+			</li>
+			<li>
+				<p class="ver">4.3.3</p>
+				<p class="txt">iPhone3GS<br> iPhone4<br> iPad<br> iPad2<br></p>
+			</li>
+			<li>
+				<p class="ver"> 5.0~6.0</p>
+				<p class="txt">iPhone4<br> iPhone4S<br> iPad<br> iPad2<br>New iPad</p>
+			</li>
+			</ul>
+		</div>
+
+		<div class="support_list android">
+			<strong class="tit"><span class="ic androi"></span>Android</strong>
+			<ul class="">
+			<li>
+				<p class="ver">2.1</p>
+				<p class="txt">갤럭시S</p>
+			</li>
+			<li>
+				<p class="ver">2.2</p>
+				<p class="txt">갤럭시S<br> 갤럭시K<br> 옵티머스2X<br> 베가X<br> 갤럭시Tab<br></p>
+			</li>
+			<li>
+				<p class="ver">2.3</p>
+				<p class="txt">갤럭시S<br> 넥서스S<br> 갤럭시S2<br> 갤럭시 Note<br></p>
+			</li>
+			<li>
+				<p class="ver">3.1</p>
+				<p class="txt">갤럭시Tab2<br></p>
+			</li>
+			<li>
+				<p class="ver">4.0</p>
+				<p class="txt">갤럭시Nexus<br> 갤럭시S2<br> 갤럭시 Note<br> 갤럭시S2 LTE<br> 갤럭시S3<br>옵티머스LTE2<br>옵티머스Vu</p>
+			</li>
+			<li>
+				<p class="ver">4.1</p>
+				<p class="txt">갤럭시S3<br>갤럭시노트2</p>
+			</li>
+			</ul>
+		</div>
+
+		<div class="support_list chrome">
+			<strong class="tit"><span class="ic chrome"></span>Chrome</strong>
+			<ul class="">
+			<li>
+				<p class="txt">갤럭시Nexus<br> 갤럭시S2<br> 갤럭시 Note<br> 갤럭시S2 LTE<br> 갤럭시S3<br>옵티머스LTE2<br>옵티머스Vu</p>
+			</li>
+			</ul>
+		</div>
+	</div>
+	<p class="footnote"><i>[표1]</i> 현재 지원환경</p>
+
+	<!--div class="support">
+		<h3>지원 예정환경</h3>
+		<ul class="plan">
+		<li>ios</li>
+		<li>Android</li>
+		<li>Blackberry</li>
+		<li>Window Phone</li>
+		<li>Samsung Bada</li>
+		</ul>
+	</div>
+	<p class="footnote"><i>[표2]</i> 지원 예정환경</p>
+
+</div-->
+
+
+<script type="text/javascript">
+
+	new jindo.CheckBox($('radio-zipped'), { sClassPrefix : 'radio-' });
+	new jindo.CheckBox($('radio-unzipped'), { sClassPrefix : 'radio-' });
+    new jindo.CheckBox($('radio-newSelectDownload'), { sClassPrefix : 'radio-' });
+    new jindo.CheckBox($('radio-selectDownload'), { sClassPrefix : 'radio-' });
+
+
+	function doDownload(anchor) {
+		open(anchor.href + '&minified=' + $('file_zipped').checked, anchor.target);
+	}
+
+    function doSelectDownload() {
+        if($('down_selected1').checked) {
+            location.href = url.download_select;
+        } else {
+            location.href = url.download_select_old;
+        }
+    }
+</script>

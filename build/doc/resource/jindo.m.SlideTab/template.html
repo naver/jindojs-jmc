@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								여러 패널로 나뉘어진 영역에 탭을 이용한 슬라이드 네비게이팅을 제공하는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">
+						<img src="../resource/img/SlideTab.jpg"/><br>
+						[컨텐츠 구조]<br><br><br>
+						
+						<p style="padding:0px;line-height:17px;">
+							<strong>Tab 영역</strong><br>
+							제목을 표시하는 영역이다.<br><br>
+							
+							<strong>Panel 영역</strong><br>
+							Tab에 1:1로 대응한다.<br>
+							각 Tab의 내용을 표시하는 영역이다.<br><br>
+							
+							<strong>이전, 다음버튼</strong><br>
+							터치하여 이전영역, 다음영역으로 이동시킨다.<br><br><br>
+						</p>
+							
+						<strong>기능 설명</strong><br>
+						<div class="point_box">
+							<ul class="t2">
+								<li>Tab을 선택시, Tab에 대응하는 Panel을 화면에 보여준다.</li>
+								<li>각 Tab은 페이징 처리되어, [이전], [다음] 버튼을 통해 네비게이팅이 가능하다</li>
+								<li>네비게이팅시 "slide" 애니메이션이 적용되며, 애니메이션 속도는 옵션(nSlideDuration)을 통해 제어가 가능하다.</li>
+								<li>패널변경 시 슬라이드 효과를 줄 수 있다.<BR/>
+								패널 슬라이드 효과가 적용이 되면, 'panel컨테이너'는 <font style="color:#e11b10;">position:relative</font> 속성으로 설정되고, 각각의 패널은 <font style="color:#e11b10;">position:absolute</font> 속성으로 설정된다.<br/></li>
+							</ul>
+						</div>					 
+					</div>	
+					
+					<!-- 주의사항 -->				
+						<h3 class="notice">Notice</h3>
+						<div class="t1">
+							<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+							<ul class="t2">
+								<li>안드로이드 2.1 이상</li>
+								<li>iOS 3.0 이상</li>
+							</ul>
+						</div>
+					
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">
+									<div id="tabComponent" class="[sClassPrefix]base">
+										<!-- 탭영역 -->
+										<div class="[sClassPrefix]tabview">
+											<ul class="[sClassPrefix]tab-cont">
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">프로야구</a></li>
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">일본야구</a></li>
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">중국야구</a></li>
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">미국야구</a></li>
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">영국야구</a></li>
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">몽골야구</a></li>
+												<li class="[sClassPrefix]tab"><a href="javascript:void(0)" class="[sClassPrefix]taba">야구</a></li>
+											</ul>
+										</div>
+										<!-- 패널영역 -->
+										<div class="[sClassPrefix]panel-cont">
+											<div class="[sClassPrefix]panel">프로야구 탭입니다</div>
+											<div class="[sClassPrefix]panel">日本野球タップです</div>
+											<div class="[sClassPrefix]panel">중국야구 탭입니다</div>
+											<div class="[sClassPrefix]panel">USA Baseball Tabs</div>
+											<div class="[sClassPrefix]panel">English Baseball Tabs</div>
+											<div class="[sClassPrefix]panel">몽골야구 탭입니다</div>
+											<div class="[sClassPrefix]panel">야구 탭입니다</div>
+										</div>
+										<!-- 제어영역 -->
+										<div>
+											<a href="#" class="[sClassPrefix]prev"><span>이전</span></a> 
+											<a href="#" class="[sClassPrefix]next"><span>다음</span></a>
+										</div>
+									</div> 
+								</textarea>
+								<div class="t2">
+								<ul>
+									<li>최상위 tab컴포넌트는 div로 구성되며, 클래스명은 <strong>[prefix] + "base"</strong>로 정의된다.</li>
+									<li>최상위 tab컴포넌트의 width를 기준으로 각 tab의 크기가 결정된다.</li>
+									<li>최상위 tab컴포넌트는 'tabview', 'panel컨테이너', '제어부'로 모두 3개의 자식 div를 가진다.</li>
+									<li>tab의 집합인 'tab컨테이너'를 포함하는 tabview는 div로 구성되며, 클래스명은 <strong>[prefix] + "tabview"</strong>로 정의한다</li>
+									<li>tabview 하위는 ul로 구성되며, 클래스명은 <strong>[prefix] + "tab-cont"</strong>로 정의한다</li>
+									<li>tab은 li로 구성되고 클래스명은 <strong>[prefix] + "tab"</strong>으로 정의한다.</li>
+									<li>tab 내부는 span, a 태그와 같은 다양한 마크업으로 구성될수 있으며, 클래스명은 <strong>[prefix] + "taba"</strong>로 정의한다.</li>
+									<li>panel들을 포함하는 'panel컨테이너'는 div로 구성되며, 클래스명은 <strong>[prefix] + "panel-cont"</strong>로 정의한다.</li>
+									<li>panel은  'panel컨테이너'를 부모로 갖고, div 로 구성되며, 클래스명은 <strong>[prefix] + "panel"</strong>로 정의한다.</li>
+									<li>이전버튼의 클래스명은 <strong>[prefix] + "prev"</strong> 로 정의한다</li>
+									<li>다음버튼의 클래스명은 <strong>[prefix] + "next"</strong> 로 정의한다</li>
+									<li>옵션(nDefaultIndex)을 통해 초기 선택되는 탭을 지정할수 있다</li>
+									<li>tab과 그에 1:1 대응하는 panel로 구성된다.</li>
+									<li>tab이 선택되면 선택된 tab과 panel에만 <strong>[prefix] + "selected"</strong> 클래스명이 추가된다.</li>
+								</ul>	<div class="point_box">
+									최상위 tab컴포넌트는 SlideTab이 초기화될때, <font style="color:#e11b10;">position:relative</font>로 설정된다.<br/>
+									tabview는 ul로 SlideTab이 초기화될때, <font style="color:#e11b10;">overflow:hidden</font>으로 설정된다.
+									</div>
+								</div>
+								</dd>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oComponent = new jindo.m.Tab("tabComponent", {
+										 bActivateOnload : true,
+										 nDefaultIndex : 0,
+										 sClassPrefix : "tc-",
+										 nSlideDuration : 200,
+										 sTimingFunction : "ease-in-out",
+										 nCountPerVeiw : 3,
+						 				 nPanelDuration : 0,
+										 nHeight : 0,
+										 nWidth : 0
+									});
+								</textarea>
+								<div class="t2">
+									<ul>
+										<li>첫번째 parameter는 tab의 최상의 Element로서, 문자형태의 id또는 HTML Element객체를 받을수 있음</li>
+										<li>두번째 parameter는 option으로 써, 아래 표 참조</li>
+									</ul>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">nDefaultIndex</td>
+								<td>초기 선택되는 Tab컴포넌트 index를 지정한다.</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>Tab컴포넌트 class의 접두어를 지정한다.</td>
+								<td>"tc-"</td>
+							</tr>
+							<tr>
+								<td class="name">nPanelDuration</td>
+								<td>패널 슬라이드 효과 사용시 애니메이션 동작 시간<br>
+									0일 경우, 패널 슬라이더 효과가 발생하지 않는다. 단위는 ms이다.
+								</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nHeight</td>
+								<td>패널 슬라이드 효과 사용시 패널의 Height값을 지정한다.</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nWidth</td>
+								<td>패널 슬라이드 효과 사용시 패널의 Widht값을 지정한다.<br>
+									0일 경우, width는 [sClassPrefix]panel-cont의 width(padding값은 제외)로 지정된다.</td>
+								<td>0</td>
+							</tr>	
+							<tr>
+								<td class="name">nSlideDuration</td>
+								<td>이전, 다음버튼 클릭시에 slide되어 완전히 보여지는 시간 (단위 ms)</td>
+								<td>500</td>
+							</tr>					
+							<tr>
+								<td class="name">sTimingFunction</td>
+								<td>Slide시 애니메이션 효과
+									<ul>
+										<li>ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</li>
+										<li>linear : 등속효과</li>
+										<li>ease-in : 속도가 점점 빨라지는 가속 효과</li>
+										<li>ease-out : 속도가 천천히 줄어드는 감속효과</li>
+										<li>ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</li>
+									</ul>
+								</td>
+								<td>"ease-in-out"</td>
+							</tr>			
+							<tr>
+								<td class="name">nCountPerVeiw</td>
+								<td>Tab 컴포넌트의 한 페이지당 표시되는 tab 수. 이 값은 최상위 tab컴포넌트의 width값에 의해 분할된다.</td>
+								<td>3</td>
+							</tr>		
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>FloatingLayer 컴포넌트가 로딩 될때 활성화 시킬지 여부를 결정한다. 
+				false로 설정하는 경우에는 Tab.activate()를 호출하여 따로 활성화 시켜야 한다.</td>
+								<td>true</td>
+							</tr>
+										
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeSelect</td>
+								<td>탭이 선택되기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 선택되기전의 tab 인덱스 번호 (0부터 시작)</li>
+										<li>elTab (HTMLElement) : 선택되기 전의 tab Element</li>
+										<li>elPanel (HTMLElement) : 선택되기 전의 panel Element</li>
+										<li>stop (Function) : select를 중지한다. beforeSelect이후 커스텀 이벤트(select)가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeSelect", function(oCustomEvent) {
+										// oCustomEvent.nIndex;
+										// oCustomEvent.elTab;
+										// oCustomEvent.elPanel;
+										// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(select)가 발생하지 않고, 현재 select작업도 중지됨
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">select</td>
+								<td>탭이 선택된 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 선택된 tab 인덱스 번호 (0부터 시작)</li>
+										<li>elTab (HTMLElement) : 선택된 tab Element</li>
+										<li>elPanel (HTMLElement) : 선택된 panel Element</li>
+										<li>stop (Function) : stop (Function) : stop를 호출하여 영향 받는 것이 없음.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("select", function(oCustomEvent) {
+										// oCustomEvent.nIndex;
+										// oCustomEvent.elTab;
+										// oCustomEvent.elPanel;
+									});
+									</textarea>
+								</td>
+							</tr>
+							
+							
+							<tr class="title">
+								<td class="name">beforePrev</td>
+								<td>이전버튼 이벤트 발생 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nPage (Number) : 이전버튼 이벤트 발생 전 페이지 번호 (1번부터 시작)</li>
+										<li>nIndex (Number) : 이전버튼 이벤트 발생 전에 선택된 tab 인덱스 번호 (0부터 시작)</li>
+										<li>nTotalPage (Number) : 총 페이지 개수</li>
+										<li>stop (Function) : prev를 중지한다. beforePrev이후 커스텀 이벤트(prev)가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforePrev", function(oCustomEvent) {
+										// oCustomEvent.nPage;
+										// oCustomEvent.nIndex;
+										// oCustomEvent.nTotalPage;
+										// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(prev)가 발생하지 않고, 현재 prev작업도 중지됨
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">prev</td>
+								<td>이전버튼 이벤트 발생 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nPage (Number) : 이전버튼 이벤트 발생 후 페이지 번호 (1번부터 시작)</li>
+										<li>nIndex (Number) : 이전버튼 이벤트 발생 후에 선택된 tab 인덱스 번호 (0부터 시작)</li>
+										<li>nTotalPage (Number) : 총 페이지 개수</li>
+										<li>stop (Function) : stop (Function) : stop를 호출하여 영향 받는 것이 없음.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("prev", function(oCustomEvent) {
+										// oCustomEvent.nPage;
+										// oCustomEvent.nIndex;
+										// oCustomEvent.nTotalPage;
+									});
+									</textarea>
+								</td>
+							</tr>
+							
+							
+							<tr class="title">
+								<td class="name">beforeNext</td>
+								<td>이후버튼 이벤트 발생 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nPage (Number) : 이후버튼 이벤트 발생 전 페이지 번호 (1번부터 시작)</li>
+										<li>nIndex (Number) : 이후버튼 이벤트 발생 전에 선택된 tab 인덱스 번호 (0부터 시작)</li>
+										<li>nTotalPage (Number) : 총 페이지 개수</li>
+										<li>stop (Function) : next를 중지한다. beforeNext이후 커스텀 이벤트(next)가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeNext", function(oCustomEvent) {
+										// oCustomEvent.nPage;
+										// oCustomEvent.nIndex;
+										// oCustomEvent.nTotalPage;
+										// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(next)가 발생하지 않고, 현재 next작업도 중지됨
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">next</td>
+								<td>이후버튼 이벤트 발생 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nPage (Number) : 이후버튼 이벤트 발생 후 페이지 번호 (1번부터 시작)</li>
+										<li>nIndex (Number) : 이후버튼 이벤트 발생 후에 선택된 tab 인덱스 번호 (0부터 시작)</li>
+										<li>nTotalPage (Number) : 총 페이지 개수</li>
+										<li>stop (Function) : stop (Function) : stop를 호출하여 영향 받는 것이 없음.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("next", function(oCustomEvent) {
+										// oCustomEvent.nPage;
+										// oCustomEvent.nIndex;
+										// oCustomEvent.nTotalPage;
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeSlide</td>
+								<td>패널 슬라이드 효과가 발생하기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 선택되기전의 tab 인덱스 번호 (0부터 시작)</li>
+										<li>elTab (HTMLElement) : 선택되기 전의 tab Element</li>
+										<li>elPanel (HTMLElement) : 선택되기 전의 panel Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeSlide", function(oCustomEvent) {
+										// oCustomEvent.nIndex;
+										// oCustomEvent.elTab;
+										// oCustomEvent.elPanel;
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">slide</td>
+								<td>패널 슬라이드 효과가 발생한 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 선택된 tab 인덱스 번호 (0부터 시작)</li>
+										<li>elTab (HTMLElement) : 선택된 tab Element</li>
+										<li>elPanel (HTMLElement) : 선택된 panel Element</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("slide", function(oCustomEvent) {
+										// oCustomEvent.nIndex;
+										// oCustomEvent.elTab;
+										// oCustomEvent.elPanel;
+									});
+									</textarea>
+								</td>
+							</tr>			
+						</table>
+					</div>
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>								 
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>	
+							  <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name" >v1.3.0 </td>
+							 	<td >-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="3">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>-</td>
+                               	<td>패널 슬라이드 기능 추가</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

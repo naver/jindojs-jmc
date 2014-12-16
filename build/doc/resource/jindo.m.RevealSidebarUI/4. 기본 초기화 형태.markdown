@@ -1,0 +1,152 @@
+#### HTML
+
+##### 1) Left 상단 고정, Right 상단 고정
+	
+	<div class="rs-body">
+		<div class="rs-left">
+			<div class="rs-header" position="fixed">...헤더...</div>
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+		</div>
+
+		<div class="rs-main">...메인...</div>
+
+		<div class="rs-right">
+			<div class="rs-header" position="fixed">...헤더...</div>
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+		</div>
+	</div>
+
+##### 2) Left 상단 고정, Right 하단 고정
+	
+	<div class="rs-body">
+		<div class="rs-left">
+			<div class="rs-header" position="fixed">...헤더...</div>
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+		</div>
+
+		<div class="rs-main">...메인...</div>
+
+		<div class="rs-right">
+			<div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer" position="fixed">...풋터...</div>
+		</div>
+	</div>
+
+##### 3) Left 하단 고정, Right 상단 고정
+	
+	<div class="rs-body">
+		<div class="rs-left">
+			<div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer" position="fixed">...풋터...</div>
+		</div>
+	 
+		<div class="rs-main">...메인...</div>
+	 
+		<div class="rs-right">
+			<div class="rs-header" position="fixed">...헤더...</div>
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+		</div>
+	</div>
+
+##### 4) Left 하단 고정, Right 단 고정
+	
+	<div class="rs-body">
+		<div class="rs-left">
+			<div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer" position="fixed">...풋터...</div>
+		</div>
+	 
+		<div class="rs-main">...메인...</div>
+	 
+		<div class="rs-right">
+			<div class="rs-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer" position="fixed">...풋터...</div>
+		</div>
+	</div>
+	
+##### 5) Left 상,하단 고정, Right 상,하단 고정
+	
+	<div class="rs-body">
+		<div class="rs-left">
+			<div class="rs-header" position="fixed">...헤더...</div>
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer" position="fixed">...풋터...</div>
+		</div>
+	 
+		<div class="rs-main">...메인...</div>
+	 
+		<div class="rs-right">
+			<div class="rs-header" position="fixed">...헤더...</div>
+			<div class="rs-content">...컨텐츠...</div>
+			<div class="rs-footer" position="fixed">...풋터...</div>
+		</div>
+	</div>
+
+#### CSS
+
+	.rs-body {}
+	.rs-left {}
+	.rs-main {}
+	.rs-right {}
+
+	.rs-header {}
+	.rs-content {}
+	.rs-footer {}
+
+#### Javascript
+
+	var oRevealSidebarUI = new jindo.m.RevealSidebarUI(el, {
+		bActivateOnload : true,
+		nSildeThreshold : 50,
+		sDefaultArea : "main",
+		htScrollOption : {...},	 // Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+		nSlideDuration : 200,
+		bUseCss3d : jindo.m._isUseCss3d(),
+		bUseTimingFunction : jindo.m._isUseTimingFunction()
+	});
+	
+
+##### ① jindo.m.PageLayoutUI를 main으로 사용하지 않는 경우
+
+첫번째 파라미터를 null로 지정한다. 사용법은 다음과 같다.
+
+	var oRevealSidebarUI = new jindo.m.RevealSidebarUI(null, {
+		bActivateOnload : true,
+		nSildeThreshold : 50,
+		sDefaultArea : "main",
+		htScrollOption : {...},	 // Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+		nSlideDuration : 200,
+		bUseCss3d : jindo.m._isUseCss3d(),
+		bUseTimingFunction : jindo.m._isUseTimingFunction()
+	});
+	
+
+##### ② jindo.m.PageLayoutUI를 main으로 사용하는 경우
+
+첫번째 파라미터를 jindo.m.PageLayoutUI의 최상위(Root) 엘리먼트를 파라미터로 받는다.
+
+사용법은 다음과 같다.
+
+	var oRevealSidebarUI;
+	var oPageLayoutUI = new jindo.m.PageLayoutUI({
+		vBaseElement : jindo.$$.getSingle('.rs-body'),
+		fnDomReady : function(oData) {
+			oRevealSidebarUI = new jindo.m.RevealSidebarUI(oData.welRoot, {
+				bActivateOnload : true,
+				nSildeThreshold : 50,
+				sDefaultArea : "main",
+				htScrollOption : {...},	 // Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+				nSlideDuration : 200,
+				bUseCss3d : jindo.m._isUseCss3d(),
+				bUseTimingFunction : jindo.m._isUseTimingFunction()
+			});
+		}
+	});

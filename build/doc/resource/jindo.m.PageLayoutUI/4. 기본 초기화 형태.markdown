@@ -1,0 +1,266 @@
+#### HTML
+
+##### 1. SinglePageLayout
+
+<br> 
+한장의 페이지로 구성된 레이아웃의 경우 아래 3가지 중 하나를 선택하여 사용할 수 있다.
+
+<br> 
+1) 상단 고정형
+
+![](SinglePage_thumb1.jpg "")
+
+	<body>
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div>
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+
+2) 하단 고정형
+
+![](SinglePage_thumb2.jpg "")
+
+	<body>
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div>
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+
+3) 상/하단 고정형
+
+![](SinglePage_thumb3.jpg "")
+
+	<body>
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div>
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div>
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+	
+<br>  
+##### 2. MultiContentLayout
+
+<br> 
+한장의 페이지에 여러장의 컨텐츠로 구성된 경우, 아래 2가지 중 하나를 선택하여 사용할 수 있다.
+
+<br> 
+1) 기본형
+
+![](MultiContent_thumb1.jpg "")
+
+	<body>
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠 1...</div>
+		<div class="jmc-content">...컨텐츠 2...</div>
+		<div class="jmc-content">...컨텐츠 3...</div>
+		...
+		<div class="jmc-content">...컨텐츠 N...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+	
+2) 상단 고정 플리킹형
+	
+![](MultiContent_thumb2.jpg "")
+
+	<body flicking="yes">
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div>
+		<div class="jmc-content">...컨텐츠 1...</div>
+		<div class="jmc-content">...컨텐츠 2...</div>
+		<div class="jmc-content">...컨텐츠 3...</div>
+		...
+		<div class="jmc-content">...컨텐츠 N...</div>
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+
+3) 하단 고정 플리킹형
+
+![](MultiContent_thumb3.jpg "")
+
+	<body flicking="yes">
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-content">...컨텐츠 1...</div>
+		<div class="jmc-content">...컨텐츠 2...</div>
+		<div class="jmc-content">...컨텐츠 3...</div>
+		...
+		<div class="jmc-content">...컨텐츠 N...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div>
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+
+4) 상/하단 고정 플리킹형
+	
+![](MultiContent_thumb4.jpg "")
+
+	<body flicking="yes">
+	<!-- page 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div>
+		<div class="jmc-content">...컨텐츠 1...</div>
+		<div class="jmc-content">...컨텐츠 2...</div>
+		<div class="jmc-content">...컨텐츠 3...</div>
+		...
+		<div class="jmc-content">...컨텐츠 N...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div>
+	</div>
+	<!-- //page  마크업 끝-->
+	</body>
+
+<br>  
+##### 3. MultiPageLayout
+
+<br> 
+여러장의 페이지로 구성된 레이아웃의 경우 아래 5가지 중 하나를 선택하여 사용할 수 있다.
+
+<br> 
+1) 기본형
+
+![](MultiPage_thumb1.jpg "")
+
+	<body>
+	<!-- page1 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //page1  마크업 끝-->
+	<!-- page2 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //page2  마크업 끝-->
+	...
+	<!-- pageN 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //pageN  마크업 끝-->
+	</body>
+	
+
+2) 플리킹형
+	
+![](MultiPage_thumb2.jpg "")
+
+
+	<body flicking="yes">
+	<!-- page1 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //page1  마크업 끝-->
+	<!-- page2 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //page2  마크업 끝-->
+	...
+	<!-- pageN 마크업 시작 -->
+	<div class="jmc-page">
+		<div class="jmc-header" position="fixed">...헤더...</div> <!-- 헤더 사용여부에 따라 생략 가능 -->
+		<div class="jmc-content">...컨텐츠...</div>
+		<div class="jmc-footer" position="fixed">...풋터...</div> <!-- 풋터 사용여부에 따라 생략 가능 -->
+	</div>
+	<!-- //pageN  마크업 끝-->
+	</body>
+
+
+#### CSS
+
+	/* Page 영역 CSS */
+	.jmc-page{
+		background:#fff;		/* 전체 페이지의 배경색 */
+		border:0;width:100%;display:none;
+	}
+	  
+	/* Header 영역 CSS */
+	.jmc-header {
+		background-color:black; /* 헤더 영역의 배경색 */
+		color:white;            /* 헤터 영역의 폰트색 */
+		height : 50px;			/* 헤터 영역의 높이 */
+		width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+	}
+
+	/* Footer 영역 CSS */
+	.jmc-footer {
+		background-color:black; /* 풋터 영역의 배경색 */
+		color:white;            /* 풋터 영역의 폰트색 */
+		height : 50px;			/* 풋터 영역의 높이 */
+		width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+	}
+	  
+	/* Content 영역 CSS */
+	.jmc-content{clear:both;width:100%;display:none;}
+	  
+	/* Title 영역 CSS */
+	.jmc-title {
+		margin:0 5%;			/* 타이틀 마진 */
+		width:90%;				/* 타이틀 너비 */
+		padding:5px 0;			/* 타이틀 패딩 */
+		height:40%;				/* 타이틀 높이 */
+		text-align:center;text-overflow:ellipsis;white-space:nowrap;
+	}
+
+#### Javascript
+
+##### 1. SinglePageLayout
+
+한장의 페이지로 구성된 레이아웃의 경우 아래와 같이 스크립트를 실행한다.
+
+var oPageLayoutUI = new jindo.m.PageLayoutUI();
+
+##### 2. MultiContentLayout / 3. MultiPageLayout
+
+여러장의 컨텐츠/페이지로 구성된 레이아웃의 경우 아래와 같이 스크립트를 실행한다.
+
+	var oPageLayoutUI = new jindo.m.PageLayoutUI({
+		nDefaultIndex : 2           // 초기 로딩시 보여줄 페이지 인덱스번호 (기본값 : 0)
+		bUseLoading : true,         // 로딩레이어 사용 여부 (기본값 : false)   
+		fnDomReady : function(htLayout) {
+			// Layout 마크업이 생성된후 호출되는 함수
+			console.log("htLayout", htLayout);
+		},
+		bUseFullScreen : false,
+		htLoadingOption : {...},    // Loading 생성시 초기화 옵션 (기본값 : jindo.m.Loading의 기본 옵션값)
+		htHistoryOption : {...},    // AjaxHistory 생성시 초기화 옵션 (기본값 : jindo.m.AjaxHistory의 기본 옵션값)   
+		htScrollOption : {...},     // Scroll 생성시 초기화 옵션 (기본값 : jindo.m.Scroll의 기본 옵션값)
+		htFlickingOption : {...}    // Flicking 생성시 초기화 옵션 (기본값 : jindo.m.Flicking의 기본 옵션값)
+	}).attach({
+		"beforeMovePage" : function(oCustomEvt) {
+			// 페이지 이동전 호출되는 함수
+			console.log("beforeMovePage", oCustomEvt);
+		},
+		"afterMovePage" : function(oCustomEvt) {
+			// 페이지 이동후 호출되는 함수
+			console.log("afterMovePage", oCustomEvt);
+		}
+	});
+	

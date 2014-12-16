@@ -1,0 +1,54 @@
+#### HTML
+
+	<!-- 기준 엘리먼트 -->
+	<div id="mflick" >
+		<!-- container 엘리먼트는  '[prefix]+container' class를 가진다 -->
+		<div class="flick-container">
+			<!-- 각 contents 영역은 '[prefix]+panel' class를 가진다 -->
+			<div id="layer1" class="flick-panel">
+				<p>Layer 1</p>
+			</div>
+			<div id="layer2"  class="flick-panel">
+				<p>Layer 2</p>
+			</div>
+			<div id="layer3"  class="flick-panel">
+				<p>Layer 3</p>
+			</div>
+		</div>
+	</div>
+
+panel 영역은 항상 3개로 유지한다.
+
+* 기준 엘리먼트를 기준으로 컴포넌트 내부에서 필요한 엘리먼트를 찾는다.
+* container 영역의 엘리먼트의 경우  [prefix]+'container'의 클래스명을 가진다.
+* panel 영역의 엘리먼트의 경우   [prefix]+'panel'의 클래스명을 가진다.
+
+#### CSS
+
+	/* 가로 플리킹 */
+	/* 플리킹 영역의 높이값을 지정해야 한다. */
+	#mflick {overflow:hidden;position:relative;width:100%;height:200px;}
+	.flick-container{clear:both}
+	.flick-panel {float:left;width:100%;height:100%;position:absolute;}
+	/* 세로 플리킹 */
+	/* 플리킹 영역의 높이값을 지정가능하다 */
+	#mflick{position:relative;overflow:hidden;width:100%;height:200px;}
+	.flick-panel{width:100%;height:100%;position:absolute;}
+
+#### Javascript
+
+	var oCircularFlicking = new jindo.m.CircularFlicking('mflick',{
+		bHorizontal : true,  //가로형 여부
+		sClassPrefix : 'flick-', //Class의 prefix,
+		nFlickThreshold : 40,
+		nTotalContents : 3 //3개의 panel에 총 플리킹하는 컨텐츠 수
+	}).attach({
+		'afterFlicking' : function(oCustomEvt){
+			/* 현재 화면에 플리킹 애니메이션을 통해 panel 바뀔 경우 발생 */
+			/* 콘텐츠의 개수가 패널의 개수(3개)보다 많을 경우 좌,우 panel의 마크업을 바꾼다 */
+		},
+		'move' : function(oCustomEvt){
+			/* setContentIndex 메소드 처럼 플리킹 애니메이션 없으 panel이 바뀔 경우 발생 */
+			/* 패널이 모두 바뀌 므로 3개의 패널 모두 마크업을 변경해 준다 */
+		}
+	});

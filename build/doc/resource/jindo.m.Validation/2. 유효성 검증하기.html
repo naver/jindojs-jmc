@@ -1,0 +1,185 @@
+<div class="description">
+
+<p>유효성을 검증하기 위해서는 <strong>유효성 문법과, 유효성을 검증할 문자</strong>가 필요하다.</p>
+
+<h4>유효성 문법</h4>
+
+<pre class="code"><code class="prettyprint">유효성종류1:[형식1];[ 유효성종류2:[형식2] ];[ 유효성종류3:[형식3] ] ....</code></pre>
+
+<ul>
+<li>유효성의 종류는 URL, Email과 같은 Validator 종류이다.</li>
+<li>형식은 유효성의 종류에 따라 필요할 수도 있고, 필요하지 않을 수도 있다.</li>
+<li>형식이 있을 경우, 입력된 값에 형식을 적용하여, 유효성 여부를 점검한다.</li>
+<li>"유효성종류:형식" 은 한개 이상이 존재 할 수 있으며, 각각의 구분은 ";"으로 구분한다.</li>
+</ul>
+
+<p>기본적으로 제공하는 유효성의 종류는 다음과 같다.</p>
+
+<h4>유효성 검증하기</h4>
+
+<p><strong>jindo.m.Validation.validate</strong>으로 유효성을 검증한다.</p>
+
+<pre class="code"><code class="prettyprint">// jindo.m.Validation.validate("유효성 문법", "유효성 검증할 문자열");
+var htResult = jindo.m.Validation.validate("require:date:yyyy.mm.dd", "12345678");
+
+// {bValid : 성공여부, sCorrectedValue : 수정된 값, sPreValue : 이전 값, sType : validation type} 을 반환한다.
+htResult.bValid;        // validate 성공여부
+htResult.sCorrectedValue;   // "유효성 검증할 문자열"을 정제한 값. 내부적으로 이 값으로 validate한다.
+htResult.sPreValue;     // "유효성 검증할 문자열"
+htResult.sType;     // "Validate시 실패시, 실패된 Validator의 종류값을 반환"</code></pre>
+<br />
+
+
+기본적으로 제공하는 유효성의 종류는 다음과 같다. <br /><br />
+<table class="tbl_board lft">
+<colgroup>
+	<col width="10%">
+	<col>
+	<col style="width:170px">
+	<col style="width:130px">
+</colgroup>
+<tr>
+<th>종류</th>
+<th>설명</th>
+<th>Class</th>
+<th>형식</th>
+</tr>
+<tr class="title">
+<td class="name">require</td>
+<td>
+	필수 여부를 확인 한다. 값이 있을 경우 <strong class="strike">true</strong>, 그외는 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.RequreValidator
+</td>
+<td>없음</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("require", "검사할 값");</code></pre>
+</td>
+</tr>
+<tr class="title">
+<td class="name">url</td>
+<td>
+	URL 유효성을 확인한다. URL인 경우 <strong class="strike">true</strong>, 그렇지 않은 경우 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.UrlValidator
+</td>
+<td>없음</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("url", "http://www.naver.com");</code></pre>
+</td>
+</tr>
+<tr class="title">
+<td class="name">email</td>
+<td>
+	email 유효성을 확인한다. email인 경우 <strong class="strike">true</strong>, 그렇지 않은 경우 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.EmailValidator
+</td>
+<td>없음</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("email", "abcdef@nhn.com");</code></pre>
+</td>
+</tr>
+<tr class="title">
+<td class="name">tel</td>
+<td>
+	국내 전화번호 유효성을 확인한다. 국내전화번호인 경우 <strong class="strike">true</strong>, 그렇지 않은 경우 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.TelValidator
+</td>
+<td>
+	구분자
+</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("tel:-", "01012345678");
+		// 형식 적용된 값은... 010-1234-5678</code></pre>
+</td>
+</tr>
+<tr class="title">
+<td class="name">number</td>
+<td>
+	숫자(실수) 유효성을 확인한다. 숫자(실수)인 경우 <strong class="strike">true</strong>, 그렇지 않은 경우 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.NumberValidator
+</td>
+<td>
+	구분자 (,). 구분자가 존재할 경우, 3자리마다 콤마(,)가 적용된다.
+</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("number:,", "-78185460.48427");
+		// 형식 적용된 값은... -78,185,460.48427</code></pre>
+</td>
+</tr>
+<tr class="title">
+<td class="name">currency</td>
+<td>
+	통화 유효성을 확인한다. 통화인 경우 <strong class="strike">true</strong>, 그렇지 않은 경우 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.NumberValidator<br/>
+	jindo.m.CurrencyValidator
+</td>
+<td>
+	통화 구분자 ($,￦, ...). 통화 구분자가 없을 경우, ￦가 기본값이다.
+</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("currency:$", "-78185460.48427");
+		// 형식 적용된 값은... -$78,185,460.48427</code></pre>
+</td>
+</tr>
+<tr class="title">
+<td class="name">date</td>
+<td>
+	날짜 유효성을 확인한다. 날짜인 경우 <strong class="strike">true</strong>, 그렇지 않은 경우 <strong class="strike">false</strong>
+</td>
+<td>
+	jindo.m.DateValidator
+</td>
+<td>
+	날짜 구분자<br/>
+	yyyy : 년 <br/>
+	mm : 월 <br/>
+	dd : 일
+</td>
+</tr>
+<tr class="desc">
+<td>&nbsp;</td>
+<td colspan="3">
+	사용 예.
+<pre class="code"><code class="prettyprint">jindo.m.Validation.validate("date:yyyy.mm.dd", "12341230");
+		// 형식 적용된 값은... 1234.12.30</code></pre>
+</td>
+</tr>
+</table>
+
+
+</div>

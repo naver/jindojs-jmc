@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>스토리북 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Keyframe"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="스토리를 구현한 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+	.demo-header { position:fixed; width:100%; }
+	.demo-body { padding-top:300px !important; }
+
+	#canvas { position:absolute; width:100%; left:0; top:0; }
+	#canvas * { position:fixed; pointer-events:none; }
+
+	h1 { padding:.5em; }
+</style>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" charset="utf-8" src="../asset/jindo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.js"></script>
+
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.UIComponent.js"></script>
+	<!--// 기본 스크립트 끝 -->
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Keyframe.js"></script>
+	<h1>스크롤을 아래로 내리면 스토리가 진행됩니다</h1>
+	<div id="canvas">
+		<img id="one" src="img/char1.png" width="200" height="200" />
+		<img id="two" src="img/char1.png" width="70" height="70" />
+		<img id="three" src="img/char1.png" width="70" height="70" />
+		<img id="four" src="img/char1.png" width="70" height="70" />
+	</div>
+	<script type="text/javascript">
+
+		jindo.$Element('canvas').css('height', 10000 + jindo.$Document().clientSize().height + 'px');
+
+		jindo.m.Effect.skip = jindo.m.Effect(function(v) {
+			return v; //  === 1 ? 1 : 0;
+		});
+
+		var z = jindo.m.Effect.skip('800px');
+		z.type = 'skip';
+
+		var keyframe = new jindo.m.Keyframe();
+		keyframe.set(0, [
+			jindo.$('one'), { '@left' : '100px', '@top' : '100px' }
+		]);
+
+		keyframe.set(0.4, [
+			jindo.$('one'), { '@left' : z, '@top' : '100px' },
+			jindo.$('two'), { '@left' : '100px', '@top' : '330px', '@opacity' : 0 },
+			jindo.$('three'), { '@left' : '250px', '@top' : '330px', '@opacity' : 0 },
+			jindo.$('four'), { '@left' : '400px', '@top' : '330px', '@opacity' : 0 }
+		]);
+
+		keyframe.set(0.7, [
+			jindo.$('one'), { '@top' : '-200px', '@left' : '800px', '@transform' : '' },
+			jindo.$('two'), { '@left' : '100px', '@top' : '130px', '@opacity' : 1 },
+			jindo.$('three'), { '@left' : '250px', '@top' : '180px', '@opacity' : 1 },
+			jindo.$('four'), { '@left' : '400px', '@top' : '230px', '@opacity' : 1 }
+		]);
+
+		keyframe.set(0.700001, [
+			jindo.$('one'), { '@top' : '150px', '@left' : '800px', '@transform' : 'scale(1.5)' }
+		]);
+
+		keyframe.set(1.0, [
+			jindo.$('one'), { '@left' : '100px' },
+			jindo.$('two'), { '@left' : '-100px' },
+			jindo.$('three'), { '@left' : '-100px' },
+			jindo.$('four'), { '@left' : '-100px' }
+		]);
+
+		var body = window;
+		var nowRate = 0;
+
+		keyframe.attach('preprocessEnd', function() {
+
+			jindo.$Fn(function() {
+				var nScrollTop = (
+					body.scrollTop ||
+					document.documentElement.scrollTop ||
+					document.body.scrollTop
+				);
+				keyframe.frame(nScrollTop / 10000);
+			}).attach(body, 'scroll');
+
+			keyframe.frame(0);
+
+		}).preprocess();
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+#### HTML
+
+	<div id="layer1"> test </div>
+
+#### Javascript
+
+	var oLayerEffect = new jindo.m.LayerEffect(htOption);
+
+htOption은 하단의 Option을 참고

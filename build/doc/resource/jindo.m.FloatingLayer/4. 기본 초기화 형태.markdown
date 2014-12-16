@@ -1,0 +1,20 @@
+#### Javascript
+
+	var oComponent = new jindo.m.FloatingLayer("elLayerId", {
+		 bActivateOnload : true,
+		 sPosition : "bottom",
+		 sDirection : "up",
+		 nSlideDuration : 500,
+		 sSlideTimingFunction : "ease-in-out",
+		 nFadeInDuration : 0,
+		 sFadeInTimingFunction : "ease-in-out", 
+		 nFadeOutDuration : 200,
+		 sFadeOutTimingFunction : "ease-in-out",
+		 bUseHideUI : true,
+		 bUseFixed : false,
+		 nTimeout : -1
+	});
+	oComponent.show();
+
+* 첫번째 parameter는 Layer로써, 문자형태의 id또는 HTML Element객체를 받을수 있음
+* 두번째 parameter는 option으로 써, 아래 표 참조

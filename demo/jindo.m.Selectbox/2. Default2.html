@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본 예제 (Custom)</title>
+<meta name="class-lists" content="jindo.m.Selectbox">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/* select박스 기본 디자인 */
+.selectbox {
+	width : 200px;
+	padding: 10px 10px;
+	margin: 10px;
+	border-radius: 1em;	/* 외부 곡선 */
+	-webkit-border-radius: 1em;	/* 외부 곡선 */
+	background:#F0F0F0;		 					/* 그라데이션 적용이 안될때 사용될 배경색 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#DDD));	/* 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	background: gradient(linear, left top, left bottom, from(#F0F0F0), to(#DDD));	/* 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .3);	/* 안쪽 그림자 크기, 색상 수정 */
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .3);	/* 안쪽 그림자 크기, 색상 수정 */
+}
+
+/* select박스 화살표 디자인 */
+.select-arrow {
+	background: rgba(0, 0, 0, .4);	/* 화살표 배경색 */
+	background-image: url(../asset/img/icons-18-white.png);	/* 화살표 이미지 */
+	background-repeat: no-repeat;
+	background-position: -216px 50%;
+	border-radius: 9px;	/* 화살표 배경 동그란 효과 */
+	-webkit-border-radius: 9px;	/* 화살표 배경 동그란 효과 */
+	/* 화살표 크기 */
+	width: 18px;
+	height: 18px;
+}
+
+/* select박스 content영역 디자인 */
+.select-content {
+	font-weight:bold;
+	color : black;	/* 글자색상 */
+}
+
+/* select박스가 disable되었을때 디자인 */
+.select-disable {
+	opacity : 0.5;
+}
+
+/* select박스의 selectmenu의 디자인 */
+.select-selectmenu {
+	border-radius: 0.5em;	/* 외부 곡선 */
+	-webkit-border-radius: 0.5em;	/* 외부 곡선 */
+	border : 5px solid #e5e5e5;	/* 테두리 색상 */
+	/* 스크롤 배경 */
+	background:#e1e1e1;							 /* 그라데이션 적용이 안될때 사용될 배경색 */
+   	box-shadow: 0 0 12px rgba(0, 0, 0, .6);	/* 안쪽 그림자 크기, 색상 수정 */
+   	-webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .6);	/* 안쪽 그림자 크기, 색상 수정 */
+   	display:none;
+}
+
+
+/* select박스의 selectmenu의 아이템 컨테이너 디자인 (주로 여백조절) */
+.select-selectmenu ul {
+	list-style: none;
+	padding: 0;
+	margin : 0px;
+}
+
+/* select박스의 selectmenu의 아이템들 디자인 (주로 여백조절) */
+.select-selectmenu li {
+	padding:5px;
+	text-align:center;
+	background:#e1e1e1;							 /* 그라데이션 적용이 안될때 사용될 배경색 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e1e1e1));	/* 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	background: gradient(linear, left top, left bottom, from(#ffffff), to(#e1e1e1));	/* 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	box-shadow: 1px 1px 0px #fff inset; /* 안쪽 그림자 크기, 색상 수정 */
+	-webkit-box-shadow: 1px 1px 0px #fff inset; /* 안쪽 그림자 크기, 색상 수정 */
+}
+
+/* 선택된 select박스 아이템 디자인 */
+.select-selected{
+	text-decoration:none;
+	font-weight:bold;
+	color:#d9f3ff;								  /* 선택된 날짜 텍스트 폰트 색상 설정 */
+	text-shadow: 1px 1px 2px #06344e;			   /* 선택된 날짜 텍스트 그림자 크기, 색상 수정 */
+	background:#308fbb;							 /* 그라데이션 적용이 안될때 사용될 배경색 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#308fbb), to(#2d678f)) !important;	/* 선택된 날짜 영역의 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	background: gradient(linear, left top, left bottom, from(#308fbb), to(#2d678f)) !important;	/* 선택된 날짜 영역의 그라데이션 색상수정 - from(시작컬러), to(끝컬러) */
+	box-shadow: 1px 1px 0px #6e94c9 inset  !important;	/* 안쪽 그림자 크기, 색상 수정 */
+	-webkit-box-shadow: 1px 1px 0px #6e94c9 inset  !important;	/* 안쪽 그림자 크기, 색상 수정 */
+}
+
+
+/*@code title="CSS"*/
+[sClassPrefix]arrow {}
+[sClassPrefix]content {}
+[sClassPrefix]selectmenu {}
+[sClassPrefix]selected {}
+[sClassPrefix]disable {}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	초기 검색화면을 선택해주세요
+	<!-- select -->
+	<div id="select" class="selectbox">
+		<span class="select-content"></span>
+		<span class="select-arrow"></span>
+		<div class="select-selectmenu">
+			<ul>
+				<li>구글</li>
+				<li>네이버</li>
+				<li>다음</li>
+				<li>파란</li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<button type="button" class="btn" onclick="oSelect.enable()">enable</button>
+		<button type="button" class="btn" onclick="oSelect.disable()">disable</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!--@code title="HTML"
+	<div id="select">
+		<span class="[sClassPrefix]content"></span>
+		<span class="[sClassPrefix]arrow"></span>
+		<div class="[sClassPrefix]selectmenu">
+			<ul>
+				<li>구글</li>
+				<li>네이버</li>
+				<li>다음</li>
+				<li>파란</li>
+			</ul>
+		</div>
+	</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Selectbox.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+	var oSelect = new jindo.m.Selectbox("select",{
+		nDefaultIndex : 1
+	}).attach({
+		"beforeSelect" : function(we) {
+			addConsole(we.sType + " → " + "선택 전에 호출 (nCurrentIdx:" + we.nCurrentIdx + ",sValue:" + we.sValue + ")");
+		},
+		"select" : function(we) {
+			addConsole(we.sType + " → " + "선택 후에 호출 (nPrevIdx:" + we.nPrevIdx + ",sPrevValue:" + we.sPrevValue + ") => nCurrentIdx:" + we.nCurrentIdx + ",sValue:" + we.sValue + ")");
+		}
+	});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>기본 예제</title>
+<meta name="class-lists" content="jindo.m.AjaxHistory">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!-- // Demo 영역 -->
+
+<div class="lm" style="padding:0">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<ul class="lst_type">
+		<li>아래 3개의 셀렉트박스 값을 하나씩 변경</li>
+		<li>셀렉트박스의 값이 변경되는 시점에 changeStatus()함수를 호출하며 해당 함수에서는 addHistory()를 호출하여 히스토리를 저장</li>
+		<li>사용자가 브라우저의 앞으로/뒤로가기 버튼을 누를 경우, 저장된 History Data를 가져와서 onChange 이벤트를 발생시킴</li>
+		<li>onChange 이벤트의 핸들러로 지정된 함수가 호출되며, 파라미터로 저장했던 History Data를 받을 수 있음</li>
+		<li>넘겨받은 History Data를 이용하여 셀렉트박스의 선택값을 변경하고 디버그박스에 값을 출력</li>
+	</ul>
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<select id="type1" onchange="changeStatus()">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+		</select>
+		<select id="type2" onchange="changeStatus()">
+			<option value="a">a</option>
+			<option value="b">b</option>
+			<option value="c">c</option>
+			<option value="d">d</option>
+			<option value="e">e</option>
+			<option value="f">f</option>
+		</select>
+		<select id="type3" onchange="changeStatus()">
+			<option value="금강산">금강산</option>
+			<option value="백두산">백두산</option>
+			<option value="태백산">태백산</option>
+			<option value="소백산">소백산</option>
+			<option value="북한산">북한산</option>
+			<option value="남산">남산</option>
+		</select>
+	</div>
+</div>
+<!-- // Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea cols="30" rows="5" title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.AjaxHistory.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">function changeStatus(){
+	oAjaxHistory.addHistory(
+		{
+			'type1' : jindo.$('type1').value,
+			'type2' : jindo.$('type2').value,
+			'type3' : encodeURIComponent(jindo.$('type3').value)
+		}
+	);
+}
+
+var oAjaxHistory;
+
+jindo.$Fn(function(){
+	/*@code title="JavaScript"*/
+	oAjaxHistory = new jindo.m.AjaxHistory();
+
+	oAjaxHistory.attach({
+		'load' : function(){
+			addConsole('[load]');
+			oAjaxHistory.addHistory({
+				'type1' : jindo.$('type1').value,
+				'type2' : jindo.$('type2').value,
+				'type3' : encodeURIComponent(jindo.$('type3').value)
+			}, true);
+		},
+		'change' : function(oCustomEvt){
+			addConsole('[change] ' +  decodeURIComponent(jindo.$Json(oCustomEvt.htHistoryData).toString()));
+			var htData = jindo.$Json(oCustomEvt.htHistoryData).toObject();
+
+			jindo.$('type1').value = htData.type1;
+			jindo.$('type2').value = htData.type2;
+			jindo.$('type3').value = decodeURIComponent(htData.type3);
+
+		}
+	});
+	/*code@*/
+
+	oAjaxHistory.initialize();
+
+}).attach(window, "load");
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

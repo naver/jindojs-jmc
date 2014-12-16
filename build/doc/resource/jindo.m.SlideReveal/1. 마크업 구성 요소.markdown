@@ -1,0 +1,35 @@
+SlideReveal 컴포넌트는 상/우 에서 밀고 들어오는 메뉴(네비게이션) 를 보여주기 적합한 컴포넌트 이다.
+
+<br />  
+SlideReveal 컴포넌트는 header, nav, contents 영역으로 나뉜다.
+
+<br />  
+
+![](slideReveal.png "")
+
+[컨텐츠 구조]
+
+<br />
+SlideReveal 컴포넌트는 direction 옵션 값에 따라 상단에서, 오른쪽에서 밀고 들어오도록 방향을 설정할 수 있다.  
+<br>  
+
+
+1. direction = down 인 경우 
+
+	![](topSlide.png "")
+	
+	상단의 nav 영역만큼 밀고 내려온다.
+	
+2. direction = left 인 경우
+
+	![](rightSlide1.png "")
+	![](rightSlide2.png "")
+
+	margin 옵션 값 만큼 Contents 영역이 남게 되고 오른쪽에 위치한 nav 영역이 위치한다.
+	
+3. direction = right 인 경우
+
+	![](leftReveal1.png "")
+	![](leftReveal2.png "")
+
+	margin 옵션 값 만큼 Contents 영역이 남게 되고 왼쪽에 위치한 nav 영역이 위치한다.

@@ -1,0 +1,10 @@
+#### Javascript
+
+	var oComponent = new jindo.PreventClickEvent(el, {
+		 bActivateOnload : true,
+		 sClassPrefix : 0.3
+	});
+
+생성자의 첫 파라미터로 지정된 el 엘리먼트에서는 모든 이벤트(스크롤, 터치, 클릭)가 발생하지 않는다.
+
+el 엘리먼트 내부의 특정 엘리먼트에서 이벤트 발생을 위해서는 [sClassPrefix] + "except" 클래스를 지정한다.

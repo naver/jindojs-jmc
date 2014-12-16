@@ -1,0 +1,683 @@
+﻿<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 수직 CSS */
+.v .scl_o {height:57px;border-bottom:1px solid #e7e7e7;padding:5px;}
+.v .scl_cnt {display:block;padding:10px 10px;font-size:.93em;line-height:20px;}
+.v .scl_cnt .scl_link {color:#1172b6;}
+
+.v .scl_tmb {_display:inline;float:left;clear:both; margin-right:10px;}
+.v .scl_lw{margin:.36em 0 1em}
+
+.loading{display:block;margin:20px 0 10px 5px;background:url(../asset/img/ico_lod2.gif) no-repeat;font-weight:bold;font-size:1em;color:grey;text-indent:25px}
+.no_loading{margin-top:10px;margin-left:10px;background:none;font-weight:bold;font-size:1em;color:grey}
+/*code@*/
+
+/* 수평 웹튠 CSS */
+.h .h_scl_u{overflow:hidden;margin:0}
+.h .scl_o{float:left;width:100px;height:100px;text-align:center}
+.h .scl_cnt{overflow:hidden;font-size:1em;line-height:18px;font-weight:bold}
+.h .scl_cnt .scl_link{font-weight:normal;color:#1172b6}
+/*code@*/
+
+</style>
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/js/jindo.js?debug=true" charset="utf-8"></script>
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/mobile_test/js/fakeEvent.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/mobile_test/js/step.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/mobile_test/js/repeat.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/source/jindo.m.UIComponent.js" charset="utf-8"></script>
+
+
+
+</head>
+<body>
+
+	<div id="view" class="v">
+		<div id="view_area" style="width: 100%; position: absolute; z-index: 1; left: 0px; top: 0px;">
+			<div style="height: 30px; display: block;" class="scroll_pullDown">업데이트하시려면 아래로 내려주세요</div>
+			<!-- Scroller -->
+			<ul class="h_scl_u" id="dataList">
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.news.naver.com/"><img width="57" height="57" alt="네이버 뉴스" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_news.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 1<br>
+					<a style="" class="scl_link" href="http://m.news.naver.com/">네이버 뉴스 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.sports.naver.com/"><img width="57" height="57" alt="네이버 스포츠" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_sport.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 2<br>
+					<a class="scl_link" href="http://m.sports.naver.com/">네이버 스포츠 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.weather.naver.com/"><img width="57" height="57" alt="네이버 날씨" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_whether.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 3<br>
+					<a class="scl_link" href="http://m.weather.naver.com/">네이버 날씨 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.stock.naver.com/"><img width="57" height="57" alt="네이버 증권" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_stock.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 4<br>
+					<a class="scl_link" href="http://m.stock.naver.com/">네이버 증권 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.land.naver.com/"><img width="57" height="57" alt="네이버 부동산" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_land.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 5<br>
+					<a class="scl_link" href="http://m.land.naver.com/">네이버 부동산 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.kin.naver.com/"><img width="57" height="57" alt="네이버 지식인" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_in.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 6<br>
+					<a class="scl_link" href="http://m.kin.naver.com/">네이버 지식인 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.blog.naver.com/"><img width="57" height="57" alt="네이버 블로그" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_blog.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 7<br>
+					<a class="scl_link" href="http://m.blog.naver.com/">네이버 블로그 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.cafe.naver.com/"><img width="57" height="57" alt="네이버 카페" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_cafe.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 8<br>
+					<a class="scl_link" href="http://m.cafe.naver.com/">네이버 카페 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.me.naver.com/"><img width="57" height="57" alt="네이버 미" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_me.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 9<br>
+					<a class="scl_link" href="http://m.me.naver.com/">네이버 미 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001"><img width="57" height="57" alt="네이버 알림" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_alarm.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 10<br>
+					<a class="scl_link" href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001">네이버 알림 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.mail.naver.com/"><img width="57" height="57" alt="네이버 메일" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_mail.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 11<br>
+					<a class="scl_link" href="http://m.mail.naver.com/">네이버 메일 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.calendar.naver.com/"><img width="57" height="57" alt="네이버 캘린더" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_calendar.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 12<br>
+					<a class="scl_link" href="http://m.calendar.naver.com/">네이버 캘린더 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.contact.naver.com/"><img width="57" height="57" alt="네이버 주소록" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_address.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 13<br>
+					<a class="scl_link" href="http://m.contact.naver.com/">네이버 주소록 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.movie.naver.com/"><img width="57" height="57" alt="네이버 영화" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_movie.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 14<br>
+					<a class="scl_link" href="http://m.movie.naver.com/">네이버 영화 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.sports.news.naver.com/mNpbVod/index.nhn"><img width="57" height="57" alt="네이버 오릭스영상" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_snews.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 57<br>
+					<a class="scl_link" href="http://m.sports.news.naver.com/mNpbVod/index.nhn">네이버 오릭스영상 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.ya9.naver.com/"><img width="57" height="57" alt="네이버 야구9단" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_ya9.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 58<br>
+					<a class="scl_link" href="http://m.ya9.naver.com/">네이버 야구9단 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.sports.naver.com/baseball/index.nhn"><img width="57" height="57" alt="네이버 프로야구" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_baseball.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 59<br>
+					<a class="scl_link" href="http://m.sports.naver.com/baseball/index.nhn">네이버 프로야구 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.help.naver.com/index.nhn"><img width="57" height="57" alt="네이버 도움말" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_help.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 60<br>
+					<a class="scl_link" href="http://m.help.naver.com/index.nhn">네이버 도움말 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.news.naver.com/"><img width="57" height="57" alt="네이버 뉴스" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_news.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 61<br>
+					<a style="" class="scl_link" href="http://m.news.naver.com/">네이버 뉴스 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.nphoto.naver.com/"><img width="57" height="57" alt="네이버 포토앨범" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_photo.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 79<br>
+					<a class="scl_link" href="http://m.nphoto.naver.com/">네이버 포토앨범 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://moneybook.naver.com/"><img width="57" height="57" alt="네이버 가계부" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_moneybook.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 80<br>
+					<a class="scl_link" href="http://moneybook.naver.com/">네이버 가계부 바로가기</a>
+				</p>
+			</li>
+			<li class="scl_o">
+				<p class="scl_tmb"><a href="http://m.help.naver.com/index.nhn"><img width="57" height="57" alt="네이버 도움말" src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_help.jpg"></a></p>
+				<p class="scl_cnt">Scroll List 90<br>
+					<a class="scl_link" href="http://m.help.naver.com/index.nhn">네이버 도움말 바로가기</a>
+				</p>
+			</li>
+			</ul>
+			<div style="height: 40px; display: block;" class="scroll_pullUp">더 보시려면 위로 올려주세요</div>
+		</div>
+	</div>
+
+
+<br><br>
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+
+
+			<form name="setOption">
+			* 가속도 여부<br>
+			<input type="radio" value="1" id="momentum1" name="momentum" onclick="setUseMomentum();" checked><label for="momentum1">사용</label></input>
+			<input type="radio" value="0" id="momentum2" name="momentum" onclick="setNotUseMomentum();"><label for="momentum2" >사용하지 않음</label></input>
+			<br>
+			<input type="text" value="0.0005" id="momentumValue" ></input>
+			<br>
+
+			* 스크롤바 표기 여부<br>
+			<input type="radio" value="1" id="useScrollbar1" name="useScrollbar" checked><label for="useScrollbar1">표시</label></input>
+			<input type="radio" value="0" id="useScrollbar2" name="useScrollbar"  onclick="setUseScroll();"><label for="useScrollbar2">표시하지않음</label></input></br>
+			<br>
+
+			* 고정 스크롤바 사용 여부<br>
+			<input type="radio" value="1" id="useFixScrollbar1" name="useFixScrollbar" onclick="setUseFixScroll();"><label for="useFixScrollbar1">사용</label></input>
+			<input type="radio" value="0" id="useFixScrollbar2" name="useFixScrollbar"  checked><label for="useFixScrollbar2">사용하지않음</label></input></br>
+			</br>
+
+			* bounce 사용 여부<br>
+			<input type="radio" value="1" id="useBounce1" name="useBounce" checked><label for="useBounce1">사용</label></input>
+			<input type="radio" value="0" id="useBounce2" name="useBounce"><label for="useBounce2">사용하지않음</label></input></br>
+			</br>
+
+			* 크기 재 갱신 ( 기기 회전 및 브라우저 리사이즈 )<br>
+			<input type="radio" value="1" id="useResize1" name="useResize" ><label for="useResize1">사용</label></input>
+			<input type="radio" value="0" id="useResize2" name="useResize" checked><label for="useResize2">사용하지않음</label></input></br>
+			</br>
+
+			* 높이<br>
+			<input type="text" value="350" name="nHeight"></input>
+			<br>
+
+			<input type="button" onclick="callInit();" value="적용">
+			</form>
+			<br>
+
+			* pull down/up 사용<br>
+			<button class="btn" onclick="oScroll.setUsePullDown(true); callTestPullDown();" id="fadeln" type="button">PullDown 사용 (초기화됨)</button>
+			<button class="btn" onclick="oScroll.setUsePullDown(false); callTestPullDown();" id="fadeln" type="button">PullDown 사용불가 (초기화됨)</button><br>
+			<button class="btn" onclick="oScroll.setUsePullUp(true); callTestPullUp();" id="fadeln" type="button">PullUp 사용 (초기화됨)</button>
+			<button class="btn" onclick="oScroll.setUsePullUp(false); callTestPullUp();" id="fadeln" type="button">PullUp 사용불가 (초기화됨)</button><br>
+			<br>
+
+			* 스크롤 이동<br>
+<!--			<button class="btn" onclick="oScrollHorizon.scrollTo(oScrollHorizon.getRight())" type="button">가로스크롤러 우측끝으로 이동 (0ms)</button>
+<!--			<button class="btn" onclick="oScrollHorizon.scrollTo(oScrollHorizon.getLeft(),0,2000)" type="button">가로스크롤러 좌측끝으로 이동 (2,000ms)</button><br
+-->
+			<button class="btn" onclick="goTop(); oScroll.scrollTo(0,oScroll.getBottom());" type="button">세로스크롤러 최하단으로 이동 (0ms)</button>
+			<button class="btn" onclick="goTop(); oScroll.scrollTo(0,oScroll.getTop(),2000)" type="button">세로스크롤러 최상단으로 이동 (2,000ms)</button><br>
+
+
+	</div>
+</div>
+<textarea id="codeText" rows="20" style="width:100%"></textarea>
+
+
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.IndexPlugin.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PullPlugin.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.ScrollBarPlugin.js" charset="utf-8"></script>
+
+
+<script type="text/javascript">
+var oScroll = {};
+var htOption = {};
+var welDataList = jindo.$Element("dataList");
+
+var htActionParam = {};
+
+function callInit(){
+
+
+	if(oScroll.destroy){
+
+		oScroll.destroy();
+		var welNext = jindo.$Element("view_area").next();
+		if(welNext){
+			welNext.leave();	// 초기화시 동적 생성된 스크롤 element 가 남아있어 이를 제거하기 위한 처리
+		}
+
+		// pulldown/pullup 처리시 classname 을 초기화 하기 위한 처리
+		var pullArea = jindo.$Element("view").queryAll(".no_loading");
+		if(pullArea.length > 0){
+			jindo.$Element(pullArea[0]).className("scroll_pullDown");
+			jindo.$Element(pullArea[1]).className("scroll_pullUp");
+		}
+
+	}
+
+	var optionForm = document.setOption;
+
+	setOption(optionForm.momentum[0].checked);
+
+
+	htOption.bUseHScroll = false;
+	htOption.bUseVScroll = true;
+	htOption.bUseMomentum = optionForm.momentum[0].checked ? true : false;
+	htOption.nHeight = optionForm.nHeight.value || 350;
+	htOption.bUseScrollbar = optionForm.useScrollbar[0].checked ? true : false;
+	htOption.bUseFixedScrollbar = optionForm.useFixScrollbar[0].checked ? true : false;
+	htOption.bUseBounce = optionForm.useBounce[0].checked ? true : false;
+	htOption.bAutoResize = optionForm.useResize[0].checked ? true : false;
+
+	htOption.bUsePullDown = true;
+	htOption.fnPullDownIdle = function(wele) {
+		wele.className("no_loading");
+		wele.html("업데이트하시려면 아래로 내려주세요");
+	}
+	htOption.fnPullDownBeforeUpdate = function(wele) {
+		wele.className("no_loading");
+		wele.html("업데이트 합니다");
+	}
+	htOption.fnPullDownUpdating = function(wele) {
+		wele.className("loading");
+		wele.html("업데이트 중입니다...");
+	}
+	htOption.bUsePullUp = true;
+	htOption.fnPullUpIdle = function(wele) {
+		wele.className("no_loading");
+		wele.html("더 보시려면 위로 올려주세요");
+	}
+	htOption.fnPullUpBeforeUpdate = function(wele) {
+		wele.className("no_loading");
+		wele.html("로드 합니다");
+	}
+	htOption.fnPullUpUpdating = function(wele) {
+		wele.className("loading");
+		wele.html("로드 중...");
+	}
+
+	oScroll = new jindo.m.Scroll("view", htOption).attach({
+		pullDown : cfPullDownUpdate,
+		pullUp : cfPullUpUpdate
+	});
+
+	oScroll.setUsePullDown(false);
+	oScroll.setUsePullUp(false);
+
+
+
+	htActionParam.title  = "";
+	htActionParam.id = "view";
+	htActionParam.x = {to:200};
+	htActionParam.y = {to : 300 , from : 100};
+	htActionParam.speed = 32;
+	htActionParam.times = 1;
+
+	if(!htOption.bUseMomentum && htOption.bUseBounce){
+		useBounce();
+	}
+	if(htOption.bAutoResize){
+		jindo.$Element(window).xFakeEvent("orientationChange");
+	}
+
+	showOption();
+	autoTest();
+	/*
+	step("Scroll", function(){
+	touchSimulator.run(htActionParam,function(){
+	    //alert("callback");
+	    //callback
+	});
+	});
+	*/
+
+}
+
+function setOption(bMomentum){
+	if(bMomentum){
+		htOption.nDeceleration = jindo.$("momentumValue").value;
+	} else {
+		delete htOption.nDeceleration;
+	}
+}
+
+function setUseMomentum(){
+	jindo.$Element("momentumValue").show();
+}
+
+function setNotUseMomentum(){
+	jindo.$Element("momentumValue").hide();
+}
+
+
+
+	function cfMakeRow(sName) {
+		var sStr ='<p class="scl_tmb"><a href="http://m.news.naver.com/"><img src="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/demo/asset/img/ico_news.jpg" alt="네이버 뉴스" width="57" height="57" /></a></p><p class="scl_cnt">' + sName +'<br><a href="http://m.news.naver.com/" class="scl_link" style="">네이버 뉴스 바로가기</a></p>';
+		var wel = jindo.$Element("<li class='scl_o'>");
+		wel.html(sStr);
+		return wel;
+	}
+
+	var generatedCount = 1;
+
+	function cfPullDownUpdate(we) {
+		setTimeout(function() {
+			var nHeight = cfPrepend();
+			cfApppendRemove();
+			we.oScroll.refresh();
+			welDataList.hide();
+			we.oScroll.scrollTo(0,(we.oScroll.getCurrentPos().nTop + nHeight - 22));
+			welDataList.show();
+		},2000);
+	}
+
+	function cfPullUpUpdate(we) {
+		setTimeout(function() {
+				var nHeight = cfPrependRemove();
+				cfAppend();
+				we.oScroll.refresh();
+				welDataList.hide();
+				we.oScroll.scrollTo(0,(we.oScroll.getCurrentPos().nTop + nHeight + 30));
+				welDataList.show();
+		},2000);
+	}
+
+	function cfPrependRemove() {
+		var wel = welDataList.first();
+		var welNext = null;
+		var nHeight = 0;
+		for (var i=0; i<3; i++) {
+				nHeight += wel.height();
+				welNext = wel.next();
+				wel.leave();
+				wel = welNext;
+		}
+		return nHeight;
+	}
+
+	function cfApppendRemove() {
+		var wel = welDataList.last();
+		var welNext = null;
+		var nHeight = 0;
+		for (var i=0; i<3; i++) {
+				nHeight += wel.height();
+				welNext = wel.prev();
+				wel.leave();
+				wel = welNext;
+		}
+		return nHeight;
+	}
+
+	function cfPrepend() {
+		var wel = null;
+		var nHeight = 0;
+		for (var i=0; i<3; i++) {
+				wel = cfMakeRow((generatedCount++) + "번째로 열위에 추가된...");
+				welDataList.prepend(wel);
+				nHeight += wel.height();
+		}
+		return nHeight;
+	}
+
+	function cfAppend() {
+		var wel = null;
+		for (var i=0; i<3; i++) {
+				wel = cfMakeRow((generatedCount++) + "번째로 열아래에 추가된...");
+				welDataList.append(wel);
+		}
+	}
+
+
+	function setUseScroll(){
+		jindo.$("useFixScrollbar2").checked = true;
+	}
+
+	function setUseFixScroll(){
+		jindo.$("useScrollbar1").checked = true;
+	}
+
+	function useBounce(){
+		htActionParam.y = {to:100, from :400};
+	}
+
+	function showOption(){
+		var sText = [];
+		for (var key in htOption){
+			sText.push('"'+key+'" : "' + htOption[key] + '"');
+		}
+		$Element("codeText").text(sText.join(",\n"));
+	}
+
+	function goTop(){
+		window.scrollTo(0, 1);
+	}
+
+	function autoTest(){
+		goTop();
+		step("목록 내용을 선택하여 아래로 스크롤한다.",function(){
+			touchSimulator.run({
+				"id": "view",
+				"x"	: {"to":100},
+				"y"	: {"to":100, "from":300},
+				"speed" : 30
+			});
+		});
+
+		step("목록 내용을 선택하여 위로 천천히 스크롤한다.",function(){
+			touchSimulator.run({
+				"id": "view",
+				"x"	: {"to":100},
+				"y"	: {"to":300, "from":100},
+				"speed" : 15
+			});
+		});
+
+		step("목록 내용을 선택하여 위로 빠르게 스크롤한다.",function(){
+			touchSimulator.run({
+				"id": "view",
+				"x"	: {"to":100},
+				"y"	: {"to":300, "from":100},
+				"speed" : 30
+			});
+		});
+
+		step("목록 내용을 선택하여 아래로 천천히 스크롤한다",function(){
+			touchSimulator.run({
+				"id": "view",
+				"x"	: {"to":100},
+				"y"	: {"to":100, "from":300},
+				"speed" : 15
+			});
+		});
+
+		step("목록 내용을 선택하여 아래로 빠르게 스크롤한다.",function(){
+			touchSimulator.run({
+				"id": "view",
+				"x"	: {"to":100},
+				"y"	: {"to":100, "from":300},
+				"speed" : 30
+			});
+		});
+
+		step("목록 내용을 선택 후, 위.아래로 스크롤후 손을 뗀다",function(){
+			touchSimulator.run({
+				"id": "view",
+				"x"	: {"to":100},
+				"y"	: {"to":100, "from":300},
+				"speed" : 30
+			});
+		});
+
+	}
+
+	function callTestPullDown(){
+		goTop();
+		oScroll.scrollTo(0,oScroll.getTop());
+
+		step("목록 내용을 선택하여 아래로 천천히 스크롤한다.이때 손을 떼지 않는다.",function(){
+
+			var richEle = $Element("view");
+			richEle.xFakeEvent("touchstart",{"touches":[{"pageX":100,"pageY":100}]});
+
+			var operator = 1;
+			var count = 1;
+			var sId= setInterval(function(){
+				richEle.xFakeEvent("touchmove",{"touches":[{"pageX":100,"pageY":100+(operator*count*20)}]});
+				if(count==10){
+					clearInterval(sId);
+					next();
+				}
+				count++;
+			},17);
+
+		});
+
+
+		step("손을 떼지 않고, 위로 천천히 스크롤 한다.",function(){
+
+			var richEle = $Element("view");
+			var operator = -1;
+			var count = 1;
+			var sId= setInterval(function(){
+				richEle.xFakeEvent("touchmove",{"touches":[{"pageX":100,"pageY":300+(operator*count*20)}]});
+				if(count==5){
+					clearInterval(sId);
+					next();
+				}
+				count++;
+			},30);
+
+		});
+
+		step("손을 뗀다.",function(){
+			$Element("view").xFakeEvent("touchend",{"touches":[{"pageX":100,"pageY":100}]});
+
+			setTimeout(function(){
+				next();
+			},500);
+		});
+
+
+		step("목록 내용을 선택하여 아래로 천천히 스크롤한다.이때 손을 떼지 않는다.2",function(){
+
+			var richEle = $Element("view");
+			richEle.xFakeEvent("touchstart",{"touches":[{"pageX":100,"pageY":100}]});
+
+			var operator = 1;
+			var count = 1;
+			var sId= setInterval(function(){
+				richEle.xFakeEvent("touchmove",{"touches":[{"pageX":100,"pageY":100+(operator*count*20)}]});
+				if(count==10){
+					clearInterval(sId);
+					next();
+				}
+				count++;
+			},17);
+
+		});
+
+		step("손을 뗀다.2",function(){
+			$Element("view").xFakeEvent("touchend",{"touches":[{"pageX":100,"pageY":300}]});
+		});
+
+	}
+
+	function callTestPullUp(){
+		goTop();
+		oScroll.scrollTo(0,oScroll.getBottom())
+		step("목록 내용을 선택하여 위로 천천히 스크롤한다.이때 손을 떼지 않는다.",function(){
+
+			var richEle = $Element("view");
+			richEle.xFakeEvent("touchstart",{"touches":[{"pageX":100,"pageY":300}]});
+
+			var operator = -1;
+			var count = 1;
+			var sId= setInterval(function(){
+				richEle.xFakeEvent("touchmove",{"touches":[{"pageX":100,"pageY":300+(operator*count*20)}]});
+				if(count==10){
+					clearInterval(sId);
+					next();
+				}
+				count++;
+			},17);
+
+		});
+
+
+		step("손을 떼지 않고, 위로 천천히 스크롤 한다.3",function(){
+
+			var richEle = $Element("view");
+			var operator = 1;
+			var count = 1;
+			var sId= setInterval(function(){
+				richEle.xFakeEvent("touchmove",{"touches":[{"pageX":100,"pageY":100+(operator*count*20)}]});
+				if(count==7){
+					clearInterval(sId);
+					next();
+				}
+				count++;
+			},30);
+
+		});
+
+		step("손을 뗀다.3",function(){
+			$Element("view").xFakeEvent("touchend",{"touches":[{"pageX":100,"pageY":200}]});
+
+			setTimeout(function(){
+				next();
+			},500);
+		});
+
+
+		step("목록 내용을 선택하여 위로 천천히 스크롤한다.이때 손을 떼지 않는다.2",function(){
+
+			var richEle = $Element("view");
+			richEle.xFakeEvent("touchstart",{"touches":[{"pageX":100,"pageY":300}]});
+
+			var operator = -1;
+			var count = 1;
+			var sId= setInterval(function(){
+				richEle.xFakeEvent("touchmove",{"touches":[{"pageX":100,"pageY":300+(operator*count*20)}]});
+				if(count==10){
+					clearInterval(sId);
+					next();
+				}
+				count++;
+			},17);
+
+		});
+
+		step("손을 뗀다.4",function(){
+			$Element("view").xFakeEvent("touchend",{"touches":[{"pageX":100,"pageY":200}]});
+		});
+	}
+callInit();
+</script>
+</body>
+</html>

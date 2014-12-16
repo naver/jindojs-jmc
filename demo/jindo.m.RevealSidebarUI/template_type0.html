@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.RevealSidebarUI</title>
+<meta name="class-lists" content="jindo.m.RevealSidebarUI">
+<meta name="description" content="가장 기본적인 사용 예제입니다.">
+<!-- SamplePage 기본 CSS -->
+<style type="text/css">
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif;font-size:14px;line-height:1.25em}
+body{position:relative;background-color:#f4f4f4;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+button {padding:4px 5px;border:1px solid #bababa;background-color:#f1f1f1;color:#606060;font-size:1em}
+
+.menubtn{
+	position:absolute;
+	top:5px;width:40px;
+	border-radius:9em;
+	background:#6e94c9;
+	line-height:20px;color:#FFF;
+	cursor:pointer;text-align:center
+}
+.menubtn.left{left:8px}
+.menubtn.right{right:8px}
+.rs-left,.rs-right{display:none}
+.rs-main{
+	box-shadow:0 0 20px rgba(0,0,0,.6);/* 안쪽 그림자 크기, 색상 수정 */
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,.6);/* 안쪽 그림자 크기, 색상 수정 */
+}
+.rs-main h2{height:30px;background:url(../asset/img/bg.png) repeat-x 0 -85px;font-size:.93em;line-height:30px;color:#FFF;text-align:center}
+.rs-main .rs-title{background:#fff}
+.rs-title{position:relative;width:100%;padding:10px 0;background:#777;text-align:center;white-space:nowrap;text-overflow:ellipsis}
+</style>
+</head>
+<body>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div class="rs-body">
+	<div class="rs-left">
+		<!-- header -->
+		<div class="rs-header rs-title">
+			헤더 영역 (Left)
+		</div>
+		<!-- //header -->
+		<!-- content(필수) -->
+		<div class="rs-content">
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		</div>
+		<!-- //content(필수) -->
+
+		<!-- footer -->
+		<div class="rs-footer rs-title" position="fixed">
+				풋터 영역입니다.
+		</div>
+		<!-- //footer -->
+	</div>
+
+	<div class="rs-main">
+		<h2>PageLayoutUI를 사용하지 않는 경우</h2>
+		<div class="rs-title">
+			헤더 영역 (Main)
+			<span class="menubtn left" onclick="oRevealSidebarUI.toggleSlide()">메뉴</span>
+			<span class="menubtn right" onclick="oRevealSidebarUI.toggleSlide(true)">메뉴</span>
+		</div>
+		<p>
+			PageLayoutUI를 사용하지 않고, 사용자가 직접 마크업을 작성하여 구성할 수 있습니다.
+		</p>
+	</div>
+
+	<div class="rs-right">
+		<!-- content(필수) -->
+		<div class="rs-content">
+			컨텐츠 영역입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		</div>
+		<!-- //content(필수) -->
+
+		<!-- footer -->
+		<div class="rs-footer rs-title" position="fixed">
+				풋터 영역입니다.
+		</div>
+		<!-- //footer -->
+	</div>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- jindo 프레임웍 import -->
+<!--
+	JMC(jindo mobile component) import
+	아래 파일들은 선택다운로드(http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html)에서
+	압축다운로드된 한개의 파일(jindo_mobile_component.js)로 대체 가능하다.
+-->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CoreScroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="uft-8"></script>-->
+<script type="text/javascript" src="../../src/jindo.m.RevealSidebarUI.js" charset="uft-8"></script>
+<script charset="utf-8" src="../../src/jindo.m.RevealCommon.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.SlideReveal.js"></script>
+<!-- // jindo 프레임웍 import -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oRevealSidebarUI = new jindo.m.RevealSidebarUI();
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+</body>
+</html>

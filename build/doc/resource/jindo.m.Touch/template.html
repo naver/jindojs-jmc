@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								기준 레이어에서의 사용자 터치 움직임을 분석하여  scroll,tap 등의 동작을 분석하는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+				<!-- 상세 설명 -->
+				<h3>Description</h3>
+				<div class="t1">
+					모바일의 touchstart, touchmove, touchend 이벤트를 분석하여 현재 사용자의 터치 움직임에 대해 분석하는 컴포넌트이다. <br><br>
+					
+					touch 이벤트를 지원하지 않는 브라우저에서는 mouse 이벤트를 사용한다.<br>
+					hScroll, vScroll, dScroll, tap, doubleTap, longTap 등을 분석하여 커스텀이벤트를 발생시킨다.<br><br>
+					<span style="color:#ff0080;">
+					멀티터치일경우  pinch, rotate 를 분석하여 커스텀이벤트를 발생시킨다 <br>
+					현재 분석된 움직임이 pinch 이면서 rotate일 경우 'touchmove'의 sMoveType에는 'pinch-rotate' 값이 출력되고,  <br>
+					touchend 이후에 'pinch', 'rotate' 커스텀이벤트가 각각 호출된다. </span> <br><br> 
+					
+					각 스크롤을 분석하는 기준값은 설정이 가능하며 기본값의 기준은 아래 그림과  같다.<br>
+					<img src="../resource/img/touch.jpg"/><br/>
+					[단말화면 예시]<br><br>
+					
+					<div class="point_box">
+						<font style="color:#e11b10;">√</font> <span style="font-weight:bold;">수평 스크롤의 기준 기울기 </span> = (단말기 세로/2) / 단말기 가로 <br>
+						<font style="color:#e11b10;">√</font> <span style="font-weight:bold;">수직 스크롤의 기준 기울기 </span> = 단말기 세로 / (단말기 가로/2) <br>
+					</div><br>
+					
+					수평 스크롤 기울기 이하 일 경우 수평스크롤로 분석하고 수직 스크롤 기울기 이상 일경우 수직 스크롤로 분석한다. <br>
+					수평스크롤과 수직스크롤 기울기 사이을 대각선 스크롤로 분석한다.	
+									
+				</div>	
+
+				<!-- 주의사항 -->				
+				<h3 class="notice">Notice</h3>
+				<div class="t1">
+					<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+					<ul class="t2">
+						<li>안드로이드 2.1 이상</li>
+						<li>iOS 3.0 이상</li>
+						<li>멀티터치의 경우 iOS와  안드로이드 3.0이상 지원</li>
+					</ul>
+					<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+					<dl>
+						<dt><span style="color:#ff0080;font-weight:bold;">멀티터치 pinch, rotate</span></dt>
+						<dd>
+							<div class="point_box">
+								iOS의 경우 gesture 이벤트가 있지만 각 touch지점에 대한 좌표값을 얻을 수 없기 때문에 이 이벤트를 사용하지 않고 touch이벤트로 분석한다. <br>
+								안드로이드의 경우 3.0부터 touchmove에 멀티터치가 지원되지만. 브라우저 성능상 touchmove에서 엘리먼트의 scale, rotate이 불가능하다.<br>
+								안드로이드의 경우 4.0이상부터 pinch와 rotate를 이용하는것이 권장한다.
+								
+							</div>							
+						</dd>
+						<dt>안드로이드3.0, 안드로이드4.0</dt>
+						<dd><div class="point_box">
+							touch이벤트가 기본 스크롤과 함께 동작할 때 touchmove, touchend 이벤트가 발생하지 않는 버그가 있다.<br>
+							 정상적으로 touch이벤트를 발생하기 위해서는 기본 스크롤 기능을 막는 코드를 추가 해주어야 한다. <br>
+							<textarea class="brush: javascript;">
+								var oTouch = new jindo.m.Touch("layer1");
+								//touchstart 혹은 touchmove에서 한번만 작업해 주면 된다.
+								oTouch.attach({
+									'touchStart' : function(oCustomEvent){
+										oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
+									},
+									'touchMove' : function(oCustomEvent){
+										oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
+									}
+								});
+							</textarea>
+						</div></dd>
+						
+						<dt>안드로이드2.1</dt>
+						<dd><div class="point_box">
+							기본 touchmove 이벤트가 제대로 발생하지 않는다.
+							<div class="post">안드로이드2.1의 경우 손을 화면에서 떼는 순간 touchmove가 발생하는 브라우저 버그가 있다.<br>
+							touchmove이벤트를 제대로 발생시키기 위해서는 touchstart에서 기본동작을 중지시켜야 한다.</div>
+						</div></dd>
+						
+						
+						<dt>iOS 3.X</dt>
+						<dd><div class="point_box">
+							'longTap' 커스텀 이벤트가 발생하지 않는다.
+							<div class="post">클립보드 기능이 활성화 되는 순간 touchCancel이 발생되면서 터치 정보를 얻어 올 수 없다.</div>
+						</div></dd>
+						
+						<dt>NexusS(안드로이드2.3)</dt>
+						<dd><div class="point_box">
+							클립보드 기능이 활성화 되는 순간 DOM에 대한 조작이 불가능하다.
+							<div class="post">'longTap'이벤트에 DOM에 대한 조작을 하는 핸들러를 추가했다면 그 부분이 정상동작하지 않는것 처럼 보일 수 있다.</div>
+						</div></dd>
+						
+					</dl>
+				</div>
+				
+				<!-- 초기화 방법 -->
+				<h3>Initialization</h3>
+				<div class="t1">
+					<dl>
+						<dt>HTML</dt>
+						<dd>
+							<!-- 마크업 구조 -->
+							<textarea class="brush: xml;">
+								<div id="layer1">
+									사용자 터치 움직임을 분석할 대상 엘리먼트
+								</div>
+							</textarea>							
+						</dd>
+						<dt>Javascript</dt>
+						<dd>
+							<textarea class="brush: javascript;">
+								var oTouch = new jindo.m.Touch("layer1", {
+									nMomentumDuration :350,
+									nMoveThreshold : 7,
+									nSlopeThreshold : 25,
+									nLongTapDuration : 1000,
+									nDoubleTapDuration : 400,
+									nTapThreshold : 6,
+									nPinchThreshold : 0.1,
+									nRotateThreshold : 5,
+									bActivateOnload : true
+								});
+							</textarea>
+							<div class="t2">
+								<ul>
+									<li>첫번째 parameter는 touch 대상 엘리먼트,문자형태의 id또는 HTML Element객체를 받을수 있다.</li>
+									<li>두번째 parameter는 option으로 써  아래 표 참조</li>
+								</ul>
+							</div>
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- 초기화 옵션 -->
+				<h3>Option</h3>
+				<div class="t1">
+					<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">nMoveThreshold</td>
+							<td>touchMove 커스텀 이벤트를 발생시키는 최소 단위 움직임 픽셀<br>
+								<span style="color:#0075C8">세로모드의 스크롤 작업일 경우  0~2 정도가 적당하다</span><br>
+								<span style="color:#0075C8">가로모드의 스크롤 작업일 경우 4~7 정도가 적당하다</span>
+							</td>
+							<td>7</td>
+						</tr>
+						<tr>
+							<td class="name">nSlopeThreshold</td>
+							<td>scroll 움직임에 대한 방향성(수직,수평,대각선)을 판단하는 움직인 거리
+								<ul>
+									<li>사용자가 터치를 시작한 이후에 25픽셀 이상 움직일 경우 scroll에 대한 방향을 판단한다.</li>
+									<li>25픽셀이하로 움직였을 경우 방향성에 대해서 판단하지 않는다.</li>
+								</ul> 
+							</td>
+							<td>25</td>
+						</tr>
+						<tr>
+							<td class="name">nMomentumDuration</td>
+							<td>가속에 대해 판단하는 기준시간(단위 ms)
+								<ul>
+									<li>touchstart, touchend 간격의 시간이 nMomentumDuration 보다 작을 경우 가속값을 계산한다.</li>									
+									<li>일반적으로 android가 iOS보다 반응 속도가 느리므로 iOS보다 큰값을 세팅한다.</li>
+									<li><span style="color:#0075C8">android의 경우 500~1000 정도가 적당하다.</span></li>
+									<li><span style="color:#0075C8">iOS의 경우 200~350이 적당하다.</span></li>
+								</ul>
+							</td>
+							<td>350</td>
+						</tr>
+						<tr>
+							<td class="name">nTapThreshold</td>
+							<td>tap에 대해 판단할때 최대 움직인 거리 (단위 px)
+								<ul>
+									<li>사용자 터치를 시작한 이후 수직,수평방향으로 nTapThreshold 이하로 움직였을때 tap이라고 판단한다.</li>
+									<li><span style="color:#0075C8">doubleTap을 사용할 경우에는 이 값을 좀더 크게 5~8 정도 설정하는 것이 적당하다.</span></li>
+									<li><span style="color:#0075C8">doubleTap을 사용하지 않을 때 iOS에서는 0~2정도 설정하는 것이 적당하다.</span></li>
+									<li><span style="color:#0075C8">doubleTap을 사용하지 않을 때 android에서는  4~6 정도 설정하는 것이 적당하다.</span></li>									
+								</ul>
+							</td>
+							<td>6</td>
+						</tr>					
+							
+						<tr>
+							<td class="name">nLongTapDuration</td>
+							<td>롱탭을 판단하는 기준 시간(단위ms)
+								<ul>
+									<li><span style="color:#0075C8">600~1000정도의 값이 적당하다.</span></li>
+								</ul>
+							</td>
+							<td>1000</td>
+						</tr>
+						<tr>
+							<td class="name">nDoubleTapDuration</td>
+							<td>더블탭을 판단하는 탭간의 기준 시간(단위ms)
+								<ul>
+									<li><span style="color:#0075C8">이 값을 길게 설정하면 Tap 커스텀 이벤트의 발생이 늦어지기 때문에 1500 이상의 값은 세팅하지 않는것이 적당하다.</span></li>
+								</ul>
+							</td>
+							<td>400</td>
+						</tr>
+						<tr>
+							<td class="name">nPinchThreshold</td>
+							<td>pinch를 판단하는 최소 scale 값
+								<ul>
+									<li><span style="color:#0075C8">최초의 멀티터치간의 거리를 1의 비율로 보았을때 움직이는 터치간의 간격이 이 값보다 크거나 작게 변하면 pinch로 분석한다.</span></li>
+								</ul>
+							</td>
+							<td>0.1</td>
+						</tr>
+						<tr>
+							<td class="name">nRotateThreshold</td>
+							<td>rotate 판단하는 최소 angle 값								
+							</td>
+							<td>5</td>
+						</tr>
+						<tr>
+							<td class="name">bActivateOnload</td>
+							<td>Touch 컴포넌트가 로딩 될때 활성화 시킬지 여부를 결정한다.<br> 
+							false로 설정하는 경우에는  oTouch.activate()를 호출하여 따로 활성화 시켜야 한다.</td>
+							<td>true</td>
+						</tr>					
+					</table>
+				</div>
+				
+				<!-- 커스텀 이벤트 -->
+				<h3>Custom Event</h3>
+				<div class="t1">
+					<table class="customevent" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Custom Event Object Properties</th>
+						</tr>
+						<tr class="title">
+							<td class="name">touchStart</td>
+							<td>사용자가 터치 영역에 터치하는 순간 발생한다.가장 처음 발생하는 커스텀이벤트</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : 이후 모든 커스텀 이벤트를 중지한다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oTouch.attach("touchStart", function(oCustomEvent) {
+									//oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT); //touchstart에 기본동작을 중지 시키면 하이라이팅, 클릭 모든 이벤트가 막힌다.																	
+									// oCustomEvent.stop()를 호출 하면 이후 모든 이벤트가 발생하지 않음
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">touchMove</td>
+							<td>nMoveThreshold 옵션값  이상 움직였을 경우 발생한다.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>sMoveType (String) : 현재 분석된 움직임</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove(혹은 touchStart)의 X좌표와의 상대적인 거리.(직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove(혹은 touchStart)의 Y좌표와의 상대적인 거리.(직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의  X좌표와의 상대적인 거리.(touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의  Y좌표와의 상대적인 거리.(touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nStartX (Number) : touchStart의  X좌표</li>
+									<li>nStartY (Number) : touchStart의  Y좌표</li>							
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>nScale (Number) : 멀티터치일경우 계산된 scale값 (싱글터치의 경우 이 프로퍼티가 없다)</li>
+									<li>nRotation (Number) : 멀티터치일경우 계산된 rotation값 (싱글터치의 경우 이 프로퍼티가 없다)</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop (Function) : 이후 커스텀이벤트는 발생하지 않는다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oTouch.attach("touchMove", function(oCustomEvent) {
+									if(oCustomEvent.sMoveType == 'hScroll'){
+										oCustomEvent.oEvent.stop(jindo.$Event.CANCEL_DEFAULT); //touchMove에 기본동작을 중지하면 브라우저 스크롤이 일어나지 않는다.
+									}																									
+									// oCustomEvent.stop()를 호출 하면 이후 모든 이벤트가 발생하지 않음.
+								});
+								</textarea>
+							</td>
+						</tr>
+						
+						
+						<tr class="title">
+							<td class="name">touchEnd</td>
+							<td>사용자의 터치가 끝난 시점에 발생한다.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>sMoveType (String) : 현재 분석된 움직임</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove 혹은 touchStart의 X좌표와의 상대적인 거리 (직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove 혹은 touchStart의 Y좌표와의 상대적인 거리 (직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리 (touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리 (touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>nSpeedX (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수평방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nSpeedY (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수직방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nMomentumX (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수평방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nMomentumY (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수직방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nDuration (Number) : 터치 시작 시점과 엔드 시점 사이의 시간 간격 (ms)</li>
+									<li>nStartX (Number) : touchStart의  X좌표</li>
+									<li>nStartY (Number) : touchStart의  Y좌표</li>							
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>nScale (Number) : 멀티터치일경우 계산된 scale값 (싱글터치의 경우 이 프로퍼티가 없다)</li>
+									<li>nRotation (Number) : 멀티터치일경우 계산된 rotation값 (싱글터치의 경우 이 프로퍼티가 없다)</li>									
+									<li>stop (Function) : stop (Function) : stop를 호출하여 영향 받는 것이 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("touchEnd", function(oCustomEvent) {
+									
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">tap</td>
+							<td>사용자의 터치가 끝난 이후에 움직임이 tap으로 분석되었을 경우 발생한다.(touchEnd이후에 발생) <br>
+							만약 doubleTap의 커스텀 이벤트 핸들러가 있는 경우 doubleTap에 대한 분석을 위해 touchEnd 이후에 기준 시간 이후에 tap이 발생한다.
+							</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>sMoveType (String) : 현재 분석된 움직임</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove 혹은 touchStart의 X좌표와의 상대적인 거리(직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove 혹은 touchStart의 Y좌표와의 상대적인 거리(직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리 (touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리 (touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것이 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("tap", function(oCustomEvent) {
+									///A링크에 대한 이벤트 처리하는 예제
+									if(oCustomEvent.element.tagName == 'A'){
+										location.href = oCustomEvent.element.href;
+									}
+								});
+								</textarea>
+							</td>
+						</tr>			
+						
+						<tr class="title">
+							<td class="name">longTap</td>
+							<td>사용자의 터치 시작 이후로 일정 기준시간 동안 계속 움직임이 tap으로 분석되면 발생 한다.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것이 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("longTap", function(oCustomEvent) {
+									//롱탭에 대한 액션을 수행한다;
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">doubleTap</td>
+							<td>tap과  tap사이의 발생간격이 기준 시간 이하일경우 발생한다.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 터치영역의 X좌표</li>
+									<li>nY (Number) : 터치 영역의 Y좌표</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것이 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("doubleTap", function(oCustomEvent) {
+									// 더블탭에 대한 액션을 수행한다.
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">vScroll</td>
+							<td>사용자의 터치가 끝난 이후에 움직임이 수직 스크롤으로 분석되었을 경우 발생한다.<br>
+							touchEnd이후에 발생.분석 기준의 픽셀 이하로 움직였을 경우에는 분석되지 않아서 커스텀 이벤트 발생하지 않는다.						
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove 혹은 touchStart의 X좌표와의 상대적인 거리 (직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove 혹은 touchStart의 Y좌표와의 상대적인 거리 (직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리 (touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리 (touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nSpeedX (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수평방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nSpeedY (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수직방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nMomentumX (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수평방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nMomentumY (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수직방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nStartX (Number) : touchStart의  X좌표</li>
+									<li>nStartY (Number) : touchStart의  Y좌표</li>							
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것이 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("vScroll", function(oCustomEvent) {
+									// 수직 스크롤에 대한 액션을 수행한다.
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">hScroll</td>
+							<td>사용자의 터치가 끝난 이후에 움직임이 수평 스크롤으로 분석되었을 경우 발생한다.<br>
+							touchEnd이후에 발생.분석 기준의 픽셀 이하로 움직였을 경우에는 분석되지 않아서 커스텀 이벤트 발생하지 않는다.						
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove 혹은 touchStart의 X좌표와의 상대적인 거리 (직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove 혹은 touchStart의 Y좌표와의 상대적인 거리 (직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리 (touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리 (touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nSpeedX (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수평방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nSpeedY (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수직방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nMomentumX (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수평방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nMomentumY (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수직방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nStartX (Number) : touchStart의  X좌표</li>
+									<li>nStartY (Number) : touchStart의  Y좌표</li>							
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것이 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("hScroll", function(oCustomEvent) {
+									// 수평 스크롤에 대한 액션을 수행한다.
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">dScroll</td>
+							<td>사용자의 터치가 끝난 이후에 움직임이 대각선 스크롤으로 분석되었을 경우 발생.<br>
+							touchEnd이후에 발생.분석 기준의 픽셀 이하로 움직였을 경우에는 분석되지 않아서 커스텀 이벤트 발생하지 않는다.						
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nVectorX (Number) : 이전 touchMove 혹은 touchStart의 X좌표와의 상대적인 거리 (직전 좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nVectorY (Number) : 이전 touchMove 혹은 touchStart의 Y좌표와의 상대적인 거리 (직전 좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nDistanceX (Number) : touchStart의 X좌표와의 상대적인 거리 (touchStart좌표에서 오른쪽방향이면 양수, 왼쪽 방향이면 음수)</li>
+									<li>nDistanceY (Number) : touchStart의 Y좌표와의 상대적인 거리 (touchStart좌표에서 위쪽방향이면 음수, 아래쪽 방향이면 양수)</li>
+									<li>nSpeedX (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수평방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nSpeedY (Number) : 가속 발생 구간일 경우 현재 터치움직임의 수직방향 속도, 가속 구간이 아닐경우 0</li>
+									<li>nMomentumX (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수평방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nMomentumY (Number) : 가속 발생 구간일 경우 현재 터치 움직임의 수직방향 운동에너지값,가속 구간이 아닐경우 0</li>
+									<li>nStartX (Number) : touchStart의  X좌표</li>
+									<li>nStartY (Number) : touchStart의  Y좌표</li>							
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것은 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("dScroll", function(oCustomEvent) {
+									// 대각선 스크롤에 대한 액션을 수행한다.
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">pinch</td>
+							<td>사용자의 터치가 끝난 이후에 움직임이 pinch로 분석되었을 경우 발생.<br>
+							touchEnd이후에 발생.분석 기준의 scale값 이하일 경우  분석되지 않아서 커스텀 이벤트 발생하지 않는다.						
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nScale (Number) : 멀티터치일경우 계산된 scale값 </li>
+									<li>nRotation (Number) : 멀티터치일경우 계산된 rotation값 (pinch이면서 rotate일 경우 이 값도 존재한다)</li>									
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것은 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("pinch", function(oCustomEvent) {
+									// pinch에 대한 액션을 수행한다.
+								});
+								</textarea>
+							</td>
+						</tr>
+						<tr class="title">
+							<td class="name">rotate</td>
+							<td>사용자의 터치가 끝난 이후에 움직임이 rotate로 분석되었을 경우 발생.<br>
+							touchEnd이후에 발생.분석 기준의 rotate값 이하일 경우  분석되지 않아서 커스텀 이벤트 발생하지 않는다.						
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>element (HTMLElement) : 현재 터치된 영역의 Element</li>
+									<li>nX (Number) : 현재 터치영역의 X좌표</li>
+									<li>nY (Number) : 현재 터치 영역의 Y좌표</li>
+									<li>aX (Array) : 모든 터치 영역의 X좌표</li>
+									<li>aY (Array) : 모든 터치 영역의 Y좌표</li>
+									<li>nRotation (Number) : 멀티터치일경우 계산된 rotation값</li>	
+									<li>nScale (Number) : 멀티터치일경우 계산된 scale값  (pinch이면서 rotate일 경우 이 값도 존재한다)</li>																	
+									<li>nStartTimeStamp (Number) : touchStart의 timestamp 값</li>
+									<li>oEvent (Object) : jindo.$Event object</li>
+									<li>stop (Function) : stop를 호출하여 영향 받는 것은 없다.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								커스텀이벤트 핸들링 예제
+								<textarea class="brush: javascript;">
+								oComponent.attach("rotate", function(oCustomEvent) {
+									// pinch에 대한 액션을 수행한다.
+								});
+								</textarea>
+							</td>
+						</tr>								
+					</table>
+				</div>					
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+ <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>	
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>									 
+							  <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name" >v1.3.0 </td>
+							 	<td >-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="4">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>pinch (MultiTouch)</td>
+                               	<td>Custom Event 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>rotate (MultiTouch)</td>
+                               	<td>Custom Event 추가</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               	<td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

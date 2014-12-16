@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>2단 탭 예제</title>
+<meta name="class-lists" content="jindo.m.Tab">
+<meta name="description" content="이중 탭을 구성할 수 있다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.tc-base{margin:10px}
+.tc-tab-cont{position:relative;*zoom:1}
+.tc-tab-cont:after{display:block;clear:both;content:''}
+
+.tc-tab{float:left;margin-right:1px;background:#4CB1E5}
+.tc-taba{float:left;text-decoration:none}
+.tc-taba span{position:relative;letter-spacing:-1px;cursor:pointer}
+.tc-taba span{display:inline-block;padding:0;color:#fff}
+
+.tc-tab-cont .tc-selected{background-color:#315593}
+.tc-tab-cont .tc-selected a span{font-weight:bold}
+
+.tc-panel-cont{width:100%;height:190px;border:2px solid #315593;background:#f4f4f4;color:#666}
+.tc-panel{display:none;padding:10px}
+.tc-selected{display:block}
+
+.subtc-base{margin:15px 5px 10px}
+.subtc-tab-cont{display:block;overflow:hidden;position:relative;top:0;left:0;width:100%;margin:0;padding:0;border:0;white-space:nowrap;list-style:none;*zoom:1}
+.subtc-tab-cont:after{display:block;clear:both;content:''}
+
+.subtc-tab{float:left;position:relative;left:-1px;padding:0 10px;border-left:1px solid #ddd}
+.subtc-taba{display:block;margin:0;padding:0;font-weight:normal;color:#666;letter-spacing:0}
+
+.subtc-tab-cont .subtc-selected a span{font-weight:bold;color:#333;letter-spacing:-1px}
+.subtc-panel-cont{width:95%;height:60px;margin-top:3px;padding:10px;border:1px solid #ccc;background-color:#fff;color:#000}
+.subtc-panel{display:none}
+.subtc-selected{display:block}
+li a{display:block;padding:8px 12px}
+li span{margin-left:0}
+
+/*@code title="CSS"*/
+.tc-base {}
+.tc-tab-cont{}
+.tc-tab {}
+.tc-taba {}
+.tc-panel-cont{}
+.tc-panel {display:none;}
+.tc-selected {display:block}
+
+.subtc-base {}
+.subtc-tab-cont{}
+.subtc-tab {}
+.subtc-taba {}
+.subtc-panel-cont{}
+.subtc-panel {display:none;}
+.subtc-selected {display:block}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!--@code title="HTML"-->
+<div id="tabComponent" class="tc-base">
+	<ul class="tc-tab-cont">
+	<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba"><span>1단계 탭1</span></a></li>
+	<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba"><span>1단계 탭2</span></a></li>
+	<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba"><span>1단계 탭3</span></a></li>
+	</ul>
+
+	<div class="tc-panel-cont">
+		<div class="tc-panel">
+			1단계 <strong style="color:#315593">첫번째</strong> 탭입니다.<br>1단계 첫번째 탭이 선택되면, 2단계의 첫번째 탭이 선택됩니다.<br><br>
+
+			<div id="innerTabComponent" class="subtc-base">
+				<ul class="subtc-tab-cont">
+					<li class="subtc-tab"><a href="javascript:void(0)" class="subtc-taba"><span>2단계 탭1</span></a></li>
+					<li class="subtc-tab"><a href="javascript:void(0)" class="subtc-taba"><span>2단계 탭2</span></a></li>
+					<li class="subtc-tab"><a href="javascript:void(0)" class="subtc-taba"><span>2단계 탭3</span></a></li>
+				</ul>
+				<div class="subtc-panel-cont">
+					<div class="subtc-panel">
+						2단계<strong style="color:#315593">첫번째</strong> 탭입니다.
+					</div>
+					<div class="subtc-panel">
+						2단계<strong style="color:#315593">두번째</strong> 탭입니다.
+					</div>
+					<div class="subtc-panel">
+						2단계<strong style="color:#315593">세번째</strong> 탭입니다.
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tc-panel">
+			1단계 <strong style="color:#315593">두번째</strong> 탭입니다.<br>1단계 첫번째 탭이 선택되면, 2단계의 첫번째 탭이 선택됩니다.
+		</div>
+		<div class="tc-panel">
+			1단계 <strong style="color:#315593">세번째</strong> 탭입니다.<br>1단계 첫번째 탭이 선택되면, 2단계의 첫번째 탭이 선택됩니다.
+		</div>
+	</div>
+</div>
+<!--code@-->
+
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<p> 일반탭 또는 더보기탭을 중첩으로 사용하여 탭을 구성할 수 있다.</p>
+</div>
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Tab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+	var oOuterTab = new jindo.m.Tab("tabComponent",{
+		sClassPrefix 		: "tc-"
+	});
+
+	var oInnererTab = new jindo.m.Tab("innerTabComponent",{
+		sClassPrefix 		: "subtc-"
+	});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>이미지를 이용한 세로 우측형</title>
+<meta name="class-lists" content="jindo.m.CheckBox">
+<meta name="description" content="이미지를 이용한 세로 우측형 CheckBox">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* Check 시 적용 CSS */
+.fcb-checkbox-on .fcb-imgCheckbox{
+	/* 체크 되었을 경우  이미지 모양*/
+	background:#4596CE url(../asset/img/icons-18-white.png) -648px 50% no-repeat !important;
+}
+/* 비활성화시 적용 CSS */
+.fcb-checkbox-disable{
+	opacity:.3; /* 투명도 */
+	cursor: default; /* 마우스 포인터 모양 */
+}
+
+/* CheckBox 이미지 CSS */
+.fcb-imgCheckbox {
+	position:absolute; top:10px; left:10px; /*Unit 영역 기준으로 CheckBox의 위치 조정*/
+	width:18px; height:18px; /* CheckBox 크기 */
+	display:block;
+	-webkit-border-radius: 3px; border-radius: 3px; /* 모서리 라운드 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	background:url(../asset/img/icons-18-white.png) -684px 50% no-repeat; /* 백그라운드로 체크 되지 않을 경우 이미지 노출*/
+}
+/* CheckBox 단위 Unit CSS */
+.fcb-checkbox-unit {
+	cursor:pointer;
+	position:relative;
+	margin:0;
+	padding:.7em 0 .7em 35px; /* 내부 여백 영역 이부분을 수정 하여 Unit의 Padding 을 조절 하여 높이나 label 부분의 위치를 조정*/
+	border-bottom:1px solid #ccc;
+	list-style:none;
+	/* CSS 그라데이션 설정. 그라데이션 색을 조정 할 수있음.*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#eee));
+	background-image: -webkit-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -moz-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -ms-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -o-linear-gradient(top,#fdfdfd,#eee);
+	background-image: linear-gradient(top,#fdfdfd,#eee);
+}
+/* CheckBox 단위 Unit 첫번째 엘리먼트 CSS */
+.fcb-checkbox-unit:first-child {
+	/* 상단의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-top-left-radius: .6em;
+	border-top-left-radius: .6em;
+	-webkit-border-top-right-radius: .6em;
+	border-top-right-radius: .6em;
+}
+
+/* CheckBox 단위 Unit 마지막 엘리먼트 CSS */
+.fcb-checkbox-unit:last-child{
+	border-bottom:0;
+	/* 하단의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-bottom-left-radius: .6em;
+	border-bottom-left-radius: .6em;
+	-webkit-border-bottom-right-radius: .6em;
+	border-bottom-right-radius: .6em;
+}
+
+/* CheckBox Container CSS. CheckBox 외곽부분의 스타일 지정 */
+.fcb-checkbox-cont{
+	overflow:hidden;
+	border:1px solid #ccc;
+	/* 전체모양의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-radius: .6em;
+	border-radius: .6em;
+}
+/* CheckBox CSS */
+.fcb-checkbox{
+	/* 실제 CheckBox는 숨긴다.*/
+	display:none;
+}
+
+/* CheckBox Label CSS */
+.fcb-checkbox-label{
+	display:block;
+	font-size:1em; font-weight:bold; color:#444; text-decoration:none;	/* CheckBox Label의 Font속성 수정 */
+	cursor:pointer;
+}
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div id="checkbox">
+	<ul class="fcb-checkbox-cont">
+	<li class="fcb-checkbox-unit">
+		<span class="fcb-imgCheckbox"></span>
+		<input type="checkbox" name="check1" id="news" checked="checked" value="뉴스" class="fcb-checkbox">
+		<label for="check1" class="fcb-checkbox-label">뉴스</label>
+	</li>
+	<li id="weatherUnit" class="fcb-checkbox-unit">
+		<span class="fcb-imgCheckbox"></span>
+		<input type="checkbox" name="check2" id="weather" value="날씨" class="fcb-checkbox">
+		<label for="check2" class="fcb-checkbox-label">날씨</label>
+	</li>
+	<li class="fcb-checkbox-unit">
+		<span class="fcb-imgCheckbox"></span>
+		<input type="checkbox" name="check3" id="sports" value="스포츠" class="fcb-checkbox">
+		<label for="check3" class="fcb-checkbox-label">스포츠</label>
+	</li>
+	<li id="stockUnit" class="fcb-checkbox-unit">
+		<span class="fcb-imgCheckbox"></span>
+		<input type="checkbox" name="check4" id="stock" value="증권" class="fcb-checkbox">
+		<label for="check4" class="fcb-checkbox-label">증권</label>
+	</li>
+	<li class="fcb-checkbox-unit">
+		<span class="fcb-imgCheckbox"></span>
+		<input type="checkbox" name="check5" id="entertain" value="연예" class="fcb-checkbox">
+		<label for="check5" class="fcb-checkbox-label">연예</label>
+	</li>
+	</ul>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<p class="desc">- CheckBox에 사용된 배경이미지 [<a href="../asset/img/icons-18-white.png" target="_blank">다운로드</a>]</p>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oCheckbox = new jindo.m.CheckBox("checkbox");
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

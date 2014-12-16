@@ -1,0 +1,25 @@
+모바일의 touchstart, touchmove, touchend 이벤트를 분석하여 현재 사용자의 터치 움직임에 대해 분석하는 컴포넌트이다. 
+
+<br> 
+touch 이벤트를 지원하지 않는 브라우저에서는 mouse 이벤트를 사용한다.<br />
+hScroll, vScroll, dScroll, tap, doubleTap, longTap 등을 분석하여 커스텀이벤트를 발생시킨다.
+
+<br> 
+<strong>멀티터치일경우 pinch, rotate 를 분석하여 커스텀이벤트를 발생시킨다 <br />
+현재 분석된 움직임이 pinch 이면서 rotate일 경우 'touchmove'의 sMoveType에는 'pinch-rotate' 값이 출력되고, <br />
+touchend 이후에 'pinch', 'rotate' 커스텀이벤트가 각각 호출된다.</strong>
+
+<br> 
+각 스크롤을 분석하는 기준값은 설정이 가능하며 기본값의 기준은 아래 그림과 같다.
+
+![](touch.jpg "")
+
+[단말화면 예시]
+
+<br> 
+__수평 스크롤의 기준 기울기__ = (단말기 세로/2) / 단말기 가로 <br />
+__수직 스크롤의 기준 기울기__ = 단말기 세로 / (단말기 가로/2) 
+
+<br> 
+수평 스크롤 기울기 이하 일 경우 수평스크롤로 분석하고 수직 스크롤 기울기 이상 일경우 수직 스크롤로 분석한다. <br />
+수평스크롤과 수직스크롤 기울기 사이을 대각선 스크롤로 분석한다.

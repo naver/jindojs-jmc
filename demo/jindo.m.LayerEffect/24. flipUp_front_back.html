@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>FlipUp_back(iOS,Android ICS이상)</title>
+<meta name="class-lists" content="jindo.m.LayerEffect">
+<meta name="description" content="위쪽으로 뒤집히는 레이어">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<style>
+    p.desc {
+        padding:0px;
+        text-align: center;
+    }
+</style>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Content -->
+<div id="ct" class="content">
+	<!-- Demo 영역 -->
+	<div id="demo">
+
+        <div id="layer1">
+            <p class="desc red" style="background-color:#7357B2;width:100%; height:100%; position:absolute; -webkit-backface-visibility: hidden;">Front</p>
+            <p class="desc white" style="background-color:#000000;width:100%; height:100%;  position:absolute; -webkit-backface-visibility: hidden;-webkit-transform: rotateX( 180deg );">Back</p>
+        </div>
+
+	</div>
+	<!--// Demo 영역 -->
+
+	<div class="lm">
+		<!-- 샘플설명은 이 영역에 작성하세요. -->
+		<ul class="lst_type">
+			<li>iphone 혹은  ipad 에서 확인해 주세요</li>
+			<li>Android 기종에서는 flip 효과가 아닌 cartwheel 효과로 보일 수 있습니다</li>
+		</ul>
+	</div>
+
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			<input type="text" class="op_w50" id="nDuration"  value="1000"> (ms)시간동안  점차적으로
+			<button type="button" id="flip" class="btn">flipUp</button>
+			<button type="button" id='reset' class="btn">초기화</button>
+		</div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+	<div class="scroll">
+		<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+		<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+	</div>
+	<!-- Log 영역 -->
+
+</div>
+<!--// Content -->
+
+<!--@code title="HTML"
+<div id="layer">
+	레이어
+</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../src/jindo.m.Effect.js"></script>
+<script src="../../src/jindo.m.Morph.js"></script>
+
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var welContents = jindo.$Element('ct');
+var welDemo = jindo.$Element('demo');
+var welLayer = jindo.$Element('layer1');
+
+var nInitH = welDemo.height();
+var nMinLayerH = 250;
+
+//화면리사이즈 처리
+function setSize(){
+	welDemo.height(nInitH);
+
+	var nCurrentH = welContents.height();
+	var nScreenH =  jindo.$Document().clientSize().height;
+
+
+	if(nCurrentH > nScreenH){ //스크롤이 생겼을 경우
+		var nNewH = nCurrentH - nScreenH;
+		nNewH = nInitH - nNewH;
+		nNewH = Math.max(nMinLayerH, nNewH);
+	}else{ //화면이 클경우
+		var nNewH = nScreenH - nCurrentH + nInitH;
+	}
+
+	welDemo.height(nNewH);
+	welLayer.height(nNewH-20);
+}
+setSize();
+
+	//화면 로테이션 및 리사이즈 처리
+	jindo.m.bindRotate(jindo.$Fn(this.setSize, this).bind());
+
+	var oEffect = new jindo.m.LayerEffect({
+    "fEffect" : jindo.m.Effect.easeInOut
+});
+
+	oEffect.attach({
+		'beforeEffect' : function(oCustomEvt){
+			addConsole('before → '+ oCustomEvt.sEffect +' 발생전');
+		},
+		'afterEffect' : function(oCustomEvt){
+			addConsole('end → '+ oCustomEvt.sEffect +' 완료');
+		}
+	});
+
+
+	var wfFlip = jindo.$Fn(function(evt){
+		if(typeof evt !== 'undefined'){
+			evt.stop();
+		}
+		if(oEffect.isPlaying()){
+			alert('현재 진행중이예요!!');
+			return;
+		}
+
+		var htOption={};
+
+		var nTime = jindo.$('nDuration').value;
+		if(nTime.length > 0){
+			htOption.nDuration = nTime*1;
+		}
+		oEffect.flip(welLayer.$value(), "up", htOption);
+	},this);
+
+
+	wfFlip.attach(jindo.$('flip'),'click');
+	jindo.$Fn(function(){
+		//window load시에 setSize 함수 수행하기 때문에 interval을 두고 실행함
+		var nDelay = jindo.m.getDeviceInfo().android? 1000: 500;
+		setTimeout(function(){
+			setSize();
+			wfFlip.$value()();
+		},nDelay);
+	},this).attach(window,'load');
+	//wfFlip.attach(window,'load');
+
+//reset버튼
+	jindo.$Fn(function(evt){
+		evt.stop();
+		welLayer.$value().style.webkitTransform = 'rotateY(0deg) rotateX(0deg)';
+	},this).attach(jindo.$('reset'),'click');
+
+
+/*@code title="JavaScript"
+	var oEffect = new jindo.m.LayerEffect('layer');
+
+	oEffect.flip({
+		sDirection: 'up',
+		nDuration : 1000
+	});
+code@*/
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

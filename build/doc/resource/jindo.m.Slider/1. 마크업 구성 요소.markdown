@@ -1,0 +1,4 @@
+Slider 컴포넌트는 어떤 특정한 영역 내의 값을 슬라이더 바(thumb)를 이동하여 값을 입력받을 때 사용하기 적합한 컴포넌트이다.<br />
+Slider는 아래 그림과 같이 track과 thumb,range 객체로 구성된다.
+
+![](slider.jpg "")

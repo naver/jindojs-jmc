@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>화면 전체에 띄우기 예제</title>
+<meta name="class-lists" content="jindo.m.Dialog">
+<meta name="description" content="화면 전체에 Dialog 띄우기">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_dsc{padding:50px 10px 20px;background:url(../asset/img/ico_dsc.gif) no-repeat 50% 1.43em;font-size:13px;text-align:center}
+.u_dsc h2{border:0;background:none;font-size:13px;color:#000}
+.u_dsc_q{background-image:url(../asset/img/ico_dsc_q.gif)}
+.u_dsc_n{background-image:url(../asset/img/ico_dsc_n.gif)}
+.u_dsc .uc_h{font-size:1em}
+.u_dsc .uc_st{font-weight:bold;color:#3AA6B5}
+.u_dsc .uc_st_q{font-weight:bold;color:#32a800}
+.u_dsc .uc_st_n{font-weight:bold;color:#FF6347}
+.u_dsc .uc_wn{white-space:nowrap}
+.u_dsc .uc_p{margin-top:.5em;color:#909090}
+.u_dsc .uc_area{margin-top:1.25em}
+.u_dsc .u_btn{display:inline-block;padding:.36em .8em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));font-size:12px;color:#666;white-space:nowrap}
+.u_dsc .u_btn .uc_ico_ck{display:inline-block;margin-left:-.15em;padding-left:1.4em;background:url(../asset/img/ico.gif) no-repeat 0 3px}
+.guioHeaderClose{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;background:none;cursor:pointer}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<button type="button" class="btn" onclick="oDialog.show();return false">Open Dialog</button><br>
+</div>
+<!-- // Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<p>new jindo.m.Dialog({ sPosition : <span class="keyword">"all"</span> });</p>
+
+		<ul class="lst_type">
+		<li>sPosition 옵션을 이용하여 인스턴스 생성</li>
+		<li>따로 설정하지 않을 경우 { sPosition : "center" }로 설정됨</li>
+		</ul>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<ul class="lst_type">
+	<li>sPosition : <span class="keyword">"top"</span>
+		<p>Dialog가 화면 상단중앙에 위치함</p>
+	</li>
+	<li>sPosition : <span class="keyword">"center"</span><span class="red">(default)</span>
+		<p>Dialog가 화면 중앙에 위치함</p>
+	</li>
+	<li>sPosition : <span class="keyword">"bottom"</span>
+		<p>Dialog가 화면 하단중앙에 위치함</p>
+	</li>
+	<li>sPosition : <span class="keyword">"all"</span>
+		<p>Dialog가 화면 전체에 위치함</p>
+	</li>
+	</ul>
+</div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Dialog.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+var oDialog = null;
+window.onload = function(){setTimeout(function(){
+
+var aTemplate = [];
+aTemplate.push('<div class="u_dsc u_dsc_n" style="background-color:#fff">');
+aTemplate.push('<h2 class="uc_h"><strong class="uc_st_n">sPosition : "all"</strong> Option</h2>');
+aTemplate.push('<div class="uc_area">');
+aTemplate.push('<a href="#" class="u_btn dialog-confirm" onclick="return false">Dialog가 <strong class="uc_st_n">화면 전체</strong>에 위치합니다</a> ');
+aTemplate.push('</div>');
+aTemplate.push('</div>');
+var sTemplate = aTemplate.join("");
+
+oDialog = new jindo.m.Dialog({ sPosition : "all" });
+oDialog.setTemplate(sTemplate);
+
+/*@code title="JavaScript"
+var oDialog = new jindo.m.Dialog({ sPosition : "all" });
+
+var sTemplate = "<div>...생략...</div>";
+oDialog.setTemplate(sTemplate);
+code@*/
+}, nDelay); }
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

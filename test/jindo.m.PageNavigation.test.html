@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">PageNavigation Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+
+<!-- UI content Start -->
+<div class="u_pg2" id='paging'>
+	<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+	<!-- [D] 이전, 다음 링크가 없을 경우 <a> 대신 <span> 태그 사용 및 uc_vh 클래스 추가 -->
+	<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>
+
+
+	<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>
+
+	<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+	<!-- [D] 이전, 다음 링크가 없을 경우 <a> 대신 <span> 태그 사용 및 uc_vh 클래스 추가 -->
+	<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script>
+<script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script src="../src/jindo.m.PageNavigation.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.PageNavigation.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

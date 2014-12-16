@@ -1,0 +1,11 @@
+jindo.m.Effect는 jindo.Component를 상속하지 않은 스태틱 컴포넌트이다. 따라서 jindo.m.Effect는 new 키워드로 인스턴스를 생성할수 없다. jindo.m.Effect는 인자로 easing 함수를 전달하여 이펙트 함수를 리턴한다.
+
+#### jindo.m.Effect.linear() 사용 예
+
+jindo.m.Effect.linear() 함수는 다음과 같이 정의되어있다.
+
+	jindo.m.Effect.linear = jindo.m.Effect(function(s) {
+	    return s;
+	});
+
+예제에서 정의된 function(s) { return s; }가 easing 함수이며, jindo.m.Effect.linear는 생성된 이펙트 함수이다.

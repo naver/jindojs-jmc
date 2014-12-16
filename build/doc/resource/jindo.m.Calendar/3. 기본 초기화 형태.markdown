@@ -1,0 +1,115 @@
+#### HTML
+
+	<div class="calendar-base"> <!-- 기준 엘리먼트 -->
+		<div>
+			<a href="#" class="rollover calendar-btn-prev-year">이전년</a> <!-- 이전년 버튼 (생략가능) -->
+			<a href="#" class="rollover calendar-btn-prev-mon">이전달</a> <!-- 이전달 버튼 (생략가능) -->
+			<strong class="calendar-title"></strong> <!-- 달력의 타이틀 (생략가능) -->
+			<a href="#" class="rollover calendar-btn-next-mon">다음달</a> <!-- 다음달 버튼 (생략가능) -->
+			<a href="#" class="rollover calendar-btn-next-year">다음년</a> <!-- 다음년 버튼 (생략가능) -->
+		</div>
+		<table cellspacing="0" cellpadding="0">
+			<thead>
+			<tr>
+				<th class="calendar-sun">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th class="calendar-sat">S</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr class="calendar-week"> <!-- 달력의 한 주에 해당하는 엘리먼트 컨테이너 -->
+				<td class="calendar-date"></td> <!-- 날짜가 표시될 엘리먼트 -->
+				<td class="calendar-date"></td>
+				<td class="calendar-date"></td>
+				<td class="calendar-date"></td>
+				<td class="calendar-date"></td>
+				<td class="calendar-date"></td>
+				<td class="calendar-date"></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+* 이전달, 이전년, 타이틀, 다음달, 다음년은 옵션으로 생략가능하다.
+
+
+#### CSS
+
+	/*class prefix가 'calendar-' 인 경우*/
+
+	/*Calendar Base 스타일 시트*/
+	.calendar-base {position:absolute; width:195px; z-index:99999;}
+	.calendar-base {width:195px;padding-bottom:9px;border:1px solid #777;background:#ffffff;}
+
+
+	/*Calendar 에서 사용 하는 링크 스타일 시트*/
+	.calendar-base a {...}
+
+
+	/*Calendar Control 영역 스타일 시트*/
+	.calendar-base div{...}
+	/*Calendar Control 영역 이전년도 이동 링크 스타일 시트*/
+	.calendar-base div .calendar-btn-prev-year{...}
+	/*Calendar Control 영역 이전달 이동 링크 스타일 시트*/
+	.calendar-base div .calendar-btn-prev-mon{...}
+	/*Calendar Control 영역 년도 월 표시 스타일 시트*/
+	.calendar-base div .calendar-title{...}
+	/*Calendar Control 영역 다음달 이동 링크 스타일 시트*/
+	.calendar-base div .calendar-btn-next-mon{...}
+	/*Calendar Control 영역 다음년도 이동 링크 스타일 시트*/
+	.calendar-base div .calendar-btn-next-year{...}
+
+	/*Calendar  날짜 표시 Table 스타일 시트*/
+	.calendar-base table{...}
+	.calendar-base table *{...}
+
+	/*Calendar  요일 Index 스타일 시트*/
+	.calendar-base table th{...}
+
+	/*Calendar  날짜 스타일 시트*/
+	.calendar-base table td{...}
+	.calendar-base table td a{...}
+
+	/*Calendar 선택 날짜 스타일 시트*/
+	.calendar-base table .calendar-selected{...}
+	.calendar-base table .calendar-selected a{...}
+
+	/*Calendar  휴일 날짜 스타일 시트*/
+	.calendar-base table .calendar-sun{...}
+	.calendar-base table .calendar-sun a{...}
+
+	/*Calendar  토요일 날짜 스타일 시트*/
+	.calendar-base table .calendar-sat{...}
+	.calendar-base table .calendar-sat a{...}
+
+	/*Calendar  오늘 날짜 스타일 시트*/
+	.calendar-base table .calendar-today{...}
+	.calendar-base table .calendar-today a{...}
+
+	/*Calendar  현재 달의 날짜외의 이전달 다음 달의 날짜 스타일 시트*/
+	.calendar-base table .calendar-prev-mon .calendar-date,
+	.calendar-base table .calendar-next-mon .calendar-date {...}
+
+	/*Calendar 선택 하지 못하는 날짜 스타일 시트*/
+	.calendar-base table .calendar-noselect span{...}
+	.calendar-base table .calendar-sun span{...}
+
+	/* Calendar 하단 Sub Control 영역 스타일 CSS*/
+	.calendar-base div.calendar-bottom {...}
+	/* Calendar 하단 Sub Control 영역 - 닫기 버튼 스타일 CSS*/
+	.calendar-base div .calendar-btn-close {...}
+	/* Calendar 버튼 공통 스타일 CSS*/
+	.calendar-btn {...}
+
+
+#### Javascript
+
+	var oComponent = new jindo.m.Calendar(wel, {
+		sClassPrefix : "calendar-",
+		aMonthTitle : ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+		bUseEffect : false,
+		nEffectDuration : 200,
+		htToday : {nYear, nMonth, nDate},
+		bActivateOnload : true
+	});
+
+* 이전달, 이전년, 타이틀, 다음달, 다음년은 옵션으로 생략가능하다.

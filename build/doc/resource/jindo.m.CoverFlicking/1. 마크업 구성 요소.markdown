@@ -1,0 +1,39 @@
+CoverFlicking 컴포넌트는 여러개의 콘텐트를 사용자의 터치 움직임으로 네비게이션하여 보여주기 적합한 컴포넌트이다.
+<br />  
+CoverFlicking 컴포넌트는 아래 그림과 container, view, panel 영역으로 나뉜다.
+
+![](hFlicking_s.jpg "")
+
+
+[컨텐츠 구조]
+
+#### view 영역
+* 실제 화면에서 보이는 영역이다.
+* overflow 속성을 hidden으로 처리한다.
+
+#### container 영역
+* 패널을 감싸고 있는 영역이다.
+
+#### panel 영역
+* Flicking 되면서 화면에 보여지는 단위의 객체이다.
+
+<br> 
+bUseCircular 값에 따라 순환/비순환 구조를 설정할 수 있다.
+<br>  
+
+
+1. __bUseCircular가 false인 경우__
+
+	![](Flicking3.jpg "")
+
+	패널의 개수만큼 cover의 효과로 플리킹되는 구조
+
+	위쪽의 패널은 slide되어 사라지고 다음 패널을 줌인되면서 화면에 보여지는 효과
+	
+2. __bUseCircular가 true인 경우__
+
+	![](Flicking4.jpg "")
+
+	3개의 패널이 순환적으로 cover의 효과로 플리킹되는 구조
+
+	패널의 개수는 항상 3개이여야 함

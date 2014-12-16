@@ -1,0 +1,19 @@
+LayerManger 컴포넌트는 사용자로부터 터치가 발생한 영역이 허용된 영역인지 여부에 따라 Layer의 숨김여부를 처리하는 컴포넌트이다.
+
+<br> 
+허용된 영역밖에서 터치가 발생할 경우, 노출되어있는 Layer를 숨긴다.
+
+아래 그림과 같이 주로, 하위 메뉴의 펼침이나, 도움말 노출 등의 효과를 구현할 때 자주 이용된다.
+
+![](LayerManager.jpg "")
+
+[도움말 사용예시]
+
+#### 기능 설명
+* link로 등록되지 않은 엘리먼트 터치시 대상 Layer가 사라지는 기능을 한다.
+* unlink를 통해 등록된 엘리먼트의 연결을 끊을 수 있다.
+* link와 unlink method는 LayerManager를 반환하기 때문에, chaining을 적용할 수 있다.
+
+<br>
+
+	new jindo.m.LayerManager(elLayer).link(elLayer, jindo.$("btnHelp"));

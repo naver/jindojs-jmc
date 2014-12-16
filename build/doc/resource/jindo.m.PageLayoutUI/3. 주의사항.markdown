@@ -1,0 +1,13 @@
+* [jindo.m.AjaxHistory](../../doc/internal/classes/jindo.m.AjaxHistory.html)을 참고한다.
+* [jindo.m.Scroll](../../doc/internal/classes/jindo.m.Scroll.html)을 참고한다.
+* [jindo.m.Flicking](../../doc/internal/classes/jindo.m.Flicking.html)을 참고한다.
+* [jindo.m.Loading](../../doc/internal/classes/jindo.m.Loading.html)을 참고한다.
+
+<br> 
+MultiContnetLayout와 MultiPageLayout의 경우, 컨텐츠와 페이지는 사용자의 필요에 따라 갯수에 제한없이 추가할 수 있지만, 서비스 성능에 영향을 주는 부분이므로 너무 많은 페이지를 사용하는것은 지양한다.
+
+
+####  마크업 주의사항
+
+* [jindo.m.Scroll](../../doc/internal/classes/jindo.m.Scroll.html)을 참고한다.
+* [jindo.m.Flicking](../../doc/internal/classes/jindo.m.Flicking.html)을 참고한다.

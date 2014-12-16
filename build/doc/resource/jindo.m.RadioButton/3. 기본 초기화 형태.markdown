@@ -1,0 +1,54 @@
+#### HTML
+
+	<!-- 기준 엘리먼트  -->								
+	<div id="radioBtn">
+		<!-- class prefix가 'frb-'일 경우 -->									
+		<!-- RadioButton의 Container 영역 부분. -->
+		<ul class="frb-radiobtn-cont">
+			
+			<!-- RadioButton의 Unit 영역 부분. -->
+			<li class="frb-radiobtn-unit">
+			
+				<!-- radio type Input 엘리먼트. -->
+				<input type="radio" name="name" checked="checked" id="fruit1" value="Apple" class="frb-radiobtn">
+				<!-- Label 엘리먼트. -->	
+				<label for="fruit1" class="frb-radiobtn-label">Apple</label>
+			</li>
+		</ul>
+	</div>
+
+컴포넌트는 RadioButton Unit 영역과 여러개의 Unit영역을 감싸는 RadioButton Container 영역으로 구성된다.
+<br><br> 
+
+* Container 영역의 엘리먼트는 [prefix]+ 'radiobtn-cont'의 클래스명을 가진다.
+* Unit 영역의 엘리먼트는 [prefix]+'radiobtn-unit'의 클래스명을 가진다.
+* Unit 영역은 radio 타입의 Input 엘리먼트와 label 엘리먼트로 구성된다.
+* radio 타입의 Input 엘리먼트는 [prefix]+'radiobtn'의 클래스명을 가진다.
+* label 영역의 엘리먼트의 경우 [prefix]+'label'의 클래스명을 가진다.
+* 로딩 후 선택될 엘리먼트의 경우 Input 엘리먼트에 'checked' 속성을 추가한다.
+
+
+#### CSS
+
+	/*class prefix가 'frb-' 인 경우*/							
+
+	/*체크시 적용되는 CSS*/
+	.frb-radiobtn-on{...}
+	/*비활성화시 적용되는 CSS*/
+	.frb-radiobtn-disable{...}
+
+필수 CSS 요소는 다음과 같다.
+<br><br> 
+
+* [prefix] + radiobtn-on 클래스 : 선택시 RadioButton Unit 영역에 적용 되는 클래스
+* [prefix] + radiobtn-disable 클래스 : 비활성화시 RadioButton Unit 영역에 적용 되는 클래스
+
+
+#### Javascript
+
+	var oRadioButton = new jindo.m.RadioButton(jindo.$("radioBtn"),{
+		sType:"h", 				// 가로, 세로 타입 지정. 
+		sClassPrefix: "frb-"   // css prefix 접두어.
+	});
+
+첫번째 파라미터는 기준엘리먼트의 Id 또는 HTMLElement로 설정 할 수 있다.

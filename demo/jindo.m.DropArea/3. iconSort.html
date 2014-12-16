@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>아이콘 위치바꾸기 예제</title>
+<meta name="class-lists" content="jindo.m.DropArea">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.svli{float:left;margin:0 2px 2px}
+.svca_edit{border:0 none;background:none repeat scroll 0 0 transparent;text-align:left}
+.svst,.svfv,.svup{display:inline-block;width:28px;height:26px;margin-left:-7px;background:url(http://static.naver.net/www/m/im2/ico_svc.png) no-repeat scroll 0 0 transparent;text-align:center;vertical-align:top}
+.svst{background-position:0 0;text-align:left}
+.svif{position:absolute;top:6px;left:13px}
+.svfv{overflow:hidden;width:14px;height:12px;margin:5px 0 0 6px;background-color:#EA3738;background-position:-34px -5px;text-indent:-999em}
+.svca,.svca_edit{display:block;overflow:hidden;position:relative;width:75px;height:96px;letter-spacing:-1px;text-align:center}
+.svtt{display:block;font-size:.86em;line-height:1.1em;color:#222;text-align:center}
+.svic{background-image:url(http://static.naver.net/www/u/2011/1222/mwms_151024967.jpg)}
+.svic{display:block;width:57px;height:57px;margin:8px 0 3px 9px;background-color:#DDD}
+.left_margin{margin-left:79px}
+.svc{overflow:hidden}
+
+/*@code title="CSS"*/
+.moving{opcacity: 0.5}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<ul class="svc svc_edit" id="svc">
+	<li title="svc.news" class="svli drag-dragging drop-area moving"><button class="svca_edit" type="button"><span style="background-position:0px 0px" class="svic"></span><span class="svtt">뉴스</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.sports" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px 0px" class="svic"></span><span class="svtt">스포츠</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.weather" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-114px 0px" class="svic"></span><span class="svtt">날씨</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.stock" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-171px 0px" class="svic"></span><span class="svtt">증권 <span class="svcu">U</span></span><span class="svif"><span class="svst"><span class="svfv">(자주 가는 서비스)</span></span></span></button></li>
+	<li title="svc.land" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-228px 0px" class="svic"></span><span class="svtt">부동산</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.kin" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-285px 0px" class="svic"></span><span class="svtt">지식iN</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.blog" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:0px -57px" class="svic"></span><span class="svtt">블로그</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.cafe" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px -57px" class="svic"></span><span class="svtt">카페</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.music" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-114px -57px" class="svic"></span><span class="svtt">뮤직</span><span class="svif"><span class="svst"><span class="svfv">(자주 가는 서비스)</span></span></span></button></li>
+	<li title="svc.movie" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-171px -57px" class="svic"></span><span class="svtt">영화/예매</span><span class="svif"><span class="svst"><span class="svfv">(자주 가는 서비스)</span></span></span></button></li>
+	<li title="svc.navercast" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-228px -57px" class="svic"></span><span class="svtt">네이버<br>캐스트</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.books" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-285px -57px" class="svic"></span><span class="svtt">북스토어</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.comic" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:0px -114px" class="svic"></span><span class="svtt">웹툰</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.book" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px -114px" class="svic"></span><span class="svtt">책</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.terms" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-114px -114px" class="svic"></span><span class="svtt">지식사전 <span class="svcn">N</span></span><span class="svif"><span class="svst"></span></span></button></li>
+	<!--
+	<li title="svc.tvpro" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-171px -114px" class="svic"></span><span class="svtt">TV편성표</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.calendar" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-228px -114px" class="svic"></span><span class="svtt">캘린더</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.commcast" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-285px -114px" class="svic"></span><span class="svtt">네이버me</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.newcommcast" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:0px -171px" class="svic"></span><span class="svtt">알림</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.mail" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px -171px" class="svic"></span><span class="svtt">메일</span><span class="svif"><span class="svst"><span class="svfv">(자주 가는 서비스)</span></span></span></button></li>
+
+	<li title="svc.note" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-114px -171px" class="svic"></span><span class="svtt">쪽지</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.contact" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-171px -171px" class="svic"></span><span class="svtt">주소록</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.ndrive" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-285px -171px" class="svic"></span><span class="svtt">N드라이브</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.nphoto" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:0px -228px" class="svic"></span><span class="svtt">포토앨범</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.moneybook" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px -228px" class="svic"></span><span class="svtt">가계부</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.korean" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-114px -228px" class="svic"></span><span class="svtt">국어사전</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.endic" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-171px -228px" class="svic"></span><span class="svtt">영어사전</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.jpdic" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-228px -228px" class="svic"></span><span class="svtt">일본어사전</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.hanja" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-285px -228px" class="svic"></span><span class="svtt">한자사전</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.chinese" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:0px -285px" class="svic"></span><span class="svtt">중국어사전 <span class="svcn">N</span></span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.me2day" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px -285px" class="svic"></span><span class="svtt">미투데이</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.wingspoon" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-114px -285px" class="svic"></span><span class="svtt">윙스푼</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.ya9" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-171px -285px" class="svic"></span><span class="svtt">야구 9단</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.hangame" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-228px -285px" class="svic"></span><span class="svtt">스마트<br>한게임</span><span class="svif"><span class="svst"></span></span></button></li>
+	<li title="svc.help" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-285px -285px" class="svic"></span><span class="svtt">도움말</span><span class="svif"><span class="svst"></span></span></button></li>
+	-->
+	<li title="svc.help" class="svli drag-dragging drop-area" style="visibility:hidden"><button class="svca_edit" type="button"><span style="background-position:-285px -285px" class="svic"></span><span class="svtt">이거슨 안보이는거</span><span class="svif"><span class="svst"></span></span></button></li>
+</ul>
+
+<!--// Demo 영역 -->
+
+<div id="option">
+	<div class="op">
+		<button type="button" id="Activate" class="btn">Activate</button>
+		<button type="button" id="Deactivate" class="btn">Deactivate</button>
+	</div>
+</div>
+
+<!--@code title="HTML"
+<ul class="svc svc_edit" id="svc">
+		<li title="svc.news" class="svli drag-dragging drop-area moving"><button class="svca_edit" type="button"><span style="background-position:0px 0px" class="svic"></span><span class="svtt">뉴스</span><span class="svif"><span class="svst"></span></span></button></li>
+		<li title="svc.sports" class="svli drag-dragging drop-area"><button class="svca_edit" type="button"><span style="background-position:-57px 0px" class="svic"></span><span class="svtt">스포츠</span><span class="svif"><span class="svst"></span></span></button></li>
+
+		... 생략 ...
+
+		<li title="svc.help" class="svli drag-dragging drop-area" style="visibility:hidden"><button class="svca_edit" type="button"><span style="background-position:-285px -285px" class="svic"></span><span class="svtt">이거슨 안보이는거</span><span class="svif"><span class="svst"></span></span></button></li>
+</ul>
+
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.DragArea.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.DropArea.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oDrag = new jindo.m.DragArea(jindo.$('svc'),{
+	bFlowOut : true,
+	bActivateOnload : false,
+	nThreshold : 10
+});
+
+var elLastDrop = null;
+var welLastOver = null;
+
+var oDrop = new jindo.m.DropArea(jindo.$('svc'),{
+	oDragInstance : oDrag,
+	bActivateOnload : false,
+	bUseTouchPoint : true
+}).attach({
+	'handleDown' : function(oCustomEvent){
+		var elDrag = oCustomEvent.elDrag;
+		wel = jindo.$Element(elDrag);
+		wel.removeClass('drop-area');
+
+        if(welLastOver){
+            welLastOver.removeClass('left_margin');
+        }
+        var welNext = wel.next();
+        if (!welNext.hasClass('left_margin')) {
+            welNext.addClass('left_margin');
+        }
+        welLastOver = welNext;
+	},
+	'dragStart' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrag);
+		var htOffset = wel.offset();
+		wel.css({
+			// 'top' : htOffset.top+"px",
+			// 'left' : htOffset.left+"px",
+			'zIndex' : 100
+		});
+
+		welLastOver = wel.next();
+	},
+	'over' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrop);
+		if(welLastOver){
+			welLastOver.removeClass('left_margin');
+		}
+		if (!wel.hasClass('left_margin')) {
+			wel.addClass('left_margin');
+		}
+		welLastOver = wel;
+	},
+
+	'out' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrop);
+		wel.removeClass('left_margin');
+	},
+	'drop' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrop);
+		var welDrag = jindo.$Element(oCustomEvent.elDrag);
+
+		wel.before(jindo.$Element(oCustomEvent.elDrag));
+		welDrag.css({
+			'position' : '',
+			'top' : '',
+			'left' : '',
+            // 'Transform' : ''
+		});
+		welDrag.css(jindo.m.getCssPrefix()+"Transform" , "");
+		welDrag.css(jindo.m.getCssPrefix()+"Transition" , "");
+		wel.removeClass('left_margin');
+
+		if(!oCustomEvent.elDrop){
+			alert('이메세지를 보시면 연락좀 주세요! by oyang2');
+		}
+		elLastDrop = wel.$value();
+	},
+	'drag' : function(oCustomEvent){
+		if(oCustomEvent.nDragCount === 0){
+			this._reCalculate();
+			if(welLastOver && !welLastOver.hasClass('left_margin')){
+				welLastOver.addClass('left_margin')
+			}
+		}
+	},
+	'handleUp' : function(oCustomEvent){
+		//어정쩡한 위치에서 drop을 해서 어디를 갈지 몰라하는 상황
+		var welDrag = jindo.$Element(oCustomEvent.elDrag);
+
+		if(!elLastDrop){
+			welDrag.css({
+			'position' : '',
+			'top' : '',
+			'left' : '',
+			'zIndex' : ''
+			});
+            welDrag.css(jindo.m.getCssPrefix()+"Transform" , "");
+            welDrag.css(jindo.m.getCssPrefix()+"Transition" , "");
+		}
+		welDrag.addClass('drop-area');
+
+		if(welLastOver){
+			welLastOver.removeClass('left_margin');
+			welLastOver = null;
+		}
+		elLastDrop = null;
+	}
+});
+/*code@*/
+
+jindo.$Fn(function(){
+	oDrag.activate();
+	oDrop.activate();
+}).attach(jindo.$('Activate'), 'click');
+
+jindo.$Fn(function(){
+	oDrag.deactivate();
+	oDrop.deactivate();
+}).attach(jindo.$('Deactivate'), 'click');
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>뷰와 크기가 다른 다중 컨텐츠 플리킹 예제 (뷰에 보이는 영역기준으로 플리킹되는 예제) </title>
+<meta name="class-lists" content="jindo.m.SlideFlicking">
+<meta name="description" content="bFixContentSize 가 false인 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+#mflick1{height:137px;overflow:hidden;}
+#mflick2{height:137px;overflow:hidden;}
+/*code@*/
+
+/* 맛집리스트 */
+.csu_lkwn {
+color: #005fc1;
+white-space: nowrap;
+}
+.api_btn_like2 .api_like_ico {
+display: inline-block;
+position: relative;
+top: 3px;
+width: 15px;
+height: 14px;
+margin-right: 3px;
+background-position: -15px -40px;
+}
+.api_btn_like2 {
+display: block;
+position: absolute;
+z-index: 10;
+padding: 0 5px 0 6px;
+border-radius: 2px;
+background-color: rgba(0,0,0,.35);
+font-size: 12px;
+line-height: 25px;
+color: #fff;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+}
+.api_spim, .api_spim_bf:before, .api_spim_af:after {
+background: url(http://sstatic.naver.net/search/mobile/i11/api_spim_v4.png) no-repeat;
+-webkit-background-size: 70px 55px;
+background-size: 70px 55px;
+}
+.u_vc {
+display: inline-block;
+overflow: hidden;
+position: absolute;
+width: 1px;
+height: 1px;
+font-size: 1px;
+line-height: 1px;
+text-indent: 4px;
+white-space: nowrap;
+}
+.api_spim, .api_spim_bf:before, .api_spim_af:after {
+background: url(http://sstatic.naver.net/search/mobile/i11/api_spim_v4.png) no-repeat;
+-webkit-background-size: 70px 55px;
+background-size: 70px 55px;
+}
+
+.fd_lst li .txt_box .sm{overflow:hidden;padding:14px 10px 0;font-weight:normal;white-space:nowrap;text-overflow:ellipsis}
+.fd_lst li .txt_box .sm a{font-weight:normal;font-size:17px}
+.fd_lst li .txt_box .sm a:last-child{overflow:hidden;padding-left:0;font-size:14px}
+.fd_lst li .txt_box .sm span{font-size:14px}
+.fd_lst li .txt_box .sm em{position:relative;padding-right:4px;font-size:14px;color:#666}
+.fd_lst li .txt_box .sm em:before{display:inline-block;overflow:hidden;width:1px;height:12px;margin:4px 7px 0 6px;background-color:#e7e7e8;vertical-align:top;content:''}
+
+.fd_lst li{position:relative;padding:0 5px 5px 0;-webkit-box-sizing:border-box}
+.fd_lst li .txt_box{padding-bottom:8px;border:1px solid rgba(0,0,0,0.1);border-width:1px 1px 0;background-color:#fff}
+.fd_lst li .txt_box .txt_info{display:block;overflow:hidden;padding-right:10px;color:#005fc1;white-space:nowrap;text-overflow:ellipsis}
+.fd_lst li .txt_box .sps{position:relative;padding-left:2px;font-size:14px;color:#999}
+.fd_lst li .txt_box .spdt{position:relative;padding-left:10px;font-size:14px;color:#666}
+.fd_lst li .txt_box .sps:before{display:inline-block;overflow:hidden;width:1px;height:12px;margin:3px 9px 0 5px;background-color:#e7e7e8;vertical-align:top;content:''}
+.fd_lst li .txt_box .spdt em{position:relative;padding-right:4px;font-size:14px;color:#666}
+
+.fd_lst li .txt_box .sm2{overflow:hidden;padding:9px 10px 4px;font-size:17px;font-weight:normal;color:#000;white-space:nowrap;text-overflow:ellipsis}
+.fd_lst .thmb_box{display:block;overflow:hidden;position:relative}
+.fd_lst .thmb_box:after{display:block;position:absolute;top:0;left:0;width:100%;height:100%;border:1px solid #d6d9dc;border-width:0 1px 1px;-webkit-box-sizing:border-box;content:''}
+
+
+.btn_area{position:absolute;left:0;bottom:16px;width:100%;padding:0 8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.btn_area a.cds_send{float:left;position:relative;z-index:100;min-width:14px;height:23px;padding:0 5px 0 6px;border:1px solid rgba(0,0,0,0.03);border-radius:2px;background-color:rgba(0,0,0,0.35);line-height:23px;color:#fff;text-shadow:0 0 1px rgba(0,0,0,0.03)}
+.btn_area > a.cds_comment{padding:0 5px 0 6px;font-size:12px}
+.btn_area .cds_send span{display:inline-block;overflow:hidden;color:transparent;vertical-align:top;text-shadow:none}
+.im_send{width:20px;height:15px;margin-top:5px;background-position:-47px -1px}
+.api_btn_like2{position:relative;float:left;display:inline-block;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.btn_area a.cds_send + .api_btn_like2{position:relative;float:left;left:5px;bottom:0;display:inline-block}
+
+.btn_area a.api_btn_like2 + .cds_comment{left:5px;bottom:0}
+.btn_area .cds_comment{display:inline-block;position:relative;left:5px;bottom:0;z-index:100;float:left;min-width:14px;height:23px;margin:0 5px 0 0;padding:0 8px 0 7px;font-size:14px;border:1px solid rgba(0,0,0,0.03);border-radius:2px;background-color:rgba(0,0,0,0.35);color:#fff;text-shadow:0 0 1px rgba(0,0,0,0.03);line-height:23px}
+.btn_area .im_comment{overflow:hidden;display:inline-block;width:15px;height:16px;margin-top:4px;padding-right:3px;background:url(http://sstatic.naver.net/keypage/outside/cooking/info/seasonfood/im/sp_ico.png) no-repeat -23px -132px;background-size:55px 155px;color:transparent;vertical-align:top;text-shadow:none}
+
+
+.fd_lst li{float:left;width:200px;margin-right:0 !important}
+.fd_lst .thmb_box img{width:200px}
+
+@media screen and (min-width:480px){
+.fd_lst li{float:left;width:250px;margin-right:0 !important}
+.fd_lst .thmb_box img{width:250px}
+#mflick1{height:155px;}
+#mflick2{height:155px;}
+}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<h4> bUseMomentum : false인 경우 </h4>
+	<div id="mflick1">
+    <ul class="fd_lst flick-container">
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53742" class="csu_lkwn">새우깡</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+                <span
+                class="sps">2014.05.08</span>
+                    </span>
+            </div>
+            <a  onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/68.새우.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_53742" queryid="C1399523421499156613"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">62</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53742"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>25</a>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53735" class="csu_lkwn">닭가슴살숙주볶음</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+                <span
+                class="sps">2014.05.07</span>
+                    </span>
+            </div>
+            <a  onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/67.닭가.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_53735" queryid="C1399523421508789268"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">62</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53735"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>14</a>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53829" class="csu_lkwn">주꾸미샐러드</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+                <span
+                class="sps">2014.05.06</span>
+                    </span>
+            </div>
+            <a  onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/66.주꾸.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_53829" queryid="C1399523421516782590"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">16</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53829"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>3</a>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53430" class="csu_lkwn">카스텔라</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+                <span
+                class="sps">2014.05.05</span>
+                    </span>
+            </div>
+            <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/65.카스.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_53430" queryid="C1399523421524501845"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">21</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53430"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>18</a>
+            </div>
+        </li>
+
+        <li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://m.navercast.naver.com/mobile_contents.nhn?rid=2209&amp;contents_id=53708&amp;hash=sec1" class="csu_lkwn">로스티드 콜라비</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2209&amp;category_id=2209" class="csu_lkwn">라 퀴진</a></span></span>
+				        <span
+				        class="sps">2014.05.04</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/64.로스.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2209_53708" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">65</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53708"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>16</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52650" class="csu_lkwn">마늘고추장두부조림</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.05.03</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/63.마늘.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_52650" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">169</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52650"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>25</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=54336" class="csu_lkwn">오이무침</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.05.02</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/76.오이.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_54336" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">18</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=54336"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>6</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52778" class="csu_lkwn">녹차마블식빵</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+				        <span
+				        class="sps">2014.05.01</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/62.녹차.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_52778" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">41</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52778"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>7</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52597" class="csu_lkwn">참치양배추샐러드김밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+				        <span
+				        class="sps">2014.04.30</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/61.참치.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_52597" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">221</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52597"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>58</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52649" class="csu_lkwn">오징어덮밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.29</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/60.오징.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52649" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">60</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52649"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>8</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52467" class="csu_lkwn">삼색유부초밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.04.28</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/59.삼색.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_52467" onclick="javascript:todayCookingLikeClickLog(this.className);" queryid="C1399526060054704738"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">172</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52467"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>27</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52793" class="csu_lkwn">버터쿠키</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+				        <span
+				        class="sps">2014.04.27</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/58.버터.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_52793" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">52</span> </span>
+				        </a> <a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52793"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>11</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52814" class="csu_lkwn">문어참나물샐러드</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+				        <span
+				        class="sps">2014.04.26</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/57.문어.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_52814" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">22</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52814"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>6</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52876" class="csu_lkwn">채소만두</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.25</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/56.채소.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52876" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">47</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52876"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>10</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53083" class="csu_lkwn">조개탕 수제비</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.04.24</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/55.조개.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_53083" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">18</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53083"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>4</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53214" class="csu_lkwn">파프리카오븐구이</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=1377&amp;category_id=1377" class="csu_lkwn">Begun</a></span></span>
+				        <span
+				        class="sps">2014.04.23</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/54.파프.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="1377_53214" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">8</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53214"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>10</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52846" class="csu_lkwn">주꾸미마늘종버터볶음밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+				        <span
+				        class="sps">2014.04.22</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/53.주꾸.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_52846" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">114</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52846"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>25</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52936" class="csu_lkwn">파인애플소스탕수육</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.21</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/52.파인.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52936" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">76</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52936"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>23</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52643" class="csu_lkwn">미역줄기볶음</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.20</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/51.미역.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52643" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">59</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52643"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>11</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52377" class="csu_lkwn">블루베리요거트파운드케이크 </a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+				        <span
+				        class="sps">2014.04.19</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/50.블루.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_52377" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">15</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52377"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>5</a>
+				    </div>
+				</li>
+    </ul>
+	</div>
+
+
+<br>
+<h4> bUseMomentum : true인 경우 </h4>
+<div id="mflick2">
+    <ul class="fd_lst flick-container">
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53742" class="csu_lkwn">새우깡</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+                <span
+                class="sps">2014.05.08</span>
+                    </span>
+            </div>
+            <a  onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/68.새우.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_53742" queryid="C1399523421499156613"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">62</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53742"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>25</a>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53735" class="csu_lkwn">닭가슴살숙주볶음</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+                <span
+                class="sps">2014.05.07</span>
+                    </span>
+            </div>
+            <a  onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/67.닭가.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_53735" queryid="C1399523421508789268"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">62</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53735"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>14</a>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53829" class="csu_lkwn">주꾸미샐러드</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+                <span
+                class="sps">2014.05.06</span>
+                    </span>
+            </div>
+            <a  onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/66.주꾸.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_53829" queryid="C1399523421516782590"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">16</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53829"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>3</a>
+            </div>
+        </li>
+        <li class="flick-ct">
+            <div class="txt_box">
+                <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53430" class="csu_lkwn">카스텔라</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+                <span
+                class="sps">2014.05.05</span>
+                    </span>
+            </div>
+            <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+                <img src="../asset/img/65.카스.jpg" width="100%" alt="">
+            </a>
+            <div class="btn_area">
+                <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_53430" queryid="C1399523421524501845"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">21</span> </span>
+                </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53430"
+                class="cds_comment"><span class="imh im_comment">댓글 </span>18</a>
+            </div>
+        </li>
+
+        <li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://m.navercast.naver.com/mobile_contents.nhn?rid=2209&amp;contents_id=53708&amp;hash=sec1" class="csu_lkwn">로스티드 콜라비</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2209&amp;category_id=2209" class="csu_lkwn">라 퀴진</a></span></span>
+				        <span
+				        class="sps">2014.05.04</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/64.로스.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2209_53708" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">65</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53708"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>16</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52650" class="csu_lkwn">마늘고추장두부조림</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.05.03</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/63.마늘.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_52650" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">169</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52650"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>25</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=54336" class="csu_lkwn">오이무침</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.05.02</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/76.오이.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_54336" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">18</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=54336"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>6</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52778" class="csu_lkwn">녹차마블식빵</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+				        <span
+				        class="sps">2014.05.01</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/62.녹차.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_52778" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">41</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52778"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>7</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52597" class="csu_lkwn">참치양배추샐러드김밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+				        <span
+				        class="sps">2014.04.30</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/61.참치.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_52597" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">221</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52597"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>58</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52649" class="csu_lkwn">오징어덮밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.29</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/60.오징.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52649" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">60</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52649"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>8</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52467" class="csu_lkwn">삼색유부초밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.04.28</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/59.삼색.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_52467" onclick="javascript:todayCookingLikeClickLog(this.className);" queryid="C1399526060054704738"> <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">172</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52467"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>27</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52793" class="csu_lkwn">버터쿠키</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+				        <span
+				        class="sps">2014.04.27</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/58.버터.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_52793" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">52</span> </span>
+				        </a> <a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52793"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>11</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52814" class="csu_lkwn">문어참나물샐러드</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+				        <span
+				        class="sps">2014.04.26</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/57.문어.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_52814" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">22</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52814"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>6</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52876" class="csu_lkwn">채소만두</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.25</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/56.채소.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52876" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">47</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52876"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>10</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53083" class="csu_lkwn">조개탕 수제비</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2212&amp;category_id=2212" class="csu_lkwn">이밥차</a></span></span>
+				        <span
+				        class="sps">2014.04.24</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/55.조개.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2212_53083" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">18</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53083"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>4</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=53214" class="csu_lkwn">파프리카오븐구이</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=1377&amp;category_id=1377" class="csu_lkwn">Begun</a></span></span>
+				        <span
+				        class="sps">2014.04.23</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/54.파프.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="1377_53214" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">8</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=53214"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>10</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52846" class="csu_lkwn">주꾸미마늘종버터볶음밥</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2264&amp;category_id=2264" class="csu_lkwn">수퍼레시피</a></span></span>
+				        <span
+				        class="sps">2014.04.22</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/53.주꾸.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2264_52846" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">114</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52846"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>25</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52936" class="csu_lkwn">파인애플소스탕수육</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.21</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/52.파인.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52936" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">76</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52936"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>23</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52643" class="csu_lkwn">미역줄기볶음</a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2662&amp;category_id=2662" class="csu_lkwn">초보탈출 넘버원</a></span></span>
+				        <span
+				        class="sps">2014.04.20</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/51.미역.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2662_52643" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">59</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52643"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>11</a>
+				    </div>
+				</li>
+				<li class="flick-ct">
+				    <div class="txt_box">
+				        <h3 class="sm2"><a href="http://m.navercast.naver.com/contents.nhn?contents_id=52377" class="csu_lkwn">블루베리요거트파운드케이크 </a></h3>  <span class="txt_info"><span class="spdt"><em>제공</em><span><a onclick="return goOtherCR(this,&quot;a=nco_x2d*X&amp;r=1&amp;i=&quot;+urlencode(&quot;00000015_00000009E9BF&quot;)+&quot;&amp;u=&quot;+urlencode(this.href));" href="http://navercast.naver.com/magazine_list.nhn?cid=2268&amp;category_id=2268" class="csu_lkwn">브레드가든</a></span></span>
+				        <span
+				        class="sps">2014.04.19</span>
+				            </span>
+				    </div>
+				    <a onclick="javascript:void(0)" href="#"
+            class="thmb_box">
+				        <img src="../asset/img/50.블루.jpg" width="100%" alt="">
+				    </a>
+				    <div class="btn_area">
+				        <a nocr="1" href="#" class="api_btn_like2 _uio_likeButton" data-sid="MAGAZINE" data-cid="2268_52377" > <span class="arr"> <span class="api_spim api_like_ico _icon"></span><em class="u_vc">좋아요</em><span class="api_spim_af num _count">15</span> </span>
+				        </a> <a href="http://m.navercast.naver.com/comment.nhn?serviceName=magazinecast&amp;contents_id=52377"
+				        class="cds_comment"><span class="imh im_comment">댓글 </span>5</a>
+				    </div>
+				</li>
+    </ul>
+	</div>
+</div>
+<!--// Demo 영역 -->
+<div class="lm">
+	bFitContentSize 옵션을 <span class="red">false</span>로 지정하면<br>
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	view와 크기가 다른 컨텐츠를 플리킹 할수 있다.<br><br>
+	즉, view에서 다양한 크기의 컨텐츠로 구성된 영역을 플리킹 할 수 있다.<br>
+
+    <br><br>
+    이 예제는 뷰에 보이는 영역을 기준으로 플리킹되는 예제입니다.<br>
+    <span class="red">정식 인터페이스는 현재 제공되지 않습니다.</span><br>
+    자세한 사항은 예제를 참조하시기 바랍니다.
+</div>
+
+<!--@code title="HTML"
+<div id="mflick1">
+	<div class="[prefix]-container">
+		<div class="[prefix]-ct"></div>
+		<div class="[prefix]-ct"></div>
+		<div class="[prefix]-ct"></div>
+	</div>
+</div>
+
+<div id="mflick2">
+	<div id="content" class="[prefix]-container">
+		<div class="[prefix]-ct"></div>
+		<div class="[prefix]-ct"></div>
+		<div class="[prefix]-ct"></div>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+// 이동을 위한 코드 확장.... (임시)
+jindo.m.Flick.prototype._getNextIndexByView = function(nIndex, bNext) {
+ var base = this._aPos[nIndex],
+     v = null,
+     result;
+ if(bNext) {
+     result = nIndex;
+     for(var i=nIndex; i<this._aPos.length; i++) {
+         v = base - this._aPos[i];
+         if(v<this._htSize.viewWidth) {
+             result = i;
+         } else {
+             break;
+         }
+     }
+    } else {
+     result = 0;
+     for(var i=nIndex; i>=0; i--) {
+         v = this._aPos[i] - base;
+         if(v>this._htSize.viewWidth) {
+             break;
+         } else {
+             result = i;
+         }
+     }
+    }
+    return result;
+};
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+window.onload = function(){
+	setTimeout(function(){
+		/*@code title="JavaScript"*/
+		oSlideFlicking1 = new jindo.m.SlideFlicking('mflick1',{
+			nDefaultIndex: 0,
+			sContentClass : 'ct',
+			nDuration : 200,
+			bFitContentSize : false 			// bFitContentSize이 false일 경우,
+		});
+
+		oSlideFlicking2 = new jindo.m.SlideFlicking('mflick2',{
+			nDefaultIndex: 0,
+			sContentClass : 'ct',
+			nDuration : 200,
+			bUseMomentum : true,					// momentum이 true 인 경우,
+			bFitContentSize : false 			// bFitContentSize이 false일 경우,
+		});
+		/*code@*/
+
+	}, nDelay);
+}
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

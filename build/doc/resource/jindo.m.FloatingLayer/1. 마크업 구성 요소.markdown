@@ -1,0 +1,15 @@
+FloatingLayer 컴포넌트는 아래 그림과 같이 스크롤이 발생하더라도 화면의 특정위치에 레이어가 띄워져 사용자에게 메시지를 알리는 기능을 하는 컴포넌트이다.
+
+![](FloatingLayer.jpg "")
+
+[사용예시]
+
+#### 기능 설명
+* 레이어의 위치(top, center, bottom)를 옵션(sPosition)을 통해 지정할 수 있다.
+* show 호출시 slide 애니메이션 효과가 발생되며, 이때 발생하는 애니메이션의 방향(sDirection) 및 속도(nSlideDuration)는 옵션을 통해 지정가능하다.
+* bUseHideUI 옵션이 true일 경우, 사용자가 스크롤링을 할때, FloatingLayer가 사라졌다가, 스크롤이 끝나면 다시 Fade-in된다.이때 fade-in되는 애니메이션 속도는 옵션(nFadeInDuration)을 통해 지정가능하다.
+* bUseHideUI 옵션이 false일 경우, 사용자의 스크롤링이 완료될때 FloatingLayer의 위치가 설정된다.
+* FloatingLayer을 hide할 경우 fade-out된다. 이때 fade-out되는 애니메이션 속도는 옵션(nFadeOutDuration)을 통해 지정가능하다.
+* __bUseFixed__ 옵션이 true인 경우, 기기에서 position:fixed가 사용가능 할 경우 __bUseHideUI__ 옵션이 true가 되더라도 position:fixed로 동작하며, FloatingLayer가 사라지지않고, 고정된 상태에서 스크롤된다.
+이때, nFadeInDuration, nFadeOutDuration, bUseHideUI 옵션 사용은 불가능하다.
+* nTimeout 옵션을 지정하여 레이어가 show된 이후 자동 사라지게 할수 있다. 경과시간은 show가 실행되어, slide가 완료된 시간 이후부터, 또는 스크롤이 된 이후 부터 재측정된다.

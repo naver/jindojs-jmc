@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+.layer {position: absolute; width:200px;padding:10px 10px 10px 10px;border:1px solid red;background:#fff;color:#222;font-size:.93em;letter-spacing:-1px;text-align:justify;text-align:left}
+</style>
+
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">LayerPosition Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+
+<!-- UI content Start -->
+<div>
+<div class="layer" id="layer">LayerPosition 테스트 입니다.<br />
+LayerPosition은 총 4개의 영역으로 제어할 수 있으며, 각각의 영역에서 Margin을 적용할 수 있습니다.
+</div>
+</div>
+<div style="width:1248px;height:900px;background-color:blue"></div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<script src="../src/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.LayerPosition.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+<script>
+//function cfSetPosition(sArea) {
+//	var htMargin = {
+//		nTop : parseInt(jindo.$("inputTop").value,10),
+//		nBottom : parseInt(jindo.$("inputBottom").value,10),
+//		nLeft : parseInt(jindo.$("inputLeft").value,10),
+//		nRight : parseInt(jindo.$("inputRight").value,10)
+//	};
+//	switch(sArea) {
+//		case "top" :
+//			oLpTest.top(htMargin);
+//			break;
+//		case "center" :
+//			oLpTest.center(htMargin);
+//			break;
+//		case "bottom" :
+//			oLpTest.bottom(htMargin);
+//			break;
+//		case "all" :
+//			oLpTest.all(htMargin);
+//			break;
+//	}
+//}
+//function cfShow(sArea) {
+//	oLmTest.hide();
+//	oLmTest.show({
+//		oPosition : {
+//			sArea : sArea,
+//			nTop : parseInt(jindo.$("inputTop").value,10),
+//			nBottom : parseInt(jindo.$("inputBottom").value,10),
+//			nLeft : parseInt(jindo.$("inputLeft").value,10),
+//			nRight : parseInt(jindo.$("inputRight").value,10)
+//		}
+//	});
+//}
+
+
+//var oLpTest = new jindo.m.LayerPosition("layer");
+//var oLmTest = new jindo.m.LayerManager("layer").link("setTop", "setCenter", "setBottom", "setAll");
+</script>
+</body>
+</html>

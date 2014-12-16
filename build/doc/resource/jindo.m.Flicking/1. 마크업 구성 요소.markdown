@@ -1,0 +1,69 @@
+Flicking 컴포넌트는 여러개의 콘텐트를 사용자의 터치 움직임으로 네비게이션하여 보여주기 적합한 컴포넌트이다.
+<br />  
+Flicking 컴포넌트는 아래 그림과 container, view, panel 영역으로 나뉜다.
+
+![](hFlicking_s.jpg "")
+
+
+[컨텐츠 구조]
+
+#### view 영역
+* 실제 화면에서 보이는 영역이다.
+* overflow 속성을 hidden으로 처리한다.
+
+#### container 영역
+* 패널을 감싸고 있는 영역이다.
+* 플리킹 애니메이션에 맞게 container 영역의 넓이와 높이값은 조정된다 
+
+#### panel 영역
+* Flicking 되면서 화면에 보여지는 단위의 객체이다.
+* 각 panel 사이즈를 view 사이즈에 맞춰서 조절한다. (Flicking 컴포넌트의 bAutoSize 옵션을 true로 설정할 경우)
+
+<br> 
+sAnimation 옵션설정에 따라 플리킹하는 애니메이션을 바꿀수 있으며 bUseCircular 값에 따라 순환/비순환 구조를 설정할 수 있다.
+<br>  
+
+
+1. __sAnimation 이 "flip", bUseCircular가 false인 경우 (iOS와 Android 4.0이상 지원)__
+
+	![](Flicking5.jpg "")
+
+	패널의 개수만큼 플립 효과로 플리킹 되는 구조
+2. __sAnimation 이 "flip", bUseCircular가 true인 경우 (iOS와 Android 4.0이상 지원)__
+
+	![](Flicking5.jpg "")
+
+	3개의 패널이 순환적으로 플립 효과로 플리킹되는 구조
+
+	패널의 개수는 항상 3개이여야 함
+
+	<br> 
+	※ bUseCircular옵션이 false인 경우 컴포넌트 인스턴스 생성 시 전체 panel 개수를 알고 있어야 한다.
+3. __sAnimation 이 "alignFlip", sFlipAlign left인 경우 (iOS와 Android 4.0이상 지원)__
+
+	![](Flicking6.jpg "")
+
+	왼쪽을 축으로 플립되는 플리킹
+
+	bHorizontal 옵션은 true 여야 한다
+4. __sAnimation 이 "alignFlip", sFlipAlign right인 경우 (iOS와 Android 4.0이상 지원)__
+
+	![](Flicking7.jpg "")
+
+	오른쪽을 축으로 플립되는 플리킹
+
+	bHorizontal 옵션은 true 여야 한다
+5. __sAnimation 이 "alignFlip", sFlipAlign top 인 경우 (iOS와 Android 4.0이상 지원)__
+
+	![](Flicking8.jpg "")
+
+	위쪽을 축으로 플립되는 플리킹
+
+	bHorizontal 옵션은 false 여야 한다
+6. __sAnimation 이 "alignFlip", sFlipAlign bottom 인 경우 (iOS와 Android 4.0이상 지원)__
+
+	![](Flicking9.jpg "")
+
+	아래쪽을 축으로 플립되는 플리킹
+
+	bHorizontal 옵션은 false 여야 한다

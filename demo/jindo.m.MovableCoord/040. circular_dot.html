@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, user-scalable=no, target-densitydpi=medium-dpi">
+<title>dot 예제 - 범위 내의 순환 이동</title>
+<meta name="class-lists" content="jindo.m.MovableCoord, jindo.m.Morph">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#area {
+		position:relative; border:5px solid #444; width:300px; height:400px; color:#aaa; margin:0;
+		box-sizing:content-box; z-index:9;
+	}
+
+	#dot {
+		position:absolute; background-color:#f00; width:9px; height:9px;
+		left:0; top:0; color:#000; margin:-4px; border-radius:100%;
+	}
+
+	#hmove {
+		position:relative; border:5px solid #888; background-color:yellowgreen;
+		width:300px; height:80px;
+	}
+
+	#vmove {
+		position:relative; border:5px solid #888; background-color:skyblue;
+		width:80px; height:400px; left:310px; top:-500px;
+	}
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="area"><div style="position:absolute; width:200px; height:300px; left:100px; top:100px; background-color:#ddd;"></div><div id="dot"></div></div>
+<div id="hmove"></div><div id="vmove"></div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	/*@code title="JavaScript"*/
+	var welDot = jindo.$Element('dot');
+
+	var inst = new jindo.m.MovableCoord([ 200, 200 ], {
+		aMin : [ 100, 100 ],
+		aMax : [ 300, 400 ],
+		aCircular : [ false, false, true, true ],
+		aBounce : [ 50, 50, 50, 50 ],
+		nDeceleration : 0.0024
+	}).attach({
+
+		'change' : function(oCustomEvent) {
+			/*
+				.aPos {Array}
+			*/
+			var pos = oCustomEvent.aPos;
+			welDot.css('transform', 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)');
+
+		}
+
+	});
+	/*code@*/
+
+	inst.
+	bind(jindo.$('area'), {
+		nDirection : 3 | 12 | 16,
+		aScale : [ 1, 1 ],
+		nMaximumSpeed : 50/*px/ms*/
+	}).
+	bind(jindo.$('hmove'), {
+		nDirection : 1,
+		nScale : 1,
+		nMaximumSpeed : 50/*px/ms*/
+	}).
+	bind(jindo.$('vmove'), {
+		nDirection : 4,
+		nScale : 1,
+		nMaximumSpeed : 50/*px/ms*/
+	});
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

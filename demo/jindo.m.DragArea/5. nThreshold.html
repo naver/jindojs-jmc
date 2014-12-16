@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기준픽셀이상 움직여야 드래그되는 예제</title>
+<meta name="class-lists" content="jindo.m.DragArea">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+#baseLayer{position:relative;width:70%;height:200px;border:3px solid #808080}
+.drag-dragging{position:absolute;top:10px;left:10px;width:50px;height:50px;padding:10px;border:1px solid #000;background-color:#CCC;font-size:12px}
+
+/*@code title="CSS"*/
+#baseLayer{position:relative}
+.drag-dragging{position:absolute;cursor:move}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!--@code title="HTML"-->
+	<div id="baseLayer">
+		<div class="drag-dragging">Drag me</div>
+	</div>
+	<!--code@-->
+
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<span class="keyword">"nThreshold"</span>옵션을  40으로 설정하여 40픽셀이상 움직였을 때 드래그가능하다.<br>
+	40픽셀 이상 움직일 경우 스크롤이 되기 때문에  'handleDown' 커스텀 이벤트에서 스크롤 되지 않게 막는 코드를 추가.
+</div>
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.DragArea.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oDrag = new jindo.m.DragArea(jindo.$('baseLayer'),{
+	bFlowOut : false,
+	nThreshold : 40
+});
+/*code@*/
+
+oDrag.attach({
+	'handleDown' : function(oCustomEvent){
+		addConsole('[hadnleDown]');
+		oCustomEvent.oEvent.stop();
+	},
+
+	'drag' : function(oCustomEvent){
+		addConsole('[drag]');
+	},
+
+	'dragEnd' : function(oCustomEvent){
+		addConsole('[dragEnd]');
+	}
+});
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>
+

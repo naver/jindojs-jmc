@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>메서드 예제</title>
+<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no,target-densitydpi=medium-dpi">
+<meta name="class-lists" content="jindo.m.Morph"/>
+<meta name="screenshots" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="description" content="동작의 수행과 중지를 제어하는 메서드들의 사용 예제입니다.">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	body { }
+	ul { list-style:none; margin:0; padding:0; }
+	li { float:left; }
+	button { font-family:inherit; font-size:2.4em; padding:.5em;}
+
+	#ball {
+		position:absolute;
+		z-index:9;
+		left:50px;
+		top:150px;
+		background-color:#f00;
+		border:5px solid #000;
+		width:100px; height:100px;
+		overflow:scroll;
+		-webkit-transform:scale(1.05);
+		-moz-transform:scale(1.05);
+		-ms-transform:scale(1.05);
+		-o-transform:scale(1.05);
+		transform:scale(1.05);
+		pointer-events:none;
+	}
+
+	button:hover {
+		position:relative;
+		z-index:999;
+	}
+
+</style>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" charset="utf-8" src="../asset/jindo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.UIComponent.js"></script>
+	<!--// 기본 스크립트 끝 -->
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+	<script type="text/javascript" charset="utf-8" src="switcher.js"></script>
+	<ul style="width:950px; float:left;">
+		<li><button onclick="morph.play(); return false;">play()</button></li>
+		<li><button onclick="morph.pause(); return false;">pause()</button></li>
+		<li style="clear:both;"><button onclick="morph.pause(0); return false;">pause(0)</button></li>
+		<li><button onclick="morph.pause(1); return false;">pause(1)</button></li>
+		<li style="clear:both;"><button onclick="morph.reset(); return false;">reset()</button></li>
+	</ul>
+	<div id="ball" style="display:none; overflow:scroll;">
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+		TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+	</div>
+	<script type="text/javascript">
+
+		/*@code title="JavaScript"*/
+		var morph = new jindo.m.Morph({
+			bUseTransition : USE_TRANSITION,
+			fEffect : jindo.m.Effect.linear
+		});
+
+		morph
+		.pushAnimate(-1, [ jindo.$('ball'), { '@backgroundColor' : '#f88', '@display' : 'block', '@transform' : '' } ])
+		.pushAnimate(5000, [ jindo.$('ball'), {
+			'@left' : jindo.m.Effect.easeOut('800px', '450px'),
+			'@top' : [ '150px', '400px' ],
+			'@transform' : 'scale(2)',
+			'scrollTop' : jindo.m.Effect.bounce(100)
+		} ])
+		.pushAnimate(-1, [ jindo.$('ball'), { '@backgroundColor' : '#0f0' } ])
+		.pushAnimate(2000, [ jindo.$('ball'), { '@top' : jindo.m.Effect.bounce('50px') } ])
+		.pushAnimate(-1, [ jindo.$('ball'), { '@backgroundColor' : '#88f' } ])
+		.pushAnimate(2000, [ jindo.$('ball'), { '@transform' : 'scale(3)', '@top' : '150px' } ])
+		.pushCall(function() { alert('done'); });
+		/*code@*/
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>라운드 처리가 된 가로 기본형</title>
+<meta name="class-lists" content="jindo.m.CheckBox">
+<meta name="description" content="라운드 처리가 된 가로 기본형 CheckBox">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style>
+/*@code title="CSS"*/
+/* Check 시 적용 CSS*/
+.fcb-checkbox-on{
+	background: #4596CE !important; /* 선택시 배경색 변경 */
+	color: white !important; 		/* 선택시 Text 색 변경*/
+	text-decoration:none;
+	/* 선택시 배경 그라데이션 적용*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#85bae4),to(#5393c5)) !important;
+	background-image: -webkit-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -moz-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -ms-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -o-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: linear-gradient(top,#85bae4,#5393c5) !important;
+	outline:0 none;
+}
+/* 비활성화시 적용 CSS*/
+.fcb-checkbox-disable{
+	opacity:.3; /* 투명도 */
+	cursor: default; /* 마우스 포인터 모양 */
+}
+/* CheckBox Container CSS */
+.fcb-checkbox-cont:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+/* CheckBox 단위 Unit CSS*/
+.fcb-checkbox-unit{
+	float:left;
+	margin:0;padding:0;
+	list-style:none;
+	border:1px solid #CCC; 			/* Unit Box Border 색 지정*/
+	border-right:none;
+	background:#fff; 				/* 선택 되지 않았을 경우 배경색*/
+	font-weight:bold; color:#444; text-decoration:none;		/* 선택 되지 않았을 경우 글자색*/
+}
+/* CheckBox 단위 Unit 에 MouseOver 시 CSS*/
+.fcb-checkbox-unit:hover{
+	/* MouseOver 시 배경 그라데이션 적용*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#eee));
+	background-image: -webkit-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -moz-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -ms-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -o-linear-gradient(top,#fdfdfd,#eee);
+	background-image: linear-gradient(top,#fdfdfd,#eee);
+}
+/* CheckBox 단위 Unit 첫번째 엘리먼트 CSS*/
+.fcb-checkbox-unit:first-child {
+	/* 좌측 CheckBox 의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-top-left-radius: .6em;
+	border-top-left-radius: .6em;
+	-webkit-border-bottom-left-radius: .6em;
+	border-bottom-left-radius: .6em;
+}
+/* CheckBox 단위 Unit 마지막 엘리먼트 CSS*/
+.fcb-checkbox-unit:last-child {
+	border-right:1px solid #CCC; /* Unit Box Border 색 지정*/
+	/* 우측 CheckBox 의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-top-right-radius: .6em;
+	border-top-right-radius: .6em;
+	-webkit-border-bottom-right-radius: .6em;
+	border-bottom-right-radius: .6em;
+}
+/* CheckBox CSS.*/
+.fcb-checkbox{
+	/* 실제 CheckBox는 숨긴다.*/
+	display:none;
+}
+/* CheckBox Label CSS.*/
+.fcb-checkbox-label{
+	display:block;
+	margin:0;padding:10px 30px; /* CheckBox 여백을 조정*/
+	cursor:pointer;
+}
+
+/*code@*/
+</style>
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div id="checkbox">
+	<ul class="fcb-checkbox-cont">
+		<li class="fcb-checkbox-unit">
+			<input type="checkbox" name="check1" id="news" value="뉴스" class="fcb-checkbox" checked>
+			<label for="check1" class="fcb-checkbox-label">뉴스</label>
+		</li>
+		<li class="fcb-checkbox-unit" id="weatherUnit">
+			<input type="checkbox" name="check2" id="weather" value="날씨" class="fcb-checkbox">
+			<label for="check2" class="fcb-checkbox-label">날씨</label>
+		</li>
+		<li class="fcb-checkbox-unit">
+			<input type="checkbox" name="check3" id="sports" value="스포츠" class="fcb-checkbox">
+			<label for="check3" class="fcb-checkbox-label">스포츠</label>
+		</li>
+	</ul>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../../src/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oCheckbox = new jindo.m.CheckBox("checkbox", {sType : "h"});
+/*code@*/
+</script>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

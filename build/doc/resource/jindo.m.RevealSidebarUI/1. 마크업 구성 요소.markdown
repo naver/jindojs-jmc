@@ -1,0 +1,41 @@
+RevealSidebarUI는 슬라이드효과를 통해 좌,우에 존재하는 메뉴를 나타나게하는 템플릿이다.
+
+좌,우 메뉴는 [jindo.m.PageLayoutUI](../../doc/internal/classes/jindo.m.PageLayoutUI.html)의 마크업과 동일한 구조로 구성되어지며, Main 영역은 사용자의 편의에 따라 구현 가능하다.
+
+이 모든 구조는 rs-body를 최상위 부모로 가진다.
+
+<br> 
+![](RevealSidebar.jpg "")
+
+[컨텐츠 구조]
+
+
+##### Left 영역
+
+좌측 메뉴를 구성하는 한판의 페이지이다.
+
+rs-left 클래스명을 가지며, 헤더(rs-header), 컨텐츠(rs-content), 풋터(rs-footer)로 구성된다.
+
+##### Main 영역
+
+페이지내의 컨텐츠에 해당하는 영역이다.
+
+rs-main 클래스명을 가진다. 이 영역은 다양한 컨텐츠를 적용하여 활용할 수있다.
+
+##### Right 영역
+
+우측 메뉴를 구성하는 한판의 페이지이다.
+
+rs-right 클래스명을 가지며, 헤더(rs-header), 컨텐츠(rs-content), 풋터(rs-footer)로 구성된다.
+
+##### 기능 설명
+
+* Main영역에서 toggleSlide 또는 move 메소드를 통해 좌,우 메뉴를 보이게 할수 있다.
+* 좌,우 메뉴가 노출되었을때 Main 영역을 선택하면 좌,우 메뉴가 슬라이드 효과로 닫힌다.
+* jindo.m.PageLayoutUI를 이용하여 Main 영역을 구성할 수 있다.
+* 좌,우 메뉴는 각각 Header, Contents, Footer로 구성되어 있으며, 필요에 따라서 Header나 Footer를 사용하거나, 사용하지 않을 수 있다.
+* 좌,우 메뉴의 Header나 Footer에 "position=fixed" 속성을 사용하면 고정영역으로 사용할 수 있다.
+
+	* 헤더영역이 position="fixed"일 경우 헤더영역을 제외한 컨텐츠와 풋터에 자동으로 스크롤이 적용된다.
+	* 풋터영역이 position="fixed"일 경우 풋터영역을 제외한 헤더와 컨텐츠에 자동으로 스크롤이 적용된다.
+	* 헤더와 풋터 모두 position="fixed"일 경우 컨텐츠에만 자동으로 스크롤이 적용된다.

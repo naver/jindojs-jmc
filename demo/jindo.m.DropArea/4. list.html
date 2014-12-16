@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>리스트 순서 바꾸기</title>
+<meta name="class-lists" content="jindo.m.DropArea">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+li{width:200px;height:20px;margin-bottom:10px;padding:10px;background-color:#ccc;list-style:none}
+#parent{width:100%;height:300px;margin-top:10px}
+ul{padding-left:10px}
+
+/*@code title="CSS"*/
+.moving{background-color:#646464;-webkit-transform:skewX(-30deg);opacity:0.6;cursor:move}
+.over{margin-top:40px}
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<!--@code title="HTML"-->
+	<div id="parent">
+		<ul class="dropable">
+			<li class="drag-dragging drop-area">1</li>
+			<li class="drag-dragging drop-area">2</li>
+			<li class="drag-dragging drop-area">3</li>
+			<li class="drag-dragging drop-area">4</li>
+			<li class="drag-dragging drop-area">5</li>
+			<!-- 안보이는 엘리먼트 맨 마지막에 drop 할수도 있기 때문에 만들어 둠 -->
+			<li class="drop-area" style="visibility:hidden">Last</li>
+		</ul>
+	</div>
+	<!--code@-->
+</div>
+<!--// Demo 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.DragArea.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.DropArea.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oDrag = new jindo.m.DragArea(jindo.$('parent'),{
+	bFlowOut : true
+});
+
+var oDrop = new jindo.m.DropArea(jindo.$('parent'),{
+	oDragInstance : oDrag
+});
+
+var aWelDrop = [];
+var nX = 0;
+var elLastDrop = null;
+var welLastOver = null;
+
+oDrop.attach({
+	'handleDown': function(oCustomEvent){
+		wel =jindo.$Element(oCustomEvent.elDrag);
+		wel.removeClass('drop-area');
+		welLastOver = wel.next();
+		welLastOver.addClass("over");
+	},
+	'dragStart' : function(oCustomEvent){
+		wel =jindo.$Element(oCustomEvent.elDrag);
+		wel.removeClass('drop-area');
+		wel.addClass('moving');
+
+		nX = oCustomEvent.nX;
+		welLastOver = wel.next();
+		/* 로그처리 */
+		var sElText = jindo.$S(wel.text()).trim().toString() || "Last";
+		var sText = sElText +" 드래그 시작";
+		addConsole(sText);
+	},
+	'beforeDrag' : function(oCustomEvent){
+		oCustomEvent.nX = nX;
+	},
+	'over' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrop);
+		if(welLastOver){
+			welLastOver.removeClass('over');
+		}
+		if (!wel.hasClass('over')) {
+			wel.addClass('over');
+		}
+		/* 로그처리 */
+		var sElText = jindo.$S(wel.text()).trim().toString() || "Last";
+		if(sElText.toString().length == 0){
+			sElText = "Last";
+		}
+		var sText = "[OVER] "+ sElText +"번";
+		addConsole(sText);
+
+	},
+	'drag' : function(oCustomEvent){
+		if(oCustomEvent.nDragCount === 0){
+			this._reCalculate();
+			if(welLastOver && !welLastOver.hasClass('over')){
+				welLastOver.addClass('over')
+			}
+		}
+	},
+	'out' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrop);
+		wel.removeClass('over');
+
+	},
+	'drop' : function(oCustomEvent){
+		var wel = jindo.$Element(oCustomEvent.elDrop);
+		var welDrag = jindo.$Element(oCustomEvent.elDrag);
+
+		wel.before(jindo.$Element(oCustomEvent.elDrag));
+		welDrag.css({
+			'position' : '',
+			'top' : '',
+			'left' : ''
+		});
+		wel.removeClass('over');
+
+		elLastDrop = wel.$value();
+		nX  = 0;
+		/* 로그처리 */
+		var sElText = jindo.$S(wel.text()).trim().toString() || "Last";
+		var sText = jindo.$S(welDrag.text()).trim()+"번  → "+ sElText +"번 위로 위치 이동";
+		addConsole(sText);
+	},
+
+	'dragEnd' : function(oCustomEvent){
+		jindo.$Element(oCustomEvent.elDrag).removeClass('moving');
+	},
+
+	'handleUp' : function(oCustomEvent){
+		var welDrag = jindo.$Element(oCustomEvent.elDrag);
+		if (!welDrag.hasClass('drop-area')) {
+			welDrag.addClass('drop-area');
+		}
+
+		if(!elLastDrop){
+			welDrag.css({
+			'position' : '',
+			'top' : '',
+			'left' : '',
+			'zIndex' : ''
+			});
+
+			/* 로그처리 */
+			var sElText = jindo.$S(wel.text()).trim().toString() || "Last";
+			var sText =sElText +"번 제자리로 이동";
+			addConsole(sText);
+		}
+		if(welLastOver){
+			welLastOver.removeClass('over');
+			welLastOver = null;
+		}
+		elLastDrop = null;
+	}
+});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>jindo.m.Keyframe - parallax scrolling for the masses</title>
+
+	<link href="css/fixed-positioning.css" rel="stylesheet" type="text/css" />
+	<link href="css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div id="test" style="position:fixed; z-index:32000; background-color:#ff0; color:#000; right:0; bottom:0;"></div>
+	<div id="bg1" class="skrollable"></div>
+	<div id="bg2" class="skrollable"></div>
+	<div id="bg3" class="skrollable"></div>
+
+	<div id="progress" class="skrollable"></div>
+
+	<div id="intro" class="skrollable">
+		<h1><a href="http://jindo.dev.naver.com/docs/jindo-mobile/archive/latest/doc/external/classes/jindo.m.Keyframe.html">Keyframe</a></h1>
+		<h2>parallax scrolling for the masses</h2>
+		<p>let's get scrollin' ;-)</p>
+		<p class="arrows">▼&nbsp;▼&nbsp;▼</p>
+	</div>
+
+	<div id="transform" class="skrollable">
+		<h2>transform</h2>
+		<p>scale, skew and rotate the sh** out of any element</p>
+	</div>
+
+	<div id="properties" class="skrollable">
+		<h2>all numeric properties</h2>
+		<p>width, height, padding, font-size, z-index, blah blah blah</p>
+	</div>
+
+	<div id="easing_wrapper" class="skrollable">
+		<div id="easing" class="skrollable">
+			<h2>easing?</h2>
+			<p>sure.</p>
+			<p>let me dim the <span id="lights" class="skrollable">lights</span> for this one...</p>
+			<p id="comment" class="skrollable">you can set easings for each property and define own easing functions</p>
+		</div>
+
+		<div id="drop-linear" class="drop skrollable">linear</div>
+		<div id="drop-quadratic" class="drop skrollable">quadratic</div>
+		<div id="drop-cubic" class="drop skrollable">cubic</div>
+		<div id="drop-swing" class="drop skrollable">swing</div>
+		<div id="drop-WTF" class="drop skrollable">WTF</div>
+		<div id="drop-inverted" class="drop skrollable">inverted</div>
+		<div id="drop-bounce" class="drop skrollable">bounce</div>
+	</div>
+
+	<div id="download" class="skrollable">
+		<h2>the end</h2>
+		<p>by the way, you can also animate colors (you did notice this, didn't you?)</p>
+		<p><strong>Now get this thing on <a href="http://jindo.dev.naver.com/">JindoJS</a> and spread the word, it's open source!</strong>
+		<p>Check out more <a href="http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/doc/internal/classes/jindo.m.Keyframe.html#demo">examples</a>.</p>
+	</div>
+
+	<div id="scrollbar" class="skrollable"></div>
+
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" src="../asset/jindo.js"></script>
+	<script type="text/javascript" src="../../src/jindo.m.js"></script>
+
+	<script type="text/javascript" src="../../src/jindo.m.Component.js"></script>
+	<script type="text/javascript" src="../../src/jindo.m.UIComponent.js"></script>
+	<!--// 기본 스크립트 끝 -->
+	<script type="text/javascript" src="../../src/jindo.m.Effect.js"></script>
+	<script type="text/javascript" src="../../src/jindo.m.Keyframe.js"></script>
+	<script type="text/javascript" src="../../src/jindo.m.Touch.js"></script>
+	<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js"></script>
+
+	<script type="text/javascript">
+
+		jindo.m.Effect.quadratic = jindo.m.Effect(function(n) { return n*n; });
+		jindo.m.Effect.cubic = jindo.m.Effect(function(n) { return n*n*n });
+		jindo.m.Effect.swing = jindo.m.Effect(function(n) { return (-Math.cos(n * Math.PI) / 2) + 0.5; });
+		jindo.m.Effect.invert = jindo.m.Effect(function(n) { return 1 - n; });
+		jindo.m.Effect.WTF = jindo.m.Effect(function(n) { return Math.random(); });
+
+		var kf = new jindo.m.Keyframe({
+			nAnimationDuration : 300
+		});
+
+		kf.set(jindo.$('bg1'), {
+		    "0": {
+		        "@background-position": "0px 0px"
+		    },
+		    "12000": {
+		        "@background-position": "-500px -10000px"
+		    }
+		});
+
+		kf.set(jindo.$('bg2'), {
+		    "0": {
+		        "@background-position": "0px 0px"
+		    },
+		    "12000": {
+		        "@background-position": "-500px -8000px"
+		    }
+		});
+
+		kf.set(jindo.$('bg3'), {
+		    "0": {
+		        "@background-position": "0px 0px"
+		    },
+		    "12000": {
+		        "@background-position": "-500px -6000px"
+		    }
+		});
+
+		kf.set(jindo.$('progress'), {
+		    "0": {
+		        "@width": "0%",
+		        "@background": "hsl(0, 100%, 50%)"
+		    },
+		    "12000": {
+		        "@width": "100%",
+		        "@background": "hsl(359, 100%, 50%)"
+		    }
+		});
+
+		kf.set(jindo.$('intro'), {
+		    "0": {
+		        "@opacity": "1",
+		        "@top": "3%",
+		        "@transform": "rotate(0deg)",
+		        "@transform-origin": "0 0"
+		    },
+		    "500": {
+		        "@opacity": "0",
+		        "@top": "-10%",
+		        "@transform": "rotate(-90deg)"
+		    }
+		});
+
+		kf.set(jindo.$('transform'), {
+		    "500": {
+		        "@transform": "scale(0) rotate(0deg)"
+		    },
+		    "1000": {
+		        "@transform": "scale(1) rotate(1440deg)",
+		        "@opacity": "1"
+		    },
+		    "1600": {
+		        "@transform": "scale(1) rotate(1440deg)",
+		        "@opacity": "1"
+		    },
+		    "1700": {
+		        "@transform": "scale(5) rotate(3240deg)",
+		        "@opacity": "0"
+		    }
+		});
+
+		kf.set(jindo.$('properties'), {
+		    "1700": {
+		        "@top": "100%"
+		    },
+		    "2200": {
+		        "@top": "0%"
+		    },
+		    "3000": {
+		    	"@top": "0%",
+		        "@display": "block"
+		    },
+		    "3700": {
+		        "@top": "-100%",
+		        "@display": "none"
+		    }
+		});
+
+		kf.set(jindo.$('easing_wrapper'), {
+		    "0": {
+		        "@display": "none"
+		    },
+		    "3900": {
+		        "@display": "block"
+		    },
+		    "4900": {
+		        "@background": "rgba(0, 0, 0, 0)",
+		        "@color": "rgb(0,0,0)" // [swing]
+		    },
+		    "5900": {
+		        "@background": "rgba(0,0,0,1)",
+		        "@color": jindo.m.Effect.swing("rgb(255,255,255)")
+		    },
+		    "10000": {
+		        "@top": "0%"
+		    },
+		    "12000": {
+		        "@top": "-100%"
+		    }
+		});
+
+		kf.set(jindo.$('easing'), {
+		    "3900": {
+		        "@left": "100%"
+		    },
+		    "4600": {
+		        "@left": "25%"
+		    }
+		});
+
+		kf.set(jindo.$('lights'), {
+		    "4900": {
+		        "@color": "rgb(0,0,0)" // [swing]
+		    },
+		    "5900": {
+		        "@color": jindo.m.Effect.swing("rgb(255,255,0)")
+		    }
+		});
+
+		kf.set(jindo.$('comment'), {
+		    "5900": {
+		        "@opacity": "0",
+		        "@font-size": "100%"
+		    },
+		    "6500": {
+		        "@opacity": "1",
+		        "@font-size": "150%"
+		    }
+		});
+
+		kf.set(jindo.$('drop-linear'), {
+		    "6500": {
+		        "@left": "15%",
+		        "@bottom": "100%"
+		    },
+		    "9500": {
+		        "@bottom": "0%"
+		    }
+		});
+
+		kf.set(jindo.$('drop-quadratic'), {
+		    "6500": {
+		        "@left": "25%",
+		        "@bottom": "100%" // [quadratic]
+		    },
+		    "9500": {
+		        "@bottom": jindo.m.Effect.quadratic("0%")
+		    }
+		});
+
+		kf.set(jindo.$('drop-cubic'), {
+		    "6500": {
+		        "@left": "35%",
+		        "@bottom": "100%" // [cubic]
+		    },
+		    "9500": {
+		        "@bottom": jindo.m.Effect.cubic("0%")
+		    }
+		});
+
+		kf.set(jindo.$('drop-swing'), {
+		    "6500": {
+		        "@left": "45%",
+		        "@bottom": "100%" // [swing]
+		    },
+		    "9500": {
+		        "@bottom": jindo.m.Effect.swing("0%")
+		    }
+		});
+
+		kf.set(jindo.$('drop-WTF'), {
+		    "6500": {
+		        "@left": "55%",
+		        "@bottom": "100%" // [WTF]
+		    },
+		    "9500": {
+		        "@bottom": jindo.m.Effect.WTF("0%")
+		    }
+		});
+
+		kf.set(jindo.$('drop-inverted'), {
+		    "6500": {
+		        "@left": "65%",
+		        "@bottom": "100%" // [inverted]
+		    },
+		    "9500": {
+		        "@bottom": jindo.m.Effect.invert("0%")
+		    }
+		});
+
+		kf.set(jindo.$('drop-bounce'), {
+		    "6500": {
+		        "@left": "75%",
+		        "@bottom": "100%" // [bounce]
+		    },
+		    "9500": {
+		        "@bottom": jindo.m.Effect.bounce("0%")
+		    }
+		});
+
+		kf.set(jindo.$('download'), {
+		    "10000": {
+		        "@top": "100%", // [cubic]
+		        "@border-radius": "0em", // [cubic]
+		        "@background": "rgb(0,50,100)",
+		        "@border-width": "0px"
+		    },
+		    "12000": {
+		        "@top": jindo.m.Effect.cubic("10%"),
+		        "@border-radius": jindo.m.Effect.cubic("2em"),
+		        "@background": "rgb(190,230,255)",
+		        "@border-width": "10px"
+		    }
+		});
+
+		kf.set(jindo.$('scrollbar'), {
+		    "0": {
+		        "@top": "0%",
+		        "@margin-top": "2px"
+		    },
+		    "12000": {
+		        "@top": "100%",
+		        "@margin-top": "-52px"
+		    }
+		}); 
+
+		kf.preprocess();
+		kf.frame(0);
+
+		var clientHeight = jindo.$Document().clientSize().height;
+
+		if (/Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent || navigator.vendor || window.opera)) {
+
+			document.documentElement.className += 'skrollr-mobile';
+			document.documentElement.style.overflow = document.body.style.overflow = 'hidden';
+
+			new jindo.m.MovableCoord([ 0, 0 ], {
+				aMax : [ 0, 12000 ],
+				aBounce : [ 0,0,0,0 ],
+				aMargin : [ 0,0,0,0 ],
+				nDeceleration : 0.0012
+			}).attach('change', function(oCustomEvent) {
+				kf.frame(oCustomEvent.aPos[1]);
+			}).bind(document.body, { nDirection : 1, aScale : [ 1, -1 ] });
+
+		} else {
+
+			document.documentElement.className += 'skrollr-desktop';
+
+			jindo.$Element(document.body).css('height', clientHeight + 12000 + 'px');
+
+			jindo.$Element(window).attach('scroll', function() {
+				var top = document.documentElement.scrollTop || document.body.scrollTop || 0;
+				kf.frame(top);
+			});
+
+		}
+
+	</script>
+</body>
+
+</html>

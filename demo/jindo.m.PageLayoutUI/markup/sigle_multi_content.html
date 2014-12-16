@@ -1,0 +1,59 @@
+<!-- 변환 전 -->
+<body>
+<!-- 싱글 상/단 고정 다중 컨텐츠 -->
+<div class="jmc-page">
+	<div class="jmc-header" position="fixed">헤더</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-content">컨텐츠</div>
+	<div class="jmc-footer" position="fixed">풋터</div>
+</div>
+</body>
+
+
+<!-- 변환 후 -->
+<body>
+    <!-- page 마크업 시작 -->
+    <div class="jmc-page">
+    	<div class="jmc-header" position="fixed">헤더</div>
+    		<div class="jmc-content-view">
+    			<!-- 1 page 마크업 시작 -->
+    			<div class="jmc-content-ct">
+					<div class="scroll-wrapper">
+						<div class="scroller">
+							<div class="jmc-content">컨텐츠</div>
+						</div>
+					</div>	
+    			</div>	
+	         	<!-- //1 page  마크업 끝-->
+	         	<!-- 2 page 마크업 시작 -->
+	    		<div class="jmc-content-view">
+	    			<div class="jmc-content-ct">
+						<div class="scroll-wrapper">
+							<div class="scroller">
+								<div class="jmc-content">컨텐츠</div>
+							</div>
+						</div>	
+	    			</div>
+	    		</div>
+	         	<!-- //2 page  마크업 끝-->
+	         	...
+	         	<!-- N page 마크업 시작 -->
+	    		<div class="jmc-content-view">
+	    			<div class="jmc-content-ct">
+						<div class="scroll-wrapper">
+							<div class="scroller">
+								<div class="jmc-content">컨텐츠</div>
+							</div>
+						</div>	
+	    			</div>
+	    		</div>
+	         	<!-- //N page  마크업 끝-->
+			</div>
+        <div class="jmc-footer" position="fixed">풋터</div>
+    </div>
+    <!-- //page  마크업 끝-->
+</body>             

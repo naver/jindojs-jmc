@@ -1,0 +1,175 @@
+/* Default font settings. 
+   The font-size percentage is of 16px. (0.75 * 16px = 12px) */
+body { 
+  font-size: 75%;
+  color: #222; 
+  background: #fff;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+h2,h3,h4,h5,h6 { font-weight: normal; color: #111; margin: 0; padding: 0; }
+
+h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
+h2 { font-size: 2em; margin-bottom: 0.75em; }
+h3 { font-size: 1.8em; line-height: 1; }
+h4 { font-size: 1.3em; font-weight: bold; margin:0 0 1em 0; line-height: 1.5; }
+h5 { font-size: 1em; font-weight: bold; margin:1em 0 1em 1.5em;}
+h6 { font-size: 1em; font-weight: bold; }
+
+h1 img, h2 img, h3 img, 
+h4 img, h5 img, h6 img {
+  margin: 0;
+}
+
+/* Header
+-------------------------------------------------------------- */
+div#header { 
+	height: 30px;
+	margin-top: 30px;
+	border-bottom: 3px solid #696969;
+	padding: 0 0 5px 0;
+}
+
+div#packageTitle h1 {
+	float: left;
+	font-size: 18px;
+	margin: 0;
+}
+
+div#packageTitle h1 a {
+	display: block;
+	padding: 10px 0;
+	text-decoration: none;
+	color: #4DA52A;
+}
+ul.gnb {
+	margin-left: 460px;
+}
+
+ul.gnb li {
+	float: left;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+
+ul.gnb li a {
+	background:transparent url(http://lab.naver.com/img/bg_bar_1x16_dadada.gif) no-repeat scroll right 11px;
+	display: block;
+	padding: 10px 30px;
+	text-decoration: none;
+}
+
+ul.gnb li a.current {
+	font-weight: bold;
+	color: #4DA52A;
+}
+
+ul.gnb li a.last {
+	background-image:none;
+}
+
+/* main
+-------------------------------------------------------------- */
+
+div#main {
+	padding: 0 0 120px 0;
+}
+
+/* Left Navigation 
+-------------------------------------------------------------- */
+div#lnb_topnav {
+	margin-bottom: 20px;
+}
+
+/* Splitter for main 
+-------------------------------------------------------------- */
+
+div#splitter {
+	position: relative;
+}
+
+div.splitter-dragable {
+	background-color: red;
+	cursor: ns-resize;
+}
+
+div.splitter-dragging {
+	background-color: gray;
+}
+
+/* Container
+-------------------------------------------------------------- */
+
+.container { width: 950px; margin: 0 auto; display:table }
+#lnb { float:left; width:220px; }
+#lnb a:link, #lnb a:visited, #lnb a:active { text-decoration:none; color:#444; }
+#lnb a:hover { text-decoration:underline; font-weight:bold; color:#0000ee}
+
+.main_container { float:left; }
+.header, .body, .demo { padding:10px 15px 30px 25px; }
+.body table.option, .body table.customevent, .body table.method { width:650px; }
+
+.body table.effect { width:650px; }
+
+div#container { 
+	background:transparent url(http://lab.naver.com/img/bg_dot_ccc.gif) repeat-y scroll 220px top;
+	border-bottom:3px solid #C2C2C2;
+	padding-top:35px;
+}
+
+
+div.star-rate {
+	display: hidden;
+}
+
+div.block { 
+	border: 6px solid #ECECEC;
+	margin-top: 20px;
+}
+
+div.block h3 { 
+	background-color: #F8F8F8;
+	font-weight: bold;
+	border-bottom: 1px solid #ECECEC;
+}
+
+/* footer
+-------------------------------------------------------------- */
+
+div.footer {
+	clear:both;
+	text-align: center;
+	margin-top: 12px;
+	padding-bottom: 60px;
+}
+
+/* Utility
+-------------------------------------------------------------- */
+
+div.description {
+
+}
+
+ul.ul-reset-space {
+	margin: 0;
+	padding: 0;
+}
+
+td.td_left {
+	width: 100px;
+}
+.paddingInnerbox {
+	padding: 9px;
+}
+
+.nanum {
+	font-family:�������,Nanumgothic,����,dotum,����;
+	font-size:12px;
+}
+
+/* method */
+.method .return { font-style:italic; font-weight:normal;}

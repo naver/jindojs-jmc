@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>전체화면 변경 예제</title>
+<meta name="class-lists" content="jindo.m.LayerPosition">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/css/w.css">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_dsc{display:block;width:300px;padding:10px;border:2px solid green;background-color:green;font-size:1em;text-align:center;opacity:0.3}
+.u_dsc .uc_h{font-size:1em}
+.u_dsc .uc_st{font-weight:bold;color:#32a800}
+.u_dsc .uc_wn{white-space:nowrap}
+.u_dsc .uc_p{margin-top:.5em;font-weight:bold;color:#FFF;text-align:center;vertical-align:middle}
+.u_dsc .uc_area{margin-top:1.25em}
+.u_dsc .u_btn{display:inline-block;padding:.36em .8em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));font-size:12px;color:#666;white-space:nowrap}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<button type="button" id="btn_all" class="btn">전체화면에 맞게 변경</button>
+
+	<div class="u_dsc" id="layer">
+		<p class="uc_p">
+			LayerPosition은 all 영역을 지정함으로써 화면 전체와 동일한 크기의 Layer를 지정할 수 있습니다.<br/><br/>
+			<a href="#" class="u_btn" id="btn_prev">이전으로</a>
+		</p>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+
+<!--@code title="HTML"
+<div id="layer">
+	Layer
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.LayerPosition.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	jindo.$Fn(function(we){
+		we.stop();
+		oLp.all();
+	}, this).attach(jindo.$("btn_all"), 'click');
+
+	jindo.$Fn(function(we){
+		we.stop();
+		history.back();
+	}, this).attach(jindo.$("btn_prev"), 'click');
+
+	var oLp = new jindo.m.LayerPosition("layer", {
+		sPosition : "bottom"
+	}).attach("adjust", function(we) {
+		we.elLayer.style.display = "block";
+	});
+
+/*@code title="JavaScript"
+var oLp = new jindo.m.LayerPosition("layer", {
+	sPosition : "all"
+});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

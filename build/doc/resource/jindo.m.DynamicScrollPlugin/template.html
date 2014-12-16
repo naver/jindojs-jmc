@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								컴포넌트 설명
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+						<!-- 설명 -->
+						<h3>Description</h3>
+						<div class="t1">
+							컴포넌트 상세 설명을 입력해주세요....
+							
+							<h4>소제목</h4>
+							<p>내용</p>
+							
+							<h5>소제목2</h5>
+							
+							<h4>목록형태</h4>
+							<ul class="t2">
+								<li>1</li>
+								<li>2</li>
+								<li>3</li>
+							</ul>
+						</div>	
+						<!--- Notice -->	
+						<h3 class="notice">Notice</h3>
+						<div class = "t1">
+							<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+							<ul class="t2">
+								<li>안드로이드 2.1 이상</li>
+								<li>iOS 3.0 이상</li>
+							</ul>
+							<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+							<div class="point_box">
+								<p style="color:#ff0080;font-weight:bold;">XXXXX</p>
+								<div class="post">
+									XXXX
+								</div>
+							</div>
+							
+						</div>
+
+						<!--- Initialization -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">
+									<div>
+										<div></div>
+									</div>
+								</textarea>
+								<div class="t2">
+								필요시 설명
+								</div>
+							</dd>
+							<dt>CSS</dt>
+							<dd>
+									<!-- css 구조 -->
+								<textarea class="brush: css;">
+									.test {}
+								</textarea>
+								<div class="t2">
+								필요시 설명
+								</div>
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oComponent = new jindo.m.컴포넌트명();
+								</textarea>
+								<div class="t2">
+								필요시 설명
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>Class의 prefix명</td>
+								<td>slider-</td>
+							</tr>
+							<tr>
+								<td class="name">bVertical</td>
+								<td>슬라이더 세로 여부</td>
+								<td>false</td>
+							</tr>
+							<tr>
+								<td class="name">nMinValue</td>
+								<td>슬라이더의 최소값</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">nMaxValue</td>
+								<td>슬라이더의 최대값</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>컴포넌트 로드시 activate 여부</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeChange</td>
+								<td>Thumb이 움직이기 직전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>nValue (Number) : 이동하려는 Thumb의 위치의 계산된 슬라이더 값.위치 값에 따라 소수점 발생함</li>
+										<li>nAdjustValue (Number) : nValue에서 반올림하여 정수로 계산된 값 </li>
+										<li>stop (Function) : 수행시 슬라이더가 이동하지 않으며 change 이벤트가 발생하지 않습니다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									Thumb의 움직임의 값을 조정하고 싶을 때 함수 구현 예제<br>
+									필요에 따라 정수가 아닌 소수 2째자리 까지 슬라이더 값을 허용하고 싶을때 beforeChange 이벤트를 에서 nAdjustValue 값을 바꿔주면 됩니다.
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeChange", function(oCustomEvent){
+										oCustomEvent.nAdjustValue = oCustomEvent.nValue.toFixed(2); 
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">change</td>
+								<td>Thumb이 움직인 이후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>nValue (Number) : 이동하려는 Thumb의 위치의 계산된 슬라이더 값.위치 값에 따라 소수점 발생함</li>
+										<li>nAdjustValue (Number) : beforeChange에서 다시 설정한 슬라이더 값(변경된 값이 없으면 nValue의 반올림한 정수의 값)</li>
+										<li>stop (Function) : 수행시 영향을 받는것은 없습니다</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									Thumb의 움직임인 이후에 실행될 함수 구현<br>
+									<textarea class="brush: javascript;">
+									oComponent.attach("change", function(oCustomEvent){
+										jindo.$('txt1').value = oCustomEvent.nAdjustValue;
+									});
+									</textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Version</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <tr>
+							 	<td class="name">v?.?.?</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.Accordion </title>
+		<link rel="stylesheet" type="text/css" href="../asset/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../../asset/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../asset/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../../asset/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../../asset/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../asset/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../asset/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../asset/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>
+			</div> -->
+
+
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.Accordion</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								제목탭과 내용탭이 쌍으로 펼쳐지고 접혀지는 컴포넌트
+							</p>
+							<a href="../../sample/latest/jindo.m.Accordion/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">
+						Accordion 컴포넌트는 header영역을 클릭시 해당 block을 확장(Expand)/축소(Collapse)하는 형태의 동작을 수행한다.<br/><br/>
+
+						Accordion 컴포넌트는 sClassPrefix+"block"으로 정의된 엘리먼트의 overflow속성을 hidden으로 만든 후, 사이즈를 조절하여 애니메이션 효과를 내는데 이 효과는 옵션을 통해 다양하게 지정할 수 있다.<br><br>
+
+						<div style="border:1px solid #d1d1d1;padding:5px;width:220px;height:220px;"><img width=220 height=220 src="accordion2.jpg"></div>
+						[컨텐츠 구조]<br><br>
+
+						<p style="padding:0px;line-height:17px;">
+							<strong>block 영역</strong><br>
+							header와 body를 감싸는 영역이다.<br><br>
+
+							<strong>header 영역</strong><br>
+							각 block을 컨트롤 하는 handler 역할을 하는 엘리먼트이다.<br><br>
+
+							<strong>body 영역</strong><br>
+							확장(Expand) / 축소(Collapse)되는 내용에 해당하는 엘리먼트이다.<br><br><br>
+						</p>
+
+						<div class="point_box">
+							<font style="color:#e11b10;">√</font> 1개의 block은 1개의 header와 1개의 body로 구성되어야하며, Accordion에는 1개 이상의 block이 있어야한다.
+						</div>
+					</div>
+
+					<!-- 주의사항 -->
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+					</div>
+
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>HTML</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">
+										<div id="panel" class="accordion">		<!-- 기준 엘리먼트 -->
+										    <dl class="accordion-block">		<!-- block 엘리먼트 (필수) -->
+										        <dt>1</dt>						<!-- 제목 (필수) -->
+										        <dd>내용1</dd> 					<!-- 내용 (필수) -->
+										    </dl>
+										    <dl class="accordion-block"> 		<!-- block 엘리먼트 (필수) -->
+										        <dt>2</dt> 						<!-- 제목 (필수) -->
+										        <dd>내용2</dd> 					<!-- 내용 (필수) -->
+										    </dl>
+										</div>
+								</textarea>
+								<ul class="t2">
+									<li>기준엘리먼트의 자식노드로 block엘리먼트가 최소 1개 이상 포함되어야 한다. <br>
+									&nbsp;&nbsp;&nbsp;block 엘리먼트는 [prefix]block 클래스명을 가진다.</li>
+									<li>block 엘리먼트는 제목부분인 dt엘리먼트와 내용부분인 dd엘리먼트로 구성된다.</li>
+									<li>[prefix]는 sClassPrefix 옵션으로 지정가능하다. <br>
+									&nbsp;&nbsp;&nbsp;디폴트 값은 "accordion-"이다.</li>
+								</ul>
+							</dd>
+							<dt>CSS</dt>
+							<dd>
+								<!-- css 구조 -->
+								<textarea class="brush: css;">
+									.accordion {}
+									.accordion-block {overflow:hidden;cursor:pointer;}
+									.accordion-block dt {}
+									.accordion-block dd {cursor:default;}
+								</textarea>
+							</dd>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oAccordion = new jindo.m.Accordion("panel");
+								</textarea>
+							</dd>
+						</dl>
+					</div>
+
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>초기 HTML/CSS구조에서 필요한 className 앞에 붙는 prefix를 정의</td>
+								<td>"accordion-"</td>
+							</tr>
+							<tr>
+								<td class="name">sDirection</td>
+								<td>
+									Accordion이 펼쳐질 방향
+									<ul>
+										<li>vertical : 세로</li>
+										<li>horizontal : 가로</li>
+									</ul>
+								</td>
+								<td>"vertical"</td>
+							</tr>
+							<tr>
+								<td class="name">nDefalutIndex</td>
+								<td>디폴트로 확장될 인덱스, 선언하지 않을시 확장하지 않음</td>
+								<td>-1</td>
+							</tr>
+							<tr>
+								<td class="name">bUseToggle</td>
+								<td>Header에 클릭발생시 Block의 확장(Expand)/축소(Collapse) 토글여부</td>
+								<td>false</td>
+							</tr>
+							<tr>
+								<td class="name">sTransitionTimingFunction</td>
+								<td>
+									 Block의 확장(Expand)/축소(Collapse) Effect효과
+									<ul>
+										<li>ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</li>
+										<li>linear : 등속효과</li>
+										<li>ease-in : 속도가 점점 빨라지는 가속 효과</li>
+										<li>ease-out : 속도가 천천히 줄어드는 감속효과</li>
+										<li>ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</li>
+									</ul>
+								</td>
+								<td>"ease"</td>
+							</tr>
+							<tr>
+								<td class="name">nDuration</td>
+								<td> Block의 확장(Expand)/축소(Collapse) Effect처리 지속시간</td>
+								<td>500</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeExpand</td>
+								<td>Block이  확장(Expand)되기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nBeforeIndex (Number) : 기존에 확장(Expand)되어있는 Block의 인덱스 <br/>- 모두 축소(Collapse)된 상태라면 -1 반환</li>
+										<li>nIndex (Number) : 확장(Expand)처리할 Block의 인덱스</li>
+										<li>elBlock (HTMLElement) : 확장(Expand)처리할 Block 엘리먼트</li>
+										<li>stop (Function) : 수행시 Block이 확장(Expand)되지 않음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									beforeExpand 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oAccordion.attach("beforeExpand", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">expand</td>
+								<td>Block이  확장(Expand)된 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 확장(Expand)처리한 Block의 인덱스</li>
+										<li>elBlock (HTMLElement) : 확장(Expand)처리한 Block 엘리먼트</li>
+										<li>stop (Function) : 수행시 Block이 확장(Expand)되지 않음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									expand 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oAccordion.attach("expand", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeCollapse</td>
+								<td>Block이  축소(Collapse)되기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 축소(Collapse)처리할  Block의 인덱스</li>
+										<li>elBlock (HTMLElement) : 축소(Collapse)처리할 Block 엘리먼트</li>
+										<li>stop (Function) : 수행시 Block이 축소(Collapse)되지 않음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									beforeCollapse 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oAccordion.attach("beforeCollapse", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">collapse</td>
+								<td>Block이  축소(Collapse)된 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>nIndex (Number) : 축소(Collapse)처리한 Block의 인덱스</li>
+										<li>elBlock (HTMLElement) : 축소(Collapse)처리한 Block 엘리먼트</li>
+										<li>stop (Function) : 수행시 Block이 축소(Collapse)되지 않음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									collapse 커스텀이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oAccordion.attach("collapse", function(oCustomEvent) {
+									    oCustomEvent.stop();
+									});
+									</textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- 퍼블릭 메서드 -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+
+			<!-- Contstuctor Summary -->
+
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.Accordion</p>
+						<p class="constructor">&lt;constructor&gt;</p>
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.Accordion</strong>(el, htUserOption)
+						</span>
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{String|HTMLElement}</span> <strong>el</strong>
+
+									: Accordion 컴포넌트를 적용한 레이어의 id 혹은 HTMLElement
+								</li>
+
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+
+									: 추가 옵션 (생략가능)
+								</li>
+
+							</ul>
+
+
+						<!-- Extends -->
+
+							<h5>Extends :
+									jindo.UIComponent
+							</h5>
+
+
+						<!-- Requires -->
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- static method -->
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="collapse"></a>collapse
+					</td>
+					<td>
+						아코디언 블럭 collapse 처리함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+
+							<span class="return">void </span>
+
+						<strong class="method">collapse</strong>(nIndex)
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{Number}</span> <strong>nIndex</strong>
+
+									: 아코디언 블럭의 인덱스
+								</li>
+
+							</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="collapseAll"></a>collapseAll
+					</td>
+					<td>
+						전체 Collapse 처리함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+
+							<span class="return">void </span>
+
+						<strong class="method">collapseAll</strong>()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+
+							<span class="return">void </span>
+
+						<strong class="method">destroy</strong>()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="expand"></a>expand
+					</td>
+					<td>
+						아코디언 블럭 Expand 처리함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+
+							<span class="return">void </span>
+
+						<strong class="method">expand</strong>(nIndex)
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{Number}</span> <strong>nIndex</strong>
+
+									: 아코디언 블럭의 인덱스
+								</li>
+
+							</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="getBody"></a>getBody
+					</td>
+					<td>
+						아코디언 블럭의 바디 반환함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+							<span class="return">HTMLElement </span>
+
+
+						<strong class="method">getBody</strong>(nIndex)
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{Number}</span> <strong>nIndex</strong>
+
+									: 아코디언 블럭의 인덱스
+								</li>
+
+							</ul>
+
+
+
+							<h5>Return</h5>
+							<span class="t1">HTMLElement </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="getExpandIndex"></a>getExpandIndex
+					</td>
+					<td>
+						현재 Expand되어 있는 아코디언 블럭의 Index 반환함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+							<span class="return">Number </span>
+
+
+						<strong class="method">getExpandIndex</strong>()
+
+
+
+
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="getHandler"></a>getHandler
+					</td>
+					<td>
+						아코디언 블럭의 핸들러 반환함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+							<span class="return">HTMLElement </span>
+
+
+						<strong class="method">getHandler</strong>(nIndex)
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{Number}</span> <strong>nIndex</strong>
+
+									: 아코디언 블럭의 인덱스
+								</li>
+
+							</ul>
+
+
+
+							<h5>Return</h5>
+							<span class="t1">HTMLElement </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="getHead"></a>getHead
+					</td>
+					<td>
+						아코디언 블럭의 헤더 반환함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+							<span class="return">HTMLElement </span>
+
+
+						<strong class="method">getHead</strong>(nIndex)
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{Number}</span> <strong>nIndex</strong>
+
+									: 아코디언 블럭의 인덱스
+								</li>
+
+							</ul>
+
+
+
+							<h5>Return</h5>
+							<span class="t1">HTMLElement </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+
+			<!-- instance method -->
+
+				<tr class="title">
+					<td class="name">
+						<a name="setEffect"></a>setEffect
+					</td>
+					<td>
+						Effect 설정함수&nbsp;
+					</td>
+				</tr>
+
+			<!-- deprecated method -->
+
+				<tr class="desc">
+					<td><br></td>
+					<td>
+
+
+							<span class="return">void </span>
+
+						<strong class="method">setEffect</strong>(htEffect)
+
+
+							<h5>Parameters</h5>
+							<ul class="t1">
+
+								<li>
+									<span>{HashTable}</span> <strong>htEffect</strong>
+
+									: 이펙트 옵션- {String} sTransitionTimingFunction Effect Type (ease|linear|ease-in|ease-out|ease-in-out)- {Number} nDuration Effect 처리시간(단위 ms)
+								</li>
+
+							</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</td>
+				</tr>
+
+		</table>
+	</div>
+
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name">v0.9.5</td>
+                               	<td>-</td>
+                               	<td>-</td>
+                               	<td>-</td>
+							 </tr>
+
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved.
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

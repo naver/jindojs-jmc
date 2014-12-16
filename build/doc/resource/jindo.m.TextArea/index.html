@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.TextArea </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">UI Template <img src="../resource/img/im_beta_13.gif"/> <a href="#" class="cls" id="btnUITemplate" onclick="return false;">close</a></h2>
+				<div id="uitemplate">
+					<ul class="snb_lst">
+						<li><a href="../jindo.m.PageLayoutUI/index.html">PageLayoutUI <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+						<li><a href="../jindo.m.RevealSidebarUI/index.html">RevealSidebarUI</a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2 class="h_h2">Component<a href="#" class="cls" id="btnComponent" onclick="return false;">close</a></h2>
+				<div id="component">
+					<ul class="snb_lst">
+					<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.IndexScroll/index.html">IndexScroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Touch/index.html">Touch</a></li>
+					<li><a href="../jindo.m.Transition/index.html">Transition </a></li>
+					<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect </a></li>
+					<li><a href="../jindo.m.LayerManager/index.html">LayerManager </a></li>
+					<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition </a></li>
+					<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer </a></li>
+					<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+					<li><a href="../jindo.m.Accordion/index.html">Accordion</a></li>
+					<li><a href="../jindo.m.Loading/index.html">Loading </a></li>
+					<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent </a></li>
+					<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.Validation/index.html">Validation</a></li>
+					<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+					<li><a href="../jindo.m.DragArea/index.html">DragArea </a></li>
+					<li><a href="../jindo.m.DropArea/index.html">DropArea </a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> Navigation</h2>
+					<ul class="snb_lst">					
+					<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking </a></li>
+					<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+					<li><a href="../jindo.m.SlideTab/index.html">SlideTab</a></li>
+					<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton</a></li>
+					<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation</a></li>
+					</ul>
+					<h2 class="h_h4"><span class="arrow">▶</span> FormElement</h2>
+					<ul class="snb_lst">
+					<li><a href="../jindo.m.TextInput/index.html">TextInput</a></li>
+					<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+					<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+					<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+					<li><a href="../jindo.m.Selectbox/index.html">Selectbox </li>
+					<li><a href="../jindo.m.Datepicker/index.html">Datepicker </a></li>
+					<li><a href="../jindo.m.Slider/index.html">Slider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+					<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider </a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- <div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon" onclick="return false;">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	        	</ul>		
+			</div> -->
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.TextArea</h3>
+							<p class="p_txt2">
+								<span>Version : 1.4.0</span>
+								<br />
+								Form Element의 Textarea를의 입력값의 변화를 감지하여 자동으로 높이값을 증가시키는 컴포넌트
+							</p>
+							<a href="../../sample/latest/jindo.m.TextArea/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">										
+						TextArea에 글자 입력시 자동으로 TextArea의 Height을 증가시킨다.<br/> 
+						TextArea에 라운드 처리를 지원한다.<br/>
+						단, TextArea 적용시 마크업과 CSS가이드를 준수하여야 한다.<br/><br/>
+						
+						<img src="../resource/img/TextArea.jpg"/>
+					</div>	
+					
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.2 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>안드로이드</dt>
+							<dd><div class="point_box">
+								Form에 focus,blur될 때 focus,blur 이벤트가 2번 발생한다.
+							</div></dd>
+							<dd>
+							<div class="point_box">
+								Textarea에서 스크롤은 컨텐츠가 Textarea 영역보다 크고, 입력모드인 경우에 가능하다. 
+							</div></dd>
+							<dd>
+							<div class="point_box">
+								갤럭시Note 4.0.3, 갤럭시S2 LTE 4.0.3에서는 실시간으로 TextArea의 크기가 변경되지 않는다.<br/>
+								blur가 발생한 이후 TextArea에 상태가 변경된다. 
+							</div></dd>
+							<dt>iOS3, iOS4</dt>
+							<dd><div class="point_box">
+								Textarea에서 스크롤은 투핑거 스크롤로 작동한다. 반면, iOS5는 원핑거 스크롤이 가능하다. 
+							</div></dd>
+							<dt>안드로이드 2.1, iOS3, iOS4</dt>
+							<dd><div class="point_box">
+								Textarea영역 내부에서는 touch관련 이벤트가 발생하지 않는다.
+							</div></dd>
+
+						</dl>
+					</div>	
+				
+				<!-- 초기화 방법 -->
+				<h3>Initialization</h3>
+				<div class="t1">
+					<dl>
+						<dt>HTML</dt>
+						<dd>
+							<!-- 마크업 구조 -->
+							<textarea class="brush: xml;">
+								<!--class prefix가 'fta-'일 경우-->																
+								<textarea id="textarea" class="fta-textarea">						
+								
+								</textarea>
+							</textarea>							
+						</dd>
+						<dt>CSS</dt>
+						<dd>
+								<!-- css 구조 -->
+							<textarea class="brush: css;">
+								/*class prefix가 'fta-' 인 경우*/	
+									
+								/*Focus시 적용  되는 CSS*/
+								.fta-textarea-focus {...}
+								/*비활성화시 적용  되는 CSS*/
+								.fta-textarea-disable {...}								
+																
+							</textarea>
+							<div class="t2">
+							필수 CSS 요소는 다음과 같다.
+							<ul>
+								<li>[prefix] + textarea-focus 클래스 : Textarea Focus시  적용 되는 클래스</li>
+								<li>[prefix] + textarea-disable 클래스 : 비활성화시 Textarea에 적용 되는 클래스</li>
+							</ul>
+							</div>
+						</dd>
+						<dt>Javascript</dt>
+						<dd>
+							<textarea class="brush: javascript;">
+								var oTextArea = new jindo.m.TextArea("textarea",{
+									sClassPrefix	: "ta-",	// css prefix 접두어.
+									bUseRadius  	: true,		// 모서리 라운드 효과 적용 여부
+									sRadiusSize		: "10px",	// 모서리 라운드 크기
+									bUseAutoHeight	: false,	// Textarea height 텍스트 크기에 맞게 자동 감소, 증가하는 기능 사용여부 
+									nExpandHeight	: 10,		// Textarea height 증가 크기 
+									nMaxHeight		: 50		// Textarea 최대 height 크기
+								});	
+							</textarea>
+							<div class="t2">
+							첫번째 파라미터는 기준엘리먼트의 Id 혹은 HTMLElement로 설정 할 수 있다.
+							</div>
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- 사용자 디자인 적용 하기 -->
+				<h3>사용자 디자인 적용 하기</h3>
+				<div class="t1">
+					<dl>
+						<dt>HTML</dt>
+						<dd>
+							Initialization의 HTML구조와 동일
+						</dd>
+						<dt>CSS</dt>
+						<dd>
+							<textarea class="brush: css;">
+								/*class prefix가 'fta-' 인 경우*/	
+								
+								/*TextArea 적용되는 CSS*/
+								.fta-textarea {...}
+								
+								/*Focus시 적용되는 CSS*/
+								.fta-textarea-focus{...}
+								
+								/*비활성화시 적용되는 CSS*/
+								.fta-textarea-disable{...}
+							</textarea>
+						</dd>
+						<dt>Javascript</dt>
+						<dd>
+							Initialization의 Javascript구조와 동일
+						</dd>
+					</dl>
+					
+					<br/><br/>
+					<div class="point_box" style="padding:10px;">
+						<font style="color:#e11b10;">√</font> TextArea 의 디자인을 사용자의 요구 사항에 맞게 변경하기 위해서는 각 CSS에 알맞는 속성을 적용 해야 한다.
+					</div>
+					
+					<br/>
+					
+					<ul>
+					<li>[prefix] + textarea 클래스	</li>
+					<li style="list-style:none;padding-left:10px;margin-bottom:10px;">기본 TextArea 클래스를 지정한다. 주로 배경색 그라데이션 지정과 border 스타일을 지정 한다.</li>
+					<li>[prefix] + textarea-<font style="color:#e11b10;">focus</font> 클래스	</li>
+					<li style="list-style:none;padding-left:10px;margin-bottom:10px;">TextArea 포커스시 배경색이나 border 부분 스타일을 지정한다.</li>
+					<li>[prefix] + textarea-<font style="color:#e11b10;">disable</font> 클래스	</li>
+					<li style="list-style:none;padding-left:10px;margin-bottom:10px;">비활성화되어 선택이 불가능한 TextArea의 투명도, 커서 등의 스타일을 지정한다.</li>
+					</ul>
+				</div>
+				
+				<!-- Template으로 디자인 적용 하기 -->
+				<h3>Template으로 디자인 적용하기</h3>
+				<div class="t1">
+					<div>
+						자주 사용되는 디자인의 템플릿이다.<br/>
+						이미지를 클릭하여 Template 페이지를 열고, Template 페이지 하단의 소스를 Copy&Paste하여 적용한다.<br/>
+						폰트, 너비, 색상 등 스타일 변경이 필요하다면 소스내 주석을 참고하여, 원하는 부분의 스타일을 수정하여 적용한다.<br/><br/><br/>
+						<ul class="tumb_list">
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.TextArea/basic_sample.html" target="_blank"><img src="../resource/img/TextArea_thumb1.jpg" width="150" height="100" alt=""></a>
+								<p>기본형 TextArea</p>
+							</li>
+							<li class="tumb">
+								<a href="../../sample/latest/jindo.m.TextArea/design_sample.html" target="_blank"><img src="../resource/img/TextArea_thumb2.jpg" width="150" height="100" alt=""></a>
+								<p>라운드 처리가 된 디자인형 TextArea</p>
+							</li>
+						</ul>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+				
+				<!-- 초기화 옵션 -->
+				<h3>Option</h3>
+				<div class="t1">
+					<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">sClassPrefix</td>
+							<td>Class의 prefix명</td>
+							<td>"fta-"</td>
+						</tr>
+						<tr>
+							<td class="name">bUseRadius</td>
+							<td>Check Box 영역의 모서리 라운드 효과 여부</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td class="name">sRadiusSize</td>
+							<td>Check Box 영역의 모서리 라운드 크기</td>
+							<td>"0.5em"</td>
+						</tr>
+						<tr>
+							<td class="name">nExpandHeight</td>
+							<td>Textarea height 증가 크기.(px 단위)</td>
+							<td>30</td>
+						</tr>
+						<tr>
+							<td class="name">nMaxHeight</td>
+							<td>Textarea 최대 height 크기 .(px 단위)</td>
+							<td>-1(무한대)</td>
+						</tr>
+						<tr>
+							<td class="name">bUseAutoHeight</td>
+							<td>Textarea height 텍스트 크기에 맞게 자동 감소, 증가하는 기능 사용여부</td>
+							<td>false</td>
+						</tr>						
+						<tr>
+							<td class="name">bActivateOnload</td>
+							<td>컴포넌트 로드시 activate 여부</td>
+							<td>true</td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- 커스텀 이벤트 -->
+				<h3>Custom Event</h3>
+				<div class="t1">
+					<table class="customevent" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Custom Event Object Properties</th>
+						</tr>
+						<tr class="title">
+							<td class="name">focus</td>
+							<td>Textarea 에 포커스가 일어 날 때 발생.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>elTextArea (Element) : Textarea 엘리먼트</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								Textarea 에 포커스가 일어 날 때  elTextArea를 사용하여 필요 동작을 수행한다.
+								<textarea class="brush: javascript;">
+								oTextArea.attach("focus", function(oCustomEvent){
+									alert(oCustomEvent.elTextArea.value);  
+								});
+								</textarea>
+							</td>
+						</tr>
+						
+						<tr class="title">
+							<td class="name">blur</td>
+							<td>Textarea 에 포커스가 없어질 때 발생.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>elTextArea (Element) : Textarea 엘리먼트</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								Textarea 에 포커스가 없어질 때  elTextArea를 사용하여 필요 동작을 수행한다.
+								<textarea class="brush: javascript;">
+								oTextArea.attach("blur", function(oCustomEvent){
+									alert(oCustomEvent.elTextArea.value);  
+								});
+								</textarea>
+							</td>
+						</tr>
+						
+						<tr class="title">
+							<td class="name">expand</td>
+							<td>Textarea 에 여러줄이 입력되어 높이가 늘어날 때 발생.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>elTextArea (Element) : Textarea 엘리먼트</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								Textarea 에 여러줄이 입력되어 높이가 늘어날 때  elTextArea를 사용하여 필요 동작을 수행한다.
+								<textarea class="brush: javascript;">
+								oTextArea.attach("expand", function(oCustomEvent){
+									alert(oCustomEvent.elTextArea.value);  
+								});
+								</textarea>
+							</td>
+						</tr>
+						
+						<tr class="title">
+							<td class="name">enable</td>
+							<td>Textarea 가 활성화될 때 발생.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀 이벤트명</li>
+									<li>elTextArea (Element) : Textarea 엘리먼트</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								Textarea 가 활성화될 때  elTextArea를 사용하여 필요 동작을 수행한다.
+								<textarea class="brush: javascript;">
+								oTextArea.attach("enable", function(oCustomEvent){
+									alert(oCustomEvent.elTextArea.value);  
+								});
+								</textarea>
+							</td>
+						</tr>
+						
+						<tr class="title">
+							<td class="name">disable</td>
+							<td>Textarea 가 비활성화 될 때 발생.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>elTextArea (Element) : Textarea 엘리먼트</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								Textarea 가 비활성화될 때  elTextArea를 사용하여 필요 동작을 수행한다.
+								<textarea class="brush: javascript;">
+								oTextArea.attach("disable", function(oCustomEvent){
+									alert(oCustomEvent.elTextArea.value);  
+								});
+								</textarea>
+							</td>
+						</tr>
+
+						
+						<tr class="title">
+							<td class="name">change</td>
+							<td>Textarea 값이 변경되었을 때 발생.</td>
+							<td>
+								<ul>
+									<li>sType (String) : 커스텀이벤트명</li>
+									<li>elTextArea (Element) : Textarea 엘리먼트</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="desc">
+							<td>&nbsp;</td>
+							<td colspan="2">
+								Textarea의 값이 변경되었을때 elTextArea를 사용하여 필요 동작을 수행한다.
+								<textarea class="brush: javascript;">
+								oTextArea.attach("change", function(oCustomEvent){
+									alert(oCustomEvent.elTextArea.value);  
+								});
+								</textarea>
+							</td>
+						</tr>						
+						
+					</table>
+				</div>
+					
+					<!-- 퍼블릭 메서드 -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.TextArea</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.TextArea</strong>(el, htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Varient}</span> <strong>el</strong>
+									
+									: textarea 엘리먼트 또는 ID
+								</li>
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.UIComponent
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="deleteValue"></a>deleteValue
+					</td>
+					<td>
+						TextArea 값을 지움.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">deleteValue</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+oTextArea.deleteValue();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="destroy"></a>destroy
+					</td>
+					<td>
+						jindo.m.TextArea 에서 사용하는 모든 객체를 release 시킨다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">destroy</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="disable"></a>disable
+					</td>
+					<td>
+						TextArea 비활성화.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">disable</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+oTextArea.enable();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="enable"></a>enable
+					</td>
+					<td>
+						TextArea 활성화.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">enable</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+oTextArea.enable();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getExpandHeight"></a>getExpandHeight
+					</td>
+					<td>
+						Textarea height 증가 크기값 반환&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getExpandHeight</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+var nExpandHeight = oTextArea.getExpandHeight();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getMaxHeight"></a>getMaxHeight
+					</td>
+					<td>
+						Textarea height 최대 크기값 반환&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getMaxHeight</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+var nMaxHeight = oTextArea.getMaxHeight();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getValue"></a>getValue
+					</td>
+					<td>
+						TextArea 값을 반환.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">String </span>
+								
+						
+						<strong class="method">getValue</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">String </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+var sValue = oTextArea.getValue();</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setExpandHeight"></a>setExpandHeight
+					</td>
+					<td>
+						Textarea height 증가 크기값 설정&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setExpandHeight</strong>(nExpandHeight)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nExpandHeight</strong>
+									
+									: 증가 크기값
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+oTextArea.setExpandHeight(50);</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setMaxHeight"></a>setMaxHeight
+					</td>
+					<td>
+						Textarea height 최대 크기값 설정&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setMaxHeight</strong>(nMaxHeight)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>nMaxHeight</strong>
+									
+									: 최대 크기값
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+oTextArea.setMaxHeight(200);</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setValue"></a>setValue
+					</td>
+					<td>
+						TextArea 값을 입력.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setValue</strong>(sValue)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{String}</span> <strong>sValue</strong>
+									
+									: TextArea value 값
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+var sValue = "test";
+oTextArea.getValue(sValue);</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>	
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>	
+							 
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name" >v1.3.0 </td>
+							 	<td>Update</td>
+                               	<td>bUseAutoHeight</td>
+                               	<td>Option 추가</td>
+							 </tr>
+							 
+							 <!-- v1.2.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.2.0 </td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Chrome for Android 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>갤럭시 S2 4.0.3 업데이트 지원</td>
+							 </tr>
+							 
+							 <!-- v1.1.0 -->
+							 <tr>
+							 	<td class="name" rowspan="2">v1.1.0</td>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>Android 3.0/4.0 지원</td>
+							 </tr>
+							 <tr>
+							 	<td class="support">Support</td>	
+							 	<td>-</td>
+							 	<td>jindo 2.0.0 mobile 버전 지원 </td>
+							 </tr>
+							 
+							 <!-- v1.0.0 -->
+							 <tr>
+							 	<td class="name">v1.0.0</td>
+							 	<td>-</td>	
+							 	<td>-</td>
+							 	<td>-</td>
+							 </tr>
+							 
+							 <!-- v0.9.5 -->
+							 <tr>
+							 	<td class="name" rowspan="6">v0.9.5</td>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               <td>Android에서 focus시 커스텀 이벤트가 2번 발생하는 문제 해결</td>
+							 </tr>
+							 <tr>
+                               	<td>Bug</td>
+                               	<td>-</td>
+                               <td>Android에서 blur시 커스텀 이벤트가 2번 발생하는 문제 해결</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>setExpandHeigh()</td>
+                               	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>getExpandHeight()</td>
+                               	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>setMaxHeight()</td>
+                               	<td>Method 추가</td>
+							 </tr>
+							 <tr>
+							 	<td>Update</td>
+                               	<td>getMaxHeight()</td>
+                               	<td>Method 추가</td>
+							 </tr>
+							 
+							 <!-- v0.9.0 -->
+							 <tr>
+							 	<td class="name">v0.9.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href='#' class='nhn'>NHN Corp.</a> Platform Ajax Team All Rights Reserved. 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

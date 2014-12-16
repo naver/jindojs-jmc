@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>사용자 이벤트 예제</title>
+<meta name="class-lists" content="jindo.m.Scroll">
+<meta name="description" content="스크롤컴포넌트는 다양한 커스텀 이벤트를 제공한다. 이를 이용하여 다양한 기능을 구현할 수 있다">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 수평 웹튠 CSS */
+.h_scl_u{overflow:hidden;margin:0}
+.h_scl_o{float:left;width:100px;height:100px;text-align:center}
+.h_scl_cnt{overflow:hidden;font-size:1em;line-height:18px;font-weight:bold}
+.h_scl_cnt .h_scl_link{font-weight:normal;color:#1172b6}
+/*code@*/
+</style>
+
+<script type="text/javascript">var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div id="view" style="height:110px">
+		<!-- Wrapper -->
+		<div style="width:9000px">
+			<!-- Scroller -->
+			<ul class="h_scl_u">
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.news.naver.com/"><img src="../asset/img/ico_news.jpg" width="57" height="57" alt="네이버 뉴스"></a></p>
+				<p class="h_scl_cnt">Scroll List 1<br>
+					<a href="http://m.news.naver.com/" class="h_scl_link" style="">네이버 뉴스</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.naver.com/"><img src="../asset/img/ico_sport.jpg" width="57" height="57" alt="네이버 스포츠"></a></p>
+				<p class="h_scl_cnt">Scroll List 2<br>
+					<a href="http://m.sports.naver.com/" class="h_scl_link">네이버 스포츠</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.weather.naver.com/"><img src="../asset/img/ico_whether.jpg" width="57" height="57" alt="네이버 날씨"></a></p>
+				<p class="h_scl_cnt">Scroll List 3<br>
+					<a href="http://m.weather.naver.com/" class="h_scl_link">네이버 날씨</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.stock.naver.com/"><img src="../asset/img/ico_stock.jpg" width="57" height="57" alt="네이버 증권"></a></p>
+				<p class="h_scl_cnt">Scroll List 4<br>
+					<a href="http://m.stock.naver.com/" class="h_scl_link">네이버 증권</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.land.naver.com/"><img src="../asset/img/ico_land.jpg" width="57" height="57" alt="네이버 부동산"></a></p>
+				<p class="h_scl_cnt">Scroll List 5<br>
+					<a href="http://m.land.naver.com/" class="h_scl_link">네이버 부동산</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.kin.naver.com/"><img src="../asset/img/ico_in.jpg" width="57" height="57" alt="네이버 지식인"></a></p>
+				<p class="h_scl_cnt">Scroll List 6<br>
+					<a href="http://m.kin.naver.com/" class="h_scl_link">네이버 지식인</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.blog.naver.com/"><img src="../asset/img/ico_blog.jpg" width="57" height="57" alt="네이버 블로그"></a></p>
+				<p class="h_scl_cnt">Scroll List 7<br>
+					<a href="http://m.blog.naver.com/" class="h_scl_link">네이버 블로그</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.cafe.naver.com/"><img src="../asset/img/ico_cafe.jpg" width="57" height="57" alt="네이버 카페"></a></p>
+				<p class="h_scl_cnt">Scroll List 8<br>
+					<a href="http://m.cafe.naver.com/" class="h_scl_link">네이버 카페</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.me.naver.com/"><img src="../asset/img/ico_me.jpg" width="57" height="57" alt="네이버 미"></a></p>
+				<p class="h_scl_cnt">Scroll List 9<br>
+					<a href="http://m.me.naver.com/" class="h_scl_link">네이버 미</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001"><img src="../asset/img/ico_alarm.jpg" width="57" height="57" alt="네이버 알림"></a></p>
+				<p class="h_scl_cnt">Scroll List 10<br>
+					<a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001" class="h_scl_link">네이버 알림</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.mail.naver.com/"><img src="../asset/img/ico_mail.jpg" width="57" height="57" alt="네이버 메일"></a></p>
+				<p class="h_scl_cnt">Scroll List 11<br>
+					<a href="http://m.mail.naver.com/" class="h_scl_link">네이버 메일</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.calendar.naver.com/"><img src="../asset/img/ico_calendar.jpg" width="57" height="57" alt="네이버 캘린더"></a></p>
+				<p class="h_scl_cnt">Scroll List 12<br>
+					<a href="http://m.calendar.naver.com/" class="h_scl_link">네이버 캘린더</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.contact.naver.com/"><img src="../asset/img/ico_address.jpg" width="57" height="57" alt="네이버 주소록"></a></p>
+				<p class="h_scl_cnt">Scroll List 13<br>
+					<a href="http://m.contact.naver.com/" class="h_scl_link">네이버 주소록</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.movie.naver.com/"><img src="../asset/img/ico_movie.jpg" width="57" height="57" alt="네이버 영화"></a></p>
+				<p class="h_scl_cnt">Scroll List 14<br>
+					<a href="http://m.movie.naver.com/" class="h_scl_link">네이버 영화</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.comic.naver.com/"><img src="../asset/img/ico_catoon.jpg" width="57" height="57" alt="네이버 웹툰"></a></p>
+				<p class="h_scl_cnt">Scroll List 15<br>
+					<a href="http://m.comic.naver.com/" class="h_scl_link">네이버 웹툰</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.book.naver.com/"><img src="../asset/img/ico_book.jpg" width="57" height="57" alt="네이버 책"></a></p>
+				<p class="h_scl_cnt">Scroll List 16<br>
+					<a href="http://m.book.naver.com/" class="h_scl_link">네이버 책</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.tvguide.naver.com/"><img src="../asset/img/ico_tv.jpg" width="57" height="57" alt="네이버 TV편성표"></a></p>
+				<p class="h_scl_cnt">Scroll List 17<br>
+					<a href="http://m.tvguide.naver.com/" class="h_scl_link">네이버 TV편성표</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.ndrive.naver.com/"><img src="../asset/img/ico_ndrive.jpg" width="57" height="57" alt="네이버 N드라이브"></a></p>
+				<p class="h_scl_cnt">Scroll List 18<br>
+					<a href="http://m.ndrive.naver.com/" class="h_scl_link">네이버 N드라이브</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.nphoto.naver.com/"><img src="../asset/img/ico_photo.jpg" width="57" height="57" alt="네이버 포토앨범"></a></p>
+				<p class="h_scl_cnt">Scroll List 19<br>
+					<a href="http://m.nphoto.naver.com/" class="h_scl_link">네이버 포토앨범</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://moneybook.naver.com/"><img src="../asset/img/ico_moneybook.jpg" width="57" height="57" alt="네이버 가계부"></a></p>
+				<p class="h_scl_cnt">Scroll List 20<br>
+					<a href="http://moneybook.naver.com/" class="h_scl_link">네이버 가계부</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.krdic.naver.com/"><img src="../asset/img/ico_krdic.jpg" width="57" height="57" alt="네이버 국어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 21<br>
+					<a href="http://m.krdic.naver.com/" class="h_scl_link">네이버 국어사전</a>
+				</p>
+			</li><li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.endic.naver.com/"><img src="../asset/img/ico_endic.jpg" width="57" height="57" alt="네이버 영어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 22<br>
+					<a href="http://m.endic.naver.com/" class="h_scl_link">네이버 영어사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.jpdic.naver.com/"><img src="../asset/img/ico_jpdic.jpg" width="57" height="57" alt="네이버 일본어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 23<br>
+					<a href="http://m.jpdic.naver.com/" class="h_scl_link">네이버 일본어사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.hanja.naver.com/"><img src="../asset/img/ico_hanja.jpg" width="57" height="57" alt="네이버 한자사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 24<br>
+					<a href="http://m.hanja.naver.com/" class="h_scl_link">네이버 한자사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://me2day.net/n/"><img src="../asset/img/ico_me2.jpg" width="57" height="57" alt="네이버 미투데이"></a></p>
+				<p class="h_scl_cnt">Scroll List 25<br>
+					<a href="http://m.me2day.net/" class="h_scl_link">네이버 미투데이</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.wingspoon.com/"><img src="../asset/img/ico_wing.jpg" width="57" height="57" alt="네이버 윙스푼"></a></p>
+				<p class="h_scl_cnt">Scroll List 26<br>
+					<a href="http://m.wingspoon.com/" class="h_scl_link">네이버 윙스푼</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.news.naver.com/mNpbVod/index.nhn"><img src="../asset/img/ico_snews.jpg" width="57" height="57" alt="네이버 오릭스영상"></a></p>
+				<p class="h_scl_cnt">Scroll List 27<br>
+					<a href="http://m.sports.news.naver.com/mNpbVod/index.nhn" class="h_scl_link">네이버 오릭스영상</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.ya9.naver.com/"><img src="../asset/img/ico_ya9.jpg" width="57" height="57" alt="네이버 야구9단"></a></p>
+				<p class="h_scl_cnt">Scroll List 28<br>
+					<a href="http://m.ya9.naver.com/" class="h_scl_link">네이버 야구9단</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.naver.com/baseball/index.nhn"><img src="../asset/img/ico_baseball.jpg" width="57" height="57" alt="네이버 프로야구"></a></p>
+				<p class="h_scl_cnt">Scroll List 29<br>
+					<a href="http://m.sports.naver.com/baseball/index.nhn" class="h_scl_link">네이버 프로야구</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.help.naver.com/index.nhn"><img src="../asset/img/ico_help.jpg" width="57" height="57" alt="네이버 도움말"></a></p>
+				<p class="h_scl_cnt">Scroll List 30<br>
+					<a href="http://m.help.naver.com/index.nhn" class="h_scl_link">네이버 도움말</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.news.naver.com/"><img src="../asset/img/ico_news.jpg" width="57" height="57" alt="네이버 뉴스"></a></p>
+				<p class="h_scl_cnt">Scroll List 31<br>
+					<a href="http://m.news.naver.com/" class="h_scl_link" style="">네이버 뉴스</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.naver.com/"><img src="../asset/img/ico_sport.jpg" width="57" height="57" alt="네이버 스포츠"></a></p>
+				<p class="h_scl_cnt">Scroll List 32<br>
+					<a href="http://m.sports.naver.com/" class="h_scl_link">네이버 스포츠</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.weather.naver.com/"><img src="../asset/img/ico_whether.jpg" width="57" height="57" alt="네이버 날씨"></a></p>
+				<p class="h_scl_cnt">Scroll List 33<br>
+					<a href="http://m.weather.naver.com/" class="h_scl_link">네이버 날씨</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.stock.naver.com/"><img src="../asset/img/ico_stock.jpg" width="57" height="57" alt="네이버 증권"></a></p>
+				<p class="h_scl_cnt">Scroll List 34<br>
+					<a href="http://m.stock.naver.com/" class="h_scl_link">네이버 증권</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.land.naver.com/"><img src="../asset/img/ico_land.jpg" width="57" height="57" alt="네이버 부동산"></a></p>
+				<p class="h_scl_cnt">Scroll List 35<br>
+					<a href="http://m.land.naver.com/" class="h_scl_link">네이버 부동산</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.kin.naver.com/"><img src="../asset/img/ico_in.jpg" width="57" height="57" alt="네이버 지식인"></a></p>
+				<p class="h_scl_cnt">Scroll List 36<br>
+					<a href="http://m.kin.naver.com/" class="h_scl_link">네이버 지식인</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.blog.naver.com/"><img src="../asset/img/ico_blog.jpg" width="57" height="57" alt="네이버 블로그"></a></p>
+				<p class="h_scl_cnt">Scroll List 37<br>
+					<a href="http://m.blog.naver.com/" class="h_scl_link">네이버 블로그</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.cafe.naver.com/"><img src="../asset/img/ico_cafe.jpg" width="57" height="57" alt="네이버 카페"></a></p>
+				<p class="h_scl_cnt">Scroll List 38<br>
+					<a href="http://m.cafe.naver.com/" class="h_scl_link">네이버 카페</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.me.naver.com/"><img src="../asset/img/ico_me.jpg" width="57" height="57" alt="네이버 미"></a></p>
+				<p class="h_scl_cnt">Scroll List 39<br>
+					<a href="http://m.me.naver.com/" class="h_scl_link">네이버 미</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001"><img src="../asset/img/ico_alarm.jpg" width="57" height="57" alt="네이버 알림"></a></p>
+				<p class="h_scl_cnt">Scroll List 40<br>
+					<a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001" class="h_scl_link">네이버 알림</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.mail.naver.com/"><img src="../asset/img/ico_mail.jpg" width="57" height="57" alt="네이버 메일"></a></p>
+				<p class="h_scl_cnt">Scroll List 41<br>
+					<a href="http://m.mail.naver.com/" class="h_scl_link">네이버 메일</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.calendar.naver.com/"><img src="../asset/img/ico_calendar.jpg" width="57" height="57" alt="네이버 캘린더"></a></p>
+				<p class="h_scl_cnt">Scroll List 42<br>
+					<a href="http://m.calendar.naver.com/" class="h_scl_link">네이버 캘린더</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.contact.naver.com/"><img src="../asset/img/ico_address.jpg" width="57" height="57" alt="네이버 주소록"></a></p>
+				<p class="h_scl_cnt">Scroll List 43<br>
+					<a href="http://m.contact.naver.com/" class="h_scl_link">네이버 주소록</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.movie.naver.com/"><img src="../asset/img/ico_movie.jpg" width="57" height="57" alt="네이버 영화"></a></p>
+				<p class="h_scl_cnt">Scroll List 44<br>
+					<a href="http://m.movie.naver.com/" class="h_scl_link">네이버 영화</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.comic.naver.com/"><img src="../asset/img/ico_catoon.jpg" width="57" height="57" alt="네이버 웹툰"></a></p>
+				<p class="h_scl_cnt">Scroll List 45<br>
+					<a href="http://m.comic.naver.com/" class="h_scl_link">네이버 웹툰</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.book.naver.com/"><img src="../asset/img/ico_book.jpg" width="57" height="57" alt="네이버 책"></a></p>
+				<p class="h_scl_cnt">Scroll List 46<br>
+					<a href="http://m.book.naver.com/" class="h_scl_link">네이버 책</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.tvguide.naver.com/"><img src="../asset/img/ico_tv.jpg" width="57" height="57" alt="네이버 TV편성표"></a></p>
+				<p class="h_scl_cnt">Scroll List 47<br>
+					<a href="http://m.tvguide.naver.com/" class="h_scl_link">네이버 TV편성표</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.ndrive.naver.com/"><img src="../asset/img/ico_ndrive.jpg" width="57" height="57" alt="네이버 N드라이브"></a></p>
+				<p class="h_scl_cnt">Scroll List 48<br>
+					<a href="http://m.ndrive.naver.com/" class="h_scl_link">네이버 N드라이브</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.nphoto.naver.com/"><img src="../asset/img/ico_photo.jpg" width="57" height="57" alt="네이버 포토앨범"></a></p>
+				<p class="h_scl_cnt">Scroll List 49<br>
+					<a href="http://m.nphoto.naver.com/" class="h_scl_link">네이버 포토앨범</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://moneybook.naver.com/"><img src="../asset/img/ico_moneybook.jpg" width="57" height="57" alt="네이버 가계부"></a></p>
+				<p class="h_scl_cnt">Scroll List 50<br>
+					<a href="http://moneybook.naver.com/" class="h_scl_link">네이버 가계부</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.krdic.naver.com/"><img src="../asset/img/ico_krdic.jpg" width="57" height="57" alt="네이버 국어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 51<br>
+					<a href="http://m.krdic.naver.com/" class="h_scl_link">네이버 국어사전</a>
+				</p>
+			</li><li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.endic.naver.com/"><img src="../asset/img/ico_endic.jpg" width="57" height="57" alt="네이버 영어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 52<br>
+					<a href="http://m.endic.naver.com/" class="h_scl_link">네이버 영어사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.jpdic.naver.com/"><img src="../asset/img/ico_jpdic.jpg" width="57" height="57" alt="네이버 일본어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 53<br>
+					<a href="http://m.jpdic.naver.com/" class="h_scl_link">네이버 일본어사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.hanja.naver.com/"><img src="../asset/img/ico_hanja.jpg" width="57" height="57" alt="네이버 한자사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 54<br>
+					<a href="http://m.hanja.naver.com/" class="h_scl_link">네이버 한자사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://me2day.net/n/"><img src="../asset/img/ico_me2.jpg" width="57" height="57" alt="네이버 미투데이"></a></p>
+				<p class="h_scl_cnt">Scroll List 55<br>
+					<a href="http://m.me2day.net/" class="h_scl_link">네이버 미투데이</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.wingspoon.com/"><img src="../asset/img/ico_wing.jpg" width="57" height="57" alt="네이버 윙스푼"></a></p>
+				<p class="h_scl_cnt">Scroll List 56<br>
+					<a href="http://m.wingspoon.com/" class="h_scl_link">네이버 윙스푼</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.news.naver.com/mNpbVod/index.nhn"><img src="../asset/img/ico_snews.jpg" width="57" height="57" alt="네이버 오릭스영상"></a></p>
+				<p class="h_scl_cnt">Scroll List 57<br>
+					<a href="http://m.sports.news.naver.com/mNpbVod/index.nhn" class="h_scl_link">네이버 오릭스영상</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.ya9.naver.com/"><img src="../asset/img/ico_ya9.jpg" width="57" height="57" alt="네이버 야구9단"></a></p>
+				<p class="h_scl_cnt">Scroll List 58<br>
+					<a href="http://m.ya9.naver.com/" class="h_scl_link">네이버 야구9단</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.naver.com/baseball/index.nhn"><img src="../asset/img/ico_baseball.jpg" width="57" height="57" alt="네이버 프로야구"></a></p>
+				<p class="h_scl_cnt">Scroll List 59<br>
+					<a href="http://m.sports.naver.com/baseball/index.nhn" class="h_scl_link">네이버 프로야구</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.help.naver.com/index.nhn"><img src="../asset/img/ico_help.jpg" width="57" height="57" alt="네이버 도움말"></a></p>
+				<p class="h_scl_cnt">Scroll List 60<br>
+					<a href="http://m.help.naver.com/index.nhn" class="h_scl_link">네이버 도움말</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.news.naver.com/"><img src="../asset/img/ico_news.jpg" width="57" height="57" alt="네이버 뉴스"></a></p>
+				<p class="h_scl_cnt">Scroll List 61<br>
+					<a href="http://m.news.naver.com/" class="h_scl_link" style="">네이버 뉴스</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.naver.com/"><img src="../asset/img/ico_sport.jpg" width="57" height="57" alt="네이버 스포츠"></a></p>
+				<p class="h_scl_cnt">Scroll List 62<br>
+					<a href="http://m.sports.naver.com/" class="h_scl_link">네이버 스포츠</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.weather.naver.com/"><img src="../asset/img/ico_whether.jpg" width="57" height="57" alt="네이버 날씨"></a></p>
+				<p class="h_scl_cnt">Scroll List 63<br>
+					<a href="http://m.weather.naver.com/" class="h_scl_link">네이버 날씨</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.stock.naver.com/"><img src="../asset/img/ico_stock.jpg" width="57" height="57" alt="네이버 증권"></a></p>
+				<p class="h_scl_cnt">Scroll List 64<br>
+					<a href="http://m.stock.naver.com/" class="h_scl_link">네이버 증권</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.land.naver.com/"><img src="../asset/img/ico_land.jpg" width="57" height="57" alt="네이버 부동산"></a></p>
+				<p class="h_scl_cnt">Scroll List 65<br>
+					<a href="http://m.land.naver.com/" class="h_scl_link">네이버 부동산</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.kin.naver.com/"><img src="../asset/img/ico_in.jpg" width="57" height="57" alt="네이버 지식인"></a></p>
+				<p class="h_scl_cnt">Scroll List 66<br>
+					<a href="http://m.kin.naver.com/" class="h_scl_link">네이버 지식인</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.blog.naver.com/"><img src="../asset/img/ico_blog.jpg" width="57" height="57" alt="네이버 블로그"></a></p>
+				<p class="h_scl_cnt">Scroll List 67<br>
+					<a href="http://m.blog.naver.com/" class="h_scl_link">네이버 블로그</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.cafe.naver.com/"><img src="../asset/img/ico_cafe.jpg" width="57" height="57" alt="네이버 카페"></a></p>
+				<p class="h_scl_cnt">Scroll List 68<br>
+					<a href="http://m.cafe.naver.com/" class="h_scl_link">네이버 카페</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.me.naver.com/"><img src="../asset/img/ico_me.jpg" width="57" height="57" alt="네이버 미"></a></p>
+				<p class="h_scl_cnt">Scroll List 69<br>
+					<a href="http://m.me.naver.com/" class="h_scl_link">네이버 미</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001"><img src="../asset/img/ico_alarm.jpg" width="57" height="57" alt="네이버 알림"></a></p>
+				<p class="h_scl_cnt">Scroll List 70<br>
+					<a href="http://m.me.naver.com/mobile/main.nhn?vTabCode=V0001" class="h_scl_link">네이버 알림</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.mail.naver.com/"><img src="../asset/img/ico_mail.jpg" width="57" height="57" alt="네이버 메일"></a></p>
+				<p class="h_scl_cnt">Scroll List 71<br>
+					<a href="http://m.mail.naver.com/" class="h_scl_link">네이버 메일</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.calendar.naver.com/"><img src="../asset/img/ico_calendar.jpg" width="57" height="57" alt="네이버 캘린더"></a></p>
+				<p class="h_scl_cnt">Scroll List 72<br>
+					<a href="http://m.calendar.naver.com/" class="h_scl_link">네이버 캘린더</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.contact.naver.com/"><img src="../asset/img/ico_address.jpg" width="57" height="57" alt="네이버 주소록"></a></p>
+				<p class="h_scl_cnt">Scroll List 73<br>
+					<a href="http://m.contact.naver.com/" class="h_scl_link">네이버 주소록</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.movie.naver.com/"><img src="../asset/img/ico_movie.jpg" width="57" height="57" alt="네이버 영화"></a></p>
+				<p class="h_scl_cnt">Scroll List 74<br>
+					<a href="http://m.movie.naver.com/" class="h_scl_link">네이버 영화</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.comic.naver.com/"><img src="../asset/img/ico_catoon.jpg" width="57" height="57" alt="네이버 웹툰"></a></p>
+				<p class="h_scl_cnt">Scroll List 75<br>
+					<a href="http://m.comic.naver.com/" class="h_scl_link">네이버 웹툰</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.book.naver.com/"><img src="../asset/img/ico_book.jpg" width="57" height="57" alt="네이버 책"></a></p>
+				<p class="h_scl_cnt">Scroll List 76<br>
+					<a href="http://m.book.naver.com/" class="h_scl_link">네이버 책</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.tvguide.naver.com/"><img src="../asset/img/ico_tv.jpg" width="57" height="57" alt="네이버 TV편성표"></a></p>
+				<p class="h_scl_cnt">Scroll List 77<br>
+					<a href="http://m.tvguide.naver.com/" class="h_scl_link">네이버 TV편성표</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.ndrive.naver.com/"><img src="../asset/img/ico_ndrive.jpg" width="57" height="57" alt="네이버 N드라이브"></a></p>
+				<p class="h_scl_cnt">Scroll List 78<br>
+					<a href="http://m.ndrive.naver.com/" class="h_scl_link">네이버 N드라이브</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.nphoto.naver.com/"><img src="../asset/img/ico_photo.jpg" width="57" height="57" alt="네이버 포토앨범"></a></p>
+				<p class="h_scl_cnt">Scroll List 79<br>
+					<a href="http://m.nphoto.naver.com/" class="h_scl_link">네이버 포토앨범</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://moneybook.naver.com/"><img src="../asset/img/ico_moneybook.jpg" width="57" height="57" alt="네이버 가계부"></a></p>
+				<p class="h_scl_cnt">Scroll List 80<br>
+					<a href="http://moneybook.naver.com/" class="h_scl_link">네이버 가계부</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.krdic.naver.com/"><img src="../asset/img/ico_krdic.jpg" width="57" height="57" alt="네이버 국어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 81<br>
+					<a href="http://m.krdic.naver.com/" class="h_scl_link">네이버 국어사전</a>
+				</p>
+			</li><li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.endic.naver.com/"><img src="../asset/img/ico_endic.jpg" width="57" height="57" alt="네이버 영어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 82<br>
+					<a href="http://m.endic.naver.com/" class="h_scl_link">네이버 영어사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.jpdic.naver.com/"><img src="../asset/img/ico_jpdic.jpg" width="57" height="57" alt="네이버 일본어사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 83<br>
+					<a href="http://m.jpdic.naver.com/" class="h_scl_link">네이버 일본어사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.hanja.naver.com/"><img src="../asset/img/ico_hanja.jpg" width="57" height="57" alt="네이버 한자사전"></a></p>
+				<p class="h_scl_cnt">Scroll List 84<br>
+					<a href="http://m.hanja.naver.com/" class="h_scl_link">네이버 한자사전</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://me2day.net/n/"><img src="../asset/img/ico_me2.jpg" width="57" height="57" alt="네이버 미투데이"></a></p>
+				<p class="h_scl_cnt">Scroll List 85<br>
+					<a href="http://m.me2day.net/" class="h_scl_link">네이버 미투데이</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.wingspoon.com/"><img src="../asset/img/ico_wing.jpg" width="57" height="57" alt="네이버 윙스푼"></a></p>
+				<p class="h_scl_cnt">Scroll List 86<br>
+					<a href="http://m.wingspoon.com/" class="h_scl_link">네이버 윙스푼</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.news.naver.com/mNpbVod/index.nhn"><img src="../asset/img/ico_snews.jpg" width="57" height="57" alt="네이버 오릭스영상"></a></p>
+				<p class="h_scl_cnt">Scroll List 87<br>
+					<a href="http://m.sports.news.naver.com/mNpbVod/index.nhn" class="h_scl_link">네이버 오릭스영상</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.ya9.naver.com/"><img src="../asset/img/ico_ya9.jpg" width="57" height="57" alt="네이버 야구9단"></a></p>
+				<p class="h_scl_cnt">Scroll List 88<br>
+					<a href="http://m.ya9.naver.com/" class="h_scl_link">네이버 야구9단</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.sports.naver.com/baseball/index.nhn"><img src="../asset/img/ico_baseball.jpg" width="57" height="57" alt="네이버 프로야구"></a></p>
+				<p class="h_scl_cnt">Scroll List 89<br>
+					<a href="http://m.sports.naver.com/baseball/index.nhn" class="h_scl_link">네이버 프로야구</a>
+				</p>
+			</li>
+			<li class="h_scl_o">
+				<p class="h_scl_tmb"><a href="http://m.help.naver.com/index.nhn"><img src="../asset/img/ico_help.jpg" width="57" height="57" alt="네이버 도움말"></a></p>
+				<p class="h_scl_cnt">Scroll List 90<br>
+					<a href="http://m.help.naver.com/index.nhn" class="h_scl_link">네이버 도움말</a>
+				</p>
+			</li>
+			</ul>
+		</div>
+		<!-- //Scroller -->
+	</div>
+
+</div>
+<!-- // Demo 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea cols="30" rows="5" title="로그" id="txtConsole" class="tarea">
+	</textarea>
+</div>
+<!-- Log 영역 -->
+
+<div class="lm">
+	<ul class="lst_type">
+	<li>스크롤을 터치 했을 때,<strong class="strike">beforeTouchStart, touchStart</strong> 이벤트가 발생한다.</li>
+	<li>스크롤을 이동했을 때,<strong class="strike">beforeMove, move</strong> 이벤트가 발생한다.</li>
+	<li>스크롤 터치를 끝냈을 때,<strong class="strike">beforeTouchEnd, touchEnd</strong> 이벤트가 발생한다.</li>
+	<li>스크롤의 위치가 변경될 때,<strong class="strike">beforePosition, position</strong> 이벤트가 발생한다.</li>
+	<li>스크롤 위치변경이 최종적으로 끝났을 때,<strong class="strike">afterScroll</strong> 이벤트가 발생한다.</li>
+	<li>pulldown, pullup이 발생할 때,<strong class="strike">pullDown, pullUp</strong> 이벤트가 발생한다.</p><br>
+	</li>
+	</ul>
+
+	<p class="red">&lt;기본 옵션을 제외하고, 추가로 설정한 옵션은 아래와 같다.&gt;</p>
+
+	<div class="example-content">
+		<pre class="code"><code class="prettyprint">bUseHScroll : true,
+bUseVScroll : false,
+bUseMomentum : true,
+nDeceleration : 0.0005,
+nHeight : 110</code></pre>
+	</div>
+
+	<p class="red">&lt;추가한 커스텀 이벤트는 다음과 같다&gt;</p>
+
+	<div class="example-content">
+		<pre class="code"><code class="prettyprint">beforeTouchStart : function(we) {
+	addConsole(we.sType + " → " + "터시 전에 호출
+	(nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+},
+touchStart : function(we) {
+	addConsole(we.sType + " → " + "터시 후에 호출
+	(nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+},
+beforeTouchEnd : function(we) {
+	addConsole(we.sType + " → " + "터치 끝나기 전에 호출
+	(nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+},
+touchEnd: function(we) {
+	addConsole(we.sType + " → " + "터치 끝난 후에 호출
+	(nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+},
+afterScroll : function(we) {
+	addConsole(we.sType + " → " + "스크롤 위치변경이 최종적 완료
+	(nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+}</code></pre>
+	</div>
+
+	<p class="desc green">가로 가속이 가능한 스크롤에서  beforeStart, start, beforeEnd, end, scrollEnd의 커스텀 이벤트를 바인딩한 예제이다.</p>
+
+	<p class="red">&lt;참고&gt;</p>
+	<p>
+		beforeTouchMove, touchMove, beforePosition, position는 이동시 마다, 포지션 지정시 마다 빈번하게 발생하므로 이 예제에서는 바인딩하지 않았다<br>
+		pullDown, pullup은 pull down/up update 기능이 있을시에만 발생하는 이벤트이기 때문에 바인딩하지 않았다
+	</p>
+</div>
+
+<!--@code title="HTML"
+// 수평 스크롤
+<div id="view">
+	<div style="width:6000px">
+		<ul> //Scroller
+			<li>....</li>
+		</ul>
+	</div>
+</div>
+code@-->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">/*@code title="JavaScript"*/
+var oScroll = new jindo.m.Scroll("view", {
+	bUseHScroll : true,
+	bUseVScroll : false,
+	bUseMomentum : true,
+	nDeceleration : 0.0005,
+	nHeight: 110
+}).attach({
+	beforeTouchStart : function(we) {
+		addConsole(we.sType + " → " + "터시 전에 호출 (nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+	},
+	touchStart : function(we) {
+		addConsole(we.sType + " → " + "터시 후에 호출 (nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+	},
+	beforeTouchEnd : function(we) {
+		addConsole(we.sType + " → " + "터치 끝나기 전에 호출 (nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+	},
+	touchEnd: function(we) {
+		addConsole(we.sType + " → " + "터치 끝난 후에 호출 (nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+	},
+	afterScroll : function(we) {
+		addConsole(we.sType + " → " + "스크롤 위치변경이 최종적 완료 (nLeft:" + we.nLeft + ",nTop:" + we.nTop + ")");
+	}
+});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

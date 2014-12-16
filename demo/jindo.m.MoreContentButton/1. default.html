@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본예제</title>
+<meta name="class-lists" content="jindo.m.MoreContentButton">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+.u_pg,.u_pg_lod{background:#e6e7e7;background:-webkit-gradient(linear,0 0,0 100%,from(#f9f9f9),color-stop(.3,#f6f6f6),color-stop(.8,#e7eae9),to(#dde3e4));-webkit-box-shadow:inset 0 1px 0 #fefefe,inset 0 -1px 0 #d8dada}
+.u_pg{display:table;position:relative;width:100%;height:45px;margin-top:-1px;border-top:1px solid #dfdfdf;border-bottom:1px solid #cecece;text-align:center}
+.u_pg_btn{display:table-cell;border-right:1px solid #d3d3d3;line-height:1em}
+.u_pg_area{display:table;position:relative;height:43px;margin:0 auto;padding-left:23px;background:url(../asset/img/ico_pg.gif) no-repeat 0 10px;font-size:1em}
+.u_pg_wrap{display:block;position:relative}
+.u_pg_lod{display:block;position:absolute;top:0;width:21px;height:43px;margin-left:-29px}
+.u_pg_lodic,.u_pg_lodjs{display:inline-block;overflow:hidden;width:21px;height:22px;margin-top:11px;text-indent:-999em}
+.u_pg_lodic{background:url(../asset/img/ico_lod2.gif) no-repeat 50% 50%}
+.u_pg_lodjs{background:url(../asset/img/ico_lod2_ngif.png) no-repeat}
+.u_pg_txt{display:table-cell;line-height:1.25em;vertical-align:middle}
+.u_pg_cnt{font-size:.79em;line-height:1.25em;color:#666}
+.u_pg_total{color:#a6a6a6}
+.u_pg_end .u_pg_btn{background:none;background-color:#fafafa;-webkit-box-shadow:none}
+.u_pg_end .u_pg_area{background:none}
+.u_pg_top{display:table-cell;width:53px;padding-top:18px;border-left:1px solid #fdfdfd;background:url(../asset/img/ico_pg.gif) no-repeat 50% -53px;font-size:.8em;color:#707070;vertical-align:top}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+
+	<div class="u_pg" id="contentMore">
+		<a href="#" class="u_pg_btn more_button">
+			<span class="u_pg_wrap">
+				<span class="u_pg_area">
+					<!-- [D] 로딩이 완료되면 .u_pg_lod를 display:none 으로 감춰주세요. -->
+					<span class="u_pg_lod more_loading" style="display:none">
+						<span class="u_pg_lodic">로딩중..</span>
+						<!-- [D]GIF 애니메이션이 동작하지 않는 브라우저용 (background-position 속성 중 0px 값을 -21px씩 늘려서 움직여주세요.)
+						<span class="u_pg_lodjs" style="background-position:0px 0">로딩중..</span>
+						-->
+					</span>
+
+					<span class="u_pg_txt">
+						<span><span class="more_moreCnt">10</span>개 더보기</span><br/>
+						<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span></span>
+					</span>
+				</span>
+			</span>
+		</a>
+		<span class="u_pg_btn more_last " style="display:none">
+			<span class="u_pg_wrap">
+				<span class="u_pg_area">
+					<span class="u_pg_txt">
+						<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span></span>
+					</span>
+				</span>
+			</span>
+		</span>
+		<a href="#" class="u_pg_top more_top">맨위로</a>
+	</div>
+
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		더보기 할 총 아이템 개수 (nItemPerPage) <input type="text" class="op_w50 _optionTool"  value="10"  name="nItemPerPage"> <br>
+		전체 아이템 개수 (nTotalItem) <input type="text" class="op_w50 _optionTool"  value="68" name="nTotalItem"><br>
+		더보기 최대 개수(nMaxItem) <input type="text" class="op_w50 _optionTool"  value="68" name="nMaxItem"><br>
+		현재 페이지 (nPage) <input type="text" class="op_w50 _optionTool"value="1" name="nPage"><br>
+
+		<button type="button"  id="apply" class="btn">적용</button>
+
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!--@code title="HTML"
+		<div class="u_pg" id="contentMore">
+			<a href="#" class="u_pg_btn more_button">
+					<span class="u_pg_wrap">
+					<span class="u_pg_area">
+							<span class="u_pg_lod more_loading" style="display:none">
+								<span class="u_pg_lodic">로딩중..</span>
+							</span>
+
+						<span class="u_pg_txt">
+							<span><span class="more_moreCnt">10</span>개 더보기</span><br/>
+							<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span></span>
+						</span>
+					</span>
+				</span>
+			</a>
+			<span class="u_pg_btn more_last " style="display:none">
+				<span class="u_pg_wrap">
+					<span class="u_pg_area">
+						<span class="u_pg_txt">
+							<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span></span>
+						</span>
+					</span>
+				</span>
+			</span>
+			<a href="#" class="u_pg_top more_top">맨위로</a>
+		</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MoreContentButton.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+	nTotalItem : 68, //실제 아이템 개수
+	nShowMaxItem : 68, //최대 더보기 하여 보여줄 개수
+	nItemPerPage : 10,
+	htAjax : null
+});
+
+oMore.attach({
+	'more' : function(oCustomEvt){
+		var sText = oCustomEvt.sType + " → " + oCustomEvt.nPage + " 페이지  /  시작인덱스 : " + oCustomEvt.nStartIndex + ", 끝인덱스 : " +oCustomEvt.nEndIndex;
+		addConsole(sText);
+	},
+	'goTop' : function(oCustomEvt){
+		var sText = oCustomEvt.sType + " → 맨위로 버튼 클릭됨";
+		addConsole(sText);
+	}
+});
+
+function setOption(wel) {
+	var sVal = '';
+
+	var aOption = jindo.$$('._optionTool');
+
+	jindo.$A(aOption).forEach(function(el, index, array){
+		var sVal = el.value;
+		if(!sVal.match(/[^0-9]/)){
+			sVal = parseInt(sVal, 10);
+		}
+
+		var wel = jindo.$Element(el);
+		switch (wel.attr('name')) {
+				case 'nItemPerPage' :
+					oMore.setItemPerPage(sVal);
+					break;
+				case 'nTotalItem' :
+					oMore.setTotalItem(sVal);
+					break;
+
+				case 'nMaxItem' :
+					oMore.setShowMaxItem(sVal);
+					break;
+				case 'nPage':
+					oMore.movePageTo(sVal);
+					break;
+		}
+	});
+}
+
+var wfnTool = jindo.$Fn(function (we) {
+	setOption(jindo.$Element(we.element));
+	addConsole("적용되었습니다.");
+});
+
+wfnTool.attach(jindo.$('apply'), "click");
+
+
+/*@code title="JavaScript"
+	var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+		nTotalItem : 68, //실제 아이템 개수
+		nShowMaxItem : 68, //최대 더보기 하여 보여줄 개수
+		nItemPerPage : 10,
+		htAjax : null
+	});
+
+	oMore.attach({
+		'more' : function(oCustomEvt){	//more 버튼 클릭시에 발생
+		},
+		'goTop' : function(oCustomEvt){	// 맨위로 버튼 클릭 시
+		}
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

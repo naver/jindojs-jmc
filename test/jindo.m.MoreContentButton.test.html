@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+
+</style>
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+<!-- iOS Safari(기본) -->
+
+<div class="u_pg" id="contentMore">
+	<a href="#" class="u_pg_btn more_button">
+			<span class="u_pg_wrap">
+			<span class="u_pg_area">
+				<!-- [D] 로딩이 완료되면 .u_pg_lod를 display:none 으로 감춰주세요. -->
+					<span class="u_pg_lod more_loading" style="display:none;">
+						<span class="u_pg_lodic">로딩중..</span>
+						<!-- [D]GIF 애니메이션이 동작하지 않는 브라우저용 (background-position 속성 중 0px 값을 -21px씩 늘려서 움직여주세요.)
+						<span class="u_pg_lodjs" style="background-position:0px 0">로딩중..</span>
+						-->
+
+					</span>
+
+				<span class="u_pg_txt">
+					<span><span class="more_moreCnt">10</span>개 더보기</span><br/>
+					<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span></span>
+				</span>
+			</span>
+		</span>
+	</a>
+	<span class="u_pg_btn more_last " style="display:none;">
+		<span class="u_pg_wrap">
+			<span class="u_pg_area">
+				<span class="u_pg_txt">
+					<span class="u_pg_cnt"><span class='more_current'>15</span> / <span class="u_pg_total more_total"> 68</span></span>
+				</span>
+			</span>
+		</span>
+	</span>
+	<a href="#" class="u_pg_top more_top">맨위로</a>
+</div>
+
+<!-- UI content Start -->
+
+
+ <h1 id="qunit-header">MoreContentButton Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script>
+<script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script src="../src/jindo.m.MoreContentButton.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.MoreContentButton.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>main이 싱글PageLayoutUI형태</title>
+<meta name="class-lists" content="jindo.m.RevealSidebarUI">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<!-- SamplePage 기본 CSS -->
+<style type="text/css">
+body{margin:0}
+/*@code title="CSS"*/
+.menubtn{
+	position:absolute;
+	top:7px;width:40px;
+	border-radius:9em;
+	background:#6e94c9;
+	line-height:20px;color:#FFF;
+	cursor:pointer;text-align:center
+}
+.menubtn.left{left:8px}
+.menubtn.right{right:8px}
+
+.rs-left,.rs-right{display:none}
+.rs-main{
+	box-shadow:0 0 20px rgba(0,0,0,.6);        /* 안쪽 그림자 크기, 색상 수정 */
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,.6);/* 안쪽 그림자 크기, 색상 수정 */
+}
+/* Page */
+.jmc-page{width:100%;border:0;background:#fff}
+/* Header, Footer 영역 CSS */
+.jmc-header,.jmc-footer{
+	display:block;overflow:hidden;position:relative;
+	width:100%;
+	background-color:#000;color:#FFF;
+	outline:0!important
+}
+/* Title */
+.jmc-title{
+	width:100%;margin:0;padding:10px 0;
+	background:-webkit-gradient(linear, left top, left bottom, from(#4770aa), to(#0b2a55));
+	background:gradient(linear, left top, left bottom, from(#4770aa), to(#0b2a55));
+	text-align:center;white-space:nowrap;text-overflow:ellipsis
+}
+.rs-title{
+	width:100%;margin:0;padding:10px 0;
+	background:#777;
+	text-align:center;white-space:nowrap;text-overflow:ellipsis
+}
+/*code@*/
+
+.demo-body{margin:0 !important;padding:0 !important;border:0 !important}
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+
+<!--@code title="HTML"-->
+<div class="rs-body">
+	<div class="rs-left">
+		<!-- header -->
+		<div class="rs-header rs-title" position="fixed">
+			헤더 영역 (Left)
+		</div>
+		<!-- //header -->
+		<!-- content(필수) -->
+		<div class="rs-content">
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		</div>
+		<!-- //content(필수) -->
+		<!-- footer -->
+		<div class="rs-footer rs-title">
+			풋터 영역입니다.
+		</div>
+		<!-- //footer -->
+	</div>
+
+	<div class="rs-main">
+		<div class="jmc-page">
+			<!-- header -->
+			<div class="jmc-header jmc-title" position="fixed">
+				헤더 영역 (Main)
+				<span class="menubtn left" onclick="oRevealSidebarUI.toggleSlide()">메뉴</span>
+				<span class="menubtn right" onclick="oRevealSidebarUI.toggleSlide(true)">메뉴</span>
+			</div>
+			<!-- //header -->
+
+			<!-- content(필수) -->
+			<div class="jmc-content">
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+				<a href="http://m.naver.com" target="_blank">네이버</a>링크를 가진 컨텐츠 영역입니다.<br>
+			</div>
+			<!-- //content(필수) -->
+
+			<!-- footer -->
+			<div class="jmc-footer jmc-title" position="fixed">
+				풋터 영역입니다.
+			</div>
+			<!-- //footer -->
+		</div>
+		<!-- //page -->
+	</div>
+
+	<div class="rs-right">
+		<!-- content(필수) -->
+		<div class="rs-content">
+			컨텐츠 영역입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+			컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		</div>
+		<!-- //content(필수) -->
+
+		<!-- footer -->
+		<div class="rs-footer rs-title" position="fixed">
+			풋터 영역입니다.
+		</div>
+		<!-- //footer -->
+	</div>
+</div>
+<!--code@-->
+
+<!-- // Demo 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.AjaxHistory.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CoreScroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._FlickingAnimation_.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PageLayoutUI.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.RevealSidebarUI.js" charset="uft-8"></script>
+<!-- // jindo 프레임웍 import -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+	var oRevealSidebarUI;
+	var oPageLayoutUI = new jindo.m.PageLayoutUI({
+		vBaseElement : jindo.$$.getSingle('.rs-body'),
+		fnDomReady : function(oData) {
+			oRevealSidebarUI = new jindo.m.RevealSidebarUI(oData.welRoot);
+		}
+	});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

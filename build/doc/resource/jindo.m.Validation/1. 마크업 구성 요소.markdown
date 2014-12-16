@@ -1,0 +1,12 @@
+[jindo.m.Validator](../../doc/internal/classes/jindo.m.Validator.html)를 상속받은 각각의 Validator를 관리하고, 유효성을 검증하는 static 유틸 모듈이다.<br />
+Validation의 구조는 다음과 같다.
+
+![](validation_structure.jpg "")
+
+#### 기능설명
+
+* Validator 유효성 검증 기능
+* Validator 관리
+* Validate 문법해석
+* 기본 Validator 제공
+* 사용자 Validator 제공

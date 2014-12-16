@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica,AppleGothic}
+body{position:relative;background-color:#f8f8f8;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+/* 컴포넌트 관련 CSS */
+
+.frb-radiobtn-cont{overflow:hidden;border:1px solid #ccc}
+.frb-radiobtn-on{overflow:hidden;border:0;background:#85bae4;font-weight:bold;color:#FFF;text-decoration:none;cursor:pointer;outline:0 none;text-shadow:0 -1px 1px #145072}
+.frb-radiobtn-disable{opacity:.3;cursor: default;}
+
+.frb-radiobtn-unit{position:relative;margin:0;padding:.7em 0 .7em 30px;border-bottom:1px solid #ccc;list-style:none}
+.frb-radiobtn-unit:last-child{border-bottom:0}
+.frb-radiobtn{position:absolute;top:10px;left:10px;margin:0}
+.frb-radiobtn-label{display:block;position:relative;margin:0;font-size:1em;font-family:Helvetica,Arial,sans-serif;font-weight:bold;color:#444;text-decoration:none;cursor:pointer;text-shadow:0 1px 1px #F6F6F6}
+
+
+</style>
+<!-- 사용자 css 끝 -->
+
+
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">RadioButton Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture"></div>
+
+<!-- UI content Start -->
+<div id="radioBtn" style="padding:10px">
+	<form action="#">
+		<fieldset>
+			<legend></legend>
+			<ul class="frb-radiobtn-cont">
+				<li class="frb-radiobtn-unit" id="radio1">
+					<input type="radio" name="name" checked="checked" id="fruit1" value="Apple" class="frb-radiobtn">
+					<label for="fruit1" class="frb-radiobtn-label">Apple</label>
+				</li>
+				<li class="frb-radiobtn-unit" id="radio2">
+					<input type="radio" name="name" id="fruit2" value="Banana" class="frb-radiobtn">
+					<label for="fruit2" class="frb-radiobtn-label">Banana</label>
+				</li>
+				<li class="frb-radiobtn-unit" id="radio3">
+					<input type="radio" name="name" id="fruit3" value="Orange" class="frb-radiobtn">
+					<label for="fruit3" class="frb-radiobtn-label">Orange</label>
+				</li>
+				<li class="frb-radiobtn-unit" id="radio4">
+					<input type="radio" name="name" id="fruit4" value="Lemon" class="frb-radiobtn">
+					<label for="fruit4" class="frb-radiobtn-label">Lemon</label>
+				</li>
+				<li class="frb-radiobtn-unit" id="radio5">
+					<input type="radio" name="name" id="fruit5" value="Grape" class="frb-radiobtn">
+					<label for="fruit5" class="frb-radiobtn-label">Grape</label>
+				</li>
+			</ul>
+		</fieldset>
+	</form>
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../src/jindo.m.RadioButton.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.RadioButton.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+</body>
+</html>

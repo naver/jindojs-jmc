@@ -1,0 +1,22 @@
+#### CSS
+
+화면에 보여지는 로딩의 z-index 속성은 내부적으로 1,000 으로 설정된다.
+
+
+#### Javascript
+
+	var oComponent = new jindo.m.Loading(el, {
+		 bActivateOnload : true,
+		 nWidth : 31,
+		 nHeight : 31,
+		 sDefaultForeground : "black", 
+		 sDefaultBackground : "transparent", 
+		 sLoadingText : "로딩중입니다",
+		 bUseFoggy : el ? false : true,
+		 sFoggyColor : "gray",
+		 nFoggyOpacity : 0.3
+	});
+
+생성자의 첫 파라미터가 null일 경우, 전체 화면을 기준으로 Loading이 생성된다.
+
+생성자의 첫 파라미터가 HTMLElement인 경우, 지정한 엘리먼트 기준으로 Loading이 생성된다.

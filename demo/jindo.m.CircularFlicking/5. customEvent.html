@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>커스텀 이벤트 발생 확인 예제</title>
+<meta name="class-lists" content="jindo.m.CircularFlicking">
+<meta name="description" content="beforeFlicking, afterFlikcing, beforeMove, move 커스텀 이벤트 발생 여부를 확인하는 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+#mflick{border:1px solid #fff}
+
+/*@code title="CSS"*/
+/* 높이값 지정은 #mflick 에서 하면 됩니다 */
+#mflick{overflow:hidden;position:relative;width:100%;height:200px}
+.flick-container{clear:both}
+.flick-panel{float:left;position:absoulte;width:100%;height:100%}
+/*code@*/
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<div id="mflick" style="height:200px;width:100%;background-color:grey">
+		<div  class="flick-container">
+			<div id="layer1" class="flick-panel" style="width:100%;height:200px;background-color:pink">
+				<ul>
+					<li><a href="http://m.naver.com">첫번째 레이어의 아이템 입니다</a></li>
+
+					<p style="margin-top:20px">3개의 Panel가 순환적으로 플리킹되는 순환 플리킹예제입니다</p>
+					<p>플리킹이 끝나는 시점에 발생하는 커스텀 이벤트 <span style="color:red;font-weight:bold">afterFlicking</span>에서 좌,우 layer의 내용을 변경한다.</p>
+					<p></p>
+
+				</ul>
+			</div>
+			<div id="layer2" class="flick-panel" style="width:100%;height:200px;background-color:skyblue">
+				<ul>
+					<li><a href="http://m.naver.com">두번째 레이어의 아이템 입니다</a></li>
+					<li><a href="http://m.naver.com">두번째 레이어의 아이템 입니다</a></li>
+				</ul>
+			</div>
+			<div id="layer3" class="flick-panel" style="width:100%;height:200px;background-color:#ffc000">
+				<ul>
+					<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>
+					<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>
+					<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<button type="button" id="aprev" class="btn">이전 콘텐츠 이동</button>
+		<button type="button" id="anext" class="btn">이후 콘텐츠 이동</button>
+		<input type="text" class="op_w40" id="nIndex"> 번째 아이템 인덱스로  <button type="button" id="setItem" class="btn">이동</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+	<div id="mflick" style="height:200px;width:100%">
+		<div class="flick-container">
+			<div id="layer1" class="flick-panel">
+				<p>1번째 아이템</p>
+			</div>
+			<div id="layer2" class="flick-panel">
+				<p>2번째 아이템</p>
+			</div>
+			<div id="layer3" class="flick-panel">
+				<p>2번째 아이템</p>
+			</div>
+		</div>
+	</div>
+code@-->
+
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CircularFlicking.js" charset="utf-8"></script>
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+//순환되면서 레이어 보여질 때 각 레이어의 마크업 데이터
+	var aAjaxData = [
+		'<ul>'
+		+'<li><a href="http://m.naver.com">첫번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>'
+		+'<p style="margin-top:20px">3개의 Panel 순환적으로 플리킹되는 순환 플리킹예제입니다</p>'
+		+'<p>플리킹이 끝나는 시점의 커스텀 이벤트 <span style="color:red;font-weight:bold">afterFlicking</span>에서 좌,우 layer의 내용을 업데이트 합니다</p>',
+
+		'<ul>'
+		+'<li><a href="http://m.naver.com">두번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">두번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>',
+		'<ul>'
+		+'<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>',
+		'<ul>'
+		+'<li><a href="http://m.naver.com">네번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">네번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">네번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">네번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>',
+		'<ul>'
+		+'<li><a href="http://m.naver.com">다섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">다섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">다섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">다섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">다섯번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>',
+		'<ul>'
+		+'<li><a href="http://m.naver.com">여섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">여섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">여섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">여섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">여섯번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">여섯번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>',
+		'<ul>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'<li><a href="http://m.naver.com">일곱번째 레이어의 아이템 입니다</a></li>'
+		+'</ul>'
+	];
+
+	var oFlicking = new jindo.m.CircularFlicking(jindo.$('mflick'),{
+		nTotalContents : aAjaxData.length
+	}).attach({
+		'beforeFlicking' : function(oCustomEvt){
+			var sMessage = oCustomEvt.nPanelIndex+'번째 Panel , '+ oCustomEvt.nContentIndex+'번째 Content, ';
+			sMessage += (oCustomEvt.bLeft? '왼쪽으로': '오른쪽으로')+' 플리킹 예정';
+
+			addConsole('beforeFlicking ' +sMessage);
+		},
+		'afterFlicking' : function(oCustomEvt){
+			var sMessage = ''
+			//플리킹 효과를 통해 현재 화면을 움직였을 경우
+			if(oCustomEvt.bLeft){
+				//왼쪽으로 움직였을 경우 오른쪽 panel만 업데이트
+				this.getRightPanelElement().html(aAjaxData[oCustomEvt.nContentRightIndex]);
+				sMessage += '왼쪽으로 플리킹';
+			}else{
+				//오른쪽으로 움직였을 경우 왼쪽 panel만 업데이트
+				this.getLeftPanelElement().html(aAjaxData[oCustomEvt.nContentLeftIndex]);
+				sMessage += '오른쪽으로 플리킹';
+			}
+
+			sMessage+= ', '+oCustomEvt.nPanelIndex+'번째 Panel , '+ oCustomEvt.nContentIndex+'번째 Content';
+
+			addConsole('[AfterFlicking] → ' +sMessage);
+		},
+		'beforeMove' : function(oCustomEvt){
+			var sMessage = oCustomEvt.nContentIndex+'번째  Content' + ', ' + oCustomEvt.nNextContentIndex +' 번째 Content로 이동예정';
+			addConsole('beforeMove → ' +sMessage);
+		},
+		'move' : function(oCustomEvt){
+			//setContentIndex로 플리킹 효과가 아닌 전체 panel의 정보가 바뀔경우   3개 panel의 모든 정보를 바꾼다.
+
+			var welCurrent = this.getPanelElement();
+			var welLeft = this.getLeftPanelElement();
+			var welRight = this.getRightPanelElement();
+
+			welCurrent.html(aAjaxData[oCustomEvt.nContentIndex]);
+			welLeft.html(aAjaxData[oCustomEvt.nContentLeftIndex]);
+			welRight.html(aAjaxData[oCustomEvt.nContentRightIndex]);
+
+			addConsole('[Move] → '+oCustomEvt.nContentIndex+'번째 컨텐츠로 이동함');
+		}
+	});
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.movePrev();
+	},this).attach(jindo.$('aprev'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oFlicking.moveNext();
+	},this).attach(jindo.$('anext'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		var n = jindo.$('nIndex').value;
+
+		oFlicking.setContentIndex(n);
+	},this).attach(jindo.$('setItem'), 'click');
+
+/*@code title="JavaScript"
+	var oFlicking = new jindo.m.CircularFlicking(jindo.$('mflick'),{
+		nTotalContents : 7 //전체 아이템 개수
+	});
+
+	oFlicking.attach({
+		'beforeFlicking' : function(oCustomEvt){
+			//oCustomEvt.stop() 호출시  'afterFlicking'가 일어나지 않는다.
+		},
+		'afterFlicking' : function(oCustomEvt){
+			//플리킹 효과를 통해 현재 화면을 움직였을 경우
+		},
+		'beforeMove' : function(oCustomEvt){
+			//oCustomEvt.stop() 호출시  'move'가 일어나지 않는다.
+		},
+
+		'move' : function(oCustomEvt){
+			//setContentIndex로 플리킹 효과가 아닌 전체 panel의 정보가 바뀔경우   3개 panel의 모든 정보를 바꾼다.
+
+		}
+	});
+code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

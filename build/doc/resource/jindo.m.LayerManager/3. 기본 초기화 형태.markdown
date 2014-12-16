@@ -1,0 +1,14 @@
+#### HTML
+
+	<div>
+		<button id="button" onclick="oComponent.show();">레이어를 컨트롤하는 버튼</button>
+		<div id="layer">보여지고 감춰지는 레이어</div>
+	</div>
+
+#### Javascript
+
+	var oComponent = new jindo.LayerManager("layer", {
+		bActivateOnload : true
+	}).link("button").link("layer");
+
+layer, button을 제외하고 그 외지역을 touch하였을 경우, layer가 사라진다.

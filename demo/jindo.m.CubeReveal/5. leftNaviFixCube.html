@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>Left Navi Fix CubeReveal 예제 </title>
+<meta name="class-lists" content="jindo.m.CubeReveal">
+<meta name="description" content="상단 CubeReveal 예제">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<link rel="stylesheet" type="text/css" href="./css/w.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 높이값 지정은 기준엘리먼트에서 하면 됩니다 */
+#mflick{width:100%;height:300px}
+/*code@*/
+.flick-ct{background-color:#F8F8F8}
+a{color:inherit}
+.tli{overflow:hidden;margin:0 6px;margin:0;padding-bottom:1px;line-height:1.1em;letter-spacing:-1px}
+.tli_v2{margin:0 6px}
+.tli_l2{overflow:hidden;margin:0 4px;margin:0;padding:0 4px;border-bottom:1px solid #E5E5E5}
+.tli_l2_a{display:block;overflow:hidden;padding:8px 6px 11px;white-space:nowrap;text-overflow:ellipsis}
+
+.tli_l{float:left;width:25%;margin-top:8px;font-size:11px;text-align:center}
+.tli_v2 .tli_l{width:33.3%}
+.tli_m{display:block;margin:0 auto;border:1px solid #C9C9C9;vertical-align:top}
+.ico_movw{display:block;position:relative;width:69px;margin:0 auto;text-align:left}
+.tli_v2 .ico_movw{width:94px}
+.tli_t{width:92px}
+.celeb_wrap {width : 100%}
+.celeb_wrap a{color:#ffffff}
+</style>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+
+<style>
+    .gnb.list.l2{
+        left : 7px;
+        right : auto !important;
+    }
+</style>
+</head>
+<body>
+
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+     data-disable="true"
+     data-title="Jindo Mobile Component"
+     data-subtitle="=document.title"
+     data-backbutton="true"
+     data-viewsource="true"
+     data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+    <p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div class="reveal2-wrap">
+    <header id="header" role="banner" class="reveal-header reveal2-header" style="width:100%;position:absolute;top:0px;left:0px;z-index:2500;-webkit-tap-highlight-color:transparent">
+        <div  style="width:100%;height:100%;">
+        <div  id="celebsetup" class="gnb_sub reveal-nav" style="display:none; width:100%;height:100%;">
+
+                <h2 class="u_hc">셀럽메뉴</h2>
+                <nav>
+                    <!-- [D] 현재 오픈된 섹션일 경우 b태그 추가 -->
+                    <ul class="lst_lnb">
+                    <li class="lnb_li"><a href="/home.nhn" class="">home</a></li>
+                    <li class="lnb_li"><a href="/news/list.nhn" class=""><b>news</b></a></li>
+                    <li class="lnb_li"><a href="/photo/list.nhn" class=""><span class="ico_new">New</span>photo</a></li>
+                    <li class="lnb_li"><a href="/video/list.nhn" class=""><span class="ico_new">New</span>video</a></li>
+                    <li class="lnb_li"><a href="/theme/list.nhn" class=""><span class="ico_new">New</span>theme</a></li>
+                    <li class="lnb_li"><a href="/theme/list.nhn" class=""><span class="ico_new">New</span>Info</a></li>
+                    </ul>
+                </nav>
+
+        </div>
+        </div>
+
+        <div class="gnb_wrp">
+            <h1>
+                <a href="#" class="_gnb_tl_link"><span class="gnb_tl">Top Menu </span></a>
+            </h1>
+            <a href="#" class="_leftMenu gnb l2 list" style=""><img src="./im/right_top_btn.png" style="margin: 9px;margin-right : 8px;"></img></a>
+            <a href="#" class="gnb list" onclick=" return false;"><span>이전</span></a>
+        </div>
+    </header>
+    <div style="height:48px;">
+
+    </div>
+    <div style="width:100%;height:100%; top:0px;">
+    <aside id="celeblist" class="celeb_vw reveal2-nav" style="width:100%;position:absolute;left:0px;z-index:3000;display:none;">
+        <div class="celeb_wrap">
+            <div>
+            <nav class="celeb_lst">
+                <ul class="tli">
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=028&amp;aid=0002139289" class="tli_l2_a"><div>박원순 "서울시 아닌 시민에 사과하라"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=259&amp;oid=008&amp;aid=0002830158" class="tli_l2_a"><div>은행 고졸 채용은 생색내기?</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=102" class="tli_l2_a"><div><span class="subject_nf">사건사고</span> 경찰 "'악마 에쿠스', 고의성 없었다" 결론</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=038&amp;aid=0002251375" class="tli_l2_a"><div>"아침식사 않고 차가운 목욕하면 살 빠진다"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=213&amp;sid3=418&amp;oid=382&amp;aid=0000041767" class="tli_l2_a"><div>'박찬호 vs 윤석민' 최동원-선동열전 이후 최고</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=028&amp;aid=0002139289" class="tli_l2_a"><div>박원순 "서울시 아닌 시민에 사과하라"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=259&amp;oid=008&amp;aid=0002830158" class="tli_l2_a"><div>은행 고졸 채용은 생색내기?</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=102" class="tli_l2_a"><div><span class="subject_nf">사건사고</span> 경찰 "'악마 에쿠스', 고의성 없었다" 결론</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=038&amp;aid=0002251375" class="tli_l2_a"><div>"아침식사 않고 차가운 목욕하면 살 빠진다"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=213&amp;sid3=418&amp;oid=382&amp;aid=0000041767" class="tli_l2_a"><div>'박찬호 vs 윤석민' 최동원-선동열전 이후 최고</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=028&amp;aid=0002139289" class="tli_l2_a"><div>박원순 "서울시 아닌 시민에 사과하라"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=259&amp;oid=008&amp;aid=0002830158" class="tli_l2_a"><div>은행 고졸 채용은 생색내기?</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=102" class="tli_l2_a"><div><span class="subject_nf">사건사고</span> 경찰 "'악마 에쿠스', 고의성 없었다" 결론</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=038&amp;aid=0002251375" class="tli_l2_a"><div>"아침식사 않고 차가운 목욕하면 살 빠진다"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=213&amp;sid3=418&amp;oid=382&amp;aid=0000041767" class="tli_l2_a"><div>'박찬호 vs 윤석민' 최동원-선동열전 이후 최고</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=028&amp;aid=0002139289" class="tli_l2_a"><div>박원순 "서울시 아닌 시민에 사과하라"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=101&amp;sid2=259&amp;oid=008&amp;aid=0002830158" class="tli_l2_a"><div>은행 고졸 채용은 생색내기?</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=102" class="tli_l2_a"><div><span class="subject_nf">사건사고</span> 경찰 "'악마 에쿠스', 고의성 없었다" 결론</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=103&amp;oid=038&amp;aid=0002251375" class="tli_l2_a"><div>"아침식사 않고 차가운 목욕하면 살 빠진다"</div></a>
+                    </li>
+                    <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=213&amp;sid3=418&amp;oid=382&amp;aid=0000041767" class="tli_l2_a"><div>'박찬호 vs 윤석민' 최동원-선동열전 이후 최고</div></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="aside_ft">
+                <div class="bookmark">
+                    <a href="intent://addshortcut?url=http://local.star.naver.com/home.nhn&amp;icon=http://imgnews.naver.com/image/favicon/android/news_96x96.png&amp;title=스타캐스트&amp;serviceCode=star&amp;version=7#Intent;scheme=naversearchapp;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.search;end">홈 화면에 추가</a>
+                </div>
+                <footer role="contentinfo">
+                    <div>
+                        <span class="u_cri"><a href="#">도움말</a></span><span class="u_cri"><a href="#">문의 및 신고</a></span>
+                        <address>© <a href="#">NHN Corp.</a></address>
+                    </div>
+                </footer>
+            </div>
+            </div>
+        </div>
+    </aside>
+    </div>
+
+<hr>
+
+<!-- ct -->
+<div id="ct" role="main" class="reveal-contents reveal2-contents">
+    <!-- 슬라이드 영역 -->
+    <div class="ct_wrp">
+
+
+
+
+    <ul class="tli">
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=100&amp;sid2=267&amp;oid=001&amp;aid=0005592602" class="tli_l2_a"><div>美 "한국·일본, '동해병기' 합의해야"</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=100&amp;sid2=269&amp;oid=001&amp;aid=0005592499" class="tli_l2_a"><div>김문수 "박근혜, 경선룰 고치자며 탈당하지 않았나"</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=101" class="tli_l2_a"><div><span class="subject_nf">삼성가 소송</span> 이건희의 분노 "감히 날 보고 건희.."</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=106&amp;sid2=282&amp;oid=073&amp;aid=0002128265" class="tli_l2_a"><div>김종국, 이르면 5월께 새 음반 가수 컴백</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.sports.naver.com/soccer/index.nhn" class="tli_l2_a"><div>영국·멕시코·브라질·스페인 톱시드, 홍명보호 충격</div></a>
+        </li>
+    </ul>
+    <ul class="tli tli_v2">
+        <li class="tli_l">
+            <a href="http://m.news.naver.com/comment/list.nhn?gno=news008%2C0002829949&amp;aid=0002829949&amp;oid=008&amp;sid1=001&amp;backUrl=http%3A%2F%2Fm.news.naver.com%2Fmain.nhn%3Fmode%3DLSD%26sid1%3D101" class="tli_a">
+            <img src="http://imgnews.naver.net/image/upload/item20120424/8882_--.jpg" width="92" height="70" class="tli_m">
+            <span class="tli_t"><font color="#666666">[실시간 댓글]</font><br>이건희 작심발언</span>
+            </a>
+        </li>
+        <li class="tli_l">
+            <a href="http://m.news.naver.com/photoViewer.nhn?componentId=845638&amp;panelId=hot.011.148.845638&amp;oid=213&amp;aid=0000201784" class="tli_a">
+            <img src="http://imgnews.naver.net/image/upload/item20120424/8489_--.jpg" width="92" height="70" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span>
+            <span class="tli_t">이영은, 어린시절 '모태미인 입증'</span>
+            </a>
+        </li>
+        <li class="tli_l">
+            <a href="http://m.sports.naver.com/worldfootball/index.nhn" class="tli_a">
+            <img src="http://imgnews.naver.net/image/upload/item20120424/0704_03.jpg" width="92" height="70" class="tli_m">
+            <span class="tli_t">박지성, 올 시즌 끝으로 맨유 떠나나?</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="tli">
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=100" class="tli_l2_a"><div><span class="subject_nf">이슈</span> "박영준 前차관에 10억 주라고 돈 건넸다"</div></a></li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=308&amp;aid=0000007019" class="tli_l2_a"><div>여권위조 이란인, 혹시 테러범이세요?</div></a>
+        </li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=022&amp;aid=0002388651" class="tli_l2_a"><div>"술병 따"…안 따주자 편의점 여직원 흉기로 찔러</div></a>
+        </li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=106&amp;sid2=221&amp;oid=108&amp;aid=0002141736" class="tli_l2_a"><div>'1박'스페셜, 강호동·나PD의 귀환? "고민 중"</div></a>
+        </li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=214&amp;sid3=422&amp;oid=109&amp;aid=0002338301" class="tli_l2_a"><div>레알 호날두 "퍼거슨 감독과 맨유가 그립다"</div></a>
+        </li>
+    </ul>
+    <ul class="tli tli_v2">
+        <li class="tli_l"><a href="http://m.news.naver.com/photoViewer.nhn?componentId=853208&amp;panelId=hot.011.148.853208&amp;oid=016&amp;aid=0000416489" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/2781_--.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">'엄마도, 아들도' 휠체어 타고..</span></a>
+        </li>
+        <li class="tli_l"><a href="http://m.news.naver.com/photoViewer.nhn?componentId=845617&amp;panelId=hot.011.148.845617&amp;oid=108&amp;aid=0002141717" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/0373_1.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">빅토리아, 공항서 완벽 몸매 눈길</span></a>
+        </li>
+        <li class="tli_l"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=107&amp;oid=360&amp;aid=0000000119" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/3934_untitled-2.jpg" width="92" height="70" alt="" class="tli_m"><span class="tli_t"><font color="#666666">[조석 카툰]</font><br>거신 드록바 출격</span></a>
+        </li>
+    </ul>
+    <ul class="tli">
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=100&amp;sid2=267&amp;oid=001&amp;aid=0005592602" class="tli_l2_a"><div>美 "한국·일본, '동해병기' 합의해야"</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=100&amp;sid2=269&amp;oid=001&amp;aid=0005592499" class="tli_l2_a"><div>김문수 "박근혜, 경선룰 고치자며 탈당하지 않았나"</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=101" class="tli_l2_a"><div><span class="subject_nf">삼성가 소송</span> 이건희의 분노 "감히 날 보고 건희.."</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=106&amp;sid2=282&amp;oid=073&amp;aid=0002128265" class="tli_l2_a"><div>김종국, 이르면 5월께 새 음반 가수 컴백</div></a>
+        </li>
+        <li class="tli_l2">
+            <a href="http://m.sports.naver.com/soccer/index.nhn" class="tli_l2_a"><div>영국·멕시코·브라질·스페인 톱시드, 홍명보호 충격</div></a>
+        </li>
+    </ul>
+    <ul class="tli tli_v2">
+        <li class="tli_l">
+            <a href="http://m.news.naver.com/comment/list.nhn?gno=news008%2C0002829949&amp;aid=0002829949&amp;oid=008&amp;sid1=001&amp;backUrl=http%3A%2F%2Fm.news.naver.com%2Fmain.nhn%3Fmode%3DLSD%26sid1%3D101" class="tli_a">
+            <img src="http://imgnews.naver.net/image/upload/item20120424/8882_--.jpg" width="92" height="70" class="tli_m">
+            <span class="tli_t"><font color="#666666">[실시간 댓글]</font><br>이건희 작심발언</span>
+            </a>
+        </li>
+        <li class="tli_l">
+            <a href="http://m.news.naver.com/photoViewer.nhn?componentId=845638&amp;panelId=hot.011.148.845638&amp;oid=213&amp;aid=0000201784" class="tli_a">
+            <img src="http://imgnews.naver.net/image/upload/item20120424/8489_--.jpg" width="92" height="70" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span>
+            <span class="tli_t">이영은, 어린시절 '모태미인 입증'</span>
+            </a>
+        </li>
+        <li class="tli_l">
+            <a href="http://m.sports.naver.com/worldfootball/index.nhn" class="tli_a">
+            <img src="http://imgnews.naver.net/image/upload/item20120424/0704_03.jpg" width="92" height="70" class="tli_m">
+            <span class="tli_t">박지성, 올 시즌 끝으로 맨유 떠나나?</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="tli">
+        <li class="tli_l2">
+            <a href="http://m.news.naver.com/main.nhn?mode=LSD&amp;sid1=100" class="tli_l2_a"><div><span class="subject_nf">이슈</span> "박영준 前차관에 10억 주라고 돈 건넸다"</div></a></li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=308&amp;aid=0000007019" class="tli_l2_a"><div>여권위조 이란인, 혹시 테러범이세요?</div></a>
+        </li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=102&amp;sid2=257&amp;oid=022&amp;aid=0002388651" class="tli_l2_a"><div>"술병 따"…안 따주자 편의점 여직원 흉기로 찔러</div></a>
+        </li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS2D&amp;sid1=106&amp;sid2=221&amp;oid=108&amp;aid=0002141736" class="tli_l2_a"><div>'1박'스페셜, 강호동·나PD의 귀환? "고민 중"</div></a>
+        </li>
+        <li class="tli_l2"><a href="http://m.news.naver.com/read.nhn?mode=LS3D&amp;sid1=107&amp;sid2=214&amp;sid3=422&amp;oid=109&amp;aid=0002338301" class="tli_l2_a"><div>레알 호날두 "퍼거슨 감독과 맨유가 그립다"</div></a>
+        </li>
+    </ul>
+    <ul class="tli tli_v2">
+        <li class="tli_l"><a href="http://m.news.naver.com/photoViewer.nhn?componentId=853208&amp;panelId=hot.011.148.853208&amp;oid=016&amp;aid=0000416489" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/2781_--.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">'엄마도, 아들도' 휠체어 타고..</span></a>
+        </li>
+        <li class="tli_l"><a href="http://m.news.naver.com/photoViewer.nhn?componentId=845617&amp;panelId=hot.011.148.845617&amp;oid=108&amp;aid=0002141717" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/0373_1.jpg" width="92" height="70" alt="" class="tli_m"><span class="ico_movw"><span class="ico_pht">포토 슬라이드</span></span><span class="tli_t">빅토리아, 공항서 완벽 몸매 눈길</span></a>
+        </li>
+        <li class="tli_l"><a href="http://m.news.naver.com/read.nhn?mode=LSD&amp;sid1=107&amp;oid=360&amp;aid=0000000119" class="tli_a"><img src="http://imgnews.naver.net/image/upload/item20120424/3934_untitled-2.jpg" width="92" height="70" alt="" class="tli_m"><span class="tli_t"><font color="#666666">[조석 카툰]</font><br>거신 드록바 출격</span></a>
+        </li>
+    </ul>
+
+<!-- 임시 페이지네비게이션 -->
+</div>
+    <div class="ct_top">
+    <a href="#" class="u_top"><span>맨위로</span></a>
+</div>
+<hr/>
+
+    <!-- //슬라이드 영역 -->
+    </div>
+<!-- //ct -->
+</div>
+</div>
+
+
+
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+
+<script charset="utf-8" src="../../src/jindo.m.Effect.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.Morph.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.RevealCommon.js"></script>
+<script charset="utf-8" src="../../src/jindo.m.CubeReveal.js"></script>
+
+
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+
+var oReveal, oReveal2 = null;
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+window.onload = function(){
+    setTimeout(function(){
+
+
+
+        oReveal2 = new jindo.m.CubeReveal({
+            "sClassPrefix" : "reveal2-",
+            "nDuration" : 500,
+            "nMargin" : 260,
+            "bFixNaviSize" : true,
+            "sDirection" : "right"
+            // "bUseScroll" : true
+        }).attach({
+            "beforeShow" : function(oCustomEvent){
+              jindo.$Element("celeblist").show();
+              // initScroll();
+            },
+            "show" : function(oCustomEvent){
+                // welHeader.query("._gnb_tl_link").addClass("on");
+            },
+            "hide" : function(oCustomEvent){
+                jindo.$Element("celeblist").hide();
+                // oReveal._bShow = false;
+                // welHeader.query("._gnb_tl_link").removeClass("on");
+            },
+            "rotate" : function(){
+                // oReveal2.hide(0);
+            }
+        });
+
+    }, nDelay);
+}
+
+
+//
+    // window.addEventListener('pageshow', function(event) {
+        // window.scrollTo(0,1);
+        // function caculateViewport(){
+            // // oFullsize.reflowViewportSize();
+        // }
+//
+        // //TransitionTimingFunction을 사용할수 있는 조건이 아니면 3g감안하여 (안드로이드2.x 이하) Delay 1초 이상 적용
+        // jindo.$Fn(caculateViewport).delay(0.1);
+        // // jindo.$Fn(caculateViewport).delay(nhn.m.star.com.util.useTransitionTimingFunction() ? 0.1 : 1);
+//
+    // },false);
+
+    //상단고정 메뉴 하단 이동 이벤트 처리
+    jindo.$Fn(function(e){
+        e.stop();
+        oReveal2.toggle();
+    }, this).attach(jindo.$$.getSingle("._leftMenu"), "click");
+    // welHeader.delegate("click", "._gnb_tl_link", function(weEvent){
+        // weEvent.stopDefault();
+        // window.oReveal.toggle();
+    // // });
+
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

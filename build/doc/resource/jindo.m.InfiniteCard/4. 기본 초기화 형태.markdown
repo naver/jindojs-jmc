@@ -1,0 +1,63 @@
+#### HTML
+
+	<div id="view">
+		<div class="[sClassName]"><div>
+		<div class="[sClassName]"><div>
+		<div class="[sClassName]"><div>
+		...
+	</div>
+
+InfiniteCard 컴포넌트는 최상위 View와 그 자식 Card들로 구성되어 있다.<br><br>
+
+* 최상위 Wrapper는 내부적으로 overflow:hidden, position:relative 속성이 설정된다.
+* 그 자식 Card들은 모두 position:absolute 속성이 설정되며, 자식 Card의 개수는 nCardCount 개수만큼 구성된다.
+
+#### Javascript
+
+	var oInfinite = new jindo.m.InfiniteCard("view", {
+		nCardCount : 10,
+		sClassName : "wrp_cds",
+		nExpandSize : 0,
+		bUseCss3d : jindo.m.useCss3d(),
+		bActivateOnload : true
+	});
+
+* 최상위 View를 생성자의 첫번째 파라미터로 받는다.
+
+#### CSS
+CSS는 반응형 카드를 만들기 위해서 필요한 요소이다.
+
+예를 들어 화면에 카드가 1열로 배열되기를 원한다면,  
+InfiniteCard 인스턴스 생성시, 카드의 클래스(sClassName)를 100%로 지정하고,  
+2열로 배열되기를 원한다면 50%,  
+3열은 33%로, 4열은 25%와 같이 비율로 지정한다.  
+또한, 고정된 px값을 지정할 경우에도 그에 맞게 카드가 그리드식으로 배열된다.
+
+	#카드의 클래스가 wrp_cds 이고, 1열로 배열하는 예
+	.wrp_cds { width : 100% }
+	
+	#카드의 클래스가 wrp_cds 이고, 2열로 배열하는 예
+	.wrp_cds { width : 50% }
+	
+	#카드의 클래스가 wrp_cds 이고, 3열로 배열하는 예
+	.wrp_cds { width : 330% }
+	
+	#카드의 클래스가 wrp_cds 이고, 4열로 배열하는 예
+	.wrp_cds { width : 25% }
+	
+	#카드의 클래스가 wrp_cds 이고, 고정값(200px)로 배열하는 예
+	.wrp_cds { width : 200px } 
+
+![](infiniteCard.png "")
+
+[반응형 무한 카드 사용예시]
+
+
+
+지정하는 카드의 클래스(sClassName)를 해상도에 따라 미디어 쿼리로 구성하면, 해상도에 따라, 또는 모바일 단말기의 회전 상태에 따라 카드의 열을 다양하게 보여 줄 수 있다.
+
+	#카드의 클래스가 wrp_cds 이고, width가 640px 미만일 경우에는 2열로 배열하고, 640px 이상인 경우에는 3열로 배열되는 예
+	.wrp_cds { width : 50% }
+	@media all and (min-width:640px){
+		.wrp_cds { width : 33% }
+	}

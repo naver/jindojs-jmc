@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>사용자 이벤트 사용예제</title>
+<meta name="class-lists" content="jindo.m.TextInput">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/* 레이블/인풋박스 디자인 디자인 CSS */
+.sample_form{line-height:25px}
+.sample_form label{width:100px;vertical-align:top;display:inline-block;padding:0 8px;font-size:13px;line-height:30px;font-weight:normal;border:1px solid #b3b3b3;color:#333;text-shadow:0 1px 0 #fff;-webkit-border-radius:0.5em;border-radius:0.5em;}
+.sample_form input{width:120px;height:20px;display:inline-block;padding:.4em 0;font-size:13px;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-focus-ring-color: rgba(0, 0, 0, 0);-webkit-appearance:none;background:transparent none;border:none;outline:none;}
+
+/* TextInput UNIT(필수)*/
+.fit-textinput-unit{padding:0px 5px;width:150px;display:inline-block;border:1px solid #b3b3b3;color:#333;text-shadow:0 1px 0 #fff;-webkit-border-radius:0.5em;border-radius:0.5em;background:#f0f0f0;background-image:-webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));background-image:-webkit-linear-gradient(top, #eee, #fff);background-image:-o-linear-gradient(top, #eee, #fff);background-image:linear-gradient(top, #eee, #fff);}
+
+/* TextInput 포커싱/활성 디자인 CSS */
+.fit-focus {background:#f0f0f0 !important;-moz-box-shadow:0 0 8px #387bbe !important;-webkit-box-shadow:0 0 8px #387bbe !important;box-shadow:0 0 8px #387bbe !important;}
+.fit-disable {background:#eee !important;}
+
+/* 삭제 버튼 (선택) */
+.fit-clear-btn {display:none;position:absolute;right:0;top:0;z-index:10;width:30px;height:38px;border:none;background:url(http://static.naver.net/www/m/im2/ico_v3.png) no-repeat 6px -314px;text-indent:-9999px;cursor:pointer;outline:0!important}
+/*@code title="CSS"*/
+
+/*@code title="CSS"*/
+	/* TextInput UNIT CSS */
+	.[prefix]textinput-unit{...}
+
+	/* TextInput 포커싱될 때 CSS */
+	.[prefix]focus {...}
+
+	/* TextInput 비활성화될 때 CSS */
+	.[prefix]disable {...}
+
+	/* 삭제 버튼 CSS */
+	.[prefix]clear-btn {display:none;position:absolute;right:0;top:0;z-index:10;...}4
+/*code@*/
+
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo">
+	<div class="sample_form" id="form_base">
+
+		기본 예제<br/>
+		<label>TextInput1</label>
+		<div class="fit-textinput-unit">
+			<input type="text" />
+		</div>
+		<br/><br/>
+
+		문자열 입력시 [X]버튼이 생기는 예제<br/>
+		<label>TextInput2</label>
+		<div class="fit-textinput-unit">
+			<input type="text" />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+		<br/><br/>
+
+		필수입력 + 숫자(,) 유효성검사 예제<span class="result" style="margin-left:20px;color:red"></span><br/>
+		<label>TextInput3 <font class="red">*</font></label>
+		<div class="fit-textinput-unit">
+			<input type="text" data-validate="require;number:," />
+			<div class="fit-clear-btn"><a href="#">삭제</a></div>
+		</div>
+
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<button type="button" onclick="oTextInput.disable()" class="btn">모두 비활성화</button>
+		<button type="button" onclick="oTextInput.enable()" class="btn">모두 활성화</button><br />
+		<button type="button" onclick="oTextInput.disable(getElement(1))" class="btn">TextInput2 비활성화</button>
+		<button type="button" onclick="oTextInput.enable(getElement(1))" class="btn">TextInput2 활성화</button><br />
+		<button type="button" onclick="oTextInput.disable([getElement(0), getElement(1)])" class="btn">TextInput1, TextInput2 비활성화</button>
+		<button type="button" onclick="oTextInput.enable([getElement(0), getElement(1)])" class="btn">TextInput1, TextInput2  활성화</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+<!--@code title="HTML"
+	<div id="form_base">
+		<div class="[prefix]textinput-unit">
+			<input type="text" />
+			<div class="[prefix]clear-btn"><a href="#">삭제</a></div>
+		</div>
+	</div>
+code@-->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.TextInput.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Validation.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Validator.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.RequireValidator.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.NumberValidator.js"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oTextInput = new jindo.m.TextInput("form_base", {bUseValidate : true});
+/*code@*/
+
+oTextInput.attach({
+	"focus" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 포커스 됨");
+	},
+	"blur" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 포커스 잃어버림");
+	},
+	"enable" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 활성됨");
+	},
+	"disable" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 비활성됨");
+	},
+	"valid" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 유효함 <br>유효여부 : " + we.htValidate.bValid + ", 변경전 : " + we.htValidate.sPreValue + ", 변경후 : " + we.htValidate.sCorrectedValue);
+	},
+	"invalid" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 유효하지 않음<br>유효여부 : " + we.htValidate.bValid + ", 변경전 : " + we.htValidate.sPreValue + ", 변경후 : " + we.htValidate.sCorrectedValue);
+	},
+	"clear" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 삭제버튼으로 값이 삭제됨");
+	},
+	"beforeShowClearBtn" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 삭제버튼 보이기 전");
+	},
+	"showClearBtn" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 삭제버튼 보인 후");
+	},
+	"beforeHideClearBtn" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 삭제버튼 사라지기 전");
+	},
+	"hideClearBtn" : function(we) {
+		addConsole("[" + (we.nIndex + 1) + "번째] 삭제버튼 사라진 후");
+	}
+});
+
+function getElement(nIndex) {
+	return oTextInput.getElement(nIndex);
+}
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

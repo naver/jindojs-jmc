@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>수평 플리킹 안의 수직 플리킹</title>
+<meta name="class-lists" content="jindo.m.SlideFlicking">
+<meta name="description" content="수평 플리킹 안에 수직플리킹 만들기 예제">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+/*@code title="CSS"*/
+/* 높이값 지정은 기준엘리먼트에서 하면 됩니다 */
+#mflick{width:100%;height:200px}
+#mflick-vertical{width:100%;height:200px}
+/*code@*/
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="mflick" style="background-color:grey">
+	<div style="" class="flick-container">
+		<div class="flick-ct" style="width:100%;height:200px;background-color:pink">
+			<ul>
+				<li><a href="http://m.naver.com">첫번째 레이어의 아이템 입니다</a></li>
+			</ul>
+		</div>
+		<div class="flick-ct" style="width:100%;height:200px;background-color:skyblue">
+			<div id="mflick-vertical" style="background-color:grey">
+				<div style="" class="flick-vertical-container">
+					<div class="flick-vertical-ct" style="width:100%;height:200px;background-color:#D695E2">
+						<ul>
+							<li><a href="http://m.naver.com">[수직] 첫번째 레이어의 아이템 입니다</a></li>
+						</ul>
+					</div>
+					<div class="flick-vertical-ct" style="width:100%;height:200px;background-color:#C2E43B">
+						<ul>
+							<li><a href="http://m.naver.com">[수직] 두번째 레이어의 아이템 입니다</a></li>
+						</ul>
+					</div>
+					<div class="flick-vertical-ct" style="width:100%;height:200px;background-color:#1B9AD6">
+						<ul>
+							<li><a href="http://m.naver.com">[수직] 세번째 레이어의 아이템 입니다</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="flick-ct" style="width:100%;height:200px;background-color:#f7f7f7">
+			<ul>
+				<li><a href="http://m.naver.com">세번째 레이어의 아이템 입니다</a></li>
+			</ul>
+		</div>
+		<div class="flick-ct" style="width:100%;height:200px;background-color:#1B9AD6">
+			<ul>
+				<li><a href="http://m.naver.com">네번째 레이어의 아이템 입니다</a></li>
+			</ul>
+		</div>
+		<div class="flick-ct" style="width:100%;height:200px;background-color:#D695E2">
+			<ul>
+				<li><a href="http://m.naver.com">다섯번째 레이어의 아이템 입니다</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+<div class="lm">
+	<!-- 샘플설명은 이 영역에 작성하세요. -->
+	<span class="red">붉은색 선</span>영역은 40px 기준선<br>
+	동적으로 콘텐츠의 마크업의 추가하여 사용하는 예제에 활용가능하다<br>
+</div>
+
+<!-- Option 영역 -->
+<div id="option">
+	<div class="op">
+		<!-- 옵션은 이 영역에 작성하세요. -->
+		<button type="button" id="firstPanel" class="btn">처음 콘텐츠 이동</button>
+		<button type="button" id="lastPanel" class="btn">마지막 콘텐츠 이동</button>
+		<input type="text" class="op_w40" id="nIndex"> 번째 아이템 인덱스로
+		<button type="button" id="setItem" class="btn">이동</button>
+	</div>
+</div>
+<!--// Option 영역 -->
+
+<!-- Log 영역 -->
+<div class="scroll">
+	<button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+	<textarea title="로그" id="txtConsole" class="tarea"></textarea>
+</div>
+<!-- Log 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var nDelay = jindo.m.getDeviceInfo().android? 1000: 0;
+var oSlideFlicking = null;
+var oVerticalFlicking = null;
+window.onload = function(){setTimeout(function(){
+
+	oSlideFlicking = new jindo.m.SlideFlicking(jindo.$('mflick'),{
+		bUseCircular : false,
+		bUseMomentum : false
+	});
+
+	oVerticalFlicking = new jindo.m.SlideFlicking(jindo.$('mflick-vertical'),{
+		bUseCircular : true,
+		bUseMomentum : false,
+		bHorizontal : false,
+		sClassPrefix : "flick-vertical-"
+	});
+
+	// 0번째 판을 재갱신한다
+	oSlideFlicking.refresh(0);
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oSlideFlicking.refresh(0);
+	},this).attach(jindo.$('firstPanel'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		oSlideFlicking.refresh(oSlideFlicking.getTotalContents()-1);
+	},this).attach(jindo.$('lastPanel'),'click');
+
+	jindo.$Fn(function(evt){
+		evt.stop();
+		var n = parseInt(jindo.$('nIndex').value,10);
+		oSlideFlicking.moveTo(n,0);
+	},this).attach(jindo.$('setItem'), 'click');
+}, nDelay); }
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+
+<!--@code title="HTML"
+<div id="mflick">
+	<div class="flick-container">
+		<div  class="flick-ct" >
+			Layer 1
+		</div>
+		<div  class="flick-ct" >
+			Layer 2
+		</div>
+		<div class="flick-ct" >
+			Layer 3
+		</div>
+	</div>
+</div>
+code@-->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

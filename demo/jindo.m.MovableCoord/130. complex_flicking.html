@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>복잡한 Flicking 구현</title>
+<meta name="class-lists" content="jindo.m.MovableCoord">
+<meta name="description" content="">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	#content {
+		position:absolute;
+		left:10px; top:90px;
+	}
+
+	.block {
+		position:absolute;
+		width:100px; height:100px;
+		border:1px solid #888;
+		border-width:1px 0 0 1px;
+		box-shadow:1px 1px 0px #888;
+		background-color:#bdf;
+		box-sizing:border-box;
+	}
+
+	#viewport {
+		position:absolute;
+		left:10px; top:90px;
+		width:101px; height:101px;
+		outline:5px solid #888;
+	}
+
+</style>
+
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="content">
+	<div class="block" style="left:0px; top: 0px;"></div>
+	<div class="block" style="left:0px; top: 100px;"></div>
+	<div class="block" style="left:0px; top: 200px;"></div>
+	<div class="block" style="left:100px; top: 200px;"></div>
+	<div class="block" style="left:200px; top: 200px;"></div>
+	<div class="block" style="left:0px; top: 300px;"></div>
+	<div class="block" style="left:0px; top: 400px;"></div>
+	<div class="block" style="left:100px; top: 400px;"></div>
+	<div class="block" style="left:200px; top: 400px;"></div>
+	<div class="block" style="left:300px; top: 400px;"></div>
+	<div class="block" style="left:0px; top: 500px;"></div>
+</div>
+<div id="viewport"></div>
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MovableCoord.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+
+	var mores = [ 0, 0, 2, 0, 3, 0 ];
+
+	var welContent = jindo.$Element('content');
+
+	var inst = new jindo.m.MovableCoord([ 0, 0 ], {
+		aMin : [ 0, 0 ],
+		aMax : [ 0, 500 ],
+		aBounce : [ 20, 20, 20, 20 ],
+		nDeceleration : 0.0024
+	});
+
+	inst.attach('release', function(oCustomEvent) {
+
+		var horz = Math.round(oCustomEvent.aDestPos[0] / 100);
+		var vert = Math.round(oCustomEvent.aDestPos[1] / 100);
+
+		var more = mores[vert] || 0;
+		var yRange = horz && more ? [ vert*100, vert*100 ] : [ 0, 500 ];
+
+		inst.option('aMin', [ 0, yRange[0] ]);
+		inst.option('aMax', [ more * 100, yRange[1] ]);
+
+		oCustomEvent.aDestPos[0] = Math.min(
+			more * 100,
+			Math.round(oCustomEvent.aDestPos[0] / 100) * 100
+		);
+
+		if (more) {
+			oCustomEvent.aDestPos[1] = vert * 100;
+		}
+
+	});
+
+	inst.attach('change', function(oCustomEvent) {
+		var pos = oCustomEvent.aPos;
+		welContent.css({
+			'webkitTransform' : 'translate3d(' + -pos[0] + 'px,' + -pos[1] + 'px,0)'
+		});
+	});
+
+	inst.bind(window, {
+		nDirection : 1 | 4,
+		aScale : [ -0.5, -0.5 ]
+	});
+
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

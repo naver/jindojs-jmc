@@ -1,0 +1,63 @@
+#### HTML
+
+	<!-- input 엘리먼트 마크업. -->
+	<input type="text" id="datepicker"/>
+
+	<!-- Calendar 템플릿 -->
+	<div id="calendar">...</div>
+
+Input Form 엘리먼트는 Calendar를 통해 선택한 값이 입력될 고유한 id값을 갖는 필수 Form 요소 이다.
+
+Calendar 템플릿은 달력을 출력 할 템플릿을 정의 한 마크업 이다. 해당 템플릿을 정의 하지 않으면 기본 템플릿으로 제공 된다.
+
+템플릿의 자세한 항목은 아래 부분에 정의 하여 설명한다.
+
+
+#### Javascript
+
+	// Calendar 템플릿 참조. 생략가능 하고, 생략시 해당 파라미터를 null로 정의 하여 적용 한다.
+	var elCalendarBase = jindo.$("calendar"); // 또는 null
+	var oDatepicker = new jindo.m.Datepicker(elCalendarBase,{
+		bActivateOnload : true,
+		sClassPrefix : "calendar-",
+		sFormat : "yyyy-mm-dd",
+		sTitleFormat : "yyyy.mm",
+		aMonthTitle : ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+		bUseEffect : false,
+		nEffectDuration : 200,
+		bAutoHide : false
+	});
+
+	// 해당 input에 Datepicker를 적용 한다.
+	// 여러 input을 추가로 적용 가능 하다.
+	oDatepicker.addDatePickerSet("datepicker",{
+		// 현재 날짜 지정 옵션.
+		nYear : 2012,
+		nMonth : 1,
+		nDate : 15,
+		htSelectableDateFrom : { //선택가능한 첫 날짜
+			nYear : 2000,
+			nMonth : 1,
+			nDate : 1
+		},
+		htSelectableDateTo : { //선택가능한 마지막 날짜
+			nYear : 2013,
+			nMonth : 12,
+			nDate : 31
+		},
+		// Calendar 가 나타날 위치 지정.
+		sPosition: "bottomRight"
+	});
+
+	/*추가 적용 시
+	oDatepicker.addDatePickerSet("datepicker2");
+	oDatepicker.addDatePickerSet("datepicker3");
+	*/
+
+우선 Datepicker 클래스를 생성한다. 생성시 Calendar 템픞릿 마크업에 대한 참조를 첫번째 파라미터로 전달 한다.
+
+이때 템플릿을 지정 하지 않으면 모듈에서 기본 템플릿 마크업을 생성하여 body에 붙이게 된다. 
+
+기본 템플릿을 사용할 경우, 첫번째 파라미터를 null로 정의 하여 생성 한다. Datepicker를 생성하고 addDatePickerSet 함수를 사용 하여 Datepicker가 적용될 할 input을 등록 한다.
+
+등록 시, 첫번째 파라미터로 input에대한 ID 값이나 엘리먼트 참조를 선언하여 준다. 각 Input별로 Calendar옵션이 지정 가능 하다.

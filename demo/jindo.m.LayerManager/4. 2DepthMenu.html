@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>2단 메뉴 활용 예제</title>
+<meta name="class-lists" content="jindo.m.LayerManager">
+<meta name="description" content="LayerManager로 메뉴만들기">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+.u_h2{position:relative;width:100%;height:33px;border-bottom:1px solid #b0b0b0;background:#f4f5f5;text-align:left}
+.u_h2_h{overflow:hidden;height:33px;padding:0 0 0 50px;font-size:15px;line-height:33px}
+.u_h2 .uc_pl,.u_h2 .uc_pr{position:absolute;top:3px;letter-spacing:-1px}
+.u_h2 .uc_pl{left:5px}
+.u_h2 .uc_pr{right:5px}
+.u_h2 .u_btn{display:inline-block;padding:.36em .4em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));font-size:1em;color:#666;letter-spacing:-1px;white-space:nowrap}
+.u_h2 .u_btn .uc_ico_ck{display:inline-block;margin-left:-.15em;padding-left:1.4em;background:url(../asset/img/ico.gif) no-repeat 0 3px}
+.u_h2 .u_btn_v2{padding:.36em .8em .43em}
+.s2 .u_h2 .u_btn_v2:before,.s2 .u_h2 .u_btn_v2:after{display:inline-block;content:''}
+.s2 .u_h2 .u_btn_v2:before{margin-left:-3px}
+.s2 .u_h2 .u_btn_v2:after{margin-right:-3px}
+
+.u_lst_l{margin:1px 0 1px 5px;border:1px solid #dfdfdf}
+.u_lst_lk{display:block;padding:.7em 31px .6em 10px;background:url(../asset/img/bu_lk.gif) no-repeat 100% 50%}
+.u_lst_lk_no{display:block;padding:.7em 31px .6em 10px}
+
+.u_h3{position:relative;width:100%;height:35px;text-align:left}
+.u_h3 .uc_pl{position:absolute;top:3px;left:5px;text-align:center}
+.u_h3 .uc_prev{display:inline-block;width:30px;height:25px;padding-left:5px;border:1px solid #242937;border-radius:2px;background:#2a3650;font-size:13px;line-height:25px;color:#fff;letter-spacing:-1px;text-align:left;white-space:nowrap;-webkit-box-shadow:inset #8ca1da 0 0 1px,#181e2e 0 1px 1px}
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<div id="demo" style="height:200px">
+	<div class="u_h3">
+        <div class="u_h2_h"><span id="showContent" style="width:100px;"></span></div>
+        <div class="uc_pl"><a href="javascript:void(0);" class="uc_prev" id="btnMenu">메뉴</a></div>
+    </div>
+
+	<div id="menuLayer" style="position:absolute; width:160px">
+		<ul id="menuList" style="display:none" class="u_lst">
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk">Microsoft Office</a></li>
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk_no">네이버N드라이브</a></li>
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk_no">네이버톡</a></li>
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk_no">네이버</a></li>
+		</ul>
+	</div>
+
+	<div id="subMenuLayer" style="position:absolute; left:160px; width:130px">
+		<ul id='subMenuList' style="display:none" class="u_lst">
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk_no">Excel</a></li>
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk_no">Word</a></li>
+			<li class="u_lst_l"><a href="javascript:void(0);" class="u_lst_lk_no">PowerPointer</a></li>
+		</ul>
+	</div>
+</div>
+<!--// Demo 영역 -->
+
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+	var fnBtnMenu = jindo.$Fn(function() {
+		if(oLmMenu.getVisible()) {
+			oLmMenu.hide();
+			oLmSubMenu.hide();
+		} else {
+			oLmMenu.show();
+		}
+	}, this).attach(jindo.$("btnMenu"), "click");
+	var welData = jindo.$Element("showContent");
+
+	var oLmMenu = new jindo.m.LayerManager("menuList").link("btnMenu")
+		.attach("ignore", function(we) {
+			if(we.elTarget) {
+				var welTarget = jindo.$Element(we.elTarget);
+				if(welTarget.hasClass("u_lst_lk")) {
+					oLmSubMenu.show();
+				}
+			}
+		})
+		.attach("hide",function(we) {
+			if (we.elTarget) {
+				// TextNode 선택시 상위 엘리먼트로 이벤트 전달
+				we.elTarget = we.elTarget.nodeType == 3 ? we.elTarget.parentNode : we.elTarget;
+			}
+			var welTarget = jindo.$Element(we.elTarget);
+			if(we.elTarget && welTarget.className().indexOf("u_lst_lk") > -1) {
+				welData.html(we.elTarget.innerHTML + "이(가) 선택됨");
+			}
+		}).link(jindo.$$.getSingle(".u_lst_lk"));
+	var oLmSubMenu = new jindo.m.LayerManager("subMenuList").link(jindo.$$.getSingle(".u_lst_lk"),"btnMenu");
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

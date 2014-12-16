@@ -1,0 +1,23 @@
+#### HTML
+
+	<div id="layer1">
+		사용자 터치 움직임을 분석할 대상 엘리먼트
+	</div>
+
+
+#### Javascript
+
+	var oTouch = new jindo.m.Touch("layer1", {
+		nMomentumDuration :350,
+		nMoveThreshold : 7,
+		nSlopeThreshold : 25,
+		nLongTapDuration : 1000,
+		nDoubleTapDuration : 400,
+		nTapThreshold : 6,
+		nPinchThreshold : 0.1,
+		nRotateThreshold : 5,
+		bActivateOnload : true
+	});
+
+* 첫번째 parameter는 touch 대상 엘리먼트,문자형태의 id또는 HTML Element객체를 받을수 있다.
+* 두번째 parameter는 option으로 써 아래 표 참조

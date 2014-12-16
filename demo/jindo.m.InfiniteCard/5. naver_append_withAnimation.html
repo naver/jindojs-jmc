@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>반응형 무한 카드 추가형 예제 (1열일 경우, 애니메이션 적용)</title>
+<meta name="class-lists" content="jindo.m.InfiniteCard">
+<meta name="description" content="스크롤시 데이터를 추가적으로 추가한다<br>1열 형태의 스크롤일 경우, 추가시 밑에서 위로 올라오는 애니메이션이 발생한다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<link rel="stylesheet" type="text/css" href="../asset/w_main.css">
+<style>
+.loadingOn {
+    background : url(http://static.naver.net/www/m/2013/ld.gif) 0 0 no-repeat;
+    -webkit-background-size : 29px 29px;
+    background-size : 29px 29px
+}
+.loadingOff {
+    background : url(http://static.naver.net/www/m/2013/ld.jpg) 0 0 no-repeat;
+    -webkit-background-size : 29px 29px;
+    background-size : 29px 29px
+}
+.demo-body {
+    background-color : #dcdcdd !important;
+    padding : 0px !important;
+}
+</style>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../asset/demojs/common.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+ data-title="Jindo Mobile Component"
+ data-subtitle="=document.title"
+ data-backbutton="true"
+ data-viewsource="true"
+ data-qrcode="true"></script>
+
+    <div class="header">
+        <div id="sch" class="sch">
+            <section>
+                <div class="sch_w">
+                    <h1 class="lg_h">
+        <a href="http://m.naver.com/" class="lg_a"><img src="http://static.naver.net/www/mobile/edit/2013/1230/mobile_192219199183.png" width="90" height="51" alt="일반" class="lg_m"></a>
+        </h1>
+                    <form role="search" name="search" id="search" action="http://m.search.naver.com/search.naver" onsubmit="nclk(this,'sch.search','','');if (oKeywordHistory) oKeywordHistory.add($('query').value);">
+                        <span class="sch_inpw">
+        <span class="sch_inpw_in">
+
+        <input type="search" id="query" name="query" title="검색어 입력" value="" class="sch_inp" autocorrect="off" autocomplete="off" autocapitalize="off" maxlength="255" data-initval="" onfocus="this.setAttribute('data-focus','focus');">
+
+        <input type="hidden" name="where" value="m">
+        <input type="hidden" id="sm" name="sm" value="mtp_hty">
+        <button id="clear_input" type="button" class="sch_del"><span class="sprh sprh_del">입력 내용 삭제</span>
+                        </button>
+                        <button id="sch_ext_btn" type="button" class="sch_btn sch_region"><span class="sprh sprh_region">지역검색 펼치기</span>
+                        </button>
+                        </span>
+                        </span>
+                        <button type="submit" class="sch_submit"><span class="sprh sprh_submit">검색</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id="now" class="wrap id_now">
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.photo.naver.com/post/post.nhn?category=theme&amp;themeId=ALL&amp;postId=2014022811024710018" target="_naver_now">억울해 보여? 나 완전 기분 좋은걸!</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.photo.naver.com/today/today.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">오늘의 포토</a>
+                        <span class="cds_origin2">정말 기분 좋아요</span>
+                        <span class="cds_origin2">다복이</span>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0328/mobile_170446714294.jpg" width="100%" alt="억울해 보여? 나 완전 기분 좋은걸!">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000052023', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.photo.naver.com/post/post.nhn?category=theme&amp;themeId=ALL&amp;postId=2014022811024710018" class="cds_a" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2">오늘의 영단어 퀴즈</h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.wordbook.naver.com/endic/today/words.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin1', 'src1.wordbook', '1');" target="_naver_now">오늘의 영어</a>
+                        <a href="http://m.wordbook.naver.com/endic/challenge/main.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin2', 'src2.tequiz', '2');" target="_naver_now">도전! 퀴즈왕</a>
+                    </div>
+                </div>
+                <div class="cds_d5_responsive">
+                    <div class="cds_d5_responsive2">
+                        <div class="cds_d5">
+                            <strong>purge <a href="#" class="imh im_listen _MM_PRON" data-pron="http://naverdic.dn.naver.com/naver/dic/naverdic/endic/pron/clear/us/007/007090.mp3?vcode=2219727014139656350265" onclick="return nclk(this, 'now.listen', '7803E801_000000053EC9', '')" target="_naver_now">발음듣기</a><span class="imh im_qsm"></span></strong>
+                            <span class="btn_d">오늘의 영단어 퀴즈풀기</span>
+                        </div>
+                    </div>
+                    <img src="http://static.naver.net/www/mobile/edit/ui/bl.png" width="100%" alt="" class="responsive_img">
+                </div>
+                <div class="cds_bundle2">
+                    <a href="#" class="cds_send2  _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_send2">보내기</span></a>
+                </div>
+                <a href="http://m.wordbook.naver.com/endic/today/quiz.nhn?index=4&amp;targetDate=2014.04.01" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053EC9', '1');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;sm=mtp_crd&amp;query=1%EB%B0%952%EC%9D%BC+%EC%B4%AC%EC%98%81+%EC%9E%A5%EC%86%8C" target="_naver_now">'1박2일' 봄꽃 기차 여행, 이곳은 어디?</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_0000000549D6', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;sm=mtp_crd&amp;query=1%EB%B0%952%EC%9D%BC+%EC%B4%AC%EC%98%81+%EC%9E%A5%EC%86%8C" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">1박2일 촬영 장소</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0401/mobile_171424837335.jpg" width="100%" alt="'1박2일' 봄꽃 기차 여행, 이곳은 어디?">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_0000000549D6', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;sm=mtp_crd&amp;query=1%EB%B0%952%EC%9D%BC+%EC%B4%AC%EC%98%81+%EC%9E%A5%EC%86%8C" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_0000000549D6', '2');return true;"
+                target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?where=m&amp;query=%EC%9B%90%ED%8C%90%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;sm=mtb_she&amp;qdt=0" target="_naver_now">커피는 누가 쏠까? 원판돌리기</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000054917', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?where=m&amp;query=%EC%9B%90%ED%8C%90%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;sm=mtb_she&amp;qdt=0" class="cds_origin" onclick="return nclk(this, 'now.origin1', 'src1.gandan', '1');" target="_naver_now">간단게임</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0325/mobile_16503722333.jpg" width="100%" alt="커피는 누가 쏠까? 원판돌리기">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000054917', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?where=m&amp;query=%EC%9B%90%ED%8C%90%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;sm=mtb_she&amp;qdt=0" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000054917', '3');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;query=4%EC%9B%94%EC%97%AC%ED%96%89%EC%A7%80&amp;mra=bkgy" target="_naver_now">이번 주말 어디로 가볼까? 추천! 4월 여행지</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_00000005459C', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;query=4%EC%9B%94%EC%97%AC%ED%96%89%EC%A7%80&amp;mra=bkgy" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">4월 여행정보</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0401/mobile_10215435153.jpg" width="100%" alt="이번 주말 어디로 가볼까? 추천! 4월 여행지">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_00000005459C', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?sm=mtb_hty.top&amp;where=m&amp;query=4%EC%9B%94%EC%97%AC%ED%96%89%EC%A7%80&amp;mra=bkgy" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_00000005459C', '4');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.grafolio.net/illustration/12601" target="_naver_now">생각에 잠기는 시간</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053A3C', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.grafolio.net/" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">그라폴리오</a>
+                        <a href="http://m.grafolio.net/elang1012/illustration.grfl" class="cds_origin" onclick="return nclk(this, 'now.origin2', '', '2');" target="_naver_now">은영</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_174139477728.jpg" width="100%" alt="생각에 잠기는 시간">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053A3C', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.grafolio.net/illustration/12601" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053A3C', '6');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.comic.naver.com/webtoon/detail.nhn?titleId=578108&amp;no=34&amp;weekday=tue" target="_naver_now">데이트 가는 길</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053CBE', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.comic.naver.com/" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">오늘의 웹툰</a>
+                        <a href="http://m.comic.naver.com/webtoon/list.nhn?titleId=578108&amp;weekday=tue" class="cds_origin" onclick="return nclk(this, 'now.origin2', '', '2');" target="_naver_now">강변살다</a>
+                        <span class="cds_origin2">박윤영</span>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img data-src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_212427327380.jpg" width="100%" alt="데이트 가는 길" src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_212427327380.jpg">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053CBE', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.comic.naver.com/webtoon/detail.nhn?titleId=578108&amp;no=34&amp;weekday=tue" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053CBE', '7');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.movie.naver.com/m/magazine/detail.nhn?themeNid=180190" target="_naver_now">연에 세포 자극하는 멜로</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053B29', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.movie.naver.com" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">오늘의 영화</a>
+                        <span class="cds_origin2">'러브 인 비즈니스 클래스' 무비토크</span>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img data-src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_200702439382.jpg" width="100%" alt="연에 세포 자극하는 멜로" src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_200702439382.jpg">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053B29', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.movie.naver.com/m/magazine/detail.nhn?themeNid=180190" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053B29', '11');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2"><a href="http://m.search.naver.com/search.naver?query=%ED%83%80%EC%9A%94%EB%B2%84%EC%8A%A4&amp;mra=bkgy" target="_naver_now">진짜 '타요 버스' 타요!</a></h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_0000000539BD', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.search.naver.com/search.naver?query=%ED%83%80%EC%9A%94%EB%B2%84%EC%8A%A4&amp;where=m&amp;sm=mtp_hty" class="cds_origin" onclick="return nclk(this, 'now.origin1', '', '1');" target="_naver_now">타요 버스 운행 정보</a>
+                    </div>
+                </div>
+                <div class="cds_addition">
+                    <img data-src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_15582234363.jpg" width="100%" alt="진짜 '타요 버스' 타요!" src="http://static.naver.net/www/mobile/edit/2014/0331/mobile_15582234363.jpg">
+                </div>
+                <div class="cds_bundle">
+                    <a href="#" class="cds_send _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_0000000539BD', '');" target="_naver_now"><span class="imh im_send">보내기</span></a>
+                </div>
+                <a href="http://m.search.naver.com/search.naver?query=%ED%83%80%EC%9A%94%EB%B2%84%EC%8A%A4&amp;mra=bkgy" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_0000000539BD', '12');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="wrp_cds">
+            <div class="cds">
+                <div class="cds_explain">
+                    <h2 class="cds_h2">오늘의 영단어 퀴즈</h2>
+                    <a href="#" class="cds_bmk _MM_BOOKMARK" onclick="return nclk(this, 'now.bmk', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_bmk_off">북마크</span></a>
+                    <div class="cds_source">
+                        <a href="http://m.wordbook.naver.com/endic/today/words.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin1', 'src1.wordbook', '1');" target="_naver_now">오늘의 영어</a>
+                        <a href="http://m.wordbook.naver.com/endic/challenge/main.nhn" class="cds_origin" onclick="return nclk(this, 'now.origin2', 'src2.tequiz', '2');" target="_naver_now">도전! 퀴즈왕</a>
+                    </div>
+                </div>
+                <div class="cds_d5_responsive">
+                    <div class="cds_d5_responsive2">
+                        <div class="cds_d5">
+                            <strong>purge <a href="#" class="imh im_listen _MM_PRON" data-pron="http://naverdic.dn.naver.com/naver/dic/naverdic/endic/pron/clear/us/007/007090.mp3?vcode=2219727014139656355604" onclick="return nclk(this, 'now.listen', '7803E801_000000053EC9', '')" target="_naver_now">발음듣기</a><span class="imh im_qsm"></span></strong>
+                            <span class="btn_d">오늘의 영단어 퀴즈풀기</span>
+                        </div>
+                    </div>
+                    <img src="http://static.naver.net/www/mobile/edit/ui/bl.png" width="100%" alt="" class="responsive_img">
+                </div>
+                <div class="cds_bundle2">
+                    <a href="#" class="cds_send2  _MM_SHARE" onclick="return nclk(this, 'now.send', '7803E801_000000053EC9', '');" target="_naver_now"><span class="imh im_send2">보내기</span></a>
+                </div>
+                <a href="http://m.wordbook.naver.com/endic/today/quiz.nhn?index=4&amp;targetDate=2014.04.01" class="cds_a" onclick="Card.nclk(this, 'now.content', '7803E801_000000053EC9', '0');return true;" target="_naver_now">
+                    <div><span class="blind">본문으로 이동</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    <!-- content end -->
+    </div>
+    <div class="hr_ld" id="loading"><span id="loadingText" class="ic_ld loadingOff">로딩중</span></div>
+    <div id="footer" class="_Footer" style="display:none">
+        <div>
+            <div class="ftip">
+                <p class="ftip_a">
+                    <a href="/notice.html" class="ftip_tit" onclick="return nclk(this,'fot.tip','','');">공지</a>
+                    <a href="http://m.openlectures.naver.com" class="ftip_s" onclick="return nclk(this,'fot.tiptitle','','');">[열린연단 : 문화의 안과 밖] 강연이 시작되었습니다.</a>
+                </p>
+            </div>
+        </div>
+        <div class="fot" style="display: block;">
+            <footer role="contentinfo">
+                <p class="fot_p">
+                    <a href="javascript:Footer.logout()" class="fot_pa">로그아웃</a>
+
+                    <a href="https://nid.naver.com/mobile/user/help/myInfo.nhn" class="fot_pa" onclick="return nclk(this,'fot.myinfo','','')">내 정보관리</a>
+                    <a href="http://www.naver.com/?mobile" class="fot_pa" onclick="return nclk(this,'fot.gopc','','')">PC버전</a>
+                    <a href="/services.html" class="fot_pa" onclick="return nclk(this,'fot.sitemap','','')">전체서비스</a>
+                </p>
+                <p class="fot_p2">
+                    <a href="http://nid.naver.com/mobile/user/help/termAgree.nhn?m=viewTermAgree1" class="fot_p2a" onclick="return nclk(this,'fot.agreement','','')">이용약관</a>
+                    <a href="http://nid.naver.com/mobile/user/help/termAgree.nhn?m=viewTermAgree3" class="fot_p2a" onclick="return nclk(this,'fot.privacy','','')">개인정보취급방침</a>
+                    <a href="http://m.searchad.naver.com/" class="fot_p2a" onclick="return nclk(this,'fot.sa','','')">검색광고</a>
+                </p>
+                <p class="fot_p3">
+                    <a href="http://www.nhncorp.com/" class="fot_p3a" onclick="return nclk(this,'fot.nhncorp','','')">ⓒ NAVER Corp.</a>
+                    <a href="http://m.help.naver.com/serviceMain.nhn?falias=mo_main_web&amp;type=faq" class="fot_p3a" onclick="return nclk(this,'fot.help','','')">도움말</a>
+                    <a href="http://m.help.naver.com/serviceMain.nhn?falias=mo_main_web&amp;type=faq#mail" class="fot_p3a" onclick="return nclk(this,'fot.claim','','')">문의 및 신고</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+</div>
+<!--@code title="HTML"
+<div id="now">
+    <div class="[sClassName]"></div>
+    <div class="[sClassName]"></div>
+    <div class="[sClassName]"></div>
+    ...
+</div>
+code@-->
+<script type="text/javascript" src="./testData.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.InfiniteCard.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js"></script>
+<script type="text/javascript" src="../../src/jindo.m.ScrollEnd.js"></script>
+<script>
+// 에러 제거용
+Card = {
+    nclk : function() {}
+};
+function nclk() {}
+
+var isComplete = false,
+    welFooter = jindo.$Element("footer"),
+    welLoading = jindo.$Element("loading"),
+    welLoadingText = jindo.$Element("loadingText"),
+    oNow;
+
+window.onload=function() {
+    var oMorph = new jindo.m.Morph();
+
+    /*@code title="JavaScript" */
+    oNow = new jindo.m.InfiniteCard("now", {
+        nExpandSize: window.innerHeight / 3,
+        sClassName: "wrp_cds",
+        nCardCount: jindo.m.getBrowserInfo().mobile ? (jindo.m.getOsInfo().ipad ? 15 : 10) : 25
+    }).attach({
+        "repaint" : function(we) {
+            oMorph.pushCall(function() {
+                oMorph.clear();
+            }).play();
+            if(isComplete) {
+                welLoading.hide();
+                welFooter.show();
+                oNow.detachAll();
+            }
+        },
+        // 화면에 카드의 위치가 정해질때 호출하는 이벤트에서 애니메이션 처리
+        "position" : function(we) {
+            // 컬럼이 한개 이고, repaint 메소드에 의해 호출되었을 경우, 카드 애니메이션 처리
+            if(oNow.getColumnCount() == 1) {
+                if(we.bRepaint) {
+                    if(nBeforeLastData != -1 && we.nIndex == nBeforeLastData+1) {
+                        var nY = we.nY;
+                        we.nY += 200;
+                        oMorph.pushAnimate(300, [
+                            we.wel, {
+                                "@transform" : "translateY(" + nY + "px)"
+                            }
+                        ]);
+                    }
+                }
+            }
+        }
+    });
+    oNow.repaint();
+    /*code@*/
+
+    // 회전시 처리
+    jindo.m.bindRotate(function() {
+        oNow.option("nExpandSize", window.innerHeight / 3);
+        oNow.repaint();
+    });
+};
+
+// 마지막 시점에 데이터를 추가한다.
+var nBeforeLastData = -1;
+new jindo.m.ScrollEnd().attach("scrollEnd", function(we) {
+    if (oNow && !oNow.isRepainting() && !isComplete && welLoading.$value().getBoundingClientRect().top < oNow.getSizeInfo().nHeight) {
+        welLoadingText.removeClass("loadingOff").addClass("loadingOn");
+        nBeforeLastData = oNow.length()-1;
+        for (var i = nBeforeLastData+1, nLen = aNow.length, nCount = 0; i < nLen && nCount < 10; nCount++, i++) {
+            oNow.append(aNow[i]);
+        }
+        if (nLen == i) {
+            isComplete = true;
+        }
+        oNow.repaint();
+    }
+});
+</script>
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+
+</html>

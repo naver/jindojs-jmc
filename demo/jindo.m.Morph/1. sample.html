@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>기본 예제</title>
+<meta name="class-lists" content="jindo.m.Morph"/>
+<meta name="screenshots" content=""/>
+<meta name="description" content="Morph 에서 제공하는 메서드를 최대한 활용 한 예제입니다.">
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+
+	body {
+	}
+
+	button {
+		margin:.5em 0;
+		padding:.5em 1em;
+		font-family:inherit;
+		font-size:1.5em;
+	}
+
+	#paper {
+		position:relative;
+		z-index:99;
+		top:40px; height:250px;
+	}
+
+	#paper h2 {
+		font-size:12px; font-weight:normal;
+	}
+
+	#paper ul {
+		list-style:none;
+		margin:-21px 0 50px 70px; padding:0;
+		position:relative;
+		height:30px;
+		background-color:#eee;
+	}
+
+	#paper li {
+		position:absolute;
+		margin:0; padding:0;
+		background-color:#bbb;
+		height:30px;
+	}
+
+	#paper .arrow {
+		position:absolute;
+		width:1px; height:50px;
+		border-top:10px solid #d44;
+		border-left:5px solid transparent;
+		border-right:5px solid transparent;
+		left:0;
+		margin:-90px 0 0 64px;
+		display:none;
+	}
+
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+	<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	     data-title="Jindo Mobile Component"
+	     data-subtitle="=document.title"
+	     data-backbutton="false"
+	     data-viewsource="true"
+	     data-qrcode="true"></script>
+	<!-- 기본 스크립트 -->
+	<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+	<!--// 기본 스크립트 끝 -->
+	<!-- 사용자 script 파일 시작 -->
+	<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+	<!-- 사용자 script 파일 끝 -->
+	<script type="text/javascript" charset="utf-8" src="switcher.js"></script>
+	<script type="text/javascript">
+		var DELAY = Number(/delay=(\w+)/.test(location.search) && RegExp.$1) || 0;
+		document.write('<h1>CSS Transition : ' + USE_TRANSITION + '</h1>');
+	</script>
+	<button onclick="setTimeout(function() { play(); }, DELAY); return false;">play</button>
+	<div id="paper">
+		<h2>TIMELINE 0</h2>
+		<ul class="timeline">
+			<li style="left:0px; width:100px; background-color:#b8b;"></li>
+			<li style="left:120px; width:100px; background-color:#aa5;"></li>
+			<li style="left:280px; width:100px; background-color:#7bb;"></li>
+			<li style="left:600px; width:100px; background-color:#88b;"></li>
+		</ul>
+		<span class="arrow" id="arrow1"></span>
+		<h2>TIMELINE 1</h2>
+		<ul class="timeline">
+			<li style="left:0px; width:260px; background-color:#8b8;"></li>
+			<li style="left:280px; width:100px; background-color:#b88;"></li>
+			<li style="left:400px; width:180px; background-color:#b85;"></li>
+		</ul>
+		<span class="arrow" id="arrow2"></span>
+		<h2>TIMELINE 2</h2>
+		<ul class="timeline">
+			<li style="left:440px; width:100px; background-color:#b8b;"></li>
+		</ul>
+		<span class="arrow" id="arrow3"></span>
+	</div>
+	<script type="text/javascript">
+
+		var arrow = [
+			jindo.$('arrow1'),
+			jindo.$('arrow2'),
+			jindo.$('arrow3')
+		];
+
+		var timeline = [
+			new jindo.m.Morph({ bUseTransition : USE_TRANSITION }),
+			new jindo.m.Morph({ bUseTransition : USE_TRANSITION }),
+			new jindo.m.Morph({ bUseTransition : USE_TRANSITION })
+		];
+
+		function play() {
+
+			timeline[0].option('fEffect', jindo.m.Effect.linear);
+			timeline[1].option('fEffect', jindo.m.Effect.linear);
+			timeline[2].option('fEffect', jindo.m.Effect.linear);
+
+			jindo.$Element(arrow[0]).hide();
+			jindo.$Element(arrow[1]).hide();
+			jindo.$Element(arrow[2]).hide();
+
+			timeline[0].clear().
+				pushCall(function() {
+					jindo.$Element(arrow[0]).css('left', 0).show();
+				}).
+				pushCall(function() {
+					timeline[1].clear().
+						pushCall(function() {
+							jindo.$Element(arrow[1]).css('left', 0).show();
+						}).
+						pushAnimate(3000, [ arrow[1], {
+							'@left' : '260px'
+						}]).
+						play();
+				}).
+				pushAnimate(1000, [
+					arrow[0], { '@left' : '100px' }
+				]).
+				pushCall(function() {
+					this.option('fEffect', jindo.m.Effect.bounce);
+				}).
+				pushAnimate(-1, [
+					arrow[0], { '@left' : '120px' }
+				]).
+				pushAnimate(1000, [
+					arrow[0], { '@left' : '220px' }
+				]).
+				pushWait(timeline[1]).
+				pushCall(function() {
+					timeline[1].clear().
+						pushAnimate(-1, [ arrow[1], {
+							'@left' : '280px'
+						}]).
+						pushAnimate(1000, [ arrow[1], {
+							'@left' : '380px'
+						}]).
+						play();
+				}).
+				pushAnimate(-1, [ arrow[0], {
+					'@left' : '280px'
+				}]).
+				pushCall(function() {
+					this.option('fEffect', jindo.m.Effect.easeOut);
+				}).
+				pushAnimate(1000, [ arrow[0], {
+					'@left' : '380px'
+				}]).
+				pushWait(timeline[1]).
+				pushCall(function() {
+					timeline[1].clear().
+						pushAnimate(-1, [ arrow[1], {
+							'@left' : '400px'
+						}] ).
+						pushAnimate(3000, [ arrow[1], {
+							'@left' : '580px'
+						}]).
+						pushWait(timeline[2]).
+						play();
+
+					timeline[2].clear().
+						pushCall(function() {
+							jindo.$Element(arrow[2]).css('left', 0).show();
+						}).
+						pushAnimate(-1, [ arrow[2], {
+							'@left' : '400px'
+						}]).
+						pushWait(1000).
+						pushAnimate(-1, [ arrow[2], {
+							'@left' : '440px'
+						}]).
+						pushAnimate(1000, [ arrow[2], {
+							'@left' : '540px'
+						}]).
+						play();
+				}).
+				pushWait(timeline[1]).
+				pushAnimate(-1, [ arrow[0], {
+					'@left' : '600px'
+				}]).
+				pushCall(function() {
+					this.option('fEffect', jindo.m.Effect.bounce);
+				}).
+				pushAnimate(1234, [ arrow[0], {
+					'@left' : '700px'
+				}]).
+				pushCall(function() {
+					alert('DONE!');
+				}).
+				play();
+
+		}
+
+	</script>
+	<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

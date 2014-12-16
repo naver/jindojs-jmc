@@ -1,0 +1,24 @@
+{
+    "name": "Jindo Mobile Component",
+    "description": "Jindo Mobile Component API Documentation",
+    "version": "1.16.0",
+    "url": "http://devcode.nhncorp.com/projects/jindo-mobile-ui",
+    "support": "http://devcode.nhncorp.com/projects/jindo-mobile-ui/issue",
+    "index": "index-internal",
+    "options": {
+        "linkNatives": "true",
+        "exclude": "build,demo,dist,node_modules,test,.svn",
+        "paths": "./src",
+        "outdir": "./dist/doc",
+        "resourcedir": "./build/doc/resource",
+        "demodir": "./demo",
+        "themedir": "./build/doc/theme",
+        "types": {
+            "String+": "Jindo 의 $S 와 String 을 모두 포함합니다",
+            "Array+": "Jindo 의 $A 와 Array 을 모두 포함합니다",
+            "Function+": "Jindo 의 $Fn 와 Function 을 모두 포함합니다",
+            "Hash+": "Jindo 의 $H 와 일반 객체을 모두 포함합니다",
+            "Variant": "어떤 타입이라도 될 수 있습니다."
+        }
+    }
+}

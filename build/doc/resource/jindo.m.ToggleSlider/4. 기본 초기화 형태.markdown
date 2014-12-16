@@ -1,0 +1,43 @@
+#### HTML
+
+	<!--class prefix가 'tslider-'일 경우-->  
+	<div class="tslider-wrapper" id="toggleSlider">  
+		<input type="radio" name="tslider-radio" id="on" value="on" class="i_rad" disabled><label for="on">On</label>
+		<input type="radio" name="tslider-radio" id="off" value="off" class="i_rad" disabled><label for="off">Off</label>
+		<div class="tslider-track">
+			<div class="tslider-thumb"></div>
+			<span class="tslider_aron">ON</span>
+			<span class="tslider_aroff">OFF</span>
+		</div>
+	</div>
+
+* 라디오버튼 엘리번트는 선택적으로 삭제할 수 있다.
+* 라디오버튼 엘리번트를 통해 현재 토글 슬라이더의 설정값을 얻어올 수 있다.
+* 라디오버튼 엘리번트는 [prefix]+'radio'의 name을 가진다.
+* track영역의 엘리먼트는 [prefix]+'track'의 클래스명을 가진다.
+* thumb영역의 엘리먼트는 [prefix]+'thumb'의 클래스명을 가진다.
+
+#### CSS
+
+	/* class prefix가 'tslider-' 인 경우*/  
+	.tslider-wrapper {...}
+	.tslider-track{...}
+	.tslider-thumb{...}
+	.tslider-aron{...}
+	.tslider-aroff{...}
+
+
+필수 CSS 요소는 다음과 같다.<br /> 
+
+* [prefix] + track 클래스 : track 영역에 적용되는 클래스
+* [prefix] + thumb 클래스 : thumb 영역에 적용되는 클래스
+* [prefix] + aron 클래스 : [ON] 텍스트에 적용되는 클래스
+* [prefix] + aroff 클래스 : [OFF] 텍스트에 적용되는 클래스
+
+
+#### Javascript
+
+	var oToggleSlider = new jindo.m.ToggleSlider(jindo.$('toggleSlider'),{
+		bUseDrag : true, 	//드래그 가능 여부
+		bStatus:true 		//초기값 - ON(true), OFF(false) 지정
+	});

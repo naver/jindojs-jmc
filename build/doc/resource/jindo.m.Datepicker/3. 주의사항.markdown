@@ -1,0 +1,9 @@
+#### 안드로이드 
+
+Form에 focus,blur될 때 focus,blur 이벤트가 2번 발생한다. 
+
+
+#### 안드로이드 2.1 
+
+Input Form에 focus될 때 키패드가 올라오는 현상이 있다. 
+<small>Input Form에 "readonly"속성을 주어도 "readonly"가 적용되지 않고, 키패드가 올라오는 브라우저버그가 있다.</small>

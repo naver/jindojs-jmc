@@ -1,0 +1,3 @@
+CheckBox / RadioButton의 공통적인 기능을 처리 한다.
+
+이벤트 처리 부분과 CheckBox / RadioButton 의 index 가져오기 등의 공통기능을 처리 한다.

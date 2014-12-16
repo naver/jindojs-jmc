@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;line-height:1.25em}
+body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica,AppleGothic}
+body{position:relative;background-color:#f8f8f8;color:#000;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{color:#000;text-decoration:none}
+table{border-collapse:collapse}
+hr{display:none !important}
+.u_hc,.u_skip{visibility:hidden;overflow:hidden;position:absolute;left:-1000em;width:0;height:0;font-size:0;line-height:0}
+
+.tc-base {
+	position:relative
+}
+.tc-tabview{
+	padding:0 25px;
+	_zoom:1;
+	display:block;
+	overflow:hidden;
+}
+.tc-tab-cont{display:table;width:100%;height:35px;border-right:1px solid #b0b0b0;background:#f8f8f8;text-align:center}
+.tc-tab{display:table-cell;vertical-align:top;
+*float:left}
+.tc-a{display:block;position:relative;height:34px;padding:0 .4em;border-bottom:1px solid #b0b0b0;border-left:1px solid #b0b0b0;line-height:34px;color:#666;
+_display:inline-block}
+.tc-selected .tc-a{height:35px;border-bottom:0;background:#fff}
+
+.tc-pg{display:block;overflow:hidden;position:absolute;top:0;width:25px;height:34px;border-bottom:1px solid #b0b0b0;background:#f1f1f1}
+.tc-prev{left:0}
+.tc-next{right:0}
+.tc-ico{display:block;overflow:hidden;width:1px;height:1px;margin:12px auto 0;padding:8px 5px 0 0;}
+.tc-next .tc-ico{background-position:-8px 0}
+
+.tc-panel_cont {}
+.tc-panel {margin:10px; display:none}
+.tc-selected {display:block}
+</style>
+
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">SlideTab Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+
+<!-- UI content Start -->
+<div id="tabComponent" class="tc-base" style="width:600px;">
+	<div class="tc-tabview">
+		<ul class="tc-tab-cont">
+			<li class="tc-tab"><a href="#" class="tc-a">프로야구</a></li>
+			<li class="tc-tab"><a href="#" class="tc-a">일본야구</a></li>
+			<li class="tc-tab"><a href="#" class="tc-a">중국야구</a></li>
+			<li class="tc-tab"><a href="#" class="tc-a">미국야구</a></li>
+			<li class="tc-tab"><a href="#" class="tc-a">영국야구</a></li>
+			<li class="tc-tab"><a href="#" class="tc-a">몽골야구</a></li>
+		</ul>
+	</div>
+	<div class="tc-panel-cont">
+		<div class="tc-panel">프로야구 탭입니다</div>
+		<div class="tc-panel">日本野球タップです</div>
+		<div class="tc-panel">중국야구 탭입니다</div>
+		<div class="tc-panel">USA Baseball Tabs</div>
+		<div class="tc-panel">English Baseball Tabs</div>
+		<div class="tc-panel">몽골야구 탭입니다</div>
+		<div class="tc-panel">야구 탭입니다</div>
+	</div>
+	<div>
+		<a href="#" class="tc-pg tc-prev"><span class="tc-ico">이전</span></a>
+		<a href="#" class="tc-pg tc-next"><span class="tc-ico">다음</span></a>
+	</div>
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Effect.js"></script>
+<script src="../src/jindo.m.Morph.js"></script>
+<script src="../src/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../src/jindo.m._Effect_.js" charset="utf-8"></script>
+<script src="../src/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script src="../src/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script src="../src/jindo.m.SlideTab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.SlideTab.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+<script>
+//	new jindo.m.Tab("tabComponent", {
+//		nInitTab : 2,
+//		nTabSlidSpeed : 400
+//	});
+</script>
+</body>
+</html>

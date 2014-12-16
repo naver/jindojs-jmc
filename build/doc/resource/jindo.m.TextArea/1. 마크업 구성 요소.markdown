@@ -1,0 +1,6 @@
+TextArea에 글자 입력시 자동으로 TextArea의 Height을 증가시킨다.<br />
+TextArea에 라운드 처리를 지원한다.<br />
+단, TextArea 적용시 마크업과 CSS가이드를 준수하여야 한다.<br />
+
+![](TextArea.jpg "")
+

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="./asset/qunit/qunit.css" type="text/css" media="screen" />
+<!-- 사용자 css 시작 -->
+<style>
+.layer {display:none; width:219px;padding:10px 10px 10px 9px;border:1px solid #999;background:#fff;color:#222;font-size:.93em;letter-spacing:-1px;text-align:justify;text-align:left}
+.noevent {width:219px; height:100px; padding:10px 10px 10px 10px;border:1px solid #999;}
+
+</style>
+
+<!-- 사용자 css 끝 -->
+<script type="text/javascript" src="./asset/qunit/qunit.js"></script>
+</head>
+<body>
+ <h1 id="qunit-header">LayerManager Test</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+
+<!-- UI content Start -->
+<button type='button' id='showlayer' onclick='oLmTest.show();'>Show Layer</button>
+<div class='noevent' id='noeventRed' style='background:red;'></div>
+<div class='noevent' id='noeventBlue' style='background:green;'></div>
+<div class="layer" id="layer">LayerManager 테스트 입니다.<br />
+이 영역과 호출 버튼을 제외한 영역에 이벤트가 발생할 경우, Layer는 사라집니다
+</div>
+<!-- UI content End -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="./asset/jindo.js" charset="utf-8"></script>
+<script src="../src/jindo.m.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Component.js" charset="utf-8"></script><script src="../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script src="../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../src/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- test script 파일 시작 -->
+<script src="./js/jindo.m.LayerManager.test.js" charset="utf-8"></script>
+<!-- test script 파일 끝 -->
+<script>
+	var oLmTest = new jindo.m.LayerManager("layer");
+	oLmTest.link("showlayer", "layer");
+</script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>jindo.m.RevealSidebarUI</title>
+<meta name="class-lists" content="jindo.m.RevealSidebarUI">
+<meta name="description" content="가장기본적인사용예제입니다.">
+<!-- SamplePage 기본 CSS -->
+<style type="text/css">
+.menubtn{width:40px;border-radius:9em;
+	background:#6e94c9;
+	line-height:20px;color:#FFF}
+
+.rs-left{display:none}
+.rs-main{
+	box-shadow:0 0 20px rgba(0,0,0,.6);/* 안쪽 그림자 크기, 색상 수정 */
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,.6);/* 안쪽 그림자 크기, 색상 수정 */}
+.rs-right{display:none}
+
+/* Page */
+.jmc-page{width:100%;border:0;background:#fff}
+
+/* Header, Footer 영역 CSS */
+.jmc-header,.jmc-footer{display:block;overflow:hidden;position:relative;width:100%;background-color:#000;color:#FFF;outline:0!important}
+
+/* Title */
+.rs-right .rs-title{width:100%;margin:0;padding:10px 0;background:#777;text-align:center;white-space:nowrap;text-overflow:ellipsis}
+
+/* 더보기 버튼 */
+.sc_mr{position:relative;height:52px;margin-bottom:12px;margin-top:-1px;background:url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -222px;text-align:center}
+.bt9{display:inline-block;position:relative;left:1px;padding-bottom:7px;background:url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -327px;cursor:pointer}
+.bt9 a{display:inline-block;width:198px;height:30px;padding-top:12px;border:1px solid #CCC;border-top:0;background:url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -281px;font-size:14px;color:#000}
+.inr_mr2{display:block;height:16px;padding-left:84px;background:url(http://imgnews.naver.net/image/news/m/2011/renew/ico_bg.png) 60px -126px no-repeat;color:#333;letter-spacing:-1px;text-align:left}
+</style>
+<link rel="stylesheet" type="text/css" href="http://m.mail.naver.com/css/mobile/mm.120906.css">
+</head>
+<body>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+<div flicking="yes" class="rs-body">
+	<!-- // ViewSource -->
+	<div class="rs-left">
+		<!-- header -->
+		<div position="fixed" class="rs-header rs-title">
+			<div class="u_skip"><a href="#ct">본문 바로가기</a></div>
+			<div class="u_ts">
+				<h1 class="u_hc">개인화 서비스 바로가기</h1>
+				<ul class="ts_nav">
+				<li class="mail"><a href="/m/list" onclick="clickcr(this,'gnb.mail', '', '', event)" class="on">메일</a></li>
+				<li class="cal"><a href="http://m.calendar.naver.com/" onclick="clickcr(this,'gnb.calendar', '', '', event)">캘린더</a></li>
+				<li class="cont"><a href="http://m.contact.naver.com" onclick="clickcr(this,'gnb.contact', '', '', event)">주소록</a></li>
+				</ul>
+			</div>
+			<div id="u_gnbw" class="u_gnbw">
+				<h3 class="u_hc">전체서비스</h3>
+				<span class="me_btn">
+					<a href="http://m.me.naver.com" onclick="clickcr(this, 'gnb.me', '', '', event)" class="me">
+						<span>네이버me</span>
+						<span class="cnt"><em>3</em></span>
+					</a>
+				</span>
+
+				<a href="http://m.naver.com/services.html?f=svc.mail" onclick="clickcr(this,'gnb.sitemap','','',event);" class="u_gnbt"><span class="u_vc">전체서비스 펼치기</span></a>
+				<div id="u_gnbf"></div>
+			</div>
+			<div class="hh">
+				<p class="userName">오혜진 hamul82@naver.com</p>
+				<div class="pr"><a href="/m/option" onclick="clickcr(this,'tmn.setting','','',event);" class="bt"><span class="ic_setup"></span><span class="u_vc">설정</span></a></div>
+			</div>
+			<div class="cb"></div>
+		</div>
+		<!-- //header -->
+
+		<!-- content(필수) -->
+		<div class="rs-content">
+			<div id="ct">
+				<ul class="nv2">
+				<li class="l11"><a href="#" onclick="moveFolder(this,'bxl.all','','',event);return false">전체메일</a></li>
+				<li class="l8"><a href="#" onclick="moveFolder(this,'bxl.unread','','',event);return false;">안읽음<span class="nr">24</span><span class="hc">통</span></a></li>
+
+				<li class="l1"><a href="/m/list/?folderSN=0" onclick="moveFolder(this,'bxl.got','','',event);return false;">받은메일함<span class="nr">24</span><span class="hc">통</span></a></li>
+
+				<li class="l10"><a href="/m/list/?folderSN=6" onclick="moveFolder(this,'bxl.sntme','','',event);return false;">내게쓴메일함 </a></li>
+				<li class="l2"><a href="/m/list/?folderSN=1" onclick="moveFolder(this,'bxl.sent','','',event);return false;">보낸메일함</a><span class="pr"><a href="/m/list/readReceipt/" onclick="clickcr(this,'bxl.check','','',event);" class="bt5">수신확인</a></span></li>
+				<li class="l4"><a href="/m/list/?folderSN=3" onclick="moveFolder(this,'bxl.draft','','',event);return false;">임시보관함</a></li>
+				<li id="myBox" class="l7">
+					<strong class="h">내 메일함</strong>
+					<button type="button" onclick="toggleMyFolder();return false;" class="btn_tgl bt5"><span id="myBoxList" class="ic_fd">내 메일함 접기</span></button>
+
+					<ul <li="1">
+					<a href="/m/list/?folderSN=106" onclick="moveFolder(this,'bxl.personal','','',event);return false;">아빠 </a>
+					</ul>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=105" onclick="moveFolder(this,'bxl.personal','','',event);return false;">땅부자스터디 </a>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=104" onclick="moveFolder(this,'bxl.personal','','',event);return false;">아빠아파트 </a>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=103" onclick="moveFolder(this,'bxl.personal','','',event);return false;">vpn </a>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=102" onclick="moveFolder(this,'bxl.personal','','',event);return false;">결제명세서 </a>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=101" onclick="moveFolder(this,'bxl.personal','','',event);return false;">기타 </a>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=7" onclick="moveFolder(this,'bxl.bill','','',event);return false;">자동청구서함 </a>
+				</li>
+
+				<li>
+					<a href="/m/list/?folderSN=8" onclick="moveFolder(this,'bxl.cafe','','',event);return false;">카페메일함 </a>
+				</li>
+
+				</ul></li>
+				<li class="l9"><a href="/m/list/?type=mark" onclick="moveFolder(this,'bxl.star','','',event);return false;">중요메일</a></li>
+				<li class="l13"><a href="/m/list/?type=attach" onclick="moveFolder(this,'bxl.attach','','',event);return false;">첨부메일</a></li>
+				<li class="l12"><a href="/m/list/?type=tome" onclick="moveFolder(this,'bxl.tome','','',event);return false;">받는사람</a></li>
+				<li class="l5"><a href="/m/list/?folderSN=5" onclick="moveFolder(this,'bxl.spam','','',event);return false;">스팸메일함<span id="num_spam" class="nr">62</span><span class="hc">통</span></a>
+					<button type="button" onclick="moveFolder(this,'bxl.sempty','','',event); return false;" class="bt5"><span class="w"><span class="hc">스팸메일함</span> 비우기 </span></button></li>
+				<li class="l6"><a href="/m/list/?folderSN=4" onclick="moveFolder(this,'bxl.trash','','',event);return false;">휴지통<span id="num_trash" class="nr">64</span><span class="hc">통</span></a>
+					<button type="button" onclick="moveFolder(this,'bxl.tempty','','',event); return false;" class="bt5"><span class="w"><span class="hc">휴지통</span> 비우기 </span></button></li></ul>
+			</div>
+		</div>
+		<!-- //content(필수) -->
+	</div>
+	<div class="rs-main">
+		<div class="jmc-page">
+			<!-- header -->
+			<div position="fixed" class="jmc-header jmc-title">
+				<div class="u_skip"><a href="#ct">본문 바로가기</a></div>
+				<div class="u_ts">
+					<h1 class="u_hc">개인화 서비스 바로가기</h1>
+					<ul class="ts_nav">
+					<li class="mail"><a href="/m/list" onclick="clickcr(this,'gnb.mail', '', '', event)" class="on">메일</a></li>
+					<li class="cal"><a href="http://m.calendar.naver.com/" onclick="clickcr(this,'gnb.calendar', '', '', event)">캘린더</a></li>
+					<li class="cont"><a href="http://m.contact.naver.com" onclick="clickcr(this,'gnb.contact', '', '', event)">주소록</a></li>
+					</ul>
+				</div>
+				<div id="u_gnbw" class="u_gnbw">
+					<h3 class="u_hc">전체서비스</h3>
+					<span class="me_btn">
+						<a href="http://m.me.naver.com" onclick="clickcr(this, 'gnb.me', '', '', event)" class="me">
+							<span>네이버me</span>
+							<span class="cnt"><em>3</em></span>
+						</a>
+					</span>
+
+					<a href="http://m.naver.com/services.html?f=svc.mail" onclick="clickcr(this,'gnb.sitemap','','',event);" class="u_gnbt"><span class="u_vc">전체서비스 펼치기</span></a>
+					<div id="u_gnbf"></div>
+				</div>
+				<div class="hh">
+					<h1>
+						<a href="#" onclick="return false;">받은메일함</a>
+						<a href="/m/list?type=unread&amp;folderSN=0" onclick="clickcr(this,'tmn.gotno','','')">
+							<em>28</em><span class="hc">통</span>
+						</a>
+					</h1>
+					<div class="pl">
+						<a href="/m/folder" onclick="oRevealSidebarUI.toggleSlide();return false;" class="bt">메일함</a>
+					</div>
+
+					<div class="pr"><a href="/m/write?backUrl=%2fm%2flist%3f" onclick="clickcr(this,'tmn.write','','',event);" class="bt">메일쓰기</a></div>
+				</div>
+				<div class="cb"></div>
+			</div>
+			<!-- //header -->
+
+			<!-- ++++++++++++++++++++++++++++++++++++++ Page1 ++++++++++++++++++++++++++++++++++++++ -->
+			<!-- content(필수) -->
+			<div class="jmc-content">
+				<div id="ct">
+					<ul id="listWrap" class="li1">
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(1);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic11">안읽음</span>
+								<span class="if">admin@shinhan.com<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 1번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(2);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 2번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(3);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 3번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(4);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 4번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(5);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 5번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(6);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 6번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(7);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 7번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(8);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 8번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(9);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 9번
+								</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<input type="checkbox" title="메일 선택" foldersn="0" mailsn="18692" class="is1">
+						<a href="#" onclick="onClickMail(10);return false;" class="ct2">
+							<span class="m_date"><span class="if">10:48</span></span>
+							<span class="m_head">
+								<span class="ic1 ic12">안읽음</span>
+								<span class="if">test<span class="hc">:</span></span>
+							</span>
+							<span class="m_cont">
+								<strong class="ho">예제 10번
+								</strong>
+							</span>
+						</a>
+					</li>
+					</ul>
+					<div id="contentMore" class="sc_mr">
+						<span class="bt9">
+							<a class="more_button" style="display: block; "></a></span><div class="inr_mr2">더보기</div></a></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- footer -->
+			<div position="fixed" class="jmc-footer jmc-title">
+				<div class="u_ft" style="padding-top: 0px">
+					<div id="u_ftlkw" class="u_ftlkw">
+						<a href="#" onclick="clickcr(this,'fot.logout','','',event);mCommon.logout();return false;" class="u_ftlk" style="width:56px">로그아웃</a>
+						<span class="u_ftlk_me">
+							<a href="http://me.naver.com" onclick="clickcr(this,'fot.me','','',event);" class="u_ftlk" style="width:46px">
+								<span class="ic_me">me</span>
+							</a>
+
+						</span>
+						<a href="http://mobile.naver.com/application/androidApp.nhn" onclick="clickcr(this,'fot.naverapp','','',event);" class="u_ftlk" style="width:51px">전체 앱</a>
+						<a href="http://mail.naver.com/?frommobile=Y" onclick="clickcr(this,'fot.gopc','','',event);" class="u_ftlk" style="width:52px">PC버전</a>
+
+						<a href="http://m.naver.com/services.html?f=svc.mail" onclick="clickcr(this,'fot.sitemap','','');" class="u_ftlk" style="width:68px">전체서비스<span class="u_vc">펼치기</span></a>
+					</div>
+				</div>
+				<address class="u_cr">
+					<span class="u_cri"><a href="http://m.help.naver.com/faq/list.nhn?falias=mo_mail_web" onclick="clickcr(this,'fot.help','','',event);" class="u_cra">도움말</a></span>
+					<span class="u_cri u_cri_v1"><a href="http://m.help.naver.com/serviceMain.nhn?falias=mo_mail_web&amp;type=faq#mail" class="u_cra">문의 및 신고</a></span>
+				</address>
+				<p class="u_cri">©<a href="http://www.nhncorp.com" onclick="clickcr(this,'fot.nhncorp','','',event);" class="u_cra u_cra_v1">NHN Corp.</a></p></address>
+			</div>
+			<!-- //footer -->
+		</div>
+	</div>
+	<div class="rs-right">
+		<!-- header -->
+		<div position="fixed" class="rs-header rs-title">헤더 영역 (Right)
+		</div>
+		<!-- //header -->
+		<!-- content(필수) -->
+		<div class="rs-content">컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br> 컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		</div>
+		<!-- //content(필수) -->
+
+		<!-- footer -->
+		<div position="fixed" class="rs-footer rs-title">
+			<form action="/m/list/search" onsubmit="return mSearch.checkSearchWord('msearch');">
+				<div class="u_hsft">
+
+					<fieldset class="u_hs u_hs_nous">
+						<legend class="u_hc">검색</legend>
+						<div class="u_hsw">
+
+							<div class="u_itw">
+								<input type="search" name="keyword" id="msearch" title="검색어 입력" value="" accesskey="s" placeholder="메일검색" maxlength="100" class="u_it u_sd">
+								<button type="button" onclick="mSearch.clearSearchInput('msearch')" class="u_clrt">입력 내용 삭제</button>
+							</div>
+							<button type="submit" value="검색" onclick="clickcr(this,'sea.search','','',event);" id="search_button" class="u_hssbt u_hssbt_ss"><span class="u_vc">검색</span></button>
+						</div>
+					</fieldset>
+				</div>
+			</form>
+			<div id="ly_noti" class="noti_ly" style="display:none; opacity:0.0">
+				<p id="noti_msg" class="msg">임시저장 되었습니다.</p>
+			</div>
+			<div class="u_ft">
+				<div id="u_ftlkw" class="u_ftlkw">
+					<a href="#" onclick="clickcr(this,'fot.logout','','',event);mCommon.logout();return false;" class="u_ftlk" style="width:56px">로그아웃</a>
+					<span class="u_ftlk_me">
+						<a href="http://me.naver.com" onclick="clickcr(this,'fot.me','','',event);" class="u_ftlk" style="width:46px">
+							<span class="ic_me">me</span>
+						</a>
+
+					</span>
+					<a href="http://mobile.naver.com/application/safariApp.nhn" onclick="clickcr(this,'fot.naverapp','','',event);" class="u_ftlk" style="width:51px">전체 앱</a>
+					<a href="http://mail.naver.com/?frommobile=Y" onclick="clickcr(this,'fot.gopc','','',event);" class="u_ftlk" style="width:52px">PC버전</a>
+
+					<a href="http://m.naver.com/services.html?f=svc.mail" onclick="clickcr(this,'fot.sitemap','','');" class="u_ftlk" style="width:68px">전체서비스<span class="u_vc">펼치기</span></a>
+				</div>
+			</div>
+		</div>
+		<!-- //footer -->
+	</div>
+</div>
+<!--code@-->
+<!-- // Demo 영역 -->
+
+<!-- jindo 프레임웍 import -->
+<!--
+	JMC(jindo mobile component) import
+	아래 파일들은 선택다운로드(http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html)에서
+	압축다운로드된 한개의 파일(jindo_mobile_component.js)로 대체 가능하다.
+-->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.AjaxHistory.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CoreScroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m._FlickingAnimation_.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CircularSlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.PageLayoutUI.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Transition.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.RevealSidebarUI.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.MoreContentButton.js" charset="utf-8"></script>
+<!-- // jindo 프레임웍 import -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var nMailIndex = 0;
+
+var onClickMail = function(index){
+	nMailIndex = index;
+
+	location.href = "./template_mailview.html?nIndex="+index;
+
+	//oPageLayoutUI.moveTo(1);
+}
+
+var aFlickEl = jindo.$$('.jmc-content',  jindo.$$.getSingle('.rs-body'));
+
+
+var oRevealSidebarUI;
+var oPageLayoutUI = new jindo.m.PageLayoutUI({
+	bUseFullScreen :true,
+
+	vBaseElement : jindo.$$.getSingle('.rs-body'),
+
+	fnDomReady : function(oData) {
+		oRevealSidebarUI = new jindo.m.RevealSidebarUI(oData.welRoot).attach({
+			'slide' : function(oEvt){
+				console.log(oEvt);
+			}
+		});
+	},
+	htScrollOption : {
+		bUsePullUp : true,
+		fnPullUpIdle : function(wele){
+			wele.html("더 보시려면 위로 올려주세요.");
+		},
+
+		fnPullUpBeforeUpdate : function(wele){
+			wele.html("로드 합니다");
+		},
+
+		fnPullUpUpdating : function(wele){
+			wele.html("로드 중 ...");
+		}
+	}
+}).attach({
+	'beforeMovePage' : function(o){
+		/*
+		var nPage = o.nCurrentPage;
+		console.log('before!!!', o);
+		if(nPage !== 0){
+			if(typeof o.bLeft !== 'undefined' ){
+				if(o.bLeft){
+					nMailIndex++
+				}else{
+					nMailIndex--;
+				}
+			}
+		}
+		*/
+	},
+	'afterMovePage' : function(o){
+		var nPage = o.nCurrentPage;
+		/*
+		if(nPage !== 0){
+			console.log('afterMove', o, nMailIndex);
+			console.log(aFlickEl[nPage]);
+			$Element(aFlickEl[nPage]).html(nMailIndex +"번째 메일을 보고 있습니다.");
+			updateMail(nPage, nMailIndex);
+
+		}
+		*/
+
+
+	},
+	'touchStart' : function(o){
+		var nIndex = this.getCurrentIndex();
+		if(nIndex === 0){
+			o.stop();
+		}
+
+	}
+});
+
+var welUL = jindo.$Element('listWrap');
+var sTpl = '<li>'
+				+	'<input type="checkbox" class="is1" foldersn="0" mailsn="18692" title="메일 선택">'
+				+	'		<a href="#" class="ct2" onclick="onClickMail({=NO});return false;">'
+				+	'			<span class="m_date"><span class="if">10:48</span></span>'
+				+	'		<span class="m_head">'
+				+	'			<span class="ic1 ic12">안읽음</span>'
+				+	'			<span class="if">test<span class="hc">:</span>	</span>'
+				+	'		</span>'
+				+	'		<span class="m_cont">'
+				+	'			<strong class="ho">'
+				+	'				예제 {=NO}번'
+				+	'			</strong>'
+				+	'		</span>'
+				+	'	</a>'
+				+	'</li>';
+
+var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+	nTotalItem : 100, //실제 아이템 개수
+	nShowMaxItem : 100, //최대 더보기 하여 보여줄 개수
+	nItemPerPage : 10,
+	htAjax : null
+});
+
+oMore.attach({
+	'more' : function(oCustomEvt){
+		console.log(oCustomEvt)
+
+		for(var i=oCustomEvt.nStartIndex; i<oCustomEvt.nEndIndex; i++ ){
+			var sHtml = sTpl.replace(/{=NO}/g, (i+1));
+			var el = jindo.$(sHtml);
+			welUL.append(el);
+		}
+
+		oPageLayoutUI.refresh();
+	}
+});
+
+function moveFolder(el){
+	var sText = jindo.$Element(el).text();
+	alert(sText +"폴더로 이동!");
+}
+function toggleMyFolder(){
+
+}
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+</body>
+</html>

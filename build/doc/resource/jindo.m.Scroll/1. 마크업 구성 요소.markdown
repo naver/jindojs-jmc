@@ -1,0 +1,15 @@
+[jindo.m.Scroll](../../doc/internal/classes/jindo.m.Scroll.html) 컴포넌트는 
+pull down/up upload기능과 스크롤바 표기 기능을 사용할수 있는 컴포넌트 이다.
+
+![](Scroll.jpg "")
+
+[컨텐츠 구조]
+
+
+#### 기능 설명
+
+* 터치로 가로, 세로 영역의 스크롤이 가능하다.
+* 스크롤시 가속여부(bMomentum)에 따라 가속이 가능하다.
+* Pull down/up upload 기능이 있다.
+* 스크롤바를 표시할 수 있다.
+* 다양한 방식의 스크롤이 가능하다.(transition, transform 방식)

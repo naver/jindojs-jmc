@@ -1,0 +1,40 @@
+#### HTML
+
+	<!-- wrap -->
+	<div class="reveal-wrap">
+		<!-- header -->
+		<div class="reveal-header">
+		</div>
+		<!-- navigation -->
+		<div class="reveal-nav">
+		</div>
+		<!-- contents -->
+		<div class="reveal-contents">
+		</div>
+	</div>
+		
+* wrap영역의 엘리먼트의 경우 [prefix]+'wrap'의 클래스명을 가진다.
+* header영역의 엘리먼트의 경우 [prefix]+'header'의 클래스명을 가진다.
+* navigation영역의 엘리먼트의 경우 [prefix]+'nav'의 클래스명을 가진다.
+* container영역의 엘리먼트의 경우 [prefix]+'container'의 클래스명을 가진다.
+
+#### Javascript
+
+	var oReveal = new jindo.m.SlideReveal({
+        "sClassPrefix" : "reveal-",
+        "nDuration" : 300,
+        "sDirection" : "down"
+    }).attach({
+        "beforeShow" : function(oCustomEvent){
+        	/* navigation 이 보여지기 전에 발생 */
+        },
+        "show" : function(oCustomEvent){
+        	/* navigation 이 보여진 후 발생 */
+        },
+        "beforeHide" : function(oCustomEvent){
+        	/* navigation 이 사라지기 전에 발생 */
+        },
+        "hide" : function(oCustomEvent){
+        	/* navigation 이 사라진 후 발생 */
+        }
+    });

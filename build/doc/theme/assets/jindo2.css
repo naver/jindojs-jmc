@@ -1,0 +1,247 @@
+@charset "utf-8";
+/* NTS CHJ 120731 */
+
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'나눔고딕',nanumgothic,'돋움',Dotum,helvetica,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+p { line-height:20px}
+a:hover,a:active,a:focus{text-decoration:underline}
+input{-webkit-appearance:none;-webkit-text-size-adjust:none}
+input[type=text]{border-radius:0}
+input[type=checkbox]{-webkit-appearance:checkbox}
+input[type=radio]{-webkit-appearance:radio}
+.blind,legend{overflow:hidden;position:absolute!important;top:-999px;left:-9990px;width:1px;height:1px;line-height:0;font-size:0}
+
+#wrap{background:url(../img2/bg_bd.png) 0 0 repeat}
+#container{width:960px;margin:0 auto;}
+#header{position:relative;width:100%;z-index:100;background:url(../img2/bg_hd.png) 0 0 repeat-x}
+
+.header_inner{width:960px;margin:0 auto;zoom:1;position:relative;height:54px}
+#header h1{*float:left;overflow:hidden;display:inline-block;width:136px;height:38px;margin:12px 2px 0 0;background:url(../img2/spr_jindo_new.png) 0 0  no-repeat;line-height:999px}
+#header h1{*float:left;overflow:hidden;display:inline-block;width:101px;height:30px;margin:15px 2px 0 2px;background:url(../img2/spr_jindo_new.png) 0 0  no-repeat;line-height:999px}
+#header .bx_sch{display:inline-block;*float:left;position:absolute;top:14px;right:0;width:282px;margin:0;vertical-align:top}
+#header .sch_frm{*float:left;display:inline-block;position:relative;width:266px;height:16px;padding:3px 5px 0 5px;border:3px solid #01d90e}
+#header .sch_frm input{width:100%;color:#b9b9b9;background:#2c2c30;border:0}
+#header .sch_frm .sch_layer{position:absolute;top:20px;left:0}
+
+#header .sch_frm .sch_layer_inner{position:relative;width:272px;background:#fff;border:1px solid #878c94;border-top:0}
+#header .sch_frm .sch_layer_inner p {padding:7px;color:#000;border-top:1px solid #eee}
+#header .sch_frm .sch_layer_inner p:first-child {border-top:0}
+#header .sch_frm .sch_layer_inner em {color:#1760f6}
+#header .sch_frm .sch_layer_inner ul { background:#fff; width:100%; overflow:auto; overflow-x:hidden; margin-top:-1px; max-height:200px;}
+#header .sch_frm .sch_layer_inner strong {color:#f76d1a;font-weight:normal}
+#header .sch_frm .sch_layer_inner span {color:#575757}
+
+
+#header .sch_frm .sch_layer_inner li {padding:5px 10px; border-top:1px solid #eee; cursor:pointer; _cursor:hand; float:none;}
+#header .sch_frm .sch_layer_inner li.on{background:#eee}
+#header .sch_frm .sch_layer_inner .strong{color:#f76d1a}
+#header .sch_frm .sch_layer_inner .type{color:#3eaf0e}
+#header .sch_frm .sch_layer_inner .desc{color:#aaa;}
+
+
+#header .sch_frm .scroll3{overflow-x:hidden;overflow-y:scroll}
+#header .bx_sch .btn_sch{display:inline-block;width:42px;height:25px;overflow:hidden;*margin-left:4px;line-height:999px;background:url(../img2/spr_jindo_new.png) -141px 0 no-repeat;vertical-align:top}
+
+#header .nv{position:absolute;top:17px;left:179px}
+#header .nv ul{overflow:hidden}
+#header .nv li{overflow:hidden;float:left;height:21px;margin-right:37px}
+#header .nv li a{display:block;height:42px;background:url(../img2/spr_jindo_new.png) no-repeat;text-indent:-999em}
+#header .nv li a.on,#header .nv li a:hover{margin-top:-21px;border:none}
+#header .nv .nv1 a{width:55px;background-position:-353px 0}
+#header .nv .nv2 a{width:89px;background-position:-445px 0}
+#header .nv .nv3 a{width:92px;background-position:-571px 0}
+
+#header .nv strong{color:#e8e8f3}
+#content{}
+.section{position:relative;margin-bottom:-59px;padding:70px 0 0}
+#footer{text-align:center;padding:90px 0 80px 0;color:#fff;font-family:Tahoma,sans-serif;font-size:11px}
+#footer img{margin-right:10px;vertical-align:middle}
+.h_txt_jd{overflow:hidden;float:left;width:176px;height:50px;margin-right:9px;background:url(../img2/spr_h.png) 0 -156px no-repeat;line-height:999px}
+.h_txt_jd2{overflow:hidden;width:275px;height:28px;margin-bottom:9px;background:url(../img2/spr_h.png) 0 -33px;line-height:999px}
+.h_txt_jd2n{overflow:hidden;width:275px;height:34px;margin-bottom:9px;background:url(../img2/spr_h2.png) 0 -271px;line-height:999px;float:left}
+.h_txt_jd3{overflow:hidden;width:292px;height:28px;margin-bottom:10px;line-height:999px;background:url(../img2/spr_h.png) 0 -66px no-repeat}
+.h_txt_jd3t{padding-bottom:10px}
+.h_txt_jd3n{overflow:hidden;width:292px;height:28px;margin-bottom:10px;line-height:999px;background:url(../img2/spr_h2.png) 0 -360px no-repeat}
+.h_txt_jd4{overflow:hidden;width:185px;height:28px;margin-bottom:10px;line-height:999px;background:url(../img2/spr_h.png) 0 -99px no-repeat}
+.h_txt_jd4n{overflow:hidden;width:185px;height:28px;margin-bottom:10px;line-height:999px;background:url(../img2/spr_h2.png) 0 -386px no-repeat}
+.h_txt_jd4t{padding-bottom:10px}
+.h_txt_jd5{overflow:hidden;width:161px;height:37px;margin:0 0 12px;line-height:999px;background:url(../img2/spr_jindo_new.png) -180px -171px no-repeat}
+.h_txt_jd5n{overflow:hidden;width:60px;height:27px;margin:0 0 12px;line-height:999px;background:url(../img2/spr_jindo_new.png) 0 -428px no-repeat}
+.h_txt_jd6{overflow:hidden;width:160px;height:48px;margin:0 0 12px;line-height:999px;background:url(../img2/spr_jindo_new.png) -527px -171px no-repeat}
+.h_txt_jd7{overflow:hidden;width:177px;height:49px;margin:0 0 12px;line-height:999px;background:url(../img2/spr_jindo_new.png) -27px -224px no-repeat}
+.h_txt_jd7n{overflow:hidden;width:177px;height:30px;margin:0 0 12px;line-height:999px;background:url(../img2/spr_jindo_new.png) -61px -428px no-repeat}
+.h_txt_jd8{overflow:hidden;width:187px;height:28px;margin:16px 0 9px;line-height:999px;background:url(../img2/spr_h.png) 0 -210px no-repeat}
+.h_txt_jd8n{overflow:hidden;width:187px;height:28px;margin:12px 0 9px;line-height:999px;background:url(../img2/spr_h2.png) 0 -303px no-repeat}
+.h_txt_jd8t{padding-bottom:10px}
+.h_txt_jd9{overflow:hidden;width:178px;height:28px;margin:16px 0 9px;line-height:999px;background:url(../img2/spr_h.png) 0 -243px no-repeat}
+.h_txt_jd9n{overflow:hidden;width:178px;height:28px;margin:16px 0 9px;line-height:999px;background:url(../img2/spr_h2.png) 0 -333px no-repeat}
+.h_txt_jd9t{padding-bottom:10px}
+.h_jd_cp{overflow:hidden;float:left;display:inline-block;width:175px;height:66px;margin-right:12px;background:url(../img2/spr_jindo_new.png) 0 -171px no-repeat;line-height:999px;}
+.h_jd_mobile{overflow:hidden;float:left;display:inline-block;width:176px;height:87px;margin-right:12px;background:url(../img2/spr_jindo_new.png) -346px -171px no-repeat;line-height:999px;}
+
+
+.section_inn_p{overflow:hidden;zoom:1;padding:30px;background:#fff}
+.section_inn{overflow:hidden;zoom:1;padding:50px 55px 40px;background:#fff}
+.section_inn ~ .section_inn{border-top:3px solid #f1f1f1;padding-top:40px}
+.sc_txt{float:left;width:500px}
+.sc_txt .txt_cp{display:inline}
+.sc_txt p{color:#2c2d2f;line-height:20px}
+.sc_txt .btns{clear:both;overflow:hidden;zoom:1;padding:17px 0 0 0}
+.sc_txt .btns a{float:left;height:28px;overflow:hidden;margin-right:3px;line-height:999px}
+.sc_txt .btns .btn_type1_1{width:97px;background:url(../img2/spr_jindo_new.png) 0 -138px no-repeat}
+.sc_txt .btns .btn_type1_2{width:127px;background:url(../img2/spr_jindo_new.png) -100px -138px no-repeat}
+.sc_txt .btns .btn_type1_3{width:64px;background:url(../img2/spr_jindo_new.png) -230px -138px no-repeat}
+.sc_dw{float:right;width:310px}
+.sc_dw h2{overflow:hidden;width:231px;height:19px;background:url(../img2/spr_h.png) 0 -132px no-repeat;line-height:999px}
+.sc_dw_inner {overflow:hidden;zoom:1;padding:25px 0 0 0}
+.sc_dw_inner strong {font-size:16px;font-weight:normal}
+.sc_dw_inner .dw {position:relative;float:left;width:154px;height:180px;margin-right:2px;}
+.sc_dw_inner .dw ul{padding:13px 0 15px 15px}
+.sc_dw_inner .dw2 {position:relative;float:left;width:154px;height:180px;}
+.sc_dw_inner .dw2 p {padding-top:13px}
+.sc_dw p{padding:9px 0 0 0;color:#2c2d2f}
+.sc_dw ul{overflow:hidden;zoom:1;padding:23px 0 15px 28px}
+.sc_dw ul li{float:left;width:135px;line-height:21px}
+.sc_dw ul li input{vertical-align:middle;margin:-1px 0 1px}
+.sc_dw .version{padding:6px 0 0 0;color:#2b2c2e;text-align:right}
+.sc_dw .version em{color:#175ff5;font-weight:bold}
+.sc_dw .btn_dw{overflow:hidden;display:inline-block;background:url(../img2/spr_jindo_new.png) 0 -43px;width:309px;height:90px;line-height:999px}
+.sc_dw a.btn_dw:hover{background:url(../img2/spr_jindo_new.png) -314px -43px no-repeat}
+.sc_dw .btn_dw2{position:absolute;bottom:0;left:0;overflow:hidden;display:inline-block;width:154px;height:90px;margin-right:2px;line-height:999px;background:url(../img2/spr_jindo_new.png) 0 -242px;}
+.sc_dw a.btn_dw2:hover{background:url(../img2/spr_jindo_new.png) 0 -337px;}
+.sc_dw .btn_dw3{position:absolute;bottom:0;left:0;overflow:hidden;display:inline-block;width:153px;height:90px;line-height:999px;background:url(../img2/spr_jindo_new.png) -156px -242px;}
+.sc_dw a.btn_dw3:hover{background:url(../img2/spr_jindo_new.png) -156px -337px;}
+
+.radio-applied {display:inline-block;overflow:hidden; position:relative;width:18px;height:18px;vertical-align:middle;}
+.radio-applied span.radio-mark {display:inline-block; position:absolute; left:0;t op:0; z-index:1; width:18px; height:18px; background:url(../img2/spr_jindo_new.png) no-repeat -309px 0;}
+.radio-applied span.radio-mark.radio-checked {background-position:-332px 0;}
+.radio-applied input {position:absolute; left:-9999px;}
+.radio-applied.radio-disabled span.radio-mark {background-position:0 -62px;}
+.radio-applied.radio-disabled span.radio-mark.radio-checked {background-position:0 -93px;}
+
+.bx_jd .nv_jd{overflow:hidden;zoom:1;height:37px;border-top:1px solid #939598; clear:both;}
+.bx_jd .nv_jd .btn_prv{float:left;width:19px;height:37px;line-height:999px;overflow:hidden;background:url(../img2/spr_jindo_new.png) -188px 0  no-repeat}
+.bx_jd .nv_jd .btn_nxt{float:right;width:19px;height:37px;line-height:999px;overflow:hidden;background:url(../img2/spr_jindo_new.png) -212px 0  no-repeat}
+.bx_jd .nv_jd .rolling{float:left;width:802px;margin:12px 0 0 0;padding:0 0 0 8px; overflow:hidden; position:relative;}
+.bx_jd .nv_jd .rolling ul {list-style:none; width:32700px; margin:0; padding:0; float:left; height: 50px;}
+.bx_jd .nv_jd .rolling_p{float:left;width:1030px;margin:12px 0 0 0;padding:0 0 0 8px; overflow:hidden; position:relative;}
+.bx_jd .nv_jd .rolling_p ul {list-style:none; width:32700px; margin:0; padding:0; float:left; height: 50px;}
+.bx_jd .nv_jd ul li{float:left;padding:0 7px 0 8px;background:url(../img2/bg_bar.png) 0 0 no-repeat}
+.bx_jd .nv_jd ul li a:hover{color:#1760f6;text-decoration:none}
+.bx_jd .nv_jd ul li:first-child{background:none}
+.bx_jd .nv_jd ul strong{color:#175ff5}
+.bx_jd .nv_jd ul a.on{color:#175ff5;font-weight:bold}
+.bx_jd .nv_jd ul a{color:#111}
+.bx_jd .bx_jd_inner{overflow:hidden;zoom:1;border:1px solid #bcbec2;background:url(../img2/bg_line.png) 484px 0  repeat-y}
+.bx_jd .bx_jd_inner .scroll{float:left;overflow-x:hidden;overflow-y:scroll;width:122px;height:298px;padding-top:2px;border-right:1px solid #bdbfc3}
+.bx_jd .bx_jd_inner .scroll strong{display:block;padding:4px 0 2px 5px;color:#000}
+.bx_jd .bx_jd_inner_p{width:100%;overflow:hidden;zoom:1;border:1px solid #bcbec2;background:url(../img2/bg_line.png) 504px 0  repeat-y}
+.bx_jd .bx_jd_inner_p .scroll{float:left;overflow-x:hidden;overflow-y:scroll;width:122px;height:298px;padding-top:2px;border-right:1px solid #bdbfc3}
+.bx_jd .bx_jd_inner_p .scroll_p{float:left;overflow-x:hidden;overflow-y:scroll;width:122px;height:598px;padding-top:2px;border-right:1px solid #bdbfc3}
+.bx_jd .bx_jd_inner_p .scroll_p strong{display:block;padding:4px 0 2px 10px;color:#000}
+
+
+.bx_jd_p {width:1173px}
+.bx_jd_p .nv_jd{overflow:hidden;zoom:1;height:37px;border-top:1px solid #939598; clear:both;}
+.bx_jd_p .nv_jd .btn_prv{float:left;width:19px;height:37px;line-height:999px;overflow:hidden;background:url(../img2/spr_jindo_new.png) -188px 0  no-repeat}
+.bx_jd_p .nv_jd .btn_nxt{float:right;width:19px;height:37px;line-height:999px;overflow:hidden;background:url(../img2/spr_jindo_new.png) -212px 0  no-repeat}
+.bx_jd_p .nv_jd .rolling{float:left;width:802px;margin:12px 0 0 0;padding:0 0 0 8px; overflow:hidden; position:relative;}
+.bx_jd_p .nv_jd .rolling ul {list-style:none; width:32700px; margin:0; padding:0; float:left; height: 50px;}
+.bx_jd_p .nv_jd .rolling_p{float:left;width:1030px;margin:12px 0 0 0;padding:0 0 0 8px; overflow:hidden; position:relative;}
+.bx_jd_p .nv_jd .rolling_p ul {list-style:none; width:32700px; margin:0; padding:0; float:left; height: 50px;}
+.bx_jd_p .nv_jd ul li{float:left;padding:0 7px 0 8px;background:url(../img2/bg_bar.png) 0 0 no-repeat}
+.bx_jd_p .nv_jd ul li a:hover{color:#1760f6;text-decoration:none}
+.bx_jd_p .nv_jd ul li:first-child{background:none}
+.bx_jd_p .nv_jd ul strong{color:#175ff5}
+.bx_jd_p .nv_jd ul a.on{color:#175ff5;font-weight:bold}
+.bx_jd_p .nv_jd ul a{color:#111}
+.bx_jd_p .bx_jd_inner{overflow:hidden;zoom:1;border:1px solid #bcbec2;background:url(../img2/bg_line.png) 484px 0  repeat-y}
+.bx_jd_p .bx_jd_inner .scroll{float:left;overflow-x:hidden;overflow-y:scroll;width:122px;height:298px;padding-top:2px;border-right:1px solid #bdbfc3}
+.bx_jd_p .bx_jd_inner .scroll strong{display:block;padding:4px 0 2px 5px;color:#000}
+.bx_jd_p .bx_jd_inner_p{width:100%;overflow:hidden;zoom:1;border:1px solid #bcbec2;background:url(../img2/bg_line.png) 504px 0  repeat-y}
+.bx_jd_p .bx_jd_inner_p .scroll{float:left;overflow-x:hidden;overflow-y:scroll;width:122px;height:298px;padding-top:2px;border-right:1px solid #bdbfc3}
+.bx_jd_p .bx_jd_inner_p .scroll_p{float:left;overflow-x:hidden;overflow-y:scroll;width:122px;height:598px;padding-top:2px;border-right:1px solid #bdbfc3}
+.bx_jd_p .bx_jd_inner_p .scroll_p strong{display:block;padding:4px 0 2px 10px;color:#000}
+
+
+.scroll li{line-height:18px}
+.scroll li a{display:block;padding:0 0 0 13px;color:#434343}
+.scroll li a:hover{background:#e5e6e7;text-decoration:none}
+.scroll a.on{background:#93969b;color:#fff;font-weight:bold}
+.scroll li.on a{background:#93969b;color:#fff;font-weight:bold}
+.scroll li.on{background:#93969b;color:#fff;font-weight:bold}
+
+.scroll_p li{line-height:18px}
+.scroll_p li a{display:block;padding:0 0 0 13px;color:#434343}
+.scroll_p li a:hover{background:#e5e6e7;text-decoration:none}
+.scroll_p a.on{background:#93969b;color:#fff;font-weight:bold}
+.scroll_p li.on a{background:#93969b;color:#fff;font-weight:bold}
+.scroll_p li.on{background:#93969b;color:#fff;font-weight:bold}
+
+.bx_jd .bx_jd_inner .run{float:left;position:relative}
+.bx_jd .bx_jd_inner .run .sc_edit{float:left;width:362px}
+.bx_jd .bx_jd_inner .run .sc_edit .tit{padding-left:5px}
+.bx_jd .bx_jd_inner .run .tit{overflow:hidden;display:block;height:32px;background:#dadde1;color:#3d4147;line-height:32px}
+.bx_jd .bx_jd_inner .run .sc_output{float:left;width:363px}
+.bx_jd .bx_jd_inner .run .ctrl {position:absolute;top:6px;right:4px}
+.bx_jd .bx_jd_inner .run .ctrl input{margin:0;width:16px;height:16px;vertical-align:middle}
+.bx_demo{overflow:hidden;zoom:1;border:1px solid #bfc1c5;border-top:1px solid #949699}
+.bx_demo .scroll{float:left;overflow-x:auto;overflow-y:scroll;width:139px;height:351px;border-right:1px solid #bec0c4}
+.bx_demo .scroll2{width:186px}
+.bx_demo .scroll ul{padding:7px 0 0 3px; white-space:nowrap}
+.bx_demo .scroll2 ul{padding:7px 0 0 3px; white-space:nowrap}
+.bx_demo .scroll a{padding:0 0 0 8px;}
+.bx_demo .demo{overflow:hidden;height:351px}
+.btn_area{padding:3px 0 0 0}
+.tr{text-align:right}
+
+.circular_rolling{overflow:hidden;zoom:1;width:425px}
+.circular_rolling .btn_prv2{float:left;width:14px;height:282px;margin-right:4px;overflow:hidden;line-height:999px;background:url(../img2/spr_arr.png) 0 130px no-repeat}
+.circular_rolling a.btn_prv2:hover{background:url(../img2/spr_arr.png) 0 -168px no-repeat}
+.circular_rolling .btn_nxt2{float:right;width:14px;height:282px;overflow:hidden;line-height:999px;background:url(../img2/spr_arr.png) 100% 130px no-repeat}
+.circular_rolling a.btn_nxt2:hover{background:url(../img2/spr_arr.png) 100% -167px no-repeat}
+.circular_rolling .rolling{position:relative;overflow:hidden;float:left;width:388px;height:282px}
+.circular_rolling .rolling ul{top:0;left:0;position:absolute;overflow:hidden;zoom:1}
+.circular_rolling .rolling li{position:relative;float:left;margin-right:3px}
+.circular_rolling .rolling li .bg{position:absolute;top:0;left:0;background:url(../img2/bg_alpha.png) 0 0 repeat;display:block;width:100%;height:282px}
+.circular_rolling .rolling li p{position:absolute;top:50%;left:0;width:100%;margin-top:-23px;text-align:center;color:#fff;font-size:15px;font-weight:bold}
+.circular_rolling .rolling li p em{display:block;color:#a1a5ad}
+.fl{float:left}
+.fr{float:right;width:406px}
+.fr img{float:left;margin-right:10px}
+.fr p strong{display:block;font-size:16px;color:#000}
+.fr p a{display:block;overflow:hidden;zoom:1;line-height:22px;color:#2c2d2f;font-size:12px;letter-spacing:-1px}
+.section_inn2 {zoom:1;position:relative;*padding-bottom:15px;}
+.section_inn2:after {content:'';display:block;clear:both}
+.section_inn2 h3 {float:left}
+.section_inn2 p{float:left;padding:33px 0 0 5px}
+.sc_qr {position:absolute;top:0;right:0}
+.sc_qr a {overflow:hidden;display:inline-block;width:20px;height:20px; background:url(../img2/spr_jindo_new.png) -284px 0 no-repeat;line-height:999px; vertical-align:top}
+.sc_qr .layer_qr {position:absolute;top:21px;right:0;border:3px solid #1760f6;}
+.lst_article li{position:relative;overflow:hidden;zoom:1;padding:24px 0;margin-top:-1px;border-top:1px solid #d3d3d3; vertical-align:top}
+.lst_article .frm {position:absolute;top:24px;left:38px;border:1px solid #000;opacity:0.3;display:block;width:88px;height:88px}
+.lst_article li.on {z-index:50;border-top:3px solid #363636;border-bottom:3px solid #363636}
+.lst_article em{display:block;float:left;width:162px; text-align:center;}
+.lst_article a {float:left;display:block;width:777px;height:90px;padding:0 0 0 38px; text-decoration:none;}
+.lst_article a img {float:left;margin-right:14px;}
+.lst_article a strong {font-size:16px;color:#000}
+.lst_article a strong:hover {font-size:16px;color:#000; text-decoration:underline;}
+.lst_article a p{color:#2c2d2f; line-height:20px;}
+.layer_tooltip{position:absolute}
+.layer_tooltip_inner{position:relative;width:248px;padding:7px;border:1px solid #9e9e53;background:#fefed7;color:#35352e}
+.layer_tooltip_inner p{color:#171715;font-size:11px;line-height:13px}
+
+.pct_extr {float:left;display:block;width:125px;height:106px;margin-right:20px;margin-bottom:9px;background:url(../img2/spr_jindo_new.png) -346px -263px no-repeat}
+.pct_extr2 {float:left;display:block;width:125px;height:106px;margin-right:20px;background:url(../img2/spr_jindo_new.png) -346px -375px no-repeat}
+.txt { float:left;line-height:20px;color:#2c2d2f}
+.txt a {display:inline!important;color:#2c2d2f; line-height:20px!important}
+
+.txt_new_window {font-size: 13px;color: #888;float:right;padding-bottom:5px;padding-top:15px}
+.txt_new_window a:hover {font-size:13px;color:#000;text-decoration:underline;}
+.under8 {padding-top:135px; padding-left:210px; background:#e9e9e9;height:160px;font-family:Tahoma,sans-serif;font-size:12px}
+.under8b {padding-top:280px; padding-left:330px; background:#e9e9e9;height:320px;font-family:Tahoma,sans-serif;font-size:12px}

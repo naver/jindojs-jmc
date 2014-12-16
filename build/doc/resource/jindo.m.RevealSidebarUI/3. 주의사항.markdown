@@ -1,0 +1,1 @@
+[jindo.m.Scroll](../../doc/internal/classes/jindo.m.Scroll.html)을 참고한다.

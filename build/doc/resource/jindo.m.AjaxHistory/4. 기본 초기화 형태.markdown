@@ -1,0 +1,17 @@
+#### Javascript
+
+	var oAjaxHistoryInstance = new jindo.m.AjaxHistory({
+		nCheckInterval : 100
+	}).attach({
+		'load' : function(oCutomEvt){
+			/* 처음 로드시에 발생 */
+		},
+		'change' :function(oCustomEvt){
+			/* 페이지 이동시 발생  */
+		}
+	});
+
+	jindo.$Fn(function(){
+		oAjaxHistoryInstance.initialize();
+
+	}).attach(window,'load')

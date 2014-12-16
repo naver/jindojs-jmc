@@ -1,0 +1,90 @@
+<div class="description">
+<p>최적의 애니메이션 성능을 보장하기 위해 JMC는 각각의 모바일 단말기에 맞는 애니메이션 옵션을 기본값으로 제공한다.</p>
+
+<h4>bUseCss3d</h4>
+
+<p>bUseCss3d를 true로 설정할 경우, 하드웨어 가속을 사용할수 있다.</p>
+
+<h4>bUseTimingFunction</h4>
+
+<p>bUseTimingFunction 옵션은 애니메이션 이동에 대한 방법을 결정할 수 있다.
+bUseTimingFunction을 true로 설정할 경우, 'CSS3 Timming Function' 으로 동작하고, false인 경우 'javascript의 setTimeout' (만약, 해당 단말기에서 requestAnimationFrame이 사용가능한 경우에는 setTimeout대신 requestAnimationFrame을 사용한다)으로 동작한다</p>
+
+<ul>
+<li><strong>CSS3 Timming Function</strong> 으로 동작할 경우, 랜더링 성능이 우수할 경우에는 매우 높은 애니메이션 품질을 보장한다. 반면 랜더링 성능이 좋지 못할 경우에는 랙현상이 발생하여 오히려 애니메이션의 속도와 품질을 저하시킨다.</li>
+<li><strong>javascript의 setTimeout</strong> 으로 동작할 경우, 부하가 적어, 랜더링 성능이 좋지 않을 경우는 빠른 속도의 애니메이션을 구현할 수 있다. 반면 이동경로를 스크립트로 계산하여 이동하기 때문에, 모바일 단말기에 따라 약간 끊어지는 느낌이 들기도 한다.</li>
+</ul>
+
+<h4>bUseTranslate</h4>
+
+<p>bUseTranslate 옵션은 엘리먼트 위치변경에 대한 방법을 결정할 수 있다.
+bUseTranslate을 true로 설정할 경우, 'CSS3 Translate 변경 방식' 으로 동작하고, false인 경우 'Style의 left, top 변경 방식' 으로 동작한다</p>
+
+<ul>
+<li><strong>CSS3 Translate 변경 방식</strong> 으로 동작할 경우, 브라우저 Reflow가 발생하지 않아, 랜더링 지연이 발생하지 않는다. 반면, 안드로이드에서 이동되는 엘리먼트 내부에 폼이 존재할 경우, 기준좌표가 틀어지는 이슈가 있다.</li>
+<li><strong>Style의 left, top 변경 방식</strong> 으로 동작할 경우, 모든 경우에 안정적으로 엘리먼트를 이동 할 수 있다. 반면 브라우저 Reflow가 발생하여 랜더링 지연이 발생한다.</li>
+</ul>
+<br><br>
+
+<table class="tbl_board">
+<colgroup>
+	<col width="16%">
+	<col width="14%">
+	<col width="14%">
+	<col width="14%">
+	<col width="14%">
+	<col width="14%">
+	<col width="14%">
+	<col>
+</colgroup>
+<thead>
+<tr>
+<th scope="col">구분</th>
+<th scope="col">iOS<br>4.x~5.x</th>
+<th scope="col">iOS<br>6.x 이상</th>
+<th scope="col">Android<br>2.x~3.x</th>
+<th scope="col" colspan="2">Android<br>4.x</th>
+<th scope="col">Android<br>4.1 이상</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="type">단말기</td>
+<td class="txt">모든 단말기</td>
+<td class="txt">모든 단말기</td>
+<td class="txt">모든 단말기</td>
+<td class="txt">갤럭시Nexus,<br>갤럭시S2,<br>갤럭시S2 LTE,<br>넥서스S,<br>갤럭시S 듀오</td>
+<td class="txt">모든 단말기</td>
+<td class="txt">모든 단말기</td>
+</tr>
+<tr>
+<td class="type">bUseCss3d</td>
+<td><span class="red">true</span></td>
+<td><span class="red">true</span></td>
+<td>false</td>
+<td>false</td>
+<td><span class="red">true</span></td>
+<td><span class="red">true</span></td>
+</tr>
+<tr>
+<td class="type">bUseTimingFunction</td>
+<td><span class="red">true</span></td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td class="type">bUseTranslate</td>
+<td colspan="6">true</td>
+</tr>
+</tbody>
+</table>
+<br>
+<ul>
+<li><strong>Chrome for Android</strong> 일 경우, 25버전 미만일 경우 bUseCss3d가 false이고, 그 외는 위의 표를 기준으로 결정된다.</li>
+<li>Android 4.1이상인 <strong>갤럭시 카메라</strong>인 경우 bUseCss3d는 false가 적용된다.</li>
+<li>iOS6이상일 경우, <auidoc:see content="jindo.m.Scroll">[jindo.m.Scroll]</auidoc:see> 컴포넌트는 bUseTimingFunction이 true이다.</li>
+</ul>
+</div>

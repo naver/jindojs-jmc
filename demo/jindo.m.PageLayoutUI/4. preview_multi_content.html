@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>MultiContentLayout - 기본형</title>
+<meta name="class-lists" content="jindo.m.PageLayoutUI">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="../asset/demo.css">
+<style type="text/css">
+body{margin:0}
+/*@code title="CSS"*/
+/* Page 영역 CSS */
+.jmc-page{
+	background:#fff;		/* 전체 페이지의 배경색 */
+	border:0;width:100%;display:none;
+}
+
+/* Header 영역 CSS */
+.jmc-header {
+	background-color:black; /* 헤더 영역의 배경색 */
+	color:white;            /* 헤터 영역의 폰트색 */
+	height : auto;			/* 헤터 영역의 높이 */
+	width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Footer 영역 CSS */
+.jmc-footer {
+	background-color:black; /* 풋터 영역의 배경색 */
+	color:white;            /* 풋터 영역의 폰트색 */
+	height : auto;			/* 풋터 영역의 높이 */
+	width:100%;position:relative;display:block;overflow:hidden;outline:0!important;
+}
+
+/* Content 영역 CSS */
+.jmc-content{clear:both;width:100%;display:none;}
+
+/* Title 영역 CSS */
+.jmc-title {
+	margin:0 5%;			/* 타이틀 마진 */
+	width:90%;				/* 타이틀 너비 */
+	padding:5px 0;			/* 타이틀 패딩 */
+	height:40%;				/* 타이틀 높이 */
+	text-align:center;text-overflow:ellipsis;	white-space:nowrap;
+}
+/*code@*/
+
+.demo-body{margin:0 !important;padding:0 !important;border:0 !important}
+</style>
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script type="text/javascript" src="../asset/jindo.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Component.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.UIComponent.js" charset="utf-8"></script>
+<!-- // 기본 스크립트 끝 -->
+</head>
+<body>
+<script type="text/javascript" src="../asset/demojs/demo.js#header"
+	 data-title="Jindo Mobile Component"
+	 data-disable="true"
+	 data-subtitle="=document.title"
+	 data-backbutton="true"
+	 data-viewsource="true"
+	 data-qrcode="true"></script>
+
+<div id="browser_notice" class="ct" style="display:none">
+	<p>※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</p>
+</div>
+
+<!-- Demo 영역 -->
+<!--@code title="HTML"-->
+
+<div class="jmc-page">
+	<!-- 헤더 영역 시작 -->
+	<div class="jmc-header" position="fixed">
+		헤더 영역입니다.<br>
+		<!-- 타이틀 영역 시작 - 사용하지 않을 경우 삭제가능 -->
+		<div class="jmc-title">
+			타이틀입니다.
+		</div>
+		<!-- // 타이틀 영역 끝 -->
+	</div>
+	<!-- // 헤더 영역 끝 -->
+
+	<!-- 컨텐츠 영역 시작 -->
+	<div class="jmc-content">
+		<!-- 첫번째 컨텐츠 영역 -->
+		헤더와 풋터를 공통으로 사용하는 상/하단 고정페이지 입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)
+
+		<div style="padding:30px 0 30px 10px">
+			<p style="color:red;font-size:15pt;">1페이지 (페이지 인덱스 번호 : 0)</p><br>
+			<button onclick="oPageLayoutUI.moveTo(1);return false;">2페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(2);return false;">3페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(3);return false;">4페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(4);return false;">5페이지 가기</button>
+		</div>
+
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+	</div>
+	<div class="jmc-content">
+		<!-- 두번째 컨텐츠 영역 -->
+		헤더와 풋터를 공통으로 사용하는 상/하단 고정페이지 입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)
+
+		<div style="padding:30px 0 30px 10px">
+			<p style="color:blue;font-size:15pt;">2페이지 (페이지 인덱스 번호 : 1)</p><br>
+			<button onclick="oPageLayoutUI.moveTo(0);return false;">1페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(2);return false;">3페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(3);return false;">4페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(4);return false;">5페이지 가기</button>
+		</div>
+
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+	</div>
+	<div class="jmc-content">
+		<!-- 세번째 컨텐츠 영역 -->
+		헤더와 풋터를 공통으로 사용하는 상/하단 고정페이지 입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)
+
+		<div style="padding:30px 0 30px 10px">
+			<p style="color:green;font-size:15pt;">3페이지 (페이지 인덱스 번호 : 2)</p><br>
+			<button onclick="oPageLayoutUI.moveTo(0);return false;">1페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(1);return false;">2페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(3);return false;">4페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(4);return false;">5페이지 가기</button>
+		</div>
+
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+	</div>
+	<div class="jmc-content">
+		<!-- 네번째 컨텐츠 영역 -->
+		헤더와 풋터를 공통으로 사용하는 상/하단 고정페이지 입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)
+
+		<div style="padding:30px 0 30px 10px">
+			<p style="color:purple;font-size:15pt;">4페이지 (페이지 인덱스 번호 : 3)</p><br>
+			<button onclick="oPageLayoutUI.moveTo(0);return false;">1페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(1);return false;">2페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(2);return false;">3페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(4);return false;">5페이지 가기</button>
+		</div>
+
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+	</div>
+	<div class="jmc-content">
+		<!-- 다섯번째 컨텐츠 영역 -->
+		헤더와 풋터를 공통으로 사용하는 상/하단 고정페이지 입니다. (컨텐츠영역에 들어갈 내용은 이부분에 작성합니다.)
+
+		<div style="padding:30px 0 30px 10px">
+			<p style="color:orange;font-size:15pt;">5페이지 (페이지 인덱스 번호 : 4)</p><br>
+			<button onclick="oPageLayoutUI.moveTo(0);return false;">1페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(1);return false;">2페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(2);return false;">3페이지 가기</button>
+			<button onclick="oPageLayoutUI.moveTo(3);return false;">4페이지 가기</button>
+		</div>
+
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+		컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>컨텐츠 영역입니다.<br>
+	</div>
+	<!-- //컨텐츠 영역 시작 -->
+
+	<!-- 풋터 영역 시작 -->
+	<div class="jmc-footer" position="fixed">
+		풋터 영역입니다.<br>
+		<!-- 타이틀 영역 시작 - 사용하지 않을 경우 삭제가능 -->
+		<div class="jmc-title">
+			타이틀입니다.
+		</div>
+		<!-- // 타이틀 영역 끝 -->
+	</div>
+	<!-- //풋터 영역 끝 -->
+</div>
+
+<!--code@-->
+<!--// Demo 영역 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script type="text/javascript" src="../../src/jindo.m.Touch.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Scroll.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.SwipeCommon.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Effect.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Morph.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Animation.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Slide.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flick.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.SlideFlicking.js" charset="uft-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Flicking.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.AjaxHistory.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../src/jindo.m.Loading.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../src/jindo.m.PageLayoutUI.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/*@code title="JavaScript"*/
+var oPageLayoutUI = new jindo.m.PageLayoutUI({
+	nDefaultIndex : 2,		// 초기 로딩시 보여줄 페이지 인덱스번호 (기본값 : 0)
+	bUseLoading : true		// 초기 로딩시 로딩레이어 사용여부 (기본값 : false)
+}).attach({
+	"beforeMovePage" : function(oCustomEvt) {
+		// 페이지 이동전 호출되는 함수
+		console.log("beforeMovePage", oCustomEvt);
+	},
+	"afterMovePage" : function(oCustomEvt) {
+		// 페이지 이동후 호출되는 함수
+		console.log("afterMovePage", oCustomEvt);
+	}
+});
+/*code@*/
+</script>
+<!-- // Sample 실행 script 코드 끝 -->
+
+<script type="text/javascript" src="../asset/demojs/demo.js#footer"></script>
+</body>
+</html>

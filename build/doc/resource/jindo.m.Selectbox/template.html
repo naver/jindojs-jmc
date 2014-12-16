@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								Form Element의 selectbox를 모바일에 환경에 맞게 커스터마이징한 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">										
+						jindo.m.Selectbox는 브라우저에서 제공하는 select를 이용할 수도 있고, 별도의 HTML 마크업을 구성하여 사용할 수도 있다.<br/>
+						jindo.m.Selectbox는 디자인 변경이 용이하도록 별도의 템플릿으로 정의하여 사용한다.<br/><br/>
+						
+						<img src="../resource/img/select.png"/><br>
+						[컨텐츠 구조]<br><br>
+						
+						<p style="padding:0px;line-height:17px;">
+							<strong>content 영역</strong><br/>
+							필수 요소이며, jindo.m.Selectbox에서 선택된 값이 표기된다.<br/><br/>
+							
+							<strong>selectmenu 영역</strong><br/>
+							필수 요소이며, selectbox 메뉴가 표기되는 영역이다.<br/>
+							이 영역은 브라우저의 기본 select와 사용자의 HTML을 사용할 수 있다.<br/>
+							브라우저 기본 select일 경우, option 태그로 아이템들이 구성되어 진다.<br/>
+							사용자 디자인 select일 경우, sItemTag 옵션에 지정된 태그로 아이템들이 구성되어 진다.<br/><br/>
+
+							<strong>arrow 영역</strong><br/>
+							선택 요소이며, 화살표를 표시하는 디자인 영역이다.<br/><br/>
+						</p>
+					</div>	
+				
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<!--h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>안드로이드</dt>
+							<dd><div class="point_box">
+								Form에 focus,blur될 때 focus,blur 이벤트가 2번 발생한다.
+							</div></dd>
+							<dt>안드로이드 2.1</dt>
+							<dd><div class="point_box">
+								Input Form에 focus될 때 키패드가 올라오는 현상이 있다.
+								<div class="post">Input Form에 "readonly"속성을 주어도 "readonly"가 적용되지 않고, 키패드가 올라오는 브라우저버그가 있다.</div>
+							</div></dd>
+						</dl-->
+					</div>	
+					
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>CSS</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: css;">
+									/* content 영역의 CSS */
+									.[sClassPrefix]content {
+									}
+
+									/* selectmenu 영역의 CSS */
+									.[sClassPrefix]selectmenu {
+									}
+
+									/* arrow 영역의 CSS (옵션) */
+									.[sClassPrefix]arrow {
+									}
+
+									/* disable되었을 때의 CSS */
+									.[sClassPrefix]disable {
+									}
+
+									/* select 되었을 때의 CSS (사용자가 정의한 마크업 방식일 경우 사용가능) */
+									.[sClassPrefix]selected {
+									}									
+								</textarea>
+								<div class="t2">
+								.[sClassPrefix]selected는 사용자가 정의한 마크업 방식일 경우 사용가능하다.
+								</div>
+							</dd>
+							<dt>HTML</dt>
+							<dd>
+								<!-- 마크업 구조 -->
+								<textarea class="brush: xml;">
+									<!-- 브라우저 기본 select 사용 마크업. -->
+									<div id="select">
+										<span class="[sClassPrefix]content"></span> <!-- 필수 -->
+										<span class="[sClassPrefix]arrow"></span> <!-- 옵션 -->
+										<select class="[sClassPrefix]selectmenu"> <!-- 필수 -->
+											<option>...</option>
+											<option>...</option>
+											<option>...</option>
+											<option>...</option>
+										</select> 
+									</div>
+
+									<!-- 사용자 select 사용 마크업. -->
+									<div id="select">
+										<span class="[sClassPrefix]content"></span> <!-- 필수 -->
+										<span class="[sClassPrefix]arrow"></span> <!-- 옵션 -->
+										<select class="[sClassPrefix]selectmenu"> <!-- 필수 -->
+											<ul>
+												<li>...</li>
+												<li>...</li>
+												<li>...</li>
+												<li>...</li>
+											</ul>
+										</select> 
+									</div>
+								</textarea>
+								<div class="t2">
+								select 박스는 2가지 형태로 마크업을 구성할수 있다. <br/><br/>
+								<strong>브라우저에서 사용하는 select 형태</strong><br/>
+								selectmenu영역을 select 태그로 구성하고, 그 하위 값은 option 태그로 구성한다.<br/><br/>
+								<strong>사용자가 정의한 마크업으로 구성하는 형태</strong><br/>
+								selectmenu영역을 div나 ul과 같은 태그로 구성하고, 그 하위의 값은 sItemTag 옵션에 명시된 태그로 구성한다.<br/><br/>
+								</div>
+							</dd>														
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oSelect = new jindo.m.Selectbox("select",{
+										bActivateOnload : true,
+							            sClassPrefix : "select-",
+							            sPlaceholder : "선택해주세요",
+							            nHeight : 80,
+							            sItemTag : "li",
+							            nDefaultIndex : -1
+									});
+								</textarea>
+								<div class="t2">
+								브라우저에서 사용하는 select 형태를 사용할 경우, nHeight, sItemTag 옵션은 무시된다.
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<h3>Template으로 디자인 적용하기</h3>
+					<div class="t1">
+						<div>
+							자주 사용되는 디자인의 템플릿이다.<br/>
+							이미지를 클릭하여 Template 페이지를 열고, Template 페이지 하단의 소스를 Copy&Paste하여 적용한다.<br/>
+							폰트, 너비, 색상 등 스타일 변경이 필요하다면 소스내 주석을 참고하여, 원하는 부분의 스타일을 수정하여 적용한다.<br/><br/><br/>
+							<ul class="tumb_list">
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Selectbox/template_native_gray.html" target="_blank"><img src="../resource/img/native_gray.png" width="150" height="100" alt=""></a>
+									<p>디자인형 (Native)<br/>Gray Type</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Selectbox/template_custom_gray.html" target="_blank"><img src="../resource/img/custom_gray.png" width="150" height="100" alt=""></a>
+									<p>디자인형 (Custom)<br/>Gray Type</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Selectbox/template_native_black.html" target="_blank"><img src="../resource/img/native_black.png" width="150" height="100" alt=""></a>
+									<p>디자인형 (Native)<br/>Black Type</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Selectbox/template_custom_black.html" target="_blank"><img src="../resource/img/custom_black.png" width="150" height="100" alt=""></a>
+									<p>디자인형 (Custom)<br/>Black Type</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Selectbox/template_native_blue.html" target="_blank"><img src="../resource/img/native_blue.png" width="150" height="100" alt=""></a>
+									<p>디자인형 (Native)<br/>Blue Type</p>
+								</li>
+								<li class="tumb">
+									<a href="../../sample/latest/jindo.m.Selectbox/template_custom_blue.html" target="_blank"><img src="../resource/img/custom_blue.png" width="150" height="100" alt=""></a>
+									<p>디자인형 (Custom)<br/>Blue Type</p>
+								</li>
+							</ul>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Datepicker Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sClassPrefix</td>
+								<td>Class의 prefix명</td>
+								<td>"select-"</td>
+							</tr>							
+							<tr>
+								<td class="name">sPlaceholder</td>
+								<td>선택된 아이템이 없을 경우, context영역에 표시되는 안내문구</td>
+								<td>"선택해주세요"</td>
+							</tr>
+							<tr>
+								<td class="name">nHeight</td>
+								<td>사용자 디자인 형태일 경우 selecmenu의 height 크기</td>
+								<td>80</td>
+							</tr>
+							<tr>
+								<td class="name">sItemTag</td>
+								<td>사용자 디자인 형태일 경우 selecmenu의 구성 아이템 태그</td>
+								<td>li</td>
+							</tr>
+							<tr>
+								<td class="name">nDefaultIndex</td>
+								<td>초기 설정되는 값의 인덱스</td>
+								<td>-1</td>
+							</tr>
+							
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>컴포넌트 로드시 activate 여부</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							
+							<tr class="title">
+								<td class="name">beforeSelect</td>
+								<td>아이템 선택되기 전에 발생하는 사용자 이벤트</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>nCurrentIdx (Number) : 현재 선택된 아이템의 index</li>
+										<li>sValue (String) : 현재 선택된 아이템의 값</li>
+										<li>stop (Function) : 달력이 새로 그려지지 않도록 중단시키는 메소드</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td></td><td colspan="2">
+									beforeSelect 커스텀 이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oSelect.attach("beforeSelect", function(oCustomEvent) {
+										oCustomEvent.nCurrentIdx;
+										oCustomEvent.sValue;
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">select</td>
+								<td>아이템 선택된 후에 발생하는 사용자 이벤트</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀이벤트명</li>
+										<li>nPrevIdx (Number) : 선택되기 전 아이템의 index</li>
+										<li>nCurrentIdx (Number) : 선택된 아이템의 index</li>
+										<li>sPrevValue (String) : 선택되기 전 아이템의 값</li>
+										<li>sValue (String) : 선택된 아이템의 값</li>
+									</ul>
+								</td>
+							</tr>							
+							<tr class="desc">
+								<td></td><td colspan="2">
+									draw 커스텀 이벤트 핸들링
+									<textarea class="brush: javascript;">
+									oSelect.attach("select", function(oCustomEvent) {
+										oCustomEvent.nCurrentIdx;
+										oCustomEvent.sValue;
+										oCustomEvent.nPrevIdx;
+										oCustomEvent.sPrevValue;
+									});
+									</textarea>
+								</td>
+							</tr>							
+						</table>
+					</div>
+
+					
+					<!-- 퍼블릭 메서드 -->
+					{+include("method.html")+}
+					
+					<!-- 변경 히스토리 -->
+					<h3>Change History</h3>
+					<div class="t1">
+						 <table class="option" cellpadding="0" cellspacing="0">
+						 <tbody></tbody>
+							 <tr>
+							 	<th>Release</th>
+							 	<th>Type</th>
+                               	<th>Target</th>
+                               	<th>Desc</th>
+							 </tr>
+							 <!-- v1.4.0 -->
+							 <tr>
+							 	<td class="name">v1.4.0 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>							 
+
+							 <!-- v1.3.5 -->
+							 <tr>
+							 	<td class="name">v1.3.5 </td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							 </tr>	
+							 <!-- v1.3.0 -->
+							 <tr>
+							 	<td class="name">v1.3.0</td>
+                               	<td>Release</td>
+                               	<td>-</td>
+                               <td>최초 릴리즈</td>
+							 </tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					{+publish.conf.copyrighc+} 
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

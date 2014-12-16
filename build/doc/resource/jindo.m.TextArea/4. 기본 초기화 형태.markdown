@@ -1,0 +1,36 @@
+#### HTML
+
+	/*class prefix가 'fta-' 인 경우*/	
+		
+	/*Focus시 적용  되는 CSS*/
+	.fta-textarea-focus {...}
+	/*비활성화시 적용  되는 CSS*/
+	.fta-textarea-disable {...}
+
+
+#### CSS
+
+	/*class prefix가 'fta-' 인 경우*/	
+		
+	/*Focus시 적용  되는 CSS*/
+	.fta-textarea-focus {...}
+	/*비활성화시 적용  되는 CSS*/
+	.fta-textarea-disable {...}
+
+필수 CSS 요소는 다음과 같다.<br />
+
+* [prefix] + textarea-focus 클래스 : Textarea Focus시 적용 되는 클래스
+* [prefix] + textarea-disable 클래스 : 비활성화시 Textarea에 적용 되는 클래스
+
+#### Javascript
+
+	var oTextArea = new jindo.m.TextArea("textarea",{
+		sClassPrefix	: "ta-",	// css prefix 접두어.
+		bUseRadius  	: true,		// 모서리 라운드 효과 적용 여부
+		sRadiusSize		: "10px",	// 모서리 라운드 크기
+		bUseAutoHeight	: false,	// Textarea height 텍스트 크기에 맞게 자동 감소, 증가하는 기능 사용여부 
+		nExpandHeight	: 10,		// Textarea height 증가 크기 
+		nMaxHeight		: 50		// Textarea 최대 height 크기
+	});	
+
+첫번째 파라미터는 기준엘리먼트의 Id 혹은 HTMLElement로 설정 할 수 있다.
