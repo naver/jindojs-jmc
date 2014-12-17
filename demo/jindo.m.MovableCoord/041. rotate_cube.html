@@ -95,9 +95,11 @@
 				.aPos {Array}
 			*/
 			var pos = oCustomEvent.aPos;
-			welBox.css({
-				transform : 'rotateY(' + pos[0] + 'deg) rotateX(' + pos[1] + 'deg)'
-			})
+
+            var htCss = {};
+            htCss[jindo.m.getCssPrefix() + "Transform"] = 'rotateY(' + pos[0] + 'deg) rotateX(' + pos[1] + 'deg)';
+
+			welBox.css(htCss);
 
 		}
 

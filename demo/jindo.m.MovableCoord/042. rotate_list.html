@@ -120,9 +120,11 @@
 			welLast.removeClass('highlight');
 			(welLast = aList[idx]).addClass('highlight');
 
-			welList.css({
-				transform : 'rotateY(-' + pos[0] + 'deg) rotateX(10deg)'
-			})
+            var htCss = {};
+            htCss[jindo.m.getCssPrefix() + "Transition"] = '0';
+            htCss[jindo.m.getCssPrefix() + "Transform"] = 'rotateY(-' + pos[0] + 'deg) rotateX(10deg)';
+
+			welList.css(htCss);
 
 		}
 

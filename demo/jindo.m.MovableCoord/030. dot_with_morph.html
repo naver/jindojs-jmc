@@ -82,7 +82,11 @@
 				.aPos {Array}
 			*/
 			var pos = oCustomEvent.aPos;
-			welDot.css('transform', 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)');
+
+            var htCss = {};
+            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
+
+			welDot.css(htCss);
 		},
 
 		'animation' : function(oCustomEvent) {

@@ -1,7 +1,7 @@
 {
   "name": "jindojs-jmc",
   "version": "1.16.0",
-  "description": "JindoJS Mobile Component",
+  "description": "Jindo Mobile Component",
   "main": "dist/jindo-mobile-component.js",
   "moduleType": [
     "globals"

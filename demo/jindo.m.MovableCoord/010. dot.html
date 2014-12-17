@@ -77,10 +77,11 @@
 			*/
 			var pos = oCustomEvent.aPos;
 
-			welDot.css({
-				transition : '0',
-				transform : 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)'
-			});
+            var htCss = {};
+            htCss[jindo.m.getCssPrefix() + "Transition"] = '0';
+            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
+
+			welDot.css(htCss);
 		}
 
 	});
