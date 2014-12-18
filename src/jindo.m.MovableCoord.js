@@ -154,7 +154,7 @@ jindo.m.MovableCoord = jindo.$Class({
 
 			if (nX !== null) { pos[0] = adjusted[0]; } // 가로위치가 바뀌어야 하면
 			if (nY !== null) { pos[1] = adjusted[1]; } // 세로위치가 바뀌어야 하면
-
+            this._aPos = pos;
 			self.fireEvent('change', {
 				aPos : [pos[0],pos[1]],
 				bHolding : false
@@ -644,7 +644,7 @@ jindo.m.MovableCoord = jindo.$Class({
 		};
 
 		// 튕기는 것땜에 움직이는 상황이 아니면
-		if (!isBounce) {
+		if (!isBounce && this._aDirFilter) {
 			/**
 				터치 영역을 놓았을 때 발생
 

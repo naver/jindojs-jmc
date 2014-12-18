@@ -530,7 +530,7 @@ jindo.m = (function() {
 			_initTouchEventName();
 			_attachEvent();
 
-			// 킷캣 하이라이트 생성시 필요한 style 생성
+			// make styleTag for Kitkat highlight Bug
 			var elStyleTag = jindo.$(this.KITKAT_HIGHLIGHT_ID);
 			if(!elStyleTag) {
 				elStyleTag = document.createElement('style');
@@ -1003,9 +1003,8 @@ jindo.m = (function() {
 				}
 			}
 			var bRet = false;
-			// 크롬일 경우, false처리 (why? 크롬은 글짜가 약간 틀어져 보임. 속도상도 css3d적용 전후와 크게 차이가 나지 않음)
-			// 크롬 25이상일 경우에는 글짜가 blur되는 버그가 수정됨.
-			// 또한 삼섬 SBrowser에서도 이러한 문제가 수정됨.
+			// chrome (less then 25) has a text blur bug.
+			// but samsung sbrowser fix it.
 			if(_htBrowserInfo.chrome && _htBrowserInfo.version < "25" && !_htBrowserInfo.bSBrowser) {
 				return bRet;
 			}
@@ -1020,9 +1019,8 @@ jindo.m = (function() {
 					s=s[0];
 				}
 				if(_htOsInfo.version >= "4.1.0") {
-					// 안드로이드 젤리빈 이상은 BlackList 기반으로 관리
-					// 갤럭시 카메라인경우, css3d제거
-					if(/EK-GN120|SM-G386F/.test(s)) {
+					// android 4.1+ blacklist
+					if(/EK-GN120|SM-G386F/.test(s)) {	// EK-GN120 : Galaxy Camera, SM-G386F : Galaxy Core LTE
 						bRet = false;
 					} else {
 						bRet = true;
@@ -1036,7 +1034,7 @@ jindo.m = (function() {
 
 					if(_htOsInfo.version >= "4.0.3" &&
 						/SHW-|SHV-|GT-|SCH-|SGH-|SPH-|LG-F160|LG-F100|LG-F180|LG-F200|EK-|IM-A|LG-F240|LG-F260/.test(s) &&
-						!/SHW-M420|SHW-M200|GT-S7562/.test(s)) {    // SHW-M420 : 갤럭시 넥서스 , SHW-M200 : 넥서스S , GT-S7562 : 갤럭시 S 듀오스
+						!/SHW-M420|SHW-M200|GT-S7562/.test(s)) {    // SHW-M420 : Galaxy Nexus , SHW-M200 : NexusS , GT-S7562 : Galaxy S duos
 						bRet = true;
 					}
 				}
@@ -1243,7 +1241,7 @@ jindo.m = (function() {
 //				if(!isLongRange && _htOsInfo.version >= "4.3"){
 //					bUse = true;
 //				}
-				// ios7 에서 스크롤 이후 플리킹 동작을 했을때 멈추는 현상 대응
+			// iOS7+ : transition not working with scroll event
 			} else if(_htOsInfo.ios && parseInt(_htOsInfo.version,10) >= 6) {
 				bUse = false;
 			}
