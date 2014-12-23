@@ -8,7 +8,7 @@
 	"homepage": "http://jindo.dev.naver.com/jindo_home/Mobile.html",
 	"repository": {
 		"type": "git",
-		"url": "http://gitlab.jindo.nhncorp.com/sculove/jindo-mobile-component.git"
+		"url": "https://github.com/naver/jindojs-jmc.git" 
 	},
 	"keywords": [
 		"jindo",
