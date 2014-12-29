@@ -37,7 +37,7 @@ bower install jindojs-jmc
  - http://jindo.nhncorp.com/docs/jindo-mobile/archive/latest/doc/internal/index.html
 
 - **m**: Basic name space of Jindo Mobile Component, as well as being a static object.
-- **m.XXXFlicking**: Component that shows multiple contents areas by various effects(XXX) left/right, up/down through user’s touch movements.
+- **m.*Flicking**: Component that shows multiple contents areas by various effects(XXX) left/right, up/down through user’s touch movements.
 - **m.Scroll**: Component that can be scrolled by touching inside the page’s fixed area
 - **m.IndexScroll**: Component that can touch inside the page’s fixed area and scroll, and also has an index display function and scroll bar.
 - **m.FloatingLayer**: Component where a layer is floating in a specific position on the screen, even if a scroll is activated.
