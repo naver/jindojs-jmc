@@ -5,7 +5,7 @@
 	"author": "NAVER corp",
 	"description": "Jindo Mobile Component",
 	"main": "dist/jindo-mobile-component.js",
-	"script" : {
+	"scripts" : {
 		"test" : "grunt test:*"
 	},
 	"homepage": "http://jindo.dev.naver.com/jindo_home/Mobile.html",
