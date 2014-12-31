@@ -27,7 +27,6 @@
 			"url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html"
 		}
 	],
-	"dependencies": {},
 	"devDependencies": {
 		"grunt": "0.4.5",
 		"grunt-contrib-qunit": "0.4.0",
