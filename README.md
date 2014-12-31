@@ -1,5 +1,6 @@
-**[JMC](http://jindo.dev.naver.com/docs/jindo-mobile/archive/latest/doc/external/index.html) - Jindo Mobile Component**
+**[JMC](http://jindo.dev.naver.com/docs/jindo-mobile/archive/latest/doc/external/index.html) - Jindo Mobile Component** 
 =========================================
+[![Build Status](https://travis-ci.org/naver/jindojs-jmc.svg?branch=master)](https://travis-ci.org/naver/jindojs-jmc)
 
 ## **What is JMC?**
 JMC is a framework that make easier to develop mobile web UI. JMC provide UI components like scroll, flicking, etc.. 
