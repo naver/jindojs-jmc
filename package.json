@@ -1,7 +1,7 @@
 {
 	"name": "jindo-mobile-component",
 	"title": "jindo-mobile-component",
-	"version": "1.17.1",
+	"version": "1.17.1-snapshot",
 	"author": "NAVER corp",
 	"description": "Jindo Mobile Component",
 	"main": "dist/jindo-mobile-component.js",
