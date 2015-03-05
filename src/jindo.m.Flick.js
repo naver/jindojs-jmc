@@ -13,6 +13,7 @@
 		@group Component
 		@invisible
 
+		@history 1.17.1 Bug bUseCircular이 true일 경우, nDefaultIndex값이 1 이상으로 지정하면 정상동작하지 않는 문제 수정
 		@history 1.15.0 Bug CircularFlicking 일 경우, beforeFlicking에서 stop 했을 시, 판이 멈추고 되돌아 가지 않는 문제 수정
 		@history 1.15.0 Bug 2판일 경우, 플리킹 오류 수정
 		@history 1.15.0 Bug 플리킹 초기시 view가 display:none일 경우 오류 수정
@@ -201,6 +202,7 @@ jindo.m.Flick = jindo.$Class({
 		n = typeof n === "undefined" ? this.getContentIndex() : n;
 		// this._refreshHightlightForChrome();
 		this._hasKitkatHighlightBug && this._htWElement["container"].addClass(jindo.m.KITKAT_HIGHLIGHT_CLASS);
+		// console.info(n);
 		this._moveTo(n, {
 			duration : 0,
 			fireEvent : bFireEvent,
@@ -775,7 +777,11 @@ jindo.m.Flick = jindo.$Class({
 			} else {
 				// 순환인 경우, index를 보정함
 				option.no = this._getRevisionNo(option.no);
-				this._updateFlickInfo(option.no, option.next ? this.getNextElement() : this.getPrevElement());
+				if(option.direct && option.moveCount > 1) {
+					this._updateFlickInfo(option.no, this._htWElement["aPanel"][option.no]);
+				} else {
+					this._updateFlickInfo(option.no, option.next ? this.getNextElement() : this.getPrevElement());
+				}
 			}
 	},
 
@@ -820,16 +826,15 @@ jindo.m.Flick = jindo.$Class({
 		if(typeof this._htEventHandler[name] == "undefined") {
 			return true;
 		}
-
 		var	ht = {
 				nContentsIndex : this.getContentIndex(),
 				bNext : we.next
-			},
-			nNextIndex = null;
+			};
 
 		if(/before/.test(name))	{
-			// 바로 여러패널을 이동할 경우
-			if(we.direct || (we.duration === 0 && we.moveCount > 1)) {
+			// 바로 여러패널을 이동할 경우, 또는 처음 이동하는 경우
+			// https://github.com/naver/jindojs-jmc/issues/2
+			if(we.direct || (we.duration === 0 && we.moveCount > 1) || we.next == null) {
 				ht.nContentsNextIndex = we.contentsNextIndex;
 			} else {
 				ht.nContentsNextIndex = we.next ? this.getNextIndex() : this.getPrevIndex();

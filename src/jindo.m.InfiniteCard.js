@@ -11,7 +11,6 @@
 	@extends jindo.m.UIComponent
 	@keyword infinite, 무한, 카드, card
 	@group Component
-	@update
 
     @history 1.16.0 Update bUseRecycle, nCardWidth 옵션 추가
     @history 1.16.0 Update update 이벤트 추가
@@ -1161,6 +1160,7 @@ jindo.m.InfiniteCard = jindo.$Class({
 			@param {boolean} bCached 캐싱 여부
 			@param {Function} stop 수행시 update가 호출되지 않는다.
 		**/
+
 		if (this.fireEvent("repaint", htParam)) {
 			// console.error("update", htParam.bUpdate);
 			htParam.bUpdate && this.update();
@@ -1392,6 +1392,7 @@ jindo.m.InfiniteCard = jindo.$Class({
 			@param {boolean} htOption.bForce 캐싱을 사용하지 않고 repaint 여부를 결정한다.
 			@param {boolean} htOption.bAdjustPosition 현재 보고 있는 컨텐츠에 맞게 스크롤의 위치 조정할지 여부를 결정한다. (기본값은 회전일 경우 true, 그렇지 않으면 false이다.)
 			@param {boolean} htOption.bSync repaint를 동기적으로 동작할지 여부를 결정한다. (단, sSizePrefix가 지정된 경우에만 사용가능. 기본값은 회전일 경우, true, 그렇지 않을 경우 false이다.)
+			@param {boolean} htOption.bUpdate repaint 이후, DOM의 내용과 배치를 변경할지를 결정한다. (기본값은 true)
 		@method repaint
 	**/
 	repaint: function(vParam) {

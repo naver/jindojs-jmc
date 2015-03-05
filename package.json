@@ -1,7 +1,7 @@
 {
 	"name": "jindo-mobile-component",
 	"title": "jindo-mobile-component",
-	"version": "1.17.0-snapshot",
+	"version": "1.17.1",
 	"author": "NAVER corp",
 	"description": "Jindo Mobile Component",
 	"main": "dist/jindo-mobile-component.js",
@@ -11,7 +11,7 @@
 	"homepage": "http://jindo.dev.naver.com/jindo_home/Mobile.html",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/naver/jindojs-jmc.git" 
+		"url": "https://github.com/naver/jindojs-jmc.git"
 	},
 	"keywords": [
 		"jindo",

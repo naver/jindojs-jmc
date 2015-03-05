@@ -13,15 +13,15 @@
     @uses jindo.m.Cover
     @keyword flicking, 플리킹
     @group Component
-    
-    @history 1.13.0 Support Firefox 브라우저 지원	
+
+    @history 1.13.0 Support Firefox 브라우저 지원
     @history 1.13.0 Update setTotalContents 추가 (동적으로 전체 컨텐츠값을 변경할수 있다)
 		@history 1.12.0 Bug moveTo호출시 duration이 0 인 경우 플리킹이 제어가 깨지는 문제 수정
-		@history 1.11.0 Bug 플리킹의 베이스 엘리먼트에 사이즈를 지정하지 않았을 경우, 화면에 나타나지 않는 문제 수정	
+		@history 1.11.0 Bug 플리킹의 베이스 엘리먼트에 사이즈를 지정하지 않았을 경우, 화면에 나타나지 않는 문제 수정
 		@history 1.10.0 Bug bUseTimingFunction을 true로 지정해도 false로 동작했던 것 수정
     @history 1.10.0 New beforeTouchXXXXX 계열 이벤트 추가
 		@history 1.9.0 Update jindo.m.Morph 기반으로 변경
-		@history 1.8.0 Release 최초 릴리즈  
+		@history 1.8.0 Release 최초 릴리즈
 **/
 jindo.m.CoverFlicking = jindo.$Class({
 	/* @lends jindo.m.CoverFlicking.prototype */
@@ -100,7 +100,7 @@ jindo.m.CoverFlicking = jindo.$Class({
 		// if(this._oAnimation.isPlaying()) {
 		// 	return;
 		// }
-		// 
+		//
 		var welTarget = this.getElement(),
 			welZoom = bNext ? this.getNextElement() : this.getPrevElement();
 		welZoom = welTarget.isEqual(welZoom) ? null : welZoom;
@@ -120,7 +120,7 @@ jindo.m.CoverFlicking = jindo.$Class({
         if(this.isPlaying() || isNaN(nIndex) || nIndex < 0 || nIndex > nMax) {
             return false;
         }
-			
+
 		if(this._bUseCircular) {
 			if(nCurrentIndex === nMax && nIndex === 0) {
 				bNext = true;
@@ -133,7 +133,7 @@ jindo.m.CoverFlicking = jindo.$Class({
 	},
 
 	_panelEndBeforeCall : function(we) {
-		
+
 		// cover는 비순환일 경우, duration이 0 이면, 최종 타겟과 zoom을 지정하여 변경해줘야한다.
 		if(!we.useCircular && we.duration == 0 && we.moveCount > 1) {
 			this._updateFlickInfo(we.no, this._htWElement["aPanel"][we.no]);
@@ -150,7 +150,7 @@ jindo.m.CoverFlicking = jindo.$Class({
 			var aMorphData = this._oAnimation._oMorph._aQueue[nPtr+1];
 			if(aMorphData.length > 3) {
 				ht.target && (aMorphData[0] = ht.target);
-				ht.zoom && (aMorphData[2] = ht.zoom);	
+				ht.zoom && (aMorphData[2] = ht.zoom);
 			}
 		}
 	},

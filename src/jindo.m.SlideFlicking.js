@@ -111,7 +111,7 @@ jindo.m.SlideFlicking = jindo.$Class({
 			htCss["float"] = "left";
 		}
 		this._htWElement["container"].css(htContCss);
-		jindo.$A(this._htWElement["aPanel"]).forEach(function(v,i,a){
+		jindo.$A(this._htWElement["aPanel"]).forEach(function(v,i){
       if(this._bUseCircular) {
 					nPos = (((i+1)%(this._nDefaultPanel))*100) + "%";
           if(this._hasOffsetBug()) {
@@ -133,13 +133,13 @@ jindo.m.SlideFlicking = jindo.$Class({
 		if(!this._bUseCircular) {
 			this._htWElement["container"].css(nSizeKey, -this._aPos[this._aPos.length-1] + "px");
 			if(this.option("bFitContentSize")) {
-				jindo.$A(this._htWElement["aPanel"]).forEach(function(v,i,a){
+				jindo.$A(this._htWElement["aPanel"]).forEach(function(v){
 		   		v.css(nSizeKey, nViewSize + "px");
 				});
 			} else {
 				var nLastPos = this._aPos[this._aPos.length-1] + nViewSize;
 				if(nLastPos < 0) {
-	    		jindo.$A(this._aPos).forEach(function(v,i,a) {
+	    		jindo.$A(this._aPos).forEach(function(v,i) {
 	    			if(v < nLastPos) {
 	    				this._aPos.length =i;
 	    				jindo.$A.Break();
@@ -197,7 +197,7 @@ jindo.m.SlideFlicking = jindo.$Class({
 	/**
 	 * 패널 이동이 완료되었을때 호출
 	 */
-  _panelEndAfterCall : function(option) {
+  _panelEndAfterCall : function() {
   	if(this._bUseCircular) {
   		this._restorePanel();
   	}
@@ -210,7 +210,7 @@ jindo.m.SlideFlicking = jindo.$Class({
     this._oAnimation.move(this._nX, this._nY, 0, this._makeOption({ next : we.bNext}) );
 	},
 
-	_onEndAniImpl : function(we) {
+	_onEndAniImpl : function() {
 		jindo.m.Flick.prototype._onEndAniImpl.apply(this);
   	if(!this._bUseCircular) {
   		// 순환일 경우, 버그 패치

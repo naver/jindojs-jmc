@@ -10,6 +10,7 @@
 	@class jindo.m
 	@group Component
 
+	@history 1.17.1 Bug jindo 2.10.0 이상을 사용하고, JMC 소스를 압축하였을 시, 스크롤이나 플리킹의 위치가 잘못 동작하는 문제 수정
 	@history 1.15.0 Bug 샤오미 폰 일경우 스크립트 오류 발생건 수정 (userAgent의 형식이 달라서 발생함)
 	@history 1.15.0 Bug useTimingFunction android 단말기 기본값 변경 (android = false)
 	@history 1.15.0 Bug 다른 네임스페이스 사용시, maxium stack overflow 발생 문제 수정
@@ -1418,7 +1419,13 @@ jindo.m = (function() {
 
 		// jindo 2.10.0 이후에 offset 버그가 해결됨. 그 여부를 확인하는 함수
 		_hasJindoOffsetBug : function() {
-			return !(jindo.$Element.prototype.offset_get && jindo.$Element.prototype.offset_get.toString().indexOf("fpSafari") == -1);
+			// return !(jindo.$Element.prototype.offset_get && jindo.$Element.prototype.offset_get.toString().indexOf("fpSafari") == -1);
+			var version = jindo.$Jindo.VERSION || jindo.$Jindo().version || jindo.VERSION;
+			if(version.replace(/\D/gi,"") >= "2100") {
+				return false;
+			} else {
+				return true;
+			}
 		},
 
 		// kitkat 에서 플리킹시 하이라이트 잔상이 생기는 문제

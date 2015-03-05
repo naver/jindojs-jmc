@@ -21,10 +21,10 @@
     @extends jindo.m.Component
     @keyword scrollend
     @group Component
-    @update
 
+    @history 1.17.1 Bug 크롬 브라우저에서 회전시,scrollEnd 이벤트 발생하는 것 문제 수정
     @history 1.16.0 Update Scroll 이벤트가 매번 발생해 ScrollEnd 컴포넌트 수정
-    @history 1.11.0 Bug iOS 에 scrollEnd 이벤트가 두번 발생되는 버그 수정  
+    @history 1.11.0 Bug iOS 에 scrollEnd 이벤트가 두번 발생되는 버그 수정
     @history 1.3.0 Bug touchStart를 다중 발생할 경우, scrollEnd가 발생되지 않는 버그 수정
     @history 1.2.0 Support Chrome for Android 지원<br />갤럭시 S2 4.0.3 업데이트 지원
     @history 1.1.0 Support Android 3.0/4.0 지원<br />jindo 2.0.0 mobile 버전 지원
@@ -47,43 +47,46 @@ jindo.m.ScrollEnd = jindo.$Class({
         변수 초기화
     **/
     _initVar : function() {
-
-        this._bIOS = jindo.m.getDeviceInfo().iphone || jindo.m.getDeviceInfo().ipad;
+        this._bIOS = jindo.m.getOsInfo().ios;
         this._nType = this._getDetectType();
-        if(this._nType === 2){
-             this._nScrollTimer = -1;
-        }
         this._isTouched = false;
         this._isMoved = false;
         this._nObserver = null;
         this._nScrollEndTimer = null;
         this._nPreLeft = null;
         this._nPreTop = null;
-        this._bMoveIOS = 0;
+        this._bMoveIOS = false;
+        this._bFireOrientationchange = false;
         // this._isTop = false;
     },
 
     /**
         scrollend를 감지하는 방법 타입을 리턴한다.
-        Type 0: iOS, 1: Android (2.x), 2: Android (3.x이상 ),win8
+        Type 0: iOS, 1: Android (2.x), 2: Android (3.x이상 ),win8, 3 : chrome
         @date 2012-11-06
         @author oyang2
         @return {String} type
      */
     _getDetectType : function(){
         var nRet = 0;
+        var _htOsInfo = jindo.m.getOsInfo();
+        var _htBrowserInfo = jindo.m.getBrowserInfo();
 
-        if(jindo.m.getDeviceInfo().android){
-            if(parseInt(jindo.m.getDeviceInfo().version,10) >= 3) {
-                nRet = 2;
+        if(_htOsInfo.android){
+            if(!_htBrowserInfo.bSBrowser && _htBrowserInfo.chrome) {
+                nRet = 3;
             } else {
-                nRet = 1;
+                if(parseInt(_htOsInfo.version,10) >= 3) {
+                    nRet = 2;
+                } else {
+                    nRet = 1;
+                }
             }
         }else if(jindo.m.getDeviceInfo().win){
-             if(parseInt(jindo.m.getDeviceInfo().version,10) >= 8) {
+             if(parseInt(_htOsInfo.version,10) >= 8) {
                  nRet = 2;
              }
-        }else if(this._bIOS && parseInt(jindo.m.getDeviceInfo().version,10) >= 8) {
+        }else if(this._bIOS && parseInt(_htOsInfo.version,10) >= 8) {
             nRet = 2;
         }
 
@@ -109,7 +112,7 @@ jindo.m.ScrollEnd = jindo.$Class({
         };
 
         // ios 에서 end 이벤트가 두번 발생되는 것 대응. - 20131029 by mania
-        if(this._nType == 0 && this._bIOS && parseInt(jindo.m.getDeviceInfo().version,10) <= 7) {
+        if(this._nType == 0 && this._bIOS && parseInt(jindo.m.getOsInfo().version,10) <= 7) {
             this._htEvent["event_touchmove"] = {
                 ref : jindo.$Fn(this._onMoveForIOS, this).attach(this._htElement["body"], "touchmove"),
                 el : this._htElement["body"]
@@ -129,9 +132,21 @@ jindo.m.ScrollEnd = jindo.$Class({
                 el : this._htElement["body"]
             };
         }
+        // when 'orientationchange' event fired, window fires 'scroll' event on Chrome Browser.
+        if(this._nType = 3) {
+            this._htEvent["event_orientationchange"] = {
+                ref : jindo.$Fn(this._onRotateForChrome, this).attach(window, "orientationchange"),
+                el : window
+            };
+        }
+    },
+    _onRotateForChrome : function() {
+        if(document.body.offsetHeight > window.innerHeight) {
+        this._bFireOrientationchange = true;
+    }
     },
     _onMoveForIOS : function(){
-        this._bMoveIOS = 0;  
+        this._bMoveIOS = false;
     },
     /**
         이벤트 비활성화
@@ -181,20 +196,23 @@ jindo.m.ScrollEnd = jindo.$Class({
     **/
     _onScroll : function(we) {
         switch(this._nType) {
-            case 0 : 
-                if(this._bIOS && this._bMoveIOS > 0){
+            case 0 :
+                if(this._bIOS && this._bMoveIOS){
                     return false;
                 }
                 this._fireEventScrollEnd();
-                this._bMoveIOS++;
+                this._bMoveIOS = true;
                 break;
             case 1 : this._startObserver(); break;
-            case 2 : var self = this;
-                  clearTimeout(this._nScrollTimer);
-                  this._nScrollTimer = setTimeout(function() {
-                      self._fireEventScrollEnd();
-                  },350);
+            case 2 : this._fireEventScrollEndForAndroid();
                   break;
+            case 3 :
+                if(this._bFireOrientationchange) {
+                    this._bFireOrientationchange = false;
+                } else {
+                    this._fireEventScrollEnd();
+                }
+                break;
         }
     },
 
@@ -251,14 +269,14 @@ jindo.m.ScrollEnd = jindo.$Class({
     **/
     _fireEventScrollEnd : function() {
         // console.log("scroll end");
-        
+
         /**
-            스크롤이 종료된 후 발생 
+            스크롤이 종료된 후 발생
 
             @event scrollEnd
             @param {String} sType 커스텀 이벤트명
-            @param {Number} nTop page Y 축 offset 값  
-            @param {Number} nLeft page X 축 offset 값  
+            @param {Number} nTop page Y 축 offset 값
+            @param {Number} nLeft page X 축 offset 값
         **/
         this.fireEvent("scrollEnd", {
             nTop : window.pageYOffset,

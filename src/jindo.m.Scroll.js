@@ -12,8 +12,8 @@
 	@uses jindo.m.Touch, jindo.m.Effect
 	@keyword scroll, 스크롤
 	@group Component
-	@Update
 
+    @history 1.17.1 Bug bUseDiagonalTouch 옵션을 false 로 설정했을때, 대각선 스크롤 시 system scroll 과 함께 스크롤 되는 문제 수정
     @history 1.16.0 Bug scrollTo 함수 호출 시 beforePosition / position 이벤트가 중복 발생 하던것을 한번만 발생하도록 수정
     @history 1.16.0 Bug scrollTo 함수 호출시 현재 위치와 동일한 위치로 정의시 beforePosition/position 이벤트가 발생하지 않도록 변경
     @history 1.16.0 Bug 갤럭시S3 에서 scrollbar 가 사라지지 않는 문제 수정
@@ -1217,6 +1217,12 @@ jindo.m.Scroll = jindo.$Class({
 		 * 모든 a link에 bind된, onclick 이벤트를 제거한다. => eventPoints으로 해결
 		 */
 		this.isClickBug && this._htWElement["scroller"].css("pointerEvents","none");
+
+		/*
+            todo : scale 값을 이용한 줌 인/아웃 기능 추가
+            maximum-scale=([\d.]*)
+            initial-scale=(\d?.\d?)scalable=(\w+)
+        */
 		/**
 			touchMove 내부 스크롤로직이 실행되기 전
 
@@ -1342,7 +1348,8 @@ jindo.m.Scroll = jindo.$Class({
 			this._clearTouchEnd();
 			// addConsole("end : " + we.sMoveType);
 			// 1) 스크롤인 경우
-			if (we.sMoveType === jindo.m.MOVETYPE[0] || we.sMoveType === jindo.m.MOVETYPE[1] || we.sMoveType === jindo.m.MOVETYPE[2]) {
+//			if (we.sMoveType === jindo.m.MOVETYPE[0] || we.sMoveType === jindo.m.MOVETYPE[1] || we.sMoveType === jindo.m.MOVETYPE[2]) {
+			if (we.sMoveType === jindo.m.MOVETYPE[0] || we.sMoveType === jindo.m.MOVETYPE[1] || (this.option("bUseDiagonalTouch") && we.sMoveType === jindo.m.MOVETYPE[2])) {
 				this._endForScroll(we);
 				if(this.nVersion < 4.1) {
 					we.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);

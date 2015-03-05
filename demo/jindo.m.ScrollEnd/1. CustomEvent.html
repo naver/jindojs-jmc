@@ -78,6 +78,7 @@ window.addConsole = function(s){
 /*@code title="JavaScript"*/
 var oScrollEnd = new jindo.m.ScrollEnd()
 	.attach("scrollEnd", function(we) {
+		console.info("scrollEnd");
 		addConsole(we.sType + " → " + "스크롤 완료시 호출됨 (nTop : " + we.nTop + ", nLeft : " + we.nLeft + ")");
 	});
 /*code@*/

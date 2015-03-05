@@ -12,7 +12,6 @@
  @uses jindo.m.Slide
  @keyword flicking, 플리킹
  @group Component
- @update
 
  @history 1.15.0 Update contents 넓이 옵션 적용
  @history 1.13.0 Support Firefox 브라우저 지원

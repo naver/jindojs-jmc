@@ -12,9 +12,8 @@
 	@uses jindo.m.Validation {0,}
 	@keyword textinput
 	@group Component
-	@update
 
-	@history 1.15.0 Update interval 을 onInput 이벤트로 적용 개선 
+	@history 1.15.0 Update interval 을 onInput 이벤트로 적용 개선
 	@history 1.7.0 Bug 마크업 구조에 따라, 삭제 버튼 선택시 스크립트 오류발생하는 문제 해결
 	@history 1.2.0 Support Chrome for Android 지원<br />갤럭시 S2 4.0.3 업데이트 지원
 	@history 1.1.0 Support Android 3.0/4.0 지원<br />jindo 2.0.0 mobile 버전 지원
@@ -130,7 +129,7 @@ jindo.m.TextInput = jindo.$Class({
 		this._htEvent["focus"].attach(htUnit.welInput, "focus");
 		this._htEvent["blur"].attach(htUnit.welInput, "blur");
 		this._htEvent["input"].attach(htUnit.welInput, "input");
-        
+
 		if(htUnit.welDel) {
 			this._htEvent["clear"].attach(htUnit.welDel, this._sClickEvent);
 		}
@@ -324,10 +323,10 @@ jindo.m.TextInput = jindo.$Class({
 		// } else {
 			// self._processFocus(nIdx);
 		// }
-		
+
 		this._processFocus(nIdx);
 	},
-	
+
 	/**
 		Focus 이벤트 발생시 처리하는 모듈
 		@param {Number} nIdx 감시할 Element의 idx
@@ -339,7 +338,7 @@ jindo.m.TextInput = jindo.$Class({
 		if(!welTextInputUnit.hasClass(sCssName)) {
 			welTextInputUnit.addClass(sCssName);
 		}
-		
+
 		// focus 사용자 이벤트 발생
 		/**
 			input에 포커스시 발생
@@ -487,7 +486,7 @@ jindo.m.TextInput = jindo.$Class({
 		@param {jindo.$Element} welInput 모니터링할 input 객체
 	**/
 	_onChange : function(welInput){
-	    welInput = jindo.$Element(welInput.element);   // onInput 이벤트로 변경하면서 하위호환 유지 
+	    welInput = jindo.$Element(welInput.element);   // onInput 이벤트로 변경하면서 하위호환 유지
 		var sValue = welInput.$value().value;
 		if(this._sPreValue != sValue) {
 			//console.log("값이 변경되었음...");

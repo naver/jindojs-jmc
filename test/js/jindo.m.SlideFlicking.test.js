@@ -48,6 +48,12 @@ module("jindo.m.SlideFlicking", {
                 "bUseTimingFunction" : true,
                 "nTotalContents" : 2
             });
+            /** 객체 생성 */
+            oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+                "bUseCircular" : true,
+                "nTotalContents" : 7,
+                "nDefaultIndex" : 2
+            });
         },
         teardown : function() {
         	/** 객체 소멸 */
@@ -473,5 +479,64 @@ test('플리킹 초기시 view가 display:none일 경우 오류 수정', functio
     },500);
 });
 
+// https://github.com/naver/jindojs-jmc/issues/1
+test('when "bUseCircluar" option is "true" and "nDefaultIndex" is over 1, a position of panel elements is wrong' , function(){
+    var nTotalContents= 7;
+    equal(oFlicking6.getElement().html(), "2 index", "2 is ok");
+    oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+        "bUseCircular" : true,
+        "nTotalContents" : nTotalContents,
+        "nDefaultIndex" : 0
+    });
+    equal(oFlicking6.getElement().html(), "0 index", "0 is ok");
+    oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+        "bUseCircular" : true,
+        "nTotalContents" : nTotalContents,
+        "nDefaultIndex" : 1
+    });
+    equal(oFlicking6.getElement().html(), "1 index", "1 is ok");
+    oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+        "bUseCircular" : true,
+        "nTotalContents" : nTotalContents,
+        "nDefaultIndex" : 3
+    });
+    equal(oFlicking6.getElement().html(), "0 index", "3 is ok");
+    oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+        "bUseCircular" : true,
+        "nTotalContents" : nTotalContents,
+        "nDefaultIndex" : 4
+    });
+    equal(oFlicking6.getElement().html(), "1 index", "4 is ok");
+    oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+        "bUseCircular" : true,
+        "nTotalContents" : nTotalContents,
+        "nDefaultIndex" : 5
+    });
+    equal(oFlicking6.getElement().html(), "2 index", "5 is ok");
+    oFlicking6 = new jindo.m.SlideFlicking('mflick6', {
+        "bUseCircular" : true,
+        "nTotalContents" : nTotalContents,
+        "nDefaultIndex" : 6
+    });
+});
 
+// https://github.com/naver/jindojs-jmc/issues/2
+test("jindo.m.Flick returns wrong index at 'beforeFlicking' when 'bActivatedOnLoad' option of jindo.m.Flick was 'false'" , function(){
+    var oFlicking7 = new jindo.m.SlideFlicking('mflick7', {
+        "bUseCircular" : true,
+        "nTotalContents" : 7,
+        "bActivateOnload" : false
+    });
+    oFlicking7.attach({
+        "beforeFlicking" :  function(e) {
+            equal(e.nContentsNextIndex, 0, "초기 activated 될때 nContentsNextIndex값은 0");
+            equal(e.bNext, null, "초기 activated 될때 bNext값은 null");
+            setTimeout(function() {
+                start();
+            },100);
+        }
+    });
 
+    oFlicking7.activate();
+    stop();
+});

@@ -15,6 +15,8 @@
     @group Component
     @invisible
 
+    @history 1.17.1 update iOS클릭버그로 인한 성능 이슈 해결.
+    @history 1.17.1 Bug 멀티터치시 대응. iOS에서 멀티탭 했을 경우에 스크립트 오류가 발생
     @history 1.15.0 bug iOS 7.0이상시 클릭 안되는 버그 수정
     @history 1.14.0 update rotate이벤트 stop시 resize가 호출되지 않음
     @history 1.10.0 bug bUseTimingFunction을 true로 지정해도 false로 동작했던 것 수정
@@ -501,12 +503,6 @@ jindo.m.SwipeCommon = jindo.$Class({
     // this._clearTouchEnd();
     // console.log("touchmove (" + we.nX + "," + we.nY + "), Vector (" + we.nVectorX + "," + we.nVectorY + ") sMoveType : " + we.sMoveType, we);
     this._clearOffsetBug();
-    /**
-     *  iOS를 위한 anchor 처리
-     * ios일 경우, touchstart시 선택된 영역에 anchor가 있을 경우, touchend 시점에 touchstart영역에 click이 타는 문제
-     * 모든 a link에 bind된, onclick 이벤트를 제거한다. => eventPoints으로 해결
-     */
-    this._bClickBug && this._htWElement["container"].css("pointerEvents","none");
 
     /**
         beforeTouchMove touchMove가 시작되기 전에 발생 (jindo.m.Touch의 touchMove 속성과 동일)
@@ -517,6 +513,12 @@ jindo.m.SwipeCommon = jindo.$Class({
     if(this.fireEvent("beforeTouchMove",we)) {
       var bPrevent = this._preventSystemEvent(we);
       if(bPrevent && !this.isPlaying()) {
+        /**
+         *  iOS를 위한 anchor 처리
+         * ios일 경우, touchstart시 선택된 영역에 anchor가 있을 경우, touchend 시점에 touchstart영역에 click이 타는 문제
+         * 모든 a link에 bind된, onclick 이벤트를 제거한다. => eventPoints으로 해결
+         */
+        this._bClickBug && this._htWElement["container"].css("pointerEvents","none");
         this._moveImpl(we);
       }
       // jindo.m.Flicking의 하위 호환성을 유지하기 위해
@@ -558,8 +560,8 @@ jindo.m.SwipeCommon = jindo.$Class({
         @param {Function} stop 수행시 touchEnd 이벤트가 발생하지 않는다.
     **/
     if (this.fireEvent("beforeTouchEnd",we)) {
-      // 1) 스크롤이 아닌 경우
-      if (we.sMoveType === jindo.m.MOVETYPE[3] || we.sMoveType === jindo.m.MOVETYPE[4] || we.sMoveType === jindo.m.MOVETYPE[5]) {
+      // 1) tap인 경우
+      if ( we.sMoveType === jindo.m.MOVETYPE[3] || we.sMoveType === jindo.m.MOVETYPE[4] || we.sMoveType === jindo.m.MOVETYPE[5]) {
           if(this._isStop) {
             we.oEvent.stop(jindo.$Event.CANCEL_ALL);
           } else {
@@ -567,12 +569,15 @@ jindo.m.SwipeCommon = jindo.$Class({
             // tap인 경우 처리
             this._tapImpl && this._tapImpl();
           }
-      } else {   // 2) 스크롤인 경우
+      } else if(we.sMoveType === jindo.m.MOVETYPE[0] || we.sMoveType === jindo.m.MOVETYPE[1] || we.sMoveType === jindo.m.MOVETYPE[2]) {// 2) 스크롤인 경우
           // 클릭 이후 페이지 뒤로 돌아왔을 경우, 문제가됨. 동작중인 상태를 초기화함
           this._endImpl(we);
           // if(this._htClickBug.hasBug) {
           //   we.oEvent.stop(jindo.$Event.CANCEL_DEFAULT);
           // }
+      } else {   //
+          // console.log(we, "restore");
+          this._restore && this._restore();
       }
       /**
           touchEnd touchEnd가 시작되었을때 발생 (jindo.m.Touch의 touchEnd 속성과 동일)

@@ -11,7 +11,6 @@
     @uses jindo.m.Effect
     @keyword 애니메이션, animation, transition
     @group Component
-    @update
 
     @history 1.15.0 Update transform 스타일에서 matrix, matrix3d 속성에 대해서도 애니메이션이 가능하도록 개선
     @history 1.15.0 Bug 시작값과 종료값이 동일 할 때도 애니메이션이 진행되는 문제 수정

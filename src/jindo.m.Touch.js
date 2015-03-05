@@ -13,7 +13,8 @@
  @keyword touch
  @group Component
 
- @history 1.17.0-master Bug 멀티터치시 대응. 멀티 터치시 touchstart, touchend 최종 한번만 나오도록 변경
+ @history 1.17.1 Bug 멀티터치시 대응. iOS에서 멀티탭 했을 경우에 스크립트 오류가 발생
+ @history 1.17.0 Bug 멀티터치시 대응. 멀티 터치시 touchstart, touchend 최종 한번만 나오도록 변경
  @history 1.16.0 Bug 대각선 방항성에 대한 체크 부분 기존과 같이 변경
  @history 1.15.0 Bug touchMove 이벤트가 사용자가 정의한 방향일때 발생되던것을 매번 발생될 수 있도록 변경
  @history 1.12.0 Bug moveThreshold 적용시 격자 형태로 발생되던 버그 수정
@@ -180,38 +181,38 @@ jindo.m.Touch = jindo.$Class({
     },
 
     // 시스템 이벤트를 막음
-    _preventSystemEvent : function(we, htParam) {
-        // we.stop();
-        var nMoveType = this.nMoveType;
+    // _preventSystemEvent : function(we, htParam) {
+    //     // we.stop();
+    //     var nMoveType = this.nMoveType;
 
-        switch(nMoveType) {
-            case 0 :
-                // 수평이동시
-                if (this.option("bHorizental") || this.option("bUseAutoDirection")) {
+    //     switch(nMoveType) {
+    //         case 0 :
+    //             // 수평이동시
+    //             if (this.option("bHorizental") || this.option("bUseAutoDirection")) {
 
-                    // 수평스크롤인 경우 시스템 스크롤 막고, 컴포넌트 기능 수행
-                    // we.stop();
-                }
-                // we.stop(jindo.$Event.CANCEL_DEFAULT);
-                break;
-            case 1 :
-                //수직이동시
-                if (this.option("bVertical") || this.option("bUseAutoDirection")) {
-                    // we.stop();
-                    // return false;
-                }
-                break;
-            case 2 :
-                if (this.option("bUseAutoDirection") || this.option("bVertical") || this.option("bHorizental")) {
-                    // we.stop();
-                }
-                break;
-            default :
-                // we.stop();
-                break;
-        }
-        return true;
-    },
+    //                 // 수평스크롤인 경우 시스템 스크롤 막고, 컴포넌트 기능 수행
+    //                 // we.stop();
+    //             }
+    //             // we.stop(jindo.$Event.CANCEL_DEFAULT);
+    //             break;
+    //         case 1 :
+    //             //수직이동시
+    //             if (this.option("bVertical") || this.option("bUseAutoDirection")) {
+    //                 // we.stop();
+    //                 // return false;
+    //             }
+    //             break;
+    //         case 2 :
+    //             if (this.option("bUseAutoDirection") || this.option("bVertical") || this.option("bHorizental")) {
+    //                 // we.stop();
+    //             }
+    //             break;
+    //         default :
+    //             // we.stop();
+    //             break;
+    //     }
+    //     return true;
+    // },
 
     /**
      jindo.m.Touch 인스턴스 변수를 초기화한다.
@@ -251,6 +252,7 @@ jindo.m.Touch = jindo.$Class({
         this._nVSlope = 0;
         this._nHSlope = 0;
         this.bSetSlope = false;
+        this._nTouchEndTimer = null;
         // this._supportMulti = !(jindo.m.getOsInfo().android && (parseInt(jindo.m.getOsInfo().version,10) < 4));
     },
 
@@ -345,8 +347,8 @@ jindo.m.Touch = jindo.$Class({
      @param {$Event}  jindo.$Event
      **/
     _onStart : function(oEvent) {
-        // console.debug("touchstart", this.nStart);
         var htInfo = this._getTouchInfo(oEvent);
+        // console.debug("touchstart", htInfo);
         // console.log(htInfo,  oEvent.$value().touches);
         this.nStart = htInfo.length;
 
@@ -522,11 +524,17 @@ jindo.m.Touch = jindo.$Class({
      **/
     _onEnd : function(oEvent) {
         var htInfo = this._getTouchInfo(oEvent);
+        // console.log("touchend", this.nMoveType, htInfo);
         this.nStart-=htInfo.length;
+        var self = this;
         if (this.nStart > 0) {
+            // 멀티 터치에 대한 workaround
+            clearTimeout(this._nTouchEndTimer);
+            this._nTouchEndTimer = setTimeout(function() {
+                self._onEnd(oEvent);
+            },500);
             return;
         }
-        var self = this;
         this._deleteLongTapTimer();
 
         //touchMove이벤트가 발생하지 않고 현재 롱탭이 아니라면 tap으로 판단한다.
@@ -673,7 +681,16 @@ jindo.m.Touch = jindo.$Class({
      **/
     _getCustomEventParam : function(htTouchInfo, bTouchEnd, we) {
         // console.log("------- > " , htTouchInfo[0].nTime - this._htMoveInfo.nStartTime);
-        var htMoveInfoPos = this._htMoveInfo.aPos[(this._htMoveInfo.aPos.length > 0 && !bTouchEnd ? this._htMoveInfo.aPos.length - 1 : 0)];
+        var htMoveInfoPos;
+        if(this._htMoveInfo.aPos.length > 0) {
+            htMoveInfoPos = this._htMoveInfo.aPos[(this._htMoveInfo.aPos.length > 0 && !bTouchEnd ? this._htMoveInfo.aPos.length - 1 : 0)];
+        } else {
+            htMoveInfoPos = {
+                nX : this._htMoveInfo.nBeforeX,
+                nY : this._htMoveInfo.nBeforeY,
+                nTime : this._htMoveInfo.nBeforeTime
+            };
+        }
         var sMoveType = jindo.m.Touch.MOVETYPE[this.nMoveType],
         sStartMoveType = jindo.m.Touch.MOVETYPE[this._nStartMoveType],
         nDuration = htTouchInfo[0].nTime - this._htMoveInfo.nStartTime,
@@ -737,16 +754,16 @@ jindo.m.Touch = jindo.$Class({
             //scroll 이벤트만 계산 한다
             if (this.nMoveType == 0 || this.nMoveType == 1 || this.nMoveType == 2) {
                 // console.log(nDuration);
-                if (nDuration <= this.option('nMomentumDuration')) {
-                    // momentum 만들기
-                // } else {
-                    // if (this._htMoveInfo.aPos.length > 1) {
-                        // // this._htMoveInfo.aPos[this._htMoveInfo.aPos.length-1]
-                        // // nDuration = htTouchInfo[0].nTime - this._htMoveInfo.nStartTime,
-                    // }
+                // if (nDuration <= this.option('nMomentumDuration')) {
+                //     // momentum 만들기
+                // // } else {
+                //     // if (this._htMoveInfo.aPos.length > 1) {
+                //         // // this._htMoveInfo.aPos[this._htMoveInfo.aPos.length-1]
+                //         // // nDuration = htTouchInfo[0].nTime - this._htMoveInfo.nStartTime,
+                //     // }
 
-                    // this._htMoveInfo.aPos.this._htMoveInfo.aPos.length
-                }
+                //     // this._htMoveInfo.aPos.this._htMoveInfo.aPos.length
+                // }
                 if (nDuration <= this.option('nMomentumDuration')) {
                     nSpeedX = Math.abs(nDisX) / nDuration;
                     nMomentumX = (nSpeedX * nSpeedX) / 2;

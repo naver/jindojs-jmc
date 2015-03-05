@@ -15,6 +15,8 @@
     @keyword floating, layer, fixed, 플로팅, 레이어, 고정
     @group Component
 
+    @history 1.17.1 Bug 컴포넌트가 deactivate될 때, 'View' 엘리먼트가 제거 되는 문제 수정.
+    @history 1.17.1 Bug 예외처리 추가
     @history 1.14.0 Update 고정 class random 값으로 처리
     @history 1.8.0 Scroll 컴포넌트와 z-index 충돌로 Scroll component z-index 값(2000) 보다 상향 조정(2050)
     @history 1.6.0 Bug iOS에서 정상동작하지 않는 오류 수정
@@ -106,6 +108,7 @@ jindo.m.FloatingLayer = jindo.$Class({
         this.option(htUserOption || {});
         this._initVar();
         this._setWrapperElement(el);
+        this._initComponent();
         if(this.option("bActivateOnload")) {
             this.activate();
         }
@@ -192,7 +195,7 @@ jindo.m.FloatingLayer = jindo.$Class({
         welView.css({
             width : sWidth,
             height : sHeight,
-            zIndex : 2050       // Scroll 컴포넌트의 z-index 보다 높게 처리 
+            zIndex : 2050       // Scroll 컴포넌트의 z-index 보다 높게 처리
         });
         if (!bVisible) {
             this._htWElement["element"].hide();
@@ -208,6 +211,10 @@ jindo.m.FloatingLayer = jindo.$Class({
 
     **/
     resize : function(nWidth, nHeight) {
+        if(!this.isActivating()) {
+            console.warn("you need to activate this component.");
+            return;
+        }
         this._htWElement["viewElement"].css({
             width : nWidth + "px",
             height : nHeight + "px"
@@ -220,6 +227,10 @@ jindo.m.FloatingLayer = jindo.$Class({
         @method show
     **/
     show : function() {
+        if(!this.isActivating()) {
+            console.warn("you need to activate this component.");
+            return;
+        }
         /**
             레이어가 보여기지 전에 발생
 
@@ -252,6 +263,10 @@ jindo.m.FloatingLayer = jindo.$Class({
         @method hide
     **/
     hide : function() {
+        if(!this.isActivating()) {
+            console.warn("you need to activate this component.");
+            return;
+        }
         /**
             레이어가 사라지기 전에 발생
 
@@ -440,7 +455,11 @@ jindo.m.FloatingLayer = jindo.$Class({
         activate 실행시 호출됨
     **/
     _onActivate : function() {
-        this._initComponent();
+        // this._initComponent();
+        if(this._htWElement["viewElement"].visible())
+        {
+            this._oLayerPosition.activate();
+        }
     },
 
     /**
@@ -449,15 +468,6 @@ jindo.m.FloatingLayer = jindo.$Class({
     **/
     _onDeactivate : function() {
         this._detachEvent();
-        if(this._oFadeinEffect) {
-            this._oFadeinEffect.detachAll("afterEffect");
-            this._oFadeinEffect.destroy();
-        }
-        this._oFloatingEffect.destroy();
-        this._oScrollEnd.destroy();
-        this._oLayerPosition.destroy();
-        this._htWElement["element"].appendTo(document.body);
-        this._htWElement["viewElement"].leave();
     },
 
     /**
@@ -504,6 +514,7 @@ jindo.m.FloatingLayer = jindo.$Class({
         jindo.m.FloatingLayer 에서 사용하는 모든 이벤트를 해제한다.
     **/
     _detachEvent : function() {
+        this._oLayerPosition.deactivate();
         this._detachFloatingEvent();
     },
 
@@ -572,10 +583,20 @@ jindo.m.FloatingLayer = jindo.$Class({
     **/
     destroy: function() {
         this.deactivate();
+        this._htWElement["element"].appendTo(document.body);
+        this._htWElement["viewElement"].leave();
         for(var p in this._htWElement) {
             this._htWElement[p] = null;
         }
         delete this._htWElement;
         this._initFloatingData();
+
+        if(this._oFadeinEffect) {
+            this._oFadeinEffect.detachAll("afterEffect");
+            this._oFadeinEffect.destroy();
+        }
+        this._oFloatingEffect.destroy();
+        this._oScrollEnd.destroy();
+        this._oLayerPosition.destroy();
     }
 }).extend(jindo.m.UIComponent);

@@ -12,7 +12,6 @@
 	@uses jindo.m.Touch
 	@keyword slider, thumb, track, 슬라이더
 	@group Component
-    @update
 
     @history 1.16.0 Update Touch 관련 옵션 인터페이스 변경
     @history 1.16.0 bug Thumb 버튼을 선택했을때 change 이벤트가 발생하지 않도록 변경
