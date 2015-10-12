@@ -76,11 +76,9 @@
 				.aPos {Array}
 			*/
 			var pos = oCustomEvent.aPos;
-
-            var htCss = {};
-            htCss[jindo.m.getCssPrefix() + "Transition"] = '0';
-            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
-
+	            var htCss = {};
+	            htCss[jindo.m.getCssPrefix() + "Transition"] = '0';
+	            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
 			welDot.css(htCss);
 		}
 
@@ -90,17 +88,17 @@
 	inst.
 	bind(jindo.$('area'), {
 		nDirection : 3 | 12 | 16,
-		aScale : [ 0.5, 1 ],
+		aScale : [ 1, 1 ],
 		nMaximumSpeed : 50/*px/ms*/
 	}).
 	bind(jindo.$('hmove'), {
 		nDirection : 1,
-		nScale : 1,
+		aScale : [ 1, 1 ],
 		nMaximumSpeed : 50/*px/ms*/
 	}).
 	bind(jindo.$('vmove'), {
 		nDirection : 4,
-		nScale : 1,
+		aScale : [ 1, 1 ],
 		nMaximumSpeed : 50/*px/ms*/
 	});
 

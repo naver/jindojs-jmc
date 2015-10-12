@@ -80,7 +80,7 @@
 
             var htCss = {};
             htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
-
+            	console.log(pos);
 			welDot.css(htCss);
 
 		}
@@ -96,12 +96,10 @@
 	}).
 	bind(jindo.$('hmove'), {
 		nDirection : 1,
-		nScale : 1,
 		nMaximumSpeed : 50/*px/ms*/
 	}).
 	bind(jindo.$('vmove'), {
 		nDirection : 4,
-		nScale : 1,
 		nMaximumSpeed : 50/*px/ms*/
 	});
 

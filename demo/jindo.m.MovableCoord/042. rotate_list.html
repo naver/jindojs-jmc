@@ -96,7 +96,8 @@
 	var welList = jindo.$Element('list');
 	var aList = welList.queryAll('> li');
 
-	var welLast = aList[0].addClass('highlight');
+	var welLast = jindo.$Element(aList[0]);
+	welLast.addClass('highlight');
 
 	var inst = new jindo.m.MovableCoord([ 0, 0 ], {
 		aMin : [ 0, 0 ],
@@ -118,11 +119,12 @@
 			var idx = Math.round(pos[0] / 40) % 9;
 
 			welLast.removeClass('highlight');
-			(welLast = aList[idx]).addClass('highlight');
+			welLast = jindo.$Element(aList[idx]);
+			welLast.addClass('highlight');
 
-            var htCss = {};
-            htCss[jindo.m.getCssPrefix() + "Transition"] = '0';
-            htCss[jindo.m.getCssPrefix() + "Transform"] = 'rotateY(-' + pos[0] + 'deg) rotateX(10deg)';
+	            var htCss = {};
+	            htCss[jindo.m.getCssPrefix() + "Transition"] = '0';
+	            htCss[jindo.m.getCssPrefix() + "Transform"] = 'rotateY(-' + pos[0] + 'deg) rotateX(10deg)';
 
 			welList.css(htCss);
 

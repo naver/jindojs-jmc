@@ -75,7 +75,7 @@
 		'hold' : function(oCustomEvent) {
 			timer && clearTimeout(timer);
 			timer = null;
-			welDot.css('transition', '0');
+			welDot.css('transitionDuration', '0');
 		},
 
 		'change' : function(oCustomEvent) {
@@ -84,11 +84,9 @@
 			*/
 			var pos = oCustomEvent.aPos;
 
-            var htCss = {};
-            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
-
+	            var htCss = {};
+	            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (pos[0]) + 'px,' + (pos[1]) + 'px)';
 			welDot.css(htCss);
-
 		},
 
 		'animation' : function(oCustomEvent) {
@@ -101,11 +99,11 @@
 				.fDone {Function} (readonly)
 			*/
 			var destPos = oCustomEvent.aDestPos;
+			var htCss = {};
 
-			welDot.css({
-				'transition' : 'all ' + oCustomEvent.fEffect + ' ' + oCustomEvent.nDuration + 'ms',
-				'transform' : 'translate(' + destPos[0] + 'px,' + destPos[1] + 'px)'
-			});
+	            htCss[jindo.m.getCssPrefix() + "Transform"] = 'translate(' + (destPos[0]) + 'px,' + (destPos[1]) + 'px)';
+	            htCss[jindo.m.getCssPrefix() + "Transition"] = 'all ' + oCustomEvent.fEffect + ' ' + oCustomEvent.nDuration + 'ms',
+	            welDot.css(htCss);
 
 			timer = setTimeout(function() {
 				timer = null;
@@ -126,12 +124,10 @@
 	}).
 	bind(jindo.$('hmove'), {
 		nDirection : 1,
-		nScale : 1,
 		nMaximumSpeed : 50/*px/ms*/
 	}).
 	bind(jindo.$('vmove'), {
 		nDirection : 4,
-		nScale : 1,
 		nMaximumSpeed : 50/*px/ms*/
 	});
 
