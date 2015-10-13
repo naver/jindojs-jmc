@@ -33,6 +33,6 @@
 		"grunt-contrib-jshint": "0.10.0",
 		"grunt-contrib-uglify": "0.4.0",
 		"grunt-exec": "0.4.5",
-		"auidocjs": "0.0.6"
+		"auidocjs": ">=0.0.6"
 	}
 }
