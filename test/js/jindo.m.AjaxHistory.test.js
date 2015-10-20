@@ -39,6 +39,11 @@ test("addHistory", function() {
 	equal(oAjaxHistory._htLastState.type, htData.type, '저장데이터 확인');
 });
 
+test("_isEncoded", function(){
+	equal(oAjaxHistory._isEncoded("{a:1}"), false);
+	equal(oAjaxHistory._isEncoded(encodeURIComponent("{a:1}")), true);
+});
+
 test('cloneObject', function(){
 	var htData = {data : 'abc'};
 	
