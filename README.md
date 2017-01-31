@@ -1,3 +1,10 @@
+> This project is no longer maintained since 2017.
+> Please use alternatives libraries as 'jQuery' and 'egjs' instead of Jindo and JC/JMC.
+If you need to migrate, check out migration documents(jQuery/JMC) listed as below.
+- Jindo: https://naver.github.io/jindo-to-jquery/
+- JMC: https://github.com/naver/jindojs-jmc/wiki
+
+
 **[JMC](http://jindo.dev.naver.com/docs/jindo-mobile/archive/latest/doc/external/index.html) - Jindo Mobile Component** 
 =========================================
 [![Build Status](https://travis-ci.org/naver/jindojs-jmc.svg?branch=master)](https://travis-ci.org/naver/jindojs-jmc)
